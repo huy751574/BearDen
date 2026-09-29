@@ -148,6 +148,71 @@ def tune_sky(rgb, time: str, lift: float) -> tuple[float, float, float]:
     return (r * 255, g * 255, b * 255)
 
 
+# ---------------------------------------------------------------- island layout
+
+# Themes whose scenes always use one island template.
+THEME_ISLAND = {
+    "power-bearer": "hangar",
+    "sun-and-moon": "skygarden",
+    "parfum": "parisbridge",
+    "to-hong": "riverside",
+    "vietnam": "riverside",
+    "lullabies": "nursery",
+    "bloom": "stage",
+}
+# Otherwise: first keyword rule that matches, then the theme default.
+ISLAND_RULES: list[tuple[str, list[str]]] = [
+    ("onsen", ["onsen", "onset"]),
+    ("stage", ["singer", "idol", "stage", "orchestra", "conduct", "conducts", "podium", "philharmonic",
+               "waltz", "ballroom", "tango", "concert"]),
+    ("landmark", ["castle", "neuschwanstein", "pyramids", "pyramid", "angkor", "fuji", "moon", "universe",
+                  "cosmos", "island", "beach", "hawaiian", "atlantis", "mammoth", "throne", "trailblazing",
+                  "trailblaze", "tarzan", "aircraft", "pilot", "bay", "rolling", "ocean"]),
+    ("camp", ["camping", "campfire"]),
+    ("arena", ["dojo", "training", "arena", "duel", "dueling", "boss", "dungeon", "assasins", "assassins",
+               "husky", "defending", "siege"]),
+    ("town", ["town", "guild", "guildhall", "tavern", "feast", "strolling", "signing", "traveling",
+              "caravan", "summoning", "mourning", "portal"]),
+    ("cave", ["cave"]),
+    ("meadow", ["butterflies", "meadow", "lyre", "pigeons", "goat", "stargazing", "floating", "cliff",
+                "drawing", "paints", "honey", "beehive", "graveyard"]),
+    ("pavilion", ["tea", "liyue", "cultivate", "jianghu", "jade"]),
+    ("cozyroom", ["cafe", "library", "reading", "books", "writing", "book", "bed", "lazy", "radio", "working",
+                  "gaming", "bar", "jazz", "lounge", "ramen", "train", "waking"]),
+    ("wheatfield", ["wheat", "windmill"]),
+    ("snowfield", ["snow", "winter", "frozen", "ice"]),
+    ("lakeside", ["lake", "river", "fishing", "salmon", "shore", "stream", "swamp", "alligator"]),
+]
+THEME_DEFAULT_ISLAND = {
+    "adventure": "landmark", "chill": "cozyroom", "relax": "meadow", "hunting": "wildforest",
+    "isekai": "town", "wuxia": "pavilion", "cover": "meadow",
+}
+# Landmark sub-types (which mini-model sits on the island).
+LANDMARK_RULES: list[tuple[str, list[str]]] = [
+    ("castle", ["castle", "neuschwanstein"]),
+    ("pyramid", ["pyramid", "pyramids", "egypt", "camel"]),
+    ("temple", ["angkor", "temple"]),
+    ("fuji", ["fuji"]),
+    ("moon", ["moon", "earthrise", "universe", "cosmos", "astronaut"]),
+    ("throne", ["throne", "kings"]),
+    ("train", ["trailblazing", "trailblaze", "train"]),
+    ("ruins", ["atlantis", "ruins", "underwater", "whale"]),
+    ("bones", ["mammoth", "giant", "bones"]),
+    ("ship", ["rolling", "ocean", "deck", "steers", "stormy"]),
+    ("bay", ["bay", "turtle"]),
+    ("beach", ["island", "beach", "hawaiian", "dancing"]),
+    ("jungle", ["tarzan", "jungle", "aircraft", "pilot", "amazon", "rainforest"]),
+]
+
+
+def island_for(theme: str, words: set[str]) -> tuple[str, str]:
+    island = THEME_ISLAND.get(theme) or first_rule(ISLAND_RULES, words, THEME_DEFAULT_ISLAND.get(theme, "meadow"))
+    if island == "stage" and "snow" in words:
+        island = "snowfield"  # e.g. idol + bear sitting in a snow field
+    variant = first_rule(LANDMARK_RULES, words, "castle") if island == "landmark" else ""
+    return island, variant
+
+
 def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     old = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
@@ -173,14 +238,19 @@ def main() -> int:
             sky_top, sky_bottom = tune_sky(info["top"], time, 0.0), tune_sky(info["horizon"], time, 0.06)
         else:
             sky_top, sky_bottom = (40, 50, 110), (150, 150, 190)
+        # Island layout: scene's own words only (YouTube titles add SEO noise).
+        scene_words = words_of(sid.replace("-", " "), s["title"], *(v["title"].split("|")[0] for v in s["youtube"]))
+        island, variant = island_for(s["theme"], scene_words)
         out[sid] = {
             "time": time,
             "below": below,
             "weather": weather,
             "skyTop": hexcolor(sky_top),
             "skyBottom": hexcolor(sky_bottom),
+            "island": island,
+            **({"variant": variant} if variant else {}),
         }
-        key = f"{time}/{below}"
+        key = f"island {island}{'/' + variant if variant else ''}"
         counts[key] = counts.get(key, 0) + 1
 
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

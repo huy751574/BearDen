@@ -15,6 +15,9 @@ export interface SceneEnv {
   weather: 'rain' | 'snow' | 'petals' | 'fireflies' | 'sparks' | 'none';
   skyTop: string;
   skyBottom: string;
+  /** Island layout (templates.ts) and, for landmarks, which landmark. */
+  island?: import('./templates').IslandKind;
+  variant?: string;
 }
 
 const BELOW_Y = -20; // height of the world below the island

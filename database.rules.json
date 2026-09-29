@@ -1,0 +1,25 @@
+{
+  "rules": {
+    "rooms": {
+      "$room": {
+        ".read": "$room.matches(/^[a-z0-9-]{1,40}$/)",
+        "head": {
+          ".write": "auth != null && newData.exists() && $room.matches(/^[a-z0-9-]{1,40}$/)",
+          ".validate": "newData.isNumber() && ((!data.exists() && newData.val() === 0) || (data.exists() && newData.val() === (data.val() + 1) % 100))"
+        },
+        "slots": {
+          "$slot": {
+            ".write": "auth != null && newData.exists() && $room.matches(/^[a-z0-9-]{1,40}$/)",
+            ".validate": "$slot.matches(/^[0-9]{1,2}$/) && newData.hasChildren(['uid', 'name', 'text', 'ts'])",
+            "uid": { ".validate": "newData.val() === auth.uid" },
+            "name": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 40" },
+            "photo": { ".validate": "newData.isString() && newData.val().length <= 500" },
+            "text": { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 300" },
+            "ts": { ".validate": "newData.val() === now" },
+            "$other": { ".validate": false }
+          }
+        }
+      }
+    }
+  }
+}

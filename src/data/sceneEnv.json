@@ -1,0 +1,863 @@
+{
+ "adventure-bear-visit-neuschwanstein-castle": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#6a97b8",
+  "skyBottom": "#6895b6"
+ },
+ "adventure-bear-walk-on-the-moon": {
+  "time": "night",
+  "below": "space",
+  "weather": "none",
+  "skyTop": "#1d2c3b",
+  "skyBottom": "#273b51"
+ },
+ "adventure-bear-with-friends-visit-angkor": {
+  "time": "sunset",
+  "below": "forest",
+  "weather": "none",
+  "skyTop": "#c37f62",
+  "skyBottom": "#ba884a"
+ },
+ "adventure-bear-with-friends-visit-pyramids": {
+  "time": "sunset",
+  "below": "desert",
+  "weather": "none",
+  "skyTop": "#dcb4a3",
+  "skyBottom": "#c99d71"
+ },
+ "adventure-black-bear-being-tarzan-in-forest": {
+  "time": "day",
+  "below": "forest",
+  "weather": "none",
+  "skyTop": "#5397ac",
+  "skyBottom": "#68a3b6"
+ },
+ "adventure-black-bear-riding-aircraft-above-forest": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#bad5de",
+  "skyBottom": "#78a0be"
+ },
+ "adventure-the-bear-dancing-on-island": {
+  "time": "sunset",
+  "below": "sea",
+  "weather": "none",
+  "skyTop": "#a67b3f",
+  "skyBottom": "#c09259"
+ },
+ "adventure-the-bear-visiting-ha-long-bay": {
+  "time": "day",
+  "below": "sea",
+  "weather": "none",
+  "skyTop": "#96b6cd",
+  "skyBottom": "#6895b6"
+ },
+ "adventure-the-black-bear-and-the-rolling-wave-sea": {
+  "time": "day",
+  "below": "storm",
+  "weather": "rain",
+  "skyTop": "#5387ac",
+  "skyBottom": "#89acc6"
+ },
+ "adventure-the-black-bear-find-out-atlantis-remnants": {
+  "time": "day",
+  "below": "sea",
+  "weather": "none",
+  "skyTop": "#589aae",
+  "skyBottom": "#68a3b6"
+ },
+ "adventure-the-black-bear-find-out-mammoth-remnants": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#b5ccdc",
+  "skyBottom": "#749ebc"
+ },
+ "adventure-the-black-bear-in-the-universe": {
+  "time": "day",
+  "below": "space",
+  "weather": "none",
+  "skyTop": "#5361ac",
+  "skyBottom": "#6874b6"
+ },
+ "adventure-the-black-bear-sightseeing-fuji": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "rain",
+  "skyTop": "#5387ac",
+  "skyBottom": "#68a3b6"
+ },
+ "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field": {
+  "time": "night",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#193054",
+  "skyBottom": "#334c6b"
+ },
+ "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park": {
+  "time": "sunset",
+  "below": "lake",
+  "weather": "petals",
+  "skyTop": "#a75e3e",
+  "skyBottom": "#c59567"
+ },
+ "bloom-bear-meeting-alone-cat-singer-idol": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "petals",
+  "skyTop": "#8a93c6",
+  "skyBottom": "#98a1cd"
+ },
+ "bloom-bear-meeting-firework-festival-cat-singer-idol": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "sparks",
+  "skyTop": "#a6573f",
+  "skyBottom": "#c38362"
+ },
+ "bloom-full-bloom": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "petals",
+  "skyTop": "#5377ac",
+  "skyBottom": "#6888b6"
+ },
+ "bloom-singer-cat-singer-witch-lullaby": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "petals",
+  "skyTop": "#562e60",
+  "skyBottom": "#60336b"
+ },
+ "bloom-singer-cat-hype-edm-in-spring-square": {
+  "time": "day",
+  "below": "city",
+  "weather": "petals",
+  "skyTop": "#5387ac",
+  "skyBottom": "#68a0b6"
+ },
+ "bloom-singer-cat-sing-rooftop-through-radio-broadcast": {
+  "time": "night",
+  "below": "city",
+  "weather": "petals",
+  "skyTop": "#2d465d",
+  "skyBottom": "#33396b"
+ },
+ "chill-bear-having-night-ramen-at-top-of-city": {
+  "time": "night",
+  "below": "city",
+  "weather": "rain",
+  "skyTop": "#3f2d5f",
+  "skyBottom": "#60336b"
+ },
+ "chill-bear-in-neon-cafe-with-friends": {
+  "time": "night",
+  "below": "city",
+  "weather": "rain",
+  "skyTop": "#2d425c",
+  "skyBottom": "#33486b"
+ },
+ "chill-bear-on-midnight-train-home": {
+  "time": "night",
+  "below": "city",
+  "weather": "rain",
+  "skyTop": "#331c39",
+  "skyBottom": "#282c53"
+ },
+ "chill-black-bear-soak-in-onsen-at-snow-mountain": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#7ca3c0",
+  "skyBottom": "#6e9ab9"
+ },
+ "chill-black-bear-soak-in-onset-at-night-mountain": {
+  "time": "night",
+  "below": "lake",
+  "weather": "fireflies",
+  "skyTop": "#1d3959",
+  "skyBottom": "#33506b"
+ },
+ "chill-chasing-butterflies": {
+  "time": "day",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "chill-i-am-lazy-on-the-bed": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#b57b45",
+  "skyBottom": "#ba794a"
+ },
+ "chill-the-bear-conduct-music-for-cats": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#552d5f",
+  "skyBottom": "#60336b"
+ },
+ "chill-the-bear-conduct-music-for-dogs": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#532d5c",
+  "skyBottom": "#33396b"
+ },
+ "chill-the-bear-drawing-at-the-cliff": {
+  "time": "sunset",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#c69f67",
+  "skyBottom": "#bd7150"
+ },
+ "chill-the-bear-reading-books-in-library": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "fireflies",
+  "skyTop": "#a6743f",
+  "skyBottom": "#ba804a"
+ },
+ "chill-the-bear-want-the-honey": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#68a3b6"
+ },
+ "chill-waking-up": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#301a35",
+  "skyBottom": "#60336b"
+ },
+ "chill-working-and-chill-with-friends": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#3e2145",
+  "skyBottom": "#60336b"
+ },
+ "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#b6bde2",
+  "skyBottom": "#939ccb"
+ },
+ "cover-zzz-bear-noting-with-lucia-about-little-goat": {
+  "time": "sunset",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#dabc9d",
+  "skyBottom": "#ba794a"
+ },
+ "cover-genshin-impact-bear-playing-lyre-for-pigeons": {
+  "time": "day",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#7daacf",
+  "skyBottom": "#729cbb"
+ },
+ "cover-game-of-thrones-bear-visit-throne": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#3b2042",
+  "skyBottom": "#60336b"
+ },
+ "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango": {
+  "time": "night",
+  "below": "snow",
+  "weather": "none",
+  "skyTop": "#1e3958",
+  "skyBottom": "#2d5071"
+ },
+ "cover-honkai-star-rail-the-bear-trailblazing": {
+  "time": "night",
+  "below": "space",
+  "weather": "none",
+  "skyTop": "#402247",
+  "skyBottom": "#33396b"
+ },
+ "hunting-bear-approach-the-prey": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5b2668",
+  "skyBottom": "#5f2c6c"
+ },
+ "hunting-bear-bare-teeth-aggresively-to-enemy": {
+  "time": "day",
+  "below": "storm",
+  "weather": "rain",
+  "skyTop": "#5386ac",
+  "skyBottom": "#6898b6"
+ },
+ "hunting-bear-roar-on-top-of-mountain": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#88acc6",
+  "skyBottom": "#96b6cc"
+ },
+ "hunting-bear-walk-in-the-dark": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#28326e",
+  "skyBottom": "#9696be"
+ },
+ "hunting-the-bear-is-drinking-near-alligator": {
+  "time": "day",
+  "below": "desert",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#749ebc"
+ },
+ "hunting-the-bear-is-hunting-salmon": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "isekai-bear-hero-party-traveling": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#bf9557",
+  "skyBottom": "#ba874a"
+ },
+ "isekai-black-bear-hero-party-camping-night-in-the-pines": {
+  "time": "night",
+  "below": "forest",
+  "weather": "sparks",
+  "skyTop": "#13284b",
+  "skyBottom": "#264868"
+ },
+ "isekai-black-bear-signing-up-being-adventurer": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#402048",
+  "skyBottom": "#61326c"
+ },
+ "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#4c1f57",
+  "skyBottom": "#62306e"
+ },
+ "isekai-hero-bear-party-fighting-dugeon-boss": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "sparks",
+  "skyTop": "#538cac",
+  "skyBottom": "#6895b6"
+ },
+ "isekai-the-defending-war-over": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#dcc6a3",
+  "skyBottom": "#ba6c4a"
+ },
+ "isekai-the-summoning-heroes-are-defending": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5368ac",
+  "skyBottom": "#6895b6"
+ },
+ "isekai-the-summoning-heroes-are-mourning": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#bfd8e0",
+  "skyBottom": "#95b5cc"
+ },
+ "isekai-the-summoning-heroes-are-strolling-town": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#c29560",
+  "skyBottom": "#ba784a"
+ },
+ "isekai-the-summoning-heroes-are-training": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#d9c89c",
+  "skyBottom": "#c27c5e"
+ },
+ "isekai-the-summoning-of-the-hero": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "lullabies-bear-afternoon-nap": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#c59b65",
+  "skyBottom": "#bb874c"
+ },
+ "lullabies-bear-babysitting-night-sleepy": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "fireflies",
+  "skyTop": "#2e3360",
+  "skyBottom": "#314c66"
+ },
+ "lullabies-bear-babysitting-reading-books": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "rain",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "lullabies-bear-babysitting-snowy-cabin": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "parfum-bear-and-mademoiselle-on-bridge-full-bloom": {
+  "time": "sunset",
+  "below": "lake",
+  "weather": "petals",
+  "skyTop": "#dbaa99",
+  "skyBottom": "#c58465"
+ },
+ "parfum-bear-meeting-mademoiselle": {
+  "time": "day",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#c1d9e1",
+  "skyBottom": "#b6d4de"
+ },
+ "power-bearer-bear-mecha-fighting-mecha-alligator": {
+  "time": "day",
+  "below": "desert",
+  "weather": "sparks",
+  "skyTop": "#6a97b8",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-bear-mecha-fighting-mecha-direwolf": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "sparks",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-bear-mecha-fighting-mecha-maestrom": {
+  "time": "day",
+  "below": "storm",
+  "weather": "rain",
+  "skyTop": "#5388ac",
+  "skyBottom": "#68a1b6"
+ },
+ "power-bearer-bear-mecha-transform": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "sparks",
+  "skyTop": "#82a8c3",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-bear-mecha-victory-against-mecha-alligator": {
+  "time": "day",
+  "below": "lake",
+  "weather": "sparks",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-bear-mecha-victory-against-mecha-direwolf": {
+  "time": "day",
+  "below": "forest",
+  "weather": "sparks",
+  "skyTop": "#a9c9d5",
+  "skyBottom": "#739dbc"
+ },
+ "power-bearer-bear-mecha-wakeup": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "rain",
+  "skyTop": "#7fa5c1",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-bear-triumph-over-maelstrom": {
+  "time": "day",
+  "below": "storm",
+  "weather": "rain",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-mecha-bear-fighting-9-head-mecha": {
+  "time": "day",
+  "below": "forest",
+  "weather": "sparks",
+  "skyTop": "#5387ac",
+  "skyBottom": "#689cb6"
+ },
+ "power-bearer-the-bear-victory-hydra-mecha": {
+  "time": "day",
+  "below": "forest",
+  "weather": "sparks",
+  "skyTop": "#5386ac",
+  "skyBottom": "#689db6"
+ },
+ "power-bearer-the-bear-fixing-his-mecha-in-snow": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#5b93b0",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-the-hydra-make-an-appearance": {
+  "time": "day",
+  "below": "forest",
+  "weather": "none",
+  "skyTop": "#5397ac",
+  "skyBottom": "#68a3b6"
+ },
+ "power-bearer-villain-alligator-appear": {
+  "time": "day",
+  "below": "desert",
+  "weather": "sparks",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "power-bearer-villain-dire-wolf-appear": {
+  "time": "day",
+  "below": "forest",
+  "weather": "rain",
+  "skyTop": "#5387ac",
+  "skyBottom": "#68a2b6"
+ },
+ "power-bearer-villain-maestrom-make-appearance": {
+  "time": "night",
+  "below": "storm",
+  "weather": "rain",
+  "skyTop": "#2e4860",
+  "skyBottom": "#33506b"
+ },
+ "relax-at-the-lake-shore": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "relax-bear-friends-group-performing-in-waltz-hall": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "snow",
+  "skyTop": "#a66a3f",
+  "skyBottom": "#ba6e4a"
+ },
+ "relax-bear-reading-in-graveyard": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#1d2d4a",
+  "skyBottom": "#334f6b"
+ },
+ "relax-bear-walking-on-the-snow": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#87abc5",
+  "skyBottom": "#7aa2bf"
+ },
+ "relax-black-bear-stargazing": {
+  "time": "night",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#223a5f",
+  "skyBottom": "#334c6b"
+ },
+ "relax-black-bear-fishing": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#a7cad5",
+  "skyBottom": "#6895b6"
+ },
+ "relax-black-bear-floating-above-the-clouds": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#5371ac",
+  "skyBottom": "#6895b6"
+ },
+ "relax-black-bear-in-the-cave-listening-outside-rain": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "rain",
+  "skyTop": "#14162a",
+  "skyBottom": "#2e3360"
+ },
+ "relax-black-bear-sitting-in-the-snow": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#a7c0d5",
+  "skyBottom": "#8baec7"
+ },
+ "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake": {
+  "time": "night",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#2d3f62",
+  "skyBottom": "#333a6b"
+ },
+ "relax-cafe-and-story": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#3b2041",
+  "skyBottom": "#33396b"
+ },
+ "relax-grill-fish-in-the-cave-with-cat": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#131629",
+  "skyBottom": "#2e3360"
+ },
+ "relax-sleeping-in-the-cave": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#0f171f",
+  "skyBottom": "#253a4d"
+ },
+ "relax-the-bear-lie-down-in-wheat-field": {
+  "time": "sunset",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#d3b283",
+  "skyBottom": "#c88d4d"
+ },
+ "relax-the-bear-sit-in-wheat-field": {
+  "time": "sunset",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#dcc1a3",
+  "skyBottom": "#ebd6b2"
+ },
+ "relax-the-black-bear-sitting-beside-old-radio": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#141f2a",
+  "skyBottom": "#253a4d"
+ },
+ "relax-writing-book": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#68a3b6"
+ },
+ "sun-and-moon-prism-light": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#cd947c",
+  "skyBottom": "#c98b71"
+ },
+ "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "rain",
+  "skyTop": "#2e475f",
+  "skyBottom": "#33396b"
+ },
+ "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#2e3360",
+  "skyBottom": "#33396b"
+ },
+ "sun-and-moon-sun-out-of-sight-and-moon-got-darken": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#17232f",
+  "skyBottom": "#1a2936"
+ },
+ "sun-and-moon-sun-shine-too-bright-for-her": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#c1d4e1",
+  "skyBottom": "#85a9c4"
+ },
+ "to-hong-duyen-to-chuc-nu": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#a6703f",
+  "skyBottom": "#c59465"
+ },
+ "to-hong-duyen-to-nguu-lang": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#6fa8ba",
+  "skyBottom": "#86b6c5"
+ },
+ "to-hong-det-mong": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#a66f3f",
+  "skyBottom": "#ba844a"
+ },
+ "vietnam-ba-khi-ngut-troi": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#84a9c4",
+  "skyBottom": "#7ca3c0"
+ },
+ "vietnam-ngam-lai-mot-chut": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#0f253e",
+  "skyBottom": "#33506b"
+ },
+ "vietnam-rock-giua-may-va-song": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#b1c9da",
+  "skyBottom": "#7ca4c0"
+ },
+ "vietnam-viet-nam-trong-tim-toi": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#c57f67",
+  "skyBottom": "#e2ceb3"
+ },
+ "vietnam-vo-nga": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#4f7ab0",
+  "skyBottom": "#688fb6"
+ },
+ "vietnam-vo-thuong": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#be7d55",
+  "skyBottom": "#d3b58c"
+ },
+ "vietnam-vo-tuong": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#b0b7d9",
+  "skyBottom": "#6895b6"
+ },
+ "vietnam-vo-vi": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#6e9ab9",
+  "skyBottom": "#68a3b6"
+ },
+ "wuxia-bear-playing-music-on-jade-bridge-with-friends": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#b9bfe1",
+  "skyBottom": "#9ba3cf"
+ },
+ "wuxia-bear-playing-music-on-lattern-river-with-friends": {
+  "time": "day",
+  "below": "lake",
+  "weather": "fireflies",
+  "skyTop": "#5361ac",
+  "skyBottom": "#6874b6"
+ },
+ "wuxia-the-bear-fighting-assasins-hyena": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "sparks",
+  "skyTop": "#142c47",
+  "skyBottom": "#304a63"
+ },
+ "wuxia-the-bear-fighting-husky-opponent": {
+  "time": "day",
+  "below": "city",
+  "weather": "sparks",
+  "skyTop": "#5392ac",
+  "skyBottom": "#6895b6"
+ },
+ "wuxia-the-bear-healing-cultivate": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#a3bed2",
+  "skyBottom": "#7ba3bf"
+ },
+ "wuxia-the-black-bear-is-dueling-panda-bamboo": {
+  "time": "day",
+  "below": "forest",
+  "weather": "none",
+  "skyTop": "#5387ac",
+  "skyBottom": "#6895b6"
+ },
+ "wuxia-the-black-bear-is-training-with-red-panda-shifu": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#749ebc",
+  "skyBottom": "#729cbb"
+ },
+ "wuxia-the-black-bear-is-traveling-with-friends": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#9fbcd1",
+  "skyBottom": "#6996b7"
+ },
+ "wuxia-the-black-bear-meditating-middle-lake-bamboo-forest": {
+  "time": "night",
+  "below": "lake",
+  "weather": "fireflies",
+  "skyTop": "#172e43",
+  "skyBottom": "#33506b"
+ },
+ "wuxia-the-jianghu-calls-her-home": {
+  "time": "day",
+  "below": "clouds",
+  "weather": "rain",
+  "skyTop": "#5c8db0",
+  "skyBottom": "#769fbd"
+ }
+}

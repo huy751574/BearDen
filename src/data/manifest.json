@@ -1,0 +1,3930 @@
+{
+  "themes": [
+    {
+      "id": "adventure",
+      "name": "Adventure",
+      "scenes": [
+        "adventure-bear-visit-neuschwanstein-castle",
+        "adventure-bear-walk-on-the-moon",
+        "adventure-bear-with-friends-visit-angkor",
+        "adventure-bear-with-friends-visit-pyramids",
+        "adventure-black-bear-being-tarzan-in-forest",
+        "adventure-black-bear-riding-aircraft-above-forest",
+        "adventure-the-bear-dancing-on-island",
+        "adventure-the-bear-visiting-ha-long-bay",
+        "adventure-the-black-bear-and-the-rolling-wave-sea",
+        "adventure-the-black-bear-find-out-atlantis-remnants",
+        "adventure-the-black-bear-find-out-mammoth-remnants",
+        "adventure-the-black-bear-in-the-universe",
+        "adventure-the-black-bear-sightseeing-fuji"
+      ]
+    },
+    {
+      "id": "bloom",
+      "name": "Bloom",
+      "scenes": [
+        "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field",
+        "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park",
+        "bloom-bear-meeting-alone-cat-singer-idol",
+        "bloom-bear-meeting-firework-festival-cat-singer-idol",
+        "bloom-full-bloom",
+        "bloom-singer-cat-hype-edm-in-spring-square",
+        "bloom-singer-cat-sing-rooftop-through-radio-broadcast",
+        "bloom-singer-cat-singer-witch-lullaby"
+      ]
+    },
+    {
+      "id": "chill",
+      "name": "Chill",
+      "scenes": [
+        "chill-bear-having-night-ramen-at-top-of-city",
+        "chill-bear-in-neon-cafe-with-friends",
+        "chill-bear-on-midnight-train-home",
+        "chill-black-bear-soak-in-onsen-at-snow-mountain",
+        "chill-black-bear-soak-in-onset-at-night-mountain",
+        "chill-chasing-butterflies",
+        "chill-i-am-lazy-on-the-bed",
+        "chill-the-bear-conduct-music-for-cats",
+        "chill-the-bear-conduct-music-for-dogs",
+        "chill-the-bear-drawing-at-the-cliff",
+        "chill-the-bear-reading-books-in-library",
+        "chill-the-bear-want-the-honey",
+        "chill-waking-up",
+        "chill-working-and-chill-with-friends"
+      ]
+    },
+    {
+      "id": "cover",
+      "name": "Cover",
+      "scenes": [
+        "cover-game-of-thrones-bear-visit-throne",
+        "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer",
+        "cover-genshin-impact-bear-playing-lyre-for-pigeons",
+        "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango",
+        "cover-honkai-star-rail-the-bear-trailblazing",
+        "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz",
+        "cover-zzz-bear-noting-with-lucia-about-little-goat"
+      ]
+    },
+    {
+      "id": "hunting",
+      "name": "Hunting",
+      "scenes": [
+        "hunting-bear-approach-the-prey",
+        "hunting-bear-bare-teeth-aggresively-to-enemy",
+        "hunting-bear-roar-on-top-of-mountain",
+        "hunting-bear-walk-in-the-dark",
+        "hunting-the-bear-is-drinking-near-alligator",
+        "hunting-the-bear-is-hunting-salmon"
+      ]
+    },
+    {
+      "id": "isekai",
+      "name": "Isekai",
+      "scenes": [
+        "isekai-bear-hero-party-traveling",
+        "isekai-black-bear-hero-party-camping-night-in-the-pines",
+        "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight",
+        "isekai-black-bear-signing-up-being-adventurer",
+        "isekai-hero-bear-party-fighting-dugeon-boss",
+        "isekai-the-defending-war-over",
+        "isekai-the-summoning-heroes-are-defending",
+        "isekai-the-summoning-heroes-are-mourning",
+        "isekai-the-summoning-heroes-are-strolling-town",
+        "isekai-the-summoning-heroes-are-training",
+        "isekai-the-summoning-of-the-hero"
+      ]
+    },
+    {
+      "id": "lullabies",
+      "name": "Lullabies",
+      "scenes": [
+        "lullabies-bear-afternoon-nap",
+        "lullabies-bear-babysitting-night-sleepy",
+        "lullabies-bear-babysitting-reading-books",
+        "lullabies-bear-babysitting-snowy-cabin"
+      ]
+    },
+    {
+      "id": "parfum",
+      "name": "Parfum",
+      "scenes": [
+        "parfum-bear-and-mademoiselle-on-bridge-full-bloom",
+        "parfum-bear-meeting-mademoiselle"
+      ]
+    },
+    {
+      "id": "power-bearer",
+      "name": "Power Bearer",
+      "scenes": [
+        "power-bearer-bear-mecha-fighting-mecha-alligator",
+        "power-bearer-bear-mecha-fighting-mecha-direwolf",
+        "power-bearer-bear-mecha-fighting-mecha-maestrom",
+        "power-bearer-bear-mecha-transform",
+        "power-bearer-bear-mecha-victory-against-mecha-alligator",
+        "power-bearer-bear-mecha-victory-against-mecha-direwolf",
+        "power-bearer-bear-mecha-wakeup",
+        "power-bearer-bear-triumph-over-maelstrom",
+        "power-bearer-mecha-bear-fighting-9-head-mecha",
+        "power-bearer-the-bear-fixing-his-mecha-in-snow",
+        "power-bearer-the-bear-victory-hydra-mecha",
+        "power-bearer-the-hydra-make-an-appearance",
+        "power-bearer-villain-alligator-appear",
+        "power-bearer-villain-dire-wolf-appear",
+        "power-bearer-villain-maestrom-make-appearance"
+      ]
+    },
+    {
+      "id": "relax",
+      "name": "Relax",
+      "scenes": [
+        "relax-at-the-lake-shore",
+        "relax-bear-friends-group-performing-in-waltz-hall",
+        "relax-bear-reading-in-graveyard",
+        "relax-bear-walking-on-the-snow",
+        "relax-black-bear-fishing",
+        "relax-black-bear-floating-above-the-clouds",
+        "relax-black-bear-in-the-cave-listening-outside-rain",
+        "relax-black-bear-sitting-in-the-snow",
+        "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake",
+        "relax-black-bear-stargazing",
+        "relax-cafe-and-story",
+        "relax-grill-fish-in-the-cave-with-cat",
+        "relax-sleeping-in-the-cave",
+        "relax-the-bear-lie-down-in-wheat-field",
+        "relax-the-bear-sit-in-wheat-field",
+        "relax-the-black-bear-sitting-beside-old-radio",
+        "relax-writing-book"
+      ]
+    },
+    {
+      "id": "sun-and-moon",
+      "name": "Sun And Moon",
+      "scenes": [
+        "sun-and-moon-prism-light",
+        "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain",
+        "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass",
+        "sun-and-moon-sun-out-of-sight-and-moon-got-darken",
+        "sun-and-moon-sun-shine-too-bright-for-her"
+      ]
+    },
+    {
+      "id": "to-hong",
+      "name": "Tơ Hồng",
+      "scenes": [
+        "to-hong-duyen-to-chuc-nu",
+        "to-hong-duyen-to-nguu-lang",
+        "to-hong-det-mong"
+      ]
+    },
+    {
+      "id": "vietnam",
+      "name": "VietNam",
+      "scenes": [
+        "vietnam-ba-khi-ngut-troi",
+        "vietnam-ngam-lai-mot-chut",
+        "vietnam-rock-giua-may-va-song",
+        "vietnam-viet-nam-trong-tim-toi",
+        "vietnam-vo-nga",
+        "vietnam-vo-thuong",
+        "vietnam-vo-tuong",
+        "vietnam-vo-vi"
+      ]
+    },
+    {
+      "id": "wuxia",
+      "name": "Wuxia",
+      "scenes": [
+        "wuxia-bear-playing-music-on-jade-bridge-with-friends",
+        "wuxia-bear-playing-music-on-lattern-river-with-friends",
+        "wuxia-the-bear-fighting-assasins-hyena",
+        "wuxia-the-bear-fighting-husky-opponent",
+        "wuxia-the-bear-healing-cultivate",
+        "wuxia-the-black-bear-is-dueling-panda-bamboo",
+        "wuxia-the-black-bear-is-training-with-red-panda-shifu",
+        "wuxia-the-black-bear-is-traveling-with-friends",
+        "wuxia-the-black-bear-meditating-middle-lake-bamboo-forest",
+        "wuxia-the-jianghu-calls-her-home"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "adventure-bear-visit-neuschwanstein-castle",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear visit Neuschwanstein castle",
+      "folders": [
+        "Adventure-Bear_visit_Neuschwanstein_castle",
+        "Adventure-Bear_visit_Neuschwanstein_castle-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Adventure-Bear_visit_Neuschwanstein_castle/Bear_gazing_at_distant_castle_20260927211829.mp4",
+      "songs": [
+        {
+          "title": "Edge of the World",
+          "file": "Adventure-Bear_visit_Neuschwanstein_castle/Edge of the World.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Edge of the World (Lyrics)",
+          "file": "Adventure-Bear_visit_Neuschwanstein_castle-Lyrics/Edge of the World (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "1BCiajqRP34",
+          "title": "Edge of the World 🏰 Bear's Journey to Neuschwanstein Castle | Medieval Chillwave to Relax & Focus",
+          "kind": "instrumental"
+        },
+        {
+          "id": "ikKp0_-xIlM",
+          "title": "Edge of the World (Lyrics) 🏰 Neuschwanstein Castle | Medieval Chillwave to Relax & Focus",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "adventure-bear-walk-on-the-moon",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear walk on the moon",
+      "folders": [
+        "Adventure-Bear_walk_on_the_moon"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Bear_walk_on_the_moon/Black_Bear_walking_on_moon_202607240032.mp4",
+      "songs": [
+        {
+          "title": "Walking on the Moon",
+          "file": "Adventure-Bear_walk_on_the_moon/Walking on the Moon.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qMB5zGc27pY",
+          "title": "Weightless 🌕 Bear Walks the Moon Under Earthrise | Lofi Beats to Relax / Study / Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-bear-with-friends-visit-angkor",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear with friends visit Angkor",
+      "folders": [
+        "Adventure-Bear_with_friends_visit_Angkor"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Bear_with_friends_visit_Angkor/Black_Bear_at_Angkor_Wat_202607190202.mp4",
+      "songs": [
+        {
+          "title": "Dawn Over Angkor",
+          "file": "Adventure-Bear_with_friends_visit_Angkor/Dawn Over Angkor.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "5kctsklbtzQ",
+          "title": "Dawn Over Angkor 🛕 Bear & Friends Explore the Ancient Temple | Lofi Adventure to Relax & Study",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-bear-with-friends-visit-pyramids",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear with friends visit Pyramids",
+      "folders": [
+        "Adventure-Bear_with_friends_visit_Pyramids"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Bear_with_friends_visit_Pyramids/Black_Bear_riding_camel_pyramids_202607192342.mp4",
+      "songs": [
+        {
+          "title": "Golden Sunset Swing",
+          "file": "Adventure-Bear_with_friends_visit_Pyramids/Golden Sunset Swing.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Tm80uNSrNA0",
+          "title": "Golden Sunset Swing 🐫 Bear & Friends Visit the Pyramids of Egypt | Lofi Beats",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-black-bear-being-tarzan-in-forest",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Black Bear being tarzan in forest",
+      "folders": [
+        "Adventure-Black_Bear_being_tarzan_in_forest"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Black_Bear_being_tarzan_in_forest/Black_Bear_swinging_through_jungle_202607292238.mp4",
+      "songs": [
+        {
+          "title": "Forest Call",
+          "file": "Adventure-Black_Bear_being_tarzan_in_forest/Forest Call.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "cDl4XCCLW-8",
+          "title": "Jungle Swing 🌿 Tarzan Bear Soars Through the Rainforest | Tribal Lofi Beats to Groove & Focus",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-black-bear-riding-aircraft-above-forest",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Black Bear riding aircraft above forest",
+      "folders": [
+        "Adventure-Black_Bear_riding_aircraft_above_forest"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Black_Bear_riding_aircraft_above_forest/Black_bear_piloting_plane_202607292102.mp4",
+      "songs": [
+        {
+          "title": "River Call",
+          "file": "Adventure-Black_Bear_riding_aircraft_above_forest/River Call.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "bLd9PZyEhhU",
+          "title": "Jungle Flight 🦜 Bear Pilot Soars Over the Amazon | Tribal Lofi Beats to Groove & Focus",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-bear-dancing-on-island",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Bear Dancing On Island",
+      "folders": [
+        "Adventure-The_Bear_Dancing_On_Island"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-The_Bear_Dancing_On_Island/Bear_dancing_on_beach_202607112337.mp4",
+      "songs": [
+        {
+          "title": "Sunset On the Beach",
+          "file": "Adventure-The_Bear_Dancing_On_Island/Sunset On the Beach.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "MahPVvibrRs",
+          "title": "🏝️ Bear, Fox & Capybara Hit the Hawaiian Beach",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-bear-visiting-ha-long-bay",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Bear Visiting Ha Long Bay",
+      "folders": [
+        "Adventure-The_Bear_Visiting_Ha_Long_Bay"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-The_Bear_Visiting_Ha_Long_Bay/Bear_riding_turtle_taking_photos_202607120010.mp4",
+      "songs": [
+        {
+          "title": "Morning Mist Over Hạ Long",
+          "file": "Adventure-The_Bear_Visiting_Ha_Long_Bay/Morning Mist Over Hạ Long.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "PNTveuQ4wTI",
+          "title": "🐻 Black Bear & Friends Ride the Sacred Turtle Through Hạ Long Bay | Lofi Chill Vibes",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-black-bear-and-the-rolling-wave-sea",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Black Bear And The Rolling Wave Sea",
+      "folders": [
+        "Adventure-The_Black_Bear_And_The_Rolling_Wave_Sea"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-The_Black_Bear_And_The_Rolling_Wave_Sea/Bear_steering_ship_stormy_ocean_202607082358.mp4",
+      "songs": [
+        {
+          "title": "The wave's coming",
+          "file": "Adventure-The_Black_Bear_And_The_Rolling_Wave_Sea/The wave's coming.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "bPu6fOh3k8w",
+          "title": "All Hands on Deck — The Bear Steers Through the Stormy Ocean",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-black-bear-find-out-atlantis-remnants",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Black Bear Find Out Atlantis Remnants",
+      "folders": [
+        "Adventure-The_Black_Bear_Find_Out_Atlantis_Remnants",
+        "Adventure-The_Black_Bear_Find_Out_Atlantis_Remnants-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Adventure-The_Black_Bear_Find_Out_Atlantis_Remnants/Black_bear_inspects_ruins_202607070026.mp4",
+      "songs": [
+        {
+          "title": "Whale Song",
+          "file": "Adventure-The_Black_Bear_Find_Out_Atlantis_Remnants/Whale Song.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Whale Song (Lyrics)",
+          "file": "Adventure-The_Black_Bear_Find_Out_Atlantis_Remnants-Lyrics/Whale Song (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "h_2GdQtN_cU",
+          "title": "Underwater Ruins and Whale Songs | The Bear's Most Breathtaking Discovery",
+          "kind": "instrumental"
+        },
+        {
+          "id": "dbz6Q-vj0AA",
+          "title": "Whale Songs (Lyrics) | The Bear's Most Breathtaking Discovery",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-black-bear-find-out-mammoth-remnants",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Black Bear Find Out Mammoth Remnants",
+      "folders": [
+        "Adventure-The_Black_Bear_Find_Out_Mammoth_Remnants",
+        "Adventure-The_Black_Bear_Find_Out_Mammoth_Remnants-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Adventure-The_Black_Bear_Find_Out_Mammoth_Remnants/Black_bear_inspecting_track_rain_202607070010.mp4",
+      "songs": [
+        {
+          "title": "The Last Outpost",
+          "file": "Adventure-The_Black_Bear_Find_Out_Mammoth_Remnants/The Last Outpost.wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Last Outpost",
+          "file": "Adventure-The_Black_Bear_Find_Out_Mammoth_Remnants-Lyrics/The Last Outpost.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "0VF3TyOS1zE",
+          "title": "The Last Giant — A Black Bear Adventurer Uncovers the Mammoth's Bones",
+          "kind": "instrumental"
+        },
+        {
+          "id": "PlN9WHiI0QA",
+          "title": "The Last Giant (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-black-bear-in-the-universe",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Black Bear In The Universe",
+      "folders": [
+        "Adventure-The_Black_Bear_In_The_Universe",
+        "Adventure-The_Black_Bear_In_The_Universe-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Adventure-The_Black_Bear_In_The_Universe/Black_bear_floating_in_space_202607072159.mp4",
+      "songs": [
+        {
+          "title": "Stardust Serenade",
+          "file": "Adventure-The_Black_Bear_In_The_Universe/Stardust Serenade.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Stardust Serenade (Lyrics)",
+          "file": "Adventure-The_Black_Bear_In_The_Universe-Lyrics/Stardust Serenade (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "vbm_21DytNA",
+          "title": "To Deep Space | The Bear Drifts Through the Cosmos",
+          "kind": "instrumental"
+        },
+        {
+          "id": "TUFp6HwCS5w",
+          "title": "Stardust Serenade (Lyrics) | The Bear Drifts Through the Cosmos",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "adventure-the-black-bear-sightseeing-fuji",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "The Black Bear Sightseeing Fuji",
+      "folders": [
+        "Adventure-The_Black_Bear_Sightseeing_Fuji"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-The_Black_Bear_Sightseeing_Fuji/Animate_storyboard_frames_into_v…_202607080038.mp4",
+      "songs": [
+        {
+          "title": "Festive Rain",
+          "file": "Adventure-The_Black_Bear_Sightseeing_Fuji/Festive Rain.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "BwGKSae2iFg",
+          "title": "The Adventurer Rests | Black Bear Sightseeing at Mount Fuji",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Bear and cat singer sit back to back in silence snow field",
+      "folders": [
+        "Bloom-Bear_and_cat_singer_sit_back_to_back_in_silence_snow_field",
+        "Bloom-Bear_and_cat_singer_sit_back_to_back_in_silence_snow_field-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Bear_and_cat_singer_sit_back_to_back_in_silence_snow_field/Cat_and_bear_in_snow_202608081443.mp4",
+      "songs": [
+        {
+          "title": "Beyond the Silence",
+          "file": "Bloom-Bear_and_cat_singer_sit_back_to_back_in_silence_snow_field/Beyond the Silence.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Beyond the Silence (Lyrics)",
+          "file": "Bloom-Bear_and_cat_singer_sit_back_to_back_in_silence_snow_field-Lyrics/Beyond the Silence (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "9C6tA1TLQ1Y",
+          "title": "Beyond the Silence ❄️ Cinematic Winter Lofi Instrumental",
+          "kind": "instrumental"
+        },
+        {
+          "id": "kvVOMO3fDXs",
+          "title": "Beyond the Silence (Lyrics) ❄️  Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Bear and friends meeting cat singer idol autumn lake park",
+      "folders": [
+        "Bloom-Bear_and_friends_meeting_cat_singer_idol_autumn_lake_park",
+        "Bloom-Bear_and_friends_meeting_cat_singer_idol_autumn_lake_park-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Bear_and_friends_meeting_cat_singer_idol_autumn_lake_park/Cat_singer_performing_by_river_202608072354.mp4",
+      "songs": [
+        {
+          "title": "Within the Fading",
+          "file": "Bloom-Bear_and_friends_meeting_cat_singer_idol_autumn_lake_park/Within the Fading.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Within The Fading (Lyrics)",
+          "file": "Bloom-Bear_and_friends_meeting_cat_singer_idol_autumn_lake_park-Lyrics/Within The Fading (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "D_k6qqbrzuQ",
+          "title": "Within the Fading 🍂 Cinematic Autumn Lofi Instrumental",
+          "kind": "instrumental"
+        },
+        {
+          "id": "r5WsClJA3vE",
+          "title": "Within the Fading (Lyrics) 🍂  Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-bear-meeting-alone-cat-singer-idol",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Bear meeting alone cat singer idol",
+      "folders": [
+        "Bloom-Bear_meeting_alone_cat_singer_idol",
+        "Bloom-Bear_meeting_alone_cat_singer_idol-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Bear_meeting_alone_cat_singer_idol/Bear_and_cat_in_park_202608060102.mp4",
+      "songs": [
+        {
+          "title": "Petals Over the Fountain",
+          "file": "Bloom-Bear_meeting_alone_cat_singer_idol/Petals Over the Fountain.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Petals Over the Fountain (Lyrics)",
+          "file": "Bloom-Bear_meeting_alone_cat_singer_idol-Lyrics/Petals Over the Fountain (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "LPrdzuzTCTg",
+          "title": "Across the Bloom 🌸 Cinematic Japanese Lofi Instrumental | Sakura Music",
+          "kind": "instrumental"
+        },
+        {
+          "id": "f-AK9-cmI8Y",
+          "title": "Across the Bloom (Lyrics) 🌸 Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-bear-meeting-firework-festival-cat-singer-idol",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Bear meeting firework festival cat singer idol",
+      "folders": [
+        "Bloom-Bear_meeting_firework_festival_cat_singer_idol",
+        "Bloom-Bear_meeting_firework_festival_cat_singer_idol-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Bear_meeting_firework_festival_cat_singer_idol/Bear_and_cat_singer_at_202608070128.mp4",
+      "songs": [
+        {
+          "title": "Amid the Burning",
+          "file": "Bloom-Bear_meeting_firework_festival_cat_singer_idol/Amid the Burning.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Amid the Burning (Lyrics)",
+          "file": "Bloom-Bear_meeting_firework_festival_cat_singer_idol-Lyrics/Amid the Burning (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "j5_hE5syUgc",
+          "title": "Amid the Burning 🏮 Cinematic Japanese Festival Lofi Instrumental | Matsuri Music",
+          "kind": "instrumental"
+        },
+        {
+          "id": "w1e9nbyd1VI",
+          "title": "Amid the Burning (Lyrics) 🏮  Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-full-bloom",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Full Bloom",
+      "folders": [
+        "Bloom-Full_Bloom",
+        "Bloom-Full_Bloom-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Full_Bloom/White_cat_singing_in_arena_202608090040.mp4",
+      "songs": [
+        {
+          "title": "Full Bloom",
+          "file": "Bloom-Full_Bloom/Full Bloom.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Full Bloom (Lyrics)",
+          "file": "Bloom-Full_Bloom-Lyrics/Full Bloom (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "0gDIv9xnPOU",
+          "title": "Full Bloom 🌸 Cinematic Transcendent Lofi Instrumental | Music to Study & Dream",
+          "kind": "instrumental"
+        },
+        {
+          "id": "XMkVhrqP2Uc",
+          "title": "Full Bloom (Lyrics) 🌸 Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-singer-cat-singer-witch-lullaby",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Singer Cat Singer Witch Lullaby",
+      "folders": [
+        "Bloom-Singer_Cat_Singer_Witch_Lullaby",
+        "Bloom-Singer_Cat_Singer_Witch_Lullaby-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Singer_Cat_Singer_Witch_Lullaby/Witch_flying_with_bat_animation_20260920012933.mp4",
+      "songs": [
+        {
+          "title": "Witch Flight Lullaby",
+          "file": "Bloom-Singer_Cat_Singer_Witch_Lullaby/Witch Flight Lullaby.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Witch Flight Lullaby (Lyrics)",
+          "file": "Bloom-Singer_Cat_Singer_Witch_Lullaby-Lyrics/Witch Flight Lullaby (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "1FzM8X2Db4c",
+          "title": "Trick or Sing 🎃 Witch Cat on the Moon (Instrumental) | Lofi Halloween",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "bloom-singer-cat-hype-edm-in-spring-square",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Singer Cat hype edm in spring square",
+      "folders": [
+        "Bloom-Singer_Cat_hype_edm_in_spring_square",
+        "Bloom-Singer_Cat_hype_edm_in_spring_square-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Singer_Cat_hype_edm_in_spring_square/Cat_singer_performing_on_stage_202608200220.mp4",
+      "songs": [
+        {
+          "title": "Blossom in the Static",
+          "file": "Bloom-Singer_Cat_hype_edm_in_spring_square/Blossom in the Static.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Petals in the LEDs (Lyrics)",
+          "file": "Bloom-Singer_Cat_hype_edm_in_spring_square/Petals in the LEDs (Lyrics).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Petals in the LEDs (Lyrics)",
+          "file": "Bloom-Singer_Cat_hype_edm_in_spring_square-Lyrics/Petals in the LEDs (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "MYuFyPIiVuQ",
+          "title": "Prrn~ 🌸 Bloom Drop (Instrumental) | Lofi EDM Cat Singer DJ Festival",
+          "kind": "instrumental"
+        },
+        {
+          "id": "EFFwsvJceK8",
+          "title": "Prrn~ 🌸 Bloom Drop (Lyrics) | Lofi EDM Cat Singer DJ Festival",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-singer-cat-sing-rooftop-through-radio-broadcast",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Singer Cat sing rooftop through radio broadcast",
+      "folders": [
+        "Bloom-Singer_Cat_sing_rooftop_through_radio_broadcast",
+        "Bloom-Singer_Cat_sing_rooftop_through_radio_broadcast-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Singer_Cat_sing_rooftop_through_radio_broadcast/Cat_Singer_on_rainy_rooftop_202609040056.mp4",
+      "songs": [
+        {
+          "title": "Midnight Roo broadcast",
+          "file": "Bloom-Singer_Cat_sing_rooftop_through_radio_broadcast/Midnight Roo broadcast.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Roo broadcast ☆ (Lyrics)",
+          "file": "Bloom-Singer_Cat_sing_rooftop_through_radio_broadcast-Lyrics/Midnight Roo broadcast ☆ (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Z5smOCVlqZk",
+          "title": "Tune Me In 🌧️ Midnight Rooftop Radio (Instrumental) | Lofi Afro Funk x 8D Broadcast",
+          "kind": "instrumental"
+        },
+        {
+          "id": "nZuSE3ZvXN8",
+          "title": "Midnight Roo broadcast ☆ (Lyrics) 🌧️ Midnight Rooftop Radio | Lofi Afro Funk Cat Singer Broadcast",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "chill-bear-having-night-ramen-at-top-of-city",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Bear having night ramen at top of city",
+      "folders": [
+        "Chill-Bear_having_night_ramen_at_top_of_city",
+        "Chill-Bear_having_night_ramen_at_top_of_city-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Chill-Bear_having_night_ramen_at_top_of_city/Bear_eating_ramen_at_stall_202608052357.mp4",
+      "songs": [
+        {
+          "title": "Neon Rain at Midnight",
+          "file": "Chill-Bear_having_night_ramen_at_top_of_city/Neon Rain at Midnight.wav",
+          "lyrics": false
+        },
+        {
+          "title": "One Warm Bowl",
+          "file": "Chill-Bear_having_night_ramen_at_top_of_city-Lyrics/One Warm Bowl.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "goj2BSTBULA",
+          "title": "Midnight Ramen 🏮 Rainy Tokyo Ramen Stall Lofi | Japanese Music to Relax & Study",
+          "kind": "instrumental"
+        },
+        {
+          "id": "gPFqCWO-hRs",
+          "title": "Midnight Ramen (Lyrics) 🏮 Rainy Tokyo Ramen Stall Lofi | Japanese Music to Relax & Study",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "chill-bear-in-neon-cafe-with-friends",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Bear in neon café with friends",
+      "folders": [
+        "Chill-Bear_in_neon_café_with_friends",
+        "Chill-Bear_in_neon_café_with_friends-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Chill-Bear_in_neon_café_with_friends/Black_bear_gaming_in_cafe_202607232132.mp4",
+      "songs": [
+        {
+          "title": "Neon Rain Café",
+          "file": "Chill-Bear_in_neon_café_with_friends/Neon Rain Café.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Neon Rain Café (Lyrics)",
+          "file": "Chill-Bear_in_neon_café_with_friends-Lyrics/Neon Rain Café (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Aqlnc9EV8Ec",
+          "title": "Neon Rain Café 🌧️🎮 Cozy Bear & Friends Gaming All Night | Lofi City Pop to Study & Chill",
+          "kind": "instrumental"
+        },
+        {
+          "id": "iuOT1r2TEZU",
+          "title": "Neon Rain Café (Lyrics) 🌧️🎮",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "chill-bear-on-midnight-train-home",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Bear on midnight train home",
+      "folders": [
+        "Chill-Bear_on_midnight_train_home"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Bear_on_midnight_train_home/Bear_sipping_cocoa_on_train_202608052146.mp4",
+      "songs": [
+        {
+          "title": "Midnight Through the Window (1)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (1).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (2)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (2).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (3)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (3).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (4)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (4).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (5)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (5).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (6)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (6).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (7)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (7).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (8)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (8).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (9)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (9).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight Through the Window (10)",
+          "file": "Chill-Bear_on_midnight_train_home/Midnight Through the Window (10).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Yjdr3MaCFbc",
+          "title": "Midnight Train Home 🚂 Cozy Rainy Night Train Lofi | Music to Relax, Study & Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-black-bear-soak-in-onsen-at-snow-mountain",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Black Bear soak in onsen at snow mountain",
+      "folders": [
+        "Chill-Black_Bear_soak_in_onsen_at_snow_mountain"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Black_Bear_soak_in_onsen_at_snow_mountain/Black_bear_soaking_in_hot_202607292206.mp4",
+      "songs": [
+        {
+          "title": "Steamy Mountain Onsen",
+          "file": "Chill-Black_Bear_soak_in_onsen_at_snow_mountain/Steamy Mountain Onsen.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "dlBaXpm4fVY",
+          "title": "Snowfall Onsen ♨️❄️ Cozy Bear Soaking in a Hot Spring | Warm Lofi to Relax, Study & Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-black-bear-soak-in-onset-at-night-mountain",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Black Bear soak in onset at night mountain",
+      "folders": [
+        "Chill-Black_Bear_soak_in_onset_at_night_mountain"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Black_Bear_soak_in_onset_at_night_mountain/Black_bear_relaxing_in_onsen_202607292257.mp4",
+      "songs": [
+        {
+          "title": "Steamy Mountain Onsen",
+          "file": "Chill-Black_Bear_soak_in_onset_at_night_mountain/Steamy Mountain Onsen.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "84h1TTSRt-8",
+          "title": "Moonlight & Fireflies ♨️🌙 Cozy Bear in a Hot Spring at Night | Peaceful Lofi to Unwind",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-chasing-butterflies",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Chasing butterflies",
+      "folders": [
+        "Chill-Chasing butterflies"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Chasing butterflies/Black_bear_reaching_for_butterflies_202607012254.mp4",
+      "songs": [
+        {
+          "title": "Gấu con chạy nhảy",
+          "file": "Chill-Chasing butterflies/Gấu con chạy nhảy.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "43c33x4N_9A",
+          "title": "Stretching & Leaping | Black Bear Chases Butterflies",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-i-am-lazy-on-the-bed",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "I am lazy on the bed",
+      "folders": [
+        "Chill-I_am_lazy_on_the_bed"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-I_am_lazy_on_the_bed/Bear_listening_to_music_202609021602.mp4",
+      "songs": [
+        {
+          "title": "Washed-out Static",
+          "file": "Chill-I_am_lazy_on_the_bed/Washed-out Static.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "6q5bm-qj3hE",
+          "title": "I'm too lazy 😴 | lofi chill",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-the-bear-conduct-music-for-cats",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "The Bear conduct music for cats",
+      "folders": [
+        "Chill-The_Bear_conduct_music_for_cats"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-The_Bear_conduct_music_for_cats/Bear_conducting_cat_orchestra_loop_202607132339.mp4",
+      "songs": [
+        {
+          "title": "Moonlit Santur",
+          "file": "Chill-The_Bear_conduct_music_for_cats/Moonlit Santur.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qYG4AqQlCMU",
+          "title": "🐱🎶 The Bear on the Podium — A Cat Orchestra Takes the Stage | Lofi Classical Ambience",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-the-bear-conduct-music-for-dogs",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "The Bear conduct music for dogs",
+      "folders": [
+        "Chill-The_Bear_conduct_music_for_dogs"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-The_Bear_conduct_music_for_dogs/Seamless_10-second_loop_animation._Scene__202607132351.mp4",
+      "songs": [
+        {
+          "title": "Moonlit Santur",
+          "file": "Chill-The_Bear_conduct_music_for_dogs/Moonlit Santur.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "WgOGqcBZoPo",
+          "title": "🐶🎶 Good Boys on Stage — Bear Conducts the Dog Philharmonic | Lofi Classical Ambience",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-the-bear-drawing-at-the-cliff",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "The Bear drawing at the cliff",
+      "folders": [
+        "Chill-The_Bear_drawing_at_the_cliff"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-The_Bear_drawing_at_the_cliff/Black_bear_painting_valley_vista_202607162343.mp4",
+      "songs": [
+        {
+          "title": "Golden Sunset on the Cliff",
+          "file": "Chill-The_Bear_drawing_at_the_cliff/Golden Sunset on the Cliff.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "ut6DAmmzvJ4",
+          "title": "🐻🎨 The Bear Paints the Valley at Golden Hour — with Two Doves Watching | Golden Sunset on the Cliff",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-the-bear-reading-books-in-library",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "The Bear reading books in library",
+      "folders": [
+        "Chill-The_Bear_reading_books_in_library"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-The_Bear_reading_books_in_library/Black_bear_reading_in_treehouse_202607132158.mp4",
+      "songs": [
+        {
+          "title": "Candlelit Library",
+          "file": "Chill-The_Bear_reading_books_in_library/Candlelit Library.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "j9BxQKQABlo",
+          "title": "📚 Black Bear Reads by Candlelight with a White Owl & Persian Cat | Candlelit Library Lofi Chill",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-the-bear-want-the-honey",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "The Bear want the honey",
+      "folders": [
+        "Chill-The_Bear_want_the_honey"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-The_Bear_want_the_honey/Bear_shakes_beehive,_fox_rests_202607230048.mp4",
+      "songs": [
+        {
+          "title": "Thirst for honey",
+          "file": "Chill-The_Bear_want_the_honey/Thirst for honey.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "WSh_z7xKNHc",
+          "title": "Bear Wants the Honey! Shaking the Beehive",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-waking-up",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Waking up",
+      "folders": [
+        "Chill-Waking_up"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Waking_up/Bear_and_cat_in_cave_202607012125.mp4",
+      "songs": [
+        {
+          "title": "Gấu Con Tỉnh Giấc x Untitled (Mashup)",
+          "file": "Chill-Waking_up/Gấu Con Tỉnh Giấc x Untitled (Mashup).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "q6z_ePQyjNM",
+          "title": "Good Morning, Sleepy Bear | Waking Up in the Cave",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "chill-working-and-chill-with-friends",
+      "theme": "chill",
+      "subLabel": "",
+      "title": "Working and chill with friends",
+      "folders": [
+        "Chill-Working_and_chill_with_friends"
+      ],
+      "hasLyrics": false,
+      "video": "Chill-Working_and_chill_with_friends/Bear_typing_in_cave_202607022157.mp4",
+      "songs": [
+        {
+          "title": "Working and the friends chill",
+          "file": "Chill-Working_and_chill_with_friends/Working and the friends chill.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "ageVUYqP1wU",
+          "title": "Just Me Working... | Bear's Cave Office While Friends Relax",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer",
+      "theme": "cover",
+      "subLabel": "Genshin Impact",
+      "title": "Bear drinking tea with cloud retainer",
+      "folders": [
+        "Cover_Genshin_Impact-Bear_drinking_tea_with_cloud_retainer"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_Genshin_Impact-Bear_drinking_tea_with_cloud_retainer/Black_Bear_drinking_tea_mountain_202607242338.mp4",
+      "songs": [
+        {
+          "title": "Tea above the cloud",
+          "file": "Cover_Genshin_Impact-Bear_drinking_tea_with_cloud_retainer/Tea above the cloud.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "JQSKIUFgjRM",
+          "title": "🐻🍵 Tea Above the Clouds ~ Lofi Liyue Beats to Relax & Study To | Cozy Guzheng Lofi | Genshin Impact",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-zzz-bear-noting-with-lucia-about-little-goat",
+      "theme": "cover",
+      "subLabel": "ZZZ",
+      "title": "Bear noting with lucia about little goat",
+      "folders": [
+        "Cover_ZZZ-Bear_noting_with_lucia_about_little_goat"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_ZZZ-Bear_noting_with_lucia_about_little_goat/Bear_writing_in_journal_meadow_202607191452.mp4",
+      "songs": [
+        {
+          "title": "Golden Sunset Swing",
+          "file": "Cover_ZZZ-Bear_noting_with_lucia_about_little_goat/Golden Sunset Swing.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "C7csr6Xap0k",
+          "title": "Golden Sunset Swing 🐻🐐 Cozy Lofi Meadow with Bear & Lucia | Zenless Zone Zero",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-genshin-impact-bear-playing-lyre-for-pigeons",
+      "theme": "cover",
+      "subLabel": "Genshin Impact",
+      "title": "Bear playing lyre for pigeons",
+      "folders": [
+        "Cover_Genshin_Impact-Bear_playing_lyre_for_pigeons"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_Genshin_Impact-Bear_playing_lyre_for_pigeons/Black_bear_playing_lyre_202607220002.mp4",
+      "songs": [
+        {
+          "title": "Windswept Meadow",
+          "file": "Cover_Genshin_Impact-Bear_playing_lyre_for_pigeons/Windswept Meadow.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "GYiYk0mJI8I",
+          "title": "🐻🎵 Windswept Meadow ~ Lofi Harp Beats to Relax & Study To | 32 Min Cozy Bard Loop",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-game-of-thrones-bear-visit-throne",
+      "theme": "cover",
+      "subLabel": "Game Of Thrones",
+      "title": "Bear visit throne",
+      "folders": [
+        "Cover_Game_Of_Thrones-Bear_visit_throne",
+        "Cover_Game_Of_Thrones-Bear_visit_throne-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Cover_Game_Of_Thrones-Bear_visit_throne/Bear_exploring_ruined_dragon_hall_202609062138.mp4",
+      "songs": [
+        {
+          "title": "Where the Old Kings Sleep",
+          "file": "Cover_Game_Of_Thrones-Bear_visit_throne/Where the Old Kings Sleep.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Where the Old Kings Sleep (Lyrics)",
+          "file": "Cover_Game_Of_Thrones-Bear_visit_throne-Lyrics/Where the Old Kings Sleep (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "oJ9DvccHA5I",
+          "title": "Where the Old Kings Sleep (Instruments) 🐉 Bear Explores a Fallen Throne | Game of Thrones Vibes",
+          "kind": "instrumental"
+        },
+        {
+          "id": "TqdZMsrSziE",
+          "title": "Where the Old Kings Sleep (Lyrics) 🐉 Bear Explores a Fallen Throne | Game of Thrones Vibes",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz",
+      "theme": "cover",
+      "subLabel": "Pinkpanther Tom",
+      "title": "Black Bear chill in bar with jazz",
+      "folders": [
+        "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Bear,_cat,_panther_in_lounge_202608042059.mp4",
+      "songs": [
+        {
+          "title": "Midnight in the Blue Room  (3)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room  (3).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (1)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (1).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (2)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (2).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (4)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (4).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (5)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (5).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (6)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (6).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (7)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (7).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (8)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (8).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (9)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (9).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (10)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (10).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Midnight in the Blue Room (11)",
+          "file": "Cover_Pinkpanther_Tom-Black_Bear_chill_in_bar_with_jazz/Midnight in the Blue Room (11).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Kyu-We7OSrM",
+          "title": "Midnight Lounge 🍸🎹 Cozy Jazz Bar with Bear & Friends | Warm Lofi Jazz to Relax & Study",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango",
+      "theme": "cover",
+      "subLabel": "Genshin Impact",
+      "title": "Black bear drinking watching eula cat tango",
+      "folders": [
+        "Cover_Genshin_Impact_Black_bear_drinking_watching_eula_cat_tango"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_Genshin_Impact_Black_bear_drinking_watching_eula_cat_tango/Bear_and_dancer_on_ice_202607312236.mp4",
+      "songs": [
+        {
+          "title": "Moonlight Tango Silhouette",
+          "file": "Cover_Genshin_Impact_Black_bear_drinking_watching_eula_cat_tango/Moonlight Tango Silhouette.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "nLJOEIbaqTw",
+          "title": "🐻❄️ Moonlight Tango| Eula on the Ice | Moody Genshin Lofi | Genshin Impact",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "cover-honkai-star-rail-the-bear-trailblazing",
+      "theme": "cover",
+      "subLabel": "Honkai Star Rail",
+      "title": "The Bear trailblazing",
+      "folders": [
+        "Cover_Honkai_Star_Rail-The_Bear_trailblazing"
+      ],
+      "hasLyrics": false,
+      "video": "Cover_Honkai_Star_Rail-The_Bear_trailblazing/Bear_writing_in_journal_animation_202607170010.mp4",
+      "songs": [
+        {
+          "title": "Stardust Train",
+          "file": "Cover_Honkai_Star_Rail-The_Bear_trailblazing/Stardust Train.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "KSvNYLBQfrc",
+          "title": "🐻🌌 Stardust Train ~ Lofi Beats to Trailblaze & Journal | 20 Min Cozy Space Lofi | Honkai: Star Rail",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "hunting-bear-approach-the-prey",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Bear Approach The Prey",
+      "folders": [
+        "Hunting-Bear_Approach_The_Prey",
+        "Hunting-Bear_Approach_The_Prey-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-Bear_Approach_The_Prey/Black_bear_stalking_deer_meadow_202607181404.mp4",
+      "songs": [
+        {
+          "title": "Bear approach",
+          "file": "Hunting-Bear_Approach_The_Prey/Bear approach.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Bear approach (Lyrics)",
+          "file": "Hunting-Bear_Approach_The_Prey-Lyrics/Bear approach (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "TCtnRFDYK6U",
+          "title": "The Stalk 🐻🦌 | Bear Approaches the Deer — Dark Lofi Phonk",
+          "kind": "instrumental"
+        },
+        {
+          "id": "60tUWY9KIvM",
+          "title": "The Stalk (Lyrics) 🐻🦌 | Bear Approaches the Deer — Dark Lofi Phonk",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "hunting-bear-bare-teeth-aggresively-to-enemy",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Bear bare teeth aggresively to enemy",
+      "folders": [
+        "Hunting-Bear_bare_teeth_aggresively_to_enemy",
+        "Hunting-Bear_bare_teeth_aggresively_to_enemy-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-Bear_bare_teeth_aggresively_to_enemy/Bear_roaring,_wolf_cowering_202607302246.mp4",
+      "songs": [
+        {
+          "title": "0 The Bear",
+          "file": "Hunting-Bear_bare_teeth_aggresively_to_enemy-Lyrics/0 The Bear.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "cQFNp0RzbSo",
+          "title": "STORM FURY 🐻⚡ Brutal Phonk × Nordic War Drums | Bear Roars Down a Wolf",
+          "kind": "instrumental"
+        },
+        {
+          "id": "d2sSRPCJOB8",
+          "title": "The Bear calling the Storm (Lyrics) 🐻⚡ Aggressive Drift Phonk",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "hunting-bear-roar-on-top-of-mountain",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Bear roar on top of mountain",
+      "folders": [
+        "Hunting-Bear_roar_on_top_of_mountain",
+        "Hunting-Bear_roar_on_top_of_mountain-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-Bear_roar_on_top_of_mountain/Black_bear_on_mountain_summit_202607251816.mp4",
+      "songs": [
+        {
+          "title": "Canyon Bear Roar",
+          "file": "Hunting-Bear_roar_on_top_of_mountain/Canyon Bear Roar.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Canyon Bear Roar (Lyrics)",
+          "file": "Hunting-Bear_roar_on_top_of_mountain-Lyrics/Canyon Bear Roar (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "B9bxJh6X3ZE",
+          "title": "The Summit Roar 🔊 Epic Drift Phonk Lofi | Bear Ruling the Mountain [Study/Workout Beats]",
+          "kind": "instrumental"
+        },
+        {
+          "id": "LSI4pMxkXFY",
+          "title": "KING OF THE PEAK (Lyrics) 🐻⛰️ | Aggressive Drift Phonk × Andean War Chant | Focus & Grind",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "hunting-bear-walk-in-the-dark",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Bear walk in the dark",
+      "folders": [
+        "Hunting-Bear_walk_in_the_dark-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": null,
+      "songs": [
+        {
+          "title": "Walk Walk Walk",
+          "file": "Hunting-Bear_walk_in_the_dark-Lyrics/Walk Walk Walk.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": []
+    },
+    {
+      "id": "hunting-the-bear-is-drinking-near-alligator",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "The Bear is drinking near alligator",
+      "folders": [
+        "Hunting-The_Bear_is_drinking_near_alligator",
+        "Hunting-The_Bear_is_drinking_near_alligator-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-The_Bear_is_drinking_near_alligator/Black_bear_drinking_swamp_202607122220.mp4",
+      "songs": [
+        {
+          "title": "Bear's drinking",
+          "file": "Hunting-The_Bear_is_drinking_near_alligator/Bear's drinking.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Bear's drinking (Lyrics)",
+          "file": "Hunting-The_Bear_is_drinking_near_alligator-Lyrics/Bear's drinking (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "0OSmDWGwvKs",
+          "title": "The Fearless Bear 🐊 Drinking at the Swamp | Drift Phonk × Ancient Egypt Fusion",
+          "kind": "instrumental"
+        },
+        {
+          "id": "iMLNeok35vs",
+          "title": "The Fearless Bear (Lyrics) 🐊 | Drift Phonk ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "hunting-the-bear-is-hunting-salmon",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "The Bear is hunting Salmon",
+      "folders": [
+        "Hunting-The_Bear_is_hunting_Salmon"
+      ],
+      "hasLyrics": false,
+      "video": "Hunting-The_Bear_is_hunting_Salmon/Bear_hunting_salmon_in_river_202607120145.mp4",
+      "songs": [
+        {
+          "title": "Bear hunting salmon",
+          "file": "Hunting-The_Bear_is_hunting_Salmon/Bear hunting salmon.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "URp6lDh59aE",
+          "title": "🌊 Paws in the Current: Black Bear Fishing the River | Drift Style · Nordic Folk Sounds",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-bear-hero-party-traveling",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Bear Hero Party Traveling",
+      "folders": [
+        "Isekai-Bear_Hero_Party_Traveling"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-Bear_Hero_Party_Traveling/Bear_fox_capybara_caravan_wheat_202607202235.mp4",
+      "songs": [
+        {
+          "title": "Golden Hour Folk",
+          "file": "Isekai-Bear_Hero_Party_Traveling/Golden Hour Folk.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "0mbXhNtGmS8",
+          "title": "The Road to the Next Town 🌾 Lofi Isekai Caravan Ride | Chill Beats to Relax & Study",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-black-bear-hero-party-camping-night-in-the-pines",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Black Bear Hero party camping night in the pines",
+      "folders": [
+        "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Bear_toasting_marshmallow_by_cam…_202608022242.mp4",
+      "songs": [
+        {
+          "title": "Night in the Pines (1)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (1).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (2)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (2).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (3)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (3).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (4)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (4).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (5)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (5).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (6)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (6).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (7)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (7).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (8)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (8).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (9)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (9).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Night in the Pines (10)",
+          "file": "Isekai-Black_Bear_Hero_party_camping_night_in_the_pines/Night in the Pines (10).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "fPPom9mK_PM",
+          "title": "Camping Under the Stars 🐻🏕️ Rest by the Fire | Cozy Campfire & Nature Sounds for Sleep & Relaxation",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-black-bear-signing-up-being-adventurer",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Black Bear signing up being adventurer",
+      "folders": [
+        "Isekai-Black_Bear_signing_up_being_adventurer"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-Black_Bear_signing_up_being_adventurer/Bear_signing_parchment_in_guild_202607292203.mp4",
+      "songs": [
+        {
+          "title": "Midnight at the Guildhall",
+          "file": "Isekai-Black_Bear_signing_up_being_adventurer/Midnight at the Guildhall.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "h8xiwwv39dM",
+          "title": "Adventurer's Guild 🐻🦁 Bear Registers His First Quest | Cozy Fantasy Lofi to Relax, Study & Focus",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Black bear hero party having a feast at tavern midnight",
+      "folders": [
+        "Isekai-Black_bear_hero_party_having_a_feast_at_tavern_midnight"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-Black_bear_hero_party_having_a_feast_at_tavern_midnight/Bear_toasting_in_tavern_feast_202607302348.mp4",
+      "songs": [
+        {
+          "title": "Midnight at the Tavern",
+          "file": "Isekai-Black_bear_hero_party_having_a_feast_at_tavern_midnight/Midnight at the Tavern.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "IHgvCxAfmk0",
+          "title": "The Tavern Feast 🕯️ Cozy Fireplace Lofi | Chill Beats to Study & Relax",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-hero-bear-party-fighting-dugeon-boss",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Hero Bear Party Fighting Dugeon Boss",
+      "folders": [
+        "Isekai-Hero_Bear_Party_Fighting_Dugeon_Boss",
+        "Isekai-Hero_Bear_Party_Fighting_Dugeon_Boss-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Isekai-Hero_Bear_Party_Fighting_Dugeon_Boss/Bear_prepares_for_dungeon_boss_202608272209.mp4",
+      "songs": [
+        {
+          "title": "Fire in Fire",
+          "file": "Isekai-Hero_Bear_Party_Fighting_Dugeon_Boss/Fire in Fire.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Fire in Fire (Lyrics)",
+          "file": "Isekai-Hero_Bear_Party_Fighting_Dugeon_Boss-Lyrics/Fire in Fire (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "WOHoghxt9FM",
+          "title": "\"Fire in Fire\" 🔥⚔️ Epic Isekai Boss Battle Anime Song",
+          "kind": "instrumental"
+        },
+        {
+          "id": "Gn8M64xYOrM",
+          "title": "\"Fire in Fire\" (Lyrics) 🔥⚔️ Epic Isekai Boss Battle Anime Song",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-defending-war-over",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Defending War Over",
+      "folders": [
+        "Isekai-The_Defending_War_Over"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-The_Defending_War_Over/Bear_tending_wounded_fox_soldier_202607110043.mp4",
+      "songs": [
+        {
+          "title": "Dawn Over the Stone Wall",
+          "file": "Isekai-The_Defending_War_Over/Dawn Over the Stone Wall.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "IXTMaI4gH2Y",
+          "title": "🌅 Dawn Over the Stone Wall — Heroes at Rest After the Siege",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-summoning-heroes-are-defending",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Summoning Heroes Are Defending",
+      "folders": [
+        "Isekai-The_Summoning_Heroes_Are_Defending",
+        "Isekai-The_Summoning_Heroes_Are_Defending-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Isekai-The_Summoning_Heroes_Are_Defending/Bear_fox_capybara_besieged_town_202607102331.mp4",
+      "songs": [
+        {
+          "title": "The Raise of the Hero",
+          "file": "Isekai-The_Summoning_Heroes_Are_Defending/The Raise of the Hero.wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Raise of the Hero (Lyrics)",
+          "file": "Isekai-The_Summoning_Heroes_Are_Defending-Lyrics/The Raise of the Hero (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Z8FY3s5_M-c",
+          "title": "🏰 When the Gate is Threatened, the Heroes Rise",
+          "kind": "instrumental"
+        },
+        {
+          "id": "U-T7mzDWTv8",
+          "title": "The Raise of the Heroes (Lyrics) ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-summoning-heroes-are-mourning",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Summoning Heroes Are Mourning",
+      "folders": [
+        "Isekai-The_Summoning_Heroes_Are_Mourning"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-The_Summoning_Heroes_Are_Mourning/Grieving_bear_mourning_fallen_so…_202607110055.mp4",
+      "songs": [
+        {
+          "title": "The brave's Cry",
+          "file": "Isekai-The_Summoning_Heroes_Are_Mourning/The brave's Cry.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "nB2tDojufEo",
+          "title": "The Bear Mourns — A Hero Party Grieves Their Fallen",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-summoning-heroes-are-strolling-town",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Summoning Heroes Are Strolling Town",
+      "folders": [
+        "Isekai-The_Summoning_Heroes_Are_Strolling_Town"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-The_Summoning_Heroes_Are_Strolling_Town/Bear,_fox,_capybara_stroll_town_202607092345.mp4",
+      "songs": [
+        {
+          "title": "The First Light of Dawn",
+          "file": "Isekai-The_Summoning_Heroes_Are_Strolling_Town/The First Light of Dawn.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "VwLbcnJILYw",
+          "title": "🐾 No Quest Yet, Just Wandering — Bear, Fox & Capybara in Town",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-summoning-heroes-are-training",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Summoning Heroes Are Training",
+      "folders": [
+        "Isekai-The_Summoning_Heroes_Are_Training"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-The_Summoning_Heroes_Are_Training/Black_bear_sword_practice_courtyard_202607092234.mp4",
+      "songs": [
+        {
+          "title": "Dawn Over the Stone Courtyard",
+          "file": "Isekai-The_Summoning_Heroes_Are_Training/Dawn Over the Stone Courtyard.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "cIRT5HmNIzA",
+          "title": "Dawn at the Stone Courtyard — Three Heroes Train Together",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "isekai-the-summoning-of-the-hero",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "The Summoning Of The Hero",
+      "folders": [
+        "Isekai-The_Summoning_Of_The_Hero"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-The_Summoning_Of_The_Hero/Black_bear_on_floor_202607090058.mp4",
+      "songs": [
+        {
+          "title": "The Summoning of the Hero",
+          "file": "Isekai-The_Summoning_Of_The_Hero/The Summoning of the Hero.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "YSEumKdDeY4",
+          "title": "The Portal Opens — A Bear and His Friends Chosen for Another World",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "lullabies-bear-afternoon-nap",
+      "theme": "lullabies",
+      "subLabel": "",
+      "title": "Bear afternoon nap",
+      "folders": [
+        "Lullabies-Bear_afternoon_nap"
+      ],
+      "hasLyrics": false,
+      "video": "Lullabies-Bear_afternoon_nap/Bear_lulling_cub_to_sleep_202607272148.mp4",
+      "songs": [
+        {
+          "title": "Afternoon nap",
+          "file": "Lullabies-Bear_afternoon_nap/Afternoon nap.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "GSee9-nNNhw",
+          "title": "☀️🐻 Sunset Bear Lullaby ~ Patting a Cub to Sleep on the Porch Swing | Cozy Lofi",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "lullabies-bear-babysitting-night-sleepy",
+      "theme": "lullabies",
+      "subLabel": "",
+      "title": "Bear babysitting night sleepy",
+      "folders": [
+        "Lullabies-Bear_babysitting_night_sleepy"
+      ],
+      "hasLyrics": false,
+      "video": "Lullabies-Bear_babysitting_night_sleepy/Black_bear_feeding_cub_animation_202607262131.mp4",
+      "songs": [
+        {
+          "title": "Night Heart Warmth",
+          "file": "Lullabies-Bear_babysitting_night_sleepy/Night Heart Warmth.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "o73av8IMP4A",
+          "title": "🌙🐻 Bear & Cub Bedtime Lullaby ~ Warm Milk Under the Fireflies | Cozy Lofi Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "lullabies-bear-babysitting-reading-books",
+      "theme": "lullabies",
+      "subLabel": "",
+      "title": "Bear babysitting reading books",
+      "folders": [
+        "Lullabies-Bear_babysitting_reading_books"
+      ],
+      "hasLyrics": false,
+      "video": "Lullabies-Bear_babysitting_reading_books/Black_bear_reading_to_cub_202607262133.mp4",
+      "songs": [
+        {
+          "title": "Reading Hearth Warmth",
+          "file": "Lullabies-Bear_babysitting_reading_books/Reading Hearth Warmth.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "6Wqjyp4CcAY",
+          "title": "🌧️🐻 Rainy Day Bear Lullaby ~ A Bedtime Storybook by the Window | Lofi to Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "lullabies-bear-babysitting-snowy-cabin",
+      "theme": "lullabies",
+      "subLabel": "",
+      "title": "Bear babysitting snowy cabin",
+      "folders": [
+        "Lullabies-Bear_babysitting_snowy_cabin"
+      ],
+      "hasLyrics": false,
+      "video": "Lullabies-Bear_babysitting_snowy_cabin/Black_bear_reading_to_cub_202607262114.mp4",
+      "songs": [
+        {
+          "title": "Snowy Hearth Warmth",
+          "file": "Lullabies-Bear_babysitting_snowy_cabin/Snowy Hearth Warmth.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "NXFIWVOhRmg",
+          "title": "🐻❄️ Cozy Bear Lullaby ~ Rocking a Sleepy Cub by the Snowy Window | Lofi Sleep Music",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "parfum-bear-and-mademoiselle-on-bridge-full-bloom",
+      "theme": "parfum",
+      "subLabel": "",
+      "title": "Bear and mademoiselle on bridge full bloom",
+      "folders": [
+        "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom",
+        "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom/Animals_meeting_on_bridge_202609052005.mp4",
+      "songs": [
+        {
+          "title": "Le pont qui fleurit",
+          "file": "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom/Le pont qui fleurit.wav",
+          "lyrics": false
+        },
+        {
+          "title": "audio",
+          "file": "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom-Lyrics/audio.wav",
+          "lyrics": true
+        },
+        {
+          "title": "Le Cœur_ Le pont qui fleurit (Lyrics)",
+          "file": "Parfum-Bear_and_mademoiselle_on_bridge_full_bloom-Lyrics/Le Cœur_ Le pont qui fleurit (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "f3CxJPA6CG0",
+          "title": "Le Cœur: Le pont qui fleurit 🌹 (Instrumental) Parfum Ch.2 — French Chanson Lofi",
+          "kind": "instrumental"
+        },
+        {
+          "id": "gxD0DWVVRnY",
+          "title": "Le Cœur: Le pont qui fleurit 🌹 (Lyrics) Parfum Ch.2 — French Chanson Lofi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "parfum-bear-meeting-mademoiselle",
+      "theme": "parfum",
+      "subLabel": "",
+      "title": "Bear meeting mademoiselle",
+      "folders": [
+        "Parfum-Bear_meeting_mademoiselle",
+        "Parfum-Bear_meeting_mademoiselle-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Parfum-Bear_meeting_mademoiselle/Chibi_characters_on_Paris_bridge_202609022142.mp4",
+      "songs": [
+        {
+          "title": "Un souffle de toi",
+          "file": "Parfum-Bear_meeting_mademoiselle/Un souffle de toi.wav",
+          "lyrics": false
+        },
+        {
+          "title": "La Tête_ Un Souffle de Toi (Lyrics)",
+          "file": "Parfum-Bear_meeting_mademoiselle-Lyrics/La Tête_ Un Souffle de Toi (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "UhxYozRq-h8",
+          "title": "La Tête: Un Souffle de Toi 🌹 (Instrumental) Parfum Ch.1 — French Café Lofi for a Paris Morning",
+          "kind": "instrumental"
+        },
+        {
+          "id": "wMQft1-z9q0",
+          "title": "La Tête: Un Souffle de Toi 🌹 (Lyrics) Parfum Ch.1 — \"One Breath of You, and I'm Gone\" | French Lofi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-fighting-mecha-alligator",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Fighting Mecha Alligator",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Fighting_Mecha_Alligator",
+        "Power_Bearer-Bear_Mecha_Fighting_Mecha_Alligator-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Alligator/Mecha_Bear_launches_energy_202607041823.mp4",
+      "songs": [
+        {
+          "title": "Temple of the Rising Sun x Waking up, Power bear (Mashup)",
+          "file": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Alligator/Temple of the Rising Sun x Waking up, Power bear (Mashup).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Heart of Stone (Lyrics)",
+          "file": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Alligator-Lyrics/Heart of Stone (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "w90Jvelm_8E",
+          "title": "Mecha Bear Unleashes Energy Against the Egypt Villain Alligator",
+          "kind": "instrumental"
+        },
+        {
+          "id": "-w0t4wvxWi8",
+          "title": "(Lyrics) Mecha Bear Unleashes Energy Against the Egypt Villain Alligator",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-fighting-mecha-direwolf",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Fighting Mecha DireWolf",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Fighting_Mecha_DireWolf"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-Bear_Mecha_Fighting_Mecha_DireWolf/Mecha_bear_fighting_mecha_wolf_202607042240.mp4",
+      "songs": [
+        {
+          "title": "Waking up, Power bear x The Dire Wolf (Mashup)",
+          "file": "Power_Bearer-Bear_Mecha_Fighting_Mecha_DireWolf/Waking up, Power bear x The Dire Wolf (Mashup).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Pl8_yFSKejg",
+          "title": "Iron Claws vs. Steel Fangs — Mecha Bear Takes On the Dire Wolf",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-fighting-mecha-maestrom",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Fighting Mecha Maestrom",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Fighting_Mecha_Maestrom",
+        "Power_Bearer-Bear_Mecha_Fighting_Mecha_Maestrom-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Maestrom/Mecha_bear_fighting_storm_kraken_202608062300.mp4",
+      "songs": [
+        {
+          "title": "Waking up, Power bear x Salt and Static (Mashup)",
+          "file": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Maestrom/Waking up, Power bear x Salt and Static (Mashup).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Spark of Fire (Lyrics)",
+          "file": "Power_Bearer-Bear_Mecha_Fighting_Mecha_Maestrom-Lyrics/Spark of Fire (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "kSe4Ahk0IGE",
+          "title": "⚡ Clash in the Typhoon — Epic Lofi Battle 🐻🌊 Mecha Bear vs Maelstrom | Instrumental",
+          "kind": "instrumental"
+        },
+        {
+          "id": "oBTLX0mW_i4",
+          "title": "🔥 SPARK OF FIRE (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-transform",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Transform",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Transform"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-Bear_Mecha_Transform/Bear_dissolves_into_light_202607040110.mp4",
+      "songs": [
+        {
+          "title": "Transforming, Power bear",
+          "file": "Power_Bearer-Bear_Mecha_Transform/Transforming, Power bear.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "VwQczA4ryHM",
+          "title": "Bear Transforms Into His Giant Mecha Bear | POWER UP! | 16 Min Epic Transformation Music",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-victory-against-mecha-alligator",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Victory Against Mecha Alligator",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Alligator",
+        "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Alligator-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Alligator/Mecha_Bear_on_defeated_alligator_202607041913.mp4",
+      "songs": [
+        {
+          "title": "Transforming, Power bear x Temple of the Rising Sun (Mashup)",
+          "file": "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Alligator/Transforming, Power bear x Temple of the Rising Sun (Mashup).wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Swamp Went Down (Lyrics)",
+          "file": "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Alligator-Lyrics/The Swamp Went Down (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "_mozZ7_FKb8",
+          "title": "The Cursed Alligator King Is Defeated — Mecha Bear Reigns",
+          "kind": "instrumental"
+        },
+        {
+          "id": "KBClyz9j9i0",
+          "title": "The Swamp Went Down (Lyrics) | The Cursed Alligator King Is Defeated",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-victory-against-mecha-direwolf",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Victory Against Mecha Direwolf",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Direwolf"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Direwolf/Mecha_bear_pins_dire_wolf_202607042258.mp4",
+      "songs": [
+        {
+          "title": "The Dire Wolf x Transforming, Power bear x Temple… (Mashup)",
+          "file": "Power_Bearer-Bear_Mecha_Victory_Against_Mecha_Direwolf/The Dire Wolf x Transforming, Power bear x Temple… (Mashup).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "8HDaGuZ_kuQ",
+          "title": "The Wolf Has Fallen | Mecha Bear Claims the Norse Battlefield",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-mecha-wakeup",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear Mecha Wakeup",
+      "folders": [
+        "Power_Bearer-Bear_Mecha_Wakeup"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-Bear_Mecha_Wakeup/Bear_transforming_in_rain_202607032359.mp4",
+      "songs": [
+        {
+          "title": "Waking up, Power bear",
+          "file": "Power_Bearer-Bear_Mecha_Wakeup/Waking up, Power bear.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "2N8RkGvS1-o",
+          "title": "Bear Wakes Up His Giant Mecha in the Rain | Rise Up!",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-bear-triumph-over-maelstrom",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Bear triumph over Maelstrom",
+      "folders": [
+        "Power_Bearer-Bear_triumph_over_Maelstrom",
+        "Power_Bearer-Bear_triumph_over_Maelstrom-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Bear_triumph_over_Maelstrom/Mecha_bear_defeats_kraken_202608200000.mp4",
+      "songs": [
+        {
+          "title": "Transforming, Power bear x Salt and Static (Mashup)",
+          "file": "Power_Bearer-Bear_triumph_over_Maelstrom/Transforming, Power bear x Salt and Static (Mashup).wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Fire That Walked Out of the Storm (Lyrics)",
+          "file": "Power_Bearer-Bear_triumph_over_Maelstrom-Lyrics/The Fire That Walked Out of the Storm (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "kllVY3fFuaM",
+          "title": "🎺 The Fire That Walked Out of the Storm 🌅 (Instruments) Power Bear's Victory Anthem | Lofi",
+          "kind": "instrumental"
+        },
+        {
+          "id": "5GulnYPMfCg",
+          "title": "🎺 The Fire That Walked Out of the Storm (Lyrics) 🌅 Power Bear's Victory Anthem | Lofi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-mecha-bear-fighting-9-head-mecha",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Mecha Bear Fighting 9 Head Mecha",
+      "folders": [
+        "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha/Mecha_bear_fighting_mecha_hydra_202607190107.mp4",
+      "songs": [
+        {
+          "title": "Waking up, Power bear x Echoes of  the Marbled Temple (Mashup)",
+          "file": "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha/Waking up, Power bear x Echoes of  the Marbled Temple (Mashup).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "Pn5fzj3H_Jc",
+          "title": "⚡ Power Bear vs. the 9-Headed Hydra | Last Stand in the Marble Temple 🐻🤖 Lofi Mecha Loop",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-the-bear-victory-hydra-mecha",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "The Bear Victory Hydra Mecha",
+      "folders": [
+        "Power_Bearer-The_Bear_Victory_Hydra_Mecha"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-The_Bear_Victory_Hydra_Mecha/Mecha_bear_victorious_over_hydra_202607272237.mp4",
+      "songs": [
+        {
+          "title": "Transforming, Power bear x Echoes of  the Marbled Temple (Mashup)",
+          "file": "Power_Bearer-The_Bear_Victory_Hydra_Mecha/Transforming, Power bear x Echoes of  the Marbled Temple (Mashup).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "efPEbD5h43M",
+          "title": "🎺 Power Bear's Victory — Mecha Bear Crushes the 9-Headed Hydra | Triumphant Lofi Mix ⚡",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-the-bear-fixing-his-mecha-in-snow",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "The Bear fixing his mecha in snow",
+      "folders": [
+        "Power_Bearer-The_Bear_fixing_his_mecha_in_snow"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-The_Bear_fixing_his_mecha_in_snow/Bear_mecha_repair_loop_animation_202607100041.mp4",
+      "songs": [
+        {
+          "title": "Winter Awakening",
+          "file": "Power_Bearer-The_Bear_fixing_his_mecha_in_snow/Winter Awakening.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "4CVAbxUgNks",
+          "title": "❄️ Cold Hands, Iron Will — Bear Repairs His Mecha Alone",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-the-hydra-make-an-appearance",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "The Hydra make an Appearance",
+      "folders": [
+        "Power_Bearer-The_Hydra_make_an_Appearance"
+      ],
+      "hasLyrics": false,
+      "video": "Power_Bearer-The_Hydra_make_an_Appearance/Ancient_snake_in_temple_courtyard_202607132133.mp4",
+      "songs": [
+        {
+          "title": "Echoes of the Marble Temple",
+          "file": "Power_Bearer-The_Hydra_make_an_Appearance/Echoes of the Marble Temple.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "pdnK6n2Rh_U",
+          "title": "🐍 The Hydra Awakens — Ancient Greece's Many-Headed Terror Returns | Echoes of the Marble Temple",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-villain-alligator-appear",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Villain Alligator Appear",
+      "folders": [
+        "Power_Bearer-Villain_Alligator_Appear",
+        "Power_Bearer-Villain_Alligator_Appear-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Villain_Alligator_Appear/Alligator_drowning_in_swamp_202607041330.mp4",
+      "songs": [
+        {
+          "title": "Temple of the Rising Sun",
+          "file": "Power_Bearer-Villain_Alligator_Appear/Temple of the Rising Sun.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Temple of the Rising Sun (Lyrics)",
+          "file": "Power_Bearer-Villain_Alligator_Appear-Lyrics/Temple of the Rising Sun (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "wayBMrX-g_k",
+          "title": "The Ancient Egypt Alligator Villain Makes His Entrance | Rise of the Swamp Pharaoh | Epic Music",
+          "kind": "instrumental"
+        },
+        {
+          "id": "U3cz7L20VFo",
+          "title": "Temple of The Rising Sun (Lyrics) | The Ancient Egypt Alligator Villain Makes His Entrance",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-villain-dire-wolf-appear",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Villain Dire Wolf Appear",
+      "folders": [
+        "Power_Bearer-Villain_Dire_Wolf_Appear",
+        "Power_Bearer-Villain_Dire_Wolf_Appear-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Villain_Dire_Wolf_Appear/Withered_forest_island_rain_anim…_202607041933.mp4",
+      "songs": [
+        {
+          "title": "The Dire Wolf",
+          "file": "Power_Bearer-Villain_Dire_Wolf_Appear/The Dire Wolf.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Rain on the Runes (Lyrics)",
+          "file": "Power_Bearer-Villain_Dire_Wolf_Appear-Lyrics/Rain on the Runes (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "wRA0VhxV3ig",
+          "title": "From the Dead Forest He Comes | The Dire Wolf of Norse Legend",
+          "kind": "instrumental"
+        },
+        {
+          "id": "qY09b_neTao",
+          "title": "Power Bearer Villain Dire Wolf Appear Lyrics merged",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "power-bearer-villain-maestrom-make-appearance",
+      "theme": "power-bearer",
+      "subLabel": "",
+      "title": "Villain Maestrom make appearance",
+      "folders": [
+        "Power_Bearer-Villain_Maestrom_make_appearance",
+        "Power_Bearer-Villain_Maestrom_make_appearance-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Power_Bearer-Villain_Maestrom_make_appearance/Captain_Grimtide_reveal_loop_ani…_202608011806.mp4",
+      "songs": [
+        {
+          "title": "Salt and Static",
+          "file": "Power_Bearer-Villain_Maestrom_make_appearance/Salt and Static.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Rise, Maelstrom",
+          "file": "Power_Bearer-Villain_Maestrom_make_appearance-Lyrics/Rise, Maelstrom.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "frVsL9Ihb50",
+          "title": "⚓ The Kraken's Storm — Dark Lofi Sea Shanty 🌊 Power Bear vs Maelstrom",
+          "kind": "instrumental"
+        },
+        {
+          "id": "eojGSipmUuc",
+          "title": "⚓ RISE, MAELSTROM (Lyrics) 🌊",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "relax-at-the-lake-shore",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "At the lake shore",
+      "folders": [
+        "Relax-At_the_lake_shore"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-At_the_lake_shore/Bear_cooking_by_lakeshore_202606302144.mp4",
+      "songs": [
+        {
+          "title": "Warm Felt Piano",
+          "file": "Relax-At_the_lake_shore/Warm Felt Piano.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "T4MWD0r0z8g",
+          "title": "Bear's Cozy Lakeside Kitchen",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-bear-friends-group-performing-in-waltz-hall",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Bear friends group performing in waltz hall",
+      "folders": [
+        "Relax-Bear_friends_group_performing_in_waltz_hall"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Bear_friends_group_performing_in_waltz_hall/Ballroom_animation_with_animal_d…_202608012325.mp4",
+      "songs": [
+        {
+          "title": "Winter Waltz (1)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (1).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (2)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (2).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (3)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (3).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (4)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (4).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (5)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (5).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (6)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (6).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (7)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (7).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (8)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (8).wav",
+          "lyrics": false
+        },
+        {
+          "title": "Winter Waltz (9)",
+          "file": "Relax-Bear_friends_group_performing_in_waltz_hall/Winter Waltz (9).wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qWvjSOa7f88",
+          "title": "The Midnight Ballroom 🐻🎹 Bear, Fox & Capybara Play as Shadows Waltz | Elegant Lofi Mix",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-bear-reading-in-graveyard",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Bear reading in graveyard",
+      "folders": [
+        "Relax-Bear_reading_in_graveyard"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Bear_reading_in_graveyard/Bear_reading_book_in_graveyard_20260920002047.mp4",
+      "songs": [
+        {
+          "title": "Midnight Fairground",
+          "file": "Relax-Bear_reading_in_graveyard/Midnight Fairground.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "aq_nQR6qDtI",
+          "title": "THE GRAVEYARD READER 🐻🎃",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-bear-walking-on-the-snow",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Bear walking on the snow",
+      "folders": [
+        "Relax-Bear_walking_on_the_snow",
+        "Relax-Bear_walking_on_the_snow-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Relax-Bear_walking_on_the_snow/Black_Bear_walking_snowy_shoreline_202607232328.mp4",
+      "songs": [
+        {
+          "title": "Echoes of the White",
+          "file": "Relax-Bear_walking_on_the_snow/Echoes of the White.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Echoes of the White (Lyrics)",
+          "file": "Relax-Bear_walking_on_the_snow-Lyrics/Echoes of the White (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "CBdFjaWc1A8",
+          "title": "Snow Walk 🐻 A Quiet Winter Stroll to the Frozen Lake | Lofi Beats for Calm & Focus",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-stargazing",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear Stargazing",
+      "folders": [
+        "Relax-Black_Bear_Stargazing",
+        "Relax-Black_Bear_Stargazing-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Relax-Black_Bear_Stargazing/Black_bear_gazing_at_stars_202607180051.mp4",
+      "songs": [
+        {
+          "title": "Weightless Drift",
+          "file": "Relax-Black_Bear_Stargazing/Weightless Drift.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Weightless Drift (Lyrics)",
+          "file": "Relax-Black_Bear_Stargazing-Lyrics/Weightless Drift (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "5PEEhBxdfIo",
+          "title": "Weightless Drift 🌌 Bear Stargazing on a Mountain Peak | 30 Min Lofi to Relax, Study & Sleep",
+          "kind": "instrumental"
+        },
+        {
+          "id": "fKrRQkrIu2Y",
+          "title": "Weightless Drift (Lyrics) 🌌 ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-fishing",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear fishing",
+      "folders": [
+        "Relax-Black_Bear_fishing"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Black_Bear_fishing/Bear_and_otter_fishing_loop_202607211711.mp4",
+      "songs": [
+        {
+          "title": "Dawn Over the Lake",
+          "file": "Relax-Black_Bear_fishing/Dawn Over the Lake.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "WITJn_UC6F0",
+          "title": "Dawn Over the Lake 🎣 Cozy Bear Fishing in the Misty Forest | 30 Min Lofi to Relax & Study",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-floating-above-the-clouds",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear floating above the clouds",
+      "folders": [
+        "Relax-Black_Bear_floating_above_the_clouds"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Black_Bear_floating_above_the_clouds/Black_bear_floating_in_clouds_202607282254.mp4",
+      "songs": [
+        {
+          "title": "Cloud Above",
+          "file": "Relax-Black_Bear_floating_above_the_clouds/Cloud Above.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "az_vJ9IBZuA",
+          "title": "Cloud Above",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-in-the-cave-listening-outside-rain",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear in the Cave listening outside Rain",
+      "folders": [
+        "Relax-Black_Bear_in_the_Cave_listening_outside_Rain"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Black_Bear_in_the_Cave_listening_outside_Rain/Black_bear_listening_music_202607181436.mp4",
+      "songs": [
+        {
+          "title": "Rain in the Cave",
+          "file": "Relax-Black_Bear_in_the_Cave_listening_outside_Rain/Rain in the Cave.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "VSVsSGXqD34",
+          "title": "A Rainy Night in the Cave ✨ Cozy Bear & Cat Unwinding to the Rain | Relaxing Lofi",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-sitting-in-the-snow",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear sitting in the snow",
+      "folders": [
+        "Relax-Black_Bear_sitting_in_the_snow"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Black_Bear_sitting_in_the_snow/Black_bear_sitting_in_snow_202607272228.mp4",
+      "songs": [
+        {
+          "title": "Winter Awakening",
+          "file": "Relax-Black_Bear_sitting_in_the_snow/Winter Awakening.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "pCqodYtbP9I",
+          "title": "Frozen Lake ❄️ Bear Sits in the Snow Watching the Ice | Cozy Winter Lofi to Relax / Study / Sleep",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Black Bear snow gazing sitting on the frozen lake",
+      "folders": [
+        "Relax-Black_Bear_snow_gazing_sitting_on_the_frozen_lake"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Black_Bear_snow_gazing_sitting_on_the_frozen_lake/Black_bear_lying_on_ice_202607272249.mp4",
+      "songs": [
+        {
+          "title": "Winter Gazing",
+          "file": "Relax-Black_Bear_snow_gazing_sitting_on_the_frozen_lake/Winter Gazing.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "cug3feB99QA",
+          "title": "Aurora Nights ✨ Bear Lies on the Frozen Lake Watching the Stars | Cozy Winter Lofi",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-cafe-and-story",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Cafe and story",
+      "folders": [
+        "Relax-Cafe_and_story",
+        "Relax-Cafe_and_story-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Relax-Cafe_and_story/Bear_writing_book_cat_resting_202607022140.mp4",
+      "songs": [
+        {
+          "title": "Cà Phê Và Những Câu Chuyện",
+          "file": "Relax-Cafe_and_story/Cà Phê Và Những Câu Chuyện.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Đọc truyện (Lyrics)",
+          "file": "Relax-Cafe_and_story-Lyrics/Đọc truyện (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "I-veUcpylUQ",
+          "title": "Coffee, Books & a Cozy Cave | Bear's Perfect Afternoon",
+          "kind": "instrumental"
+        },
+        {
+          "id": "ANMRBOUbkL8",
+          "title": "📖 Gấu Đọc Truyện Trong Hang (Lyrics) | Nhạc Vpop-folk Chill Thư Giãn",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "relax-grill-fish-in-the-cave-with-cat",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Grill fish in the cave with cat",
+      "folders": [
+        "Relax-Grill_fish_in_the_cave_with_cat"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Grill_fish_in_the_cave_with_cat/Bear_cooking_by_lakeshore_202606302357.mp4",
+      "songs": [
+        {
+          "title": "Warm Felt Piano",
+          "file": "Relax-Grill_fish_in_the_cave_with_cat/Warm Felt Piano.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "4s9rc5OCHDk",
+          "title": "Cozy Cave Cookout | Relaxing Ambience",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-sleeping-in-the-cave",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Sleeping in the cave",
+      "folders": [
+        "Relax-Sleeping_in_the_cave"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Sleeping_in_the_cave/Bear_sleeping_by_lakeshore_202607010020.mp4",
+      "songs": [
+        {
+          "title": "Warm Felt Piano",
+          "file": "Relax-Sleeping_in_the_cave/Warm Felt Piano.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "hMQ1jw9_PUQ",
+          "title": "Bear & Cat Sleeping in the Cave | for Sleep & Relaxation",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-the-bear-lie-down-in-wheat-field",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "The Bear lie down in wheat field",
+      "folders": [
+        "Relax-The_Bear_lie_down_in_wheat_field"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-The_Bear_lie_down_in_wheat_field/Characters_in_wheat_field_202607160042.mp4",
+      "songs": [
+        {
+          "title": "Wheat and Wind",
+          "file": "Relax-The_Bear_lie_down_in_wheat_field/Wheat and Wind.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "AfOFDNXcAzU",
+          "title": "🌾 Nowhere to Be — Bear & Bunny Rest in the Golden Wheat Field | Cozy Lofi Chill",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-the-bear-sit-in-wheat-field",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "The Bear sit in wheat field",
+      "folders": [
+        "Relax-The_Bear_sit_in_wheat_field"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-The_Bear_sit_in_wheat_field/Seamless_10-second_loop_animation._Wide_202607152210.mp4",
+      "songs": [
+        {
+          "title": "Wheat and Wind",
+          "file": "Relax-The_Bear_sit_in_wheat_field/Wheat and Wind.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "z-fImkZ4y6c",
+          "title": ":🌾 Afternoon on the Bench — Bear & Bunny Under the Windmill | Cozy Countryside Lofi Chill",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-the-black-bear-sitting-beside-old-radio",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "The Black Bear Sitting Beside Old Radio",
+      "folders": [
+        "Relax-The_Black_Bear_Sitting_Beside_Old_Radio"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-The_Black_Bear_Sitting_Beside_Old_Radio/Black_bear_sitting_on_bench_202607042357.mp4",
+      "songs": [
+        {
+          "title": "The Last Round",
+          "file": "Relax-The_Black_Bear_Sitting_Beside_Old_Radio/The Last Round.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "6ckAc7PQQ5U",
+          "title": "Nostalgia at Midnight — The Black Bear's Late Night Radio",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "relax-writing-book",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Writing book",
+      "folders": [
+        "Relax-Writing_book"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Writing_book/Black_bear_writing_book_fox_202607022124.mp4",
+      "songs": [
+        {
+          "title": "Đọc sách",
+          "file": "Relax-Writing_book/Đọc sách.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "W3axI_RaQMY",
+          "title": "Bear & Fox's Quiet Study Time",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-prism-light",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Prism Light",
+      "folders": [
+        "Sun_And_Moon-Prism_Light",
+        "Sun_And_Moon-Prism_Light-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Prism_Light/Characters_and_glass_shards_at_202608150114.mp4",
+      "songs": [
+        {
+          "title": "Prism Light",
+          "file": "Sun_And_Moon-Prism_Light/Prism Light.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Prism Light (Lyrics)",
+          "file": "Sun_And_Moon-Prism_Light-Lyrics/Prism Light (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "6C36uQbp_jQ",
+          "title": "🌅 \"Prism Light\" (Instrumental) Horizon Ch.5 | Cinematic Lofi Sunrise",
+          "kind": "instrumental"
+        },
+        {
+          "id": "6l7QOhlFFQk",
+          "title": "🌅 \"Prism Light\" (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Sun and moon get emotion fogged with the rain",
+      "folders": [
+        "Sun_And_Moon-Sun_and_moon_get_emotion_fogged_with_the_rain",
+        "Sun_And_Moon-Sun_and_moon_get_emotion_fogged_with_the_rain-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Sun_and_moon_get_emotion_fogged_with_the_rain/Bear_and_rabbit_in_rain_202608110246.mp4",
+      "songs": [
+        {
+          "title": "Fogged Emotions",
+          "file": "Sun_And_Moon-Sun_and_moon_get_emotion_fogged_with_the_rain/Fogged Emotions.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Fogged Emotions (Lyrics)",
+          "file": "Sun_And_Moon-Sun_and_moon_get_emotion_fogged_with_the_rain-Lyrics/Fogged Emotions (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "9n3lqr9wEGc",
+          "title": "🌫️ \"Fogged Emotions\" (Instrumental) Horizon Ch.3 | Cinematic Lofi",
+          "kind": "instrumental"
+        },
+        {
+          "id": "FERJK6tcbA8",
+          "title": "🌫️ \"Fogged Emotions\" (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Sun and moon meeting with the first ray through glass",
+      "folders": [
+        "Sun_And_Moon-Sun_and_moon_meeting_with_the_first_ray_through_glass",
+        "Sun_And_Moon-Sun_and_moon_meeting_with_the_first_ray_through_glass-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Sun_and_moon_meeting_with_the_first_ray_through_glass/Bear_and_rabbit_gazing_on_202608100107.mp4",
+      "songs": [
+        {
+          "title": "Clear Ray",
+          "file": "Sun_And_Moon-Sun_and_moon_meeting_with_the_first_ray_through_glass/Clear Ray.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Clear Ray (Lyrics)",
+          "file": "Sun_And_Moon-Sun_and_moon_meeting_with_the_first_ray_through_glass-Lyrics/Clear Ray (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "vTu5wxnBHhw",
+          "title": "🌅 \"Clear Ray\" (Instrumental) — Horizon, Chapter 1: Dawn",
+          "kind": "instrumental"
+        },
+        {
+          "id": "BxpTvHY0BQ4",
+          "title": "🌅 \"Clear Ray\" (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-sun-out-of-sight-and-moon-got-darken",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Sun out of sight and moon got darken",
+      "folders": [
+        "Sun_And_Moon-Sun_out_of_sight_and_moon_got_darken",
+        "Sun_And_Moon-Sun_out_of_sight_and_moon_got_darken-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Sun_out_of_sight_and_moon_got_darken/Character_standing_in_falling_snow_202608132135.mp4",
+      "songs": [
+        {
+          "title": "Darkened Abyss",
+          "file": "Sun_And_Moon-Sun_out_of_sight_and_moon_got_darken/Darkened Abyss.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Darkened Abyss (Lyrics)",
+          "file": "Sun_And_Moon-Sun_out_of_sight_and_moon_got_darken-Lyrics/Darkened Abyss (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "h3QllCwkiZc",
+          "title": "🌑\"Darken Abyss\" (Instrumental) Horizon Ch.4 |",
+          "kind": "instrumental"
+        },
+        {
+          "id": "8ttAffsDvUU",
+          "title": "🌑 Darken Abyss (Lyrics) ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-sun-shine-too-bright-for-her",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Sun shine too bright for her",
+      "folders": [
+        "Sun_And_Moon-Sun_shine_too_bright_for_her",
+        "Sun_And_Moon-Sun_shine_too_bright_for_her-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Sun_shine_too_bright_for_her/Characters_fading_in_noon_city_202608102129.mp4",
+      "songs": [
+        {
+          "title": "Mirrored Shadow",
+          "file": "Sun_And_Moon-Sun_shine_too_bright_for_her/Mirrored Shadow.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Mirrored Shadow (Lyrics)",
+          "file": "Sun_And_Moon-Sun_shine_too_bright_for_her-Lyrics/Mirrored Shadow (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "VQ6kLcxPTas",
+          "title": "☀️ \"Mirrored Shadow\" (Instrumental) — Horizon, Chapter 2: Noon",
+          "kind": "instrumental"
+        },
+        {
+          "id": "QhCc9BOlfxE",
+          "title": "☀️ \"Mirrored Shadow\" (Lyrics) ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "to-hong-duyen-to-chuc-nu",
+      "theme": "to-hong",
+      "subLabel": "",
+      "title": "Duyên Tơ Chức Nữ",
+      "folders": [
+        "Tơ_Hồng-Duyên_Tơ_Chức_Nữ-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Tơ_Hồng-Duyên_Tơ_Chức_Nữ-Lyrics/still_loop.mp4",
+      "songs": [
+        {
+          "title": "audio_slow",
+          "file": "Tơ_Hồng-Duyên_Tơ_Chức_Nữ-Lyrics/audio_slow.wav",
+          "lyrics": true
+        },
+        {
+          "title": "Tơ Hồng — Duyên Tơ (Chức Nữ) (Lyrics)",
+          "file": "Tơ_Hồng-Duyên_Tơ_Chức_Nữ-Lyrics/Tơ Hồng — Duyên Tơ (Chức Nữ) (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "ykTiSkabK3E",
+          "title": "Tơ Hồng — Duyên Tơ | Chức Nữ Ver (Lyrics) | Ngưu Lang Chức Nữ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "to-hong-duyen-to-nguu-lang",
+      "theme": "to-hong",
+      "subLabel": "",
+      "title": "Duyên Tơ Ngưu Lang",
+      "folders": [
+        "Tơ_Hồng-Duyên_Tơ_Ngưu_Lang-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Tơ_Hồng-Duyên_Tơ_Ngưu_Lang-Lyrics/still_loop.mp4",
+      "songs": [
+        {
+          "title": "Tơ Hồng — Duyên Tơ (Ngưu Lang) (Lyrics)",
+          "file": "Tơ_Hồng-Duyên_Tơ_Ngưu_Lang-Lyrics/Tơ Hồng — Duyên Tơ (Ngưu Lang) (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "n664_FvNQ4c",
+          "title": "Tơ Hồng — Duyên Tơ | Ngưu Lang Ver (Lyrics) | Ngưu Lang Chức Nữ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "to-hong-det-mong",
+      "theme": "to-hong",
+      "subLabel": "",
+      "title": "Dệt Mộng",
+      "folders": [
+        "Tơ_Hồng-Dệt_Mộng-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Tơ_Hồng-Dệt_Mộng-Lyrics/scene.mp4",
+      "songs": [
+        {
+          "title": "Tơ Hồng — Dệt Mộng (Lyrics)",
+          "file": "Tơ_Hồng-Dệt_Mộng-Lyrics/Tơ Hồng — Dệt Mộng (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "WEOlvxMx2W8",
+          "title": "Tơ Hồng — Dệt Mộng | Duet",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-ba-khi-ngut-troi",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Bá Khí Ngút Trời",
+      "folders": [
+        "VietNam-Bá_Khí_Ngút_Trời-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Bá_Khí_Ngút_Trời-Lyrics/Bear_wearing_shirt_and_tie_static.mp4",
+      "songs": [
+        {
+          "title": "Bá Khí Ngút Trời",
+          "file": "VietNam-Bá_Khí_Ngút_Trời-Lyrics/Bá Khí Ngút Trời.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "UBPbRVBfN4w",
+          "title": "Bá Khí Ngút Trời",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-ngam-lai-mot-chut",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Ngẫm Lại Một Chút",
+      "folders": [
+        "VietNam-Ngẫm_Lại_Một_Chút-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Ngẫm_Lại_Một_Chút-Lyrics/Man_playing_guitar_on_hill_20260919002721.mp4",
+      "songs": [
+        {
+          "title": "0 Ngẫm lại một chút",
+          "file": "VietNam-Ngẫm_Lại_Một_Chút-Lyrics/0 Ngẫm lại một chút.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "AyQzckl3PXA",
+          "title": "Ngẫm Lại Một Chút (A Little Reflection) — Don't Cry | Music",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-rock-giua-may-va-song",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Rock-Giữa Mây và Sóng",
+      "folders": [
+        "VietNam-Rock-Giữa_Mây_và_Sóng-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Rock-Giữa_Mây_và_Sóng-Lyrics/Figure_shoreline_loop_more.mp4",
+      "songs": [
+        {
+          "title": "Giữa Mây và Sóng (Lyrics)",
+          "file": "VietNam-Rock-Giữa_Mây_và_Sóng-Lyrics/Giữa Mây và Sóng (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "pZi39m8OBSE",
+          "title": "Giữa Mây Và Sóng — Spring EDM × Cinematic Ambient-Rock",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-viet-nam-trong-tim-toi",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Việt Nam trong tim tôi",
+      "folders": [
+        "VietNam-Việt_Nam_trong_tim_tôi-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Việt_Nam_trong_tim_tôi-Lyrics/still_loop.mp4",
+      "songs": [
+        {
+          "title": "Việt Nam Trong Tim Tôi",
+          "file": "VietNam-Việt_Nam_trong_tim_tôi-Lyrics/Việt Nam Trong Tim Tôi.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "bp1JYb5ii7o",
+          "title": "Việt Nam trong tim tôi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-vo-nga",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Vô Ngã",
+      "folders": [
+        "VietNam-Vô_Ngã-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Vô_Ngã-Lyrics/Bear_gazing_at_water_reflection_20260910022857.mp4",
+      "songs": [
+        {
+          "title": "0 Bóng Hồ Lặng",
+          "file": "VietNam-Vô_Ngã-Lyrics/0 Bóng Hồ Lặng.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "nIm8444kfms",
+          "title": "Vô Ngã | Non-Self | 無我 — Lofi Thiền 🌙 Soi Bóng Mặt Hồ Đêm | Buông Cái Tôi & An Nhiên",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-vo-thuong",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Vô Thường",
+      "folders": [
+        "VietNam-Vô_Thường-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Vô_Thường-Lyrics/Bear_watching_falling_cherry_blo…_202609080055.mp4",
+      "songs": [
+        {
+          "title": "Vô Thường (Impermanence)",
+          "file": "VietNam-Vô_Thường-Lyrics/Vô Thường (Impermanence).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "OTUjYx5D4Uw",
+          "title": "Vô Thường | Impermanence | 無常— Zen Lofi Meditation🏔️",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-vo-tuong",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Vô Tướng",
+      "folders": [
+        "VietNam-Vô_Tướng-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Vô_Tướng-Lyrics/Bear_meditating_before_Buddha_st…_202608240140.mp4",
+      "songs": [
+        {
+          "title": "Vô Tướng (Formlessness)",
+          "file": "VietNam-Vô_Tướng-Lyrics/Vô Tướng (Formlessness).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "espPxC3nv5Q",
+          "title": "Vô Tướng | Formlessness | 無相 — Zen Lofi Meditation🏔️",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-vo-vi",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Vô Vi",
+      "folders": [
+        "VietNam-Vô_Vi-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Vô_Vi-Lyrics/Bear_relaxing_by_river_stream_20260923225601.mp4",
+      "songs": [
+        {
+          "title": "Vô Vi (Actionless action)",
+          "file": "VietNam-Vô_Vi-Lyrics/Vô Vi (Actionless action).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "-r4A8Vc2vbw",
+          "title": "Vô Vi — 無為 — Actionless Action 🍃 Lofi Thiền Bên Suối | Buông Bỏ & Thảnh Thơi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-bear-playing-music-on-jade-bridge-with-friends",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "Bear playing music on jade bridge with friends",
+      "folders": [
+        "Wuxia-Bear_playing_music_on_jade_bridge_with_friends",
+        "Wuxia-Bear_playing_music_on_jade_bridge_with_friends-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-Bear_playing_music_on_jade_bridge_with_friends/Bear_plays_flute_with_fox_202607202336.mp4",
+      "songs": [
+        {
+          "title": "On the Jade Bridge",
+          "file": "Wuxia-Bear_playing_music_on_jade_bridge_with_friends/On the Jade Bridge.wav",
+          "lyrics": false
+        },
+        {
+          "title": "On the Jade Bridge (Lyrics)",
+          "file": "Wuxia-Bear_playing_music_on_jade_bridge_with_friends-Lyrics/On the Jade Bridge (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "EqZ3V_mfqeE",
+          "title": "🎵 On the Jade Bridge - Lofi Wuxia Meditation with Flute & Guzheng",
+          "kind": "instrumental"
+        },
+        {
+          "id": "6pqqZUYLDiA",
+          "title": "🎵 On the Jade Bridge (Lyrics) - Lofi Wuxia Meditation with Flute & Guzheng",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-bear-playing-music-on-lattern-river-with-friends",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "Bear playing music on lattern river with friends",
+      "folders": [
+        "Wuxia-Bear_playing_music_on_lattern_river_with_friends",
+        "Wuxia-Bear_playing_music_on_lattern_river_with_friends-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-Bear_playing_music_on_lattern_river_with_friends/Chibi_characters_playing_music_f…_20260915002144.mp4",
+      "songs": [
+        {
+          "title": "Lantern River",
+          "file": "Wuxia-Bear_playing_music_on_lattern_river_with_friends/Lantern River.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Lantern River (Lyrics)",
+          "file": "Wuxia-Bear_playing_music_on_lattern_river_with_friends-Lyrics/Lantern River (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "53yBCvP7Tyg",
+          "title": "Lantern River (Instrumental) 🏮 Wuxia Lofi to Relax / Study to",
+          "kind": "instrumental"
+        },
+        {
+          "id": "i2Sc76aaJEw",
+          "title": "Lantern River (Lyrics) 🏮 Wuxia Lofi to Relax / Study to",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-bear-fighting-assasins-hyena",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Bear fighting assasins hyena",
+      "folders": [
+        "Wuxia-The_Bear_fighting_assasins_hyena",
+        "Wuxia-The_Bear_fighting_assasins_hyena-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-The_Bear_fighting_assasins_hyena/Black_Bear_and_Hyenas_fight_202607150032.mp4",
+      "songs": [
+        {
+          "title": "The Duel against Assasins",
+          "file": "Wuxia-The_Bear_fighting_assasins_hyena/The Duel against Assasins.wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Duel against Assasins (Lyrics)",
+          "file": "Wuxia-The_Bear_fighting_assasins_hyena-Lyrics/The Duel against Assasins (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qxdskKh0bvQ",
+          "title": "🌕 Night of the Hyena Blades — Black Bear Stands Alone Against the Assassin Pack | Wuxia World",
+          "kind": "instrumental"
+        },
+        {
+          "id": "zTZuplIhEKI",
+          "title": "🌕 Night of the Hyena Blades (Lyrics)—Wuxia theme music",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-bear-fighting-husky-opponent",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Bear fighting husky opponent",
+      "folders": [
+        "Wuxia-The_Bear_fighting_husky_opponent"
+      ],
+      "hasLyrics": false,
+      "video": "Wuxia-The_Bear_fighting_husky_opponent/Two_chibi_martial_artists_exchan…_202607142354.mp4",
+      "songs": [
+        {
+          "title": "High Arena Duel",
+          "file": "Wuxia-The_Bear_fighting_husky_opponent/High Arena Duel.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "pyl5Mn9zqcg",
+          "title": "⚔️ Two Martial Artists. One Arena. Bear Faces the Husky in the Wuxia World | High Arena Duel",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-bear-healing-cultivate",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Bear healing cultivate",
+      "folders": [
+        "Wuxia-The_Bear_healing_cultivate",
+        "Wuxia-The_Bear_healing_cultivate-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-The_Bear_healing_cultivate/Black_Bear_meditation_mist_202607150057.mp4",
+      "songs": [
+        {
+          "title": "The Internal Wound",
+          "file": "Wuxia-The_Bear_healing_cultivate/The Internal Wound.wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Internal Wound (Lyrics)",
+          "file": "Wuxia-The_Bear_healing_cultivate-Lyrics/The Internal Wound (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "rCGxChs8vaQ",
+          "title": "🌸Healing the Body, Not the Heart — Black Bear Meditates in the Mist | Wuxia Cultivation Chill",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-black-bear-is-dueling-panda-bamboo",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Black bear is dueling panda bamboo",
+      "folders": [
+        "Wuxia-The_Black_bear_is_dueling_panda_bamboo"
+      ],
+      "hasLyrics": false,
+      "video": "Wuxia-The_Black_bear_is_dueling_panda_bamboo/Black_bear_and_panda_animation_202607052220.mp4",
+      "songs": [
+        {
+          "title": "Bear and Bamboo Duel",
+          "file": "Wuxia-The_Black_bear_is_dueling_panda_bamboo/Bear and Bamboo Duel.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "HeuRv1u_WI0",
+          "title": "Honor Among Rivals — Black Bear vs. Panda, Bamboo Forest Showdown",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-black-bear-is-training-with-red-panda-shifu",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Black bear is training with red panda shifu",
+      "folders": [
+        "Wuxia-The_Black_bear_is_training_with_red_panda_shifu"
+      ],
+      "hasLyrics": false,
+      "video": "Wuxia-The_Black_bear_is_training_with_red_panda_shifu/Black_bear_training_under_waterfall_202607051937.mp4",
+      "songs": [
+        {
+          "title": "Moonlit Resolve",
+          "file": "Wuxia-The_Black_bear_is_training_with_red_panda_shifu/Moonlit Resolve.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "QowllNmZy50",
+          "title": "The Shifu Nods — Black Bear's Waterfall Training Begins",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-black-bear-is-traveling-with-friends",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Black bear is traveling with friends",
+      "folders": [
+        "Wuxia-The_Black_bear_is_traveling_with_friends"
+      ],
+      "hasLyrics": false,
+      "video": "Wuxia-The_Black_bear_is_traveling_with_friends/Black_bear_walking_in_mist_202607052016.mp4",
+      "songs": [
+        {
+          "title": "Moonlit Resolve",
+          "file": "Wuxia-The_Black_bear_is_traveling_with_friends/Moonlit Resolve.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "NMQ1yJhluEI",
+          "title": "The Path Forward — Black Bear's Journey with His Wuxia Friends",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-black-bear-meditating-middle-lake-bamboo-forest",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Black bear meditating middle lake bamboo forest",
+      "folders": [
+        "Wuxia-The_Black_bear_meditating_middle_lake_bamboo_forest"
+      ],
+      "hasLyrics": false,
+      "video": "Wuxia-The_Black_bear_meditating_middle_lake_bamboo_forest/Frog_and_bear_meditation_loop_202607290103.mp4",
+      "songs": [
+        {
+          "title": "Wind Through the Bamboo",
+          "file": "Wuxia-The_Black_bear_meditating_middle_lake_bamboo_forest/Wind Through the Bamboo.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "j_VigR07GhM",
+          "title": "🌙 Moonlit Lake Meditation - Lofi Wuxia Study & Relaxation Music",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-the-jianghu-calls-her-home",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "The Jianghu Calls Her Home",
+      "folders": [
+        "Wuxia-The_Jianghu_Calls_Her_Home",
+        "Wuxia-The_Jianghu_Calls_Her_Home-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-The_Jianghu_Calls_Her_Home/Black_bear_watching_companion_rain_202607062212.mp4",
+      "songs": [
+        {
+          "title": "The Jianghu Calls Her Home",
+          "file": "Wuxia-The_Jianghu_Calls_Her_Home/The Jianghu Calls Her Home.wav",
+          "lyrics": false
+        },
+        {
+          "title": "The Jianghu Calls Her Home",
+          "file": "Wuxia-The_Jianghu_Calls_Her_Home-Lyrics/The Jianghu Calls Her Home.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qr0UteXsmug",
+          "title": "The Jianghu Calls Her Home — A Wuxia Farewell in the Rain",
+          "kind": "instrumental"
+        },
+        {
+          "id": "EaAZADIrErY",
+          "title": "🌧️ The Jianghu Calls Her Home (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    }
+  ]
+}

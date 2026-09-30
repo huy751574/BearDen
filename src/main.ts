@@ -188,7 +188,7 @@ function enterPlay() {
   const play = h('button', { className: 'back play-game' });
   play.onclick = () => openGame();
   const hint = h('div', { className: 'hint' });
-  hint.innerHTML = '<kbd>WASD</kbd> move · <kbd>Shift</kbd> run · click ground to walk · drag to look · <kbd>E</kbd> sit · <kbd>Q</kbd> wave · <kbd>G</kbd> mini-game';
+  hint.innerHTML = '<kbd>WASD</kbd> move · <kbd>Shift</kbd> run · click ground to walk · drag to look · <kbd>E</kbd> sit · <kbd>Q</kbd> wave · <kbd>1</kbd>–<kbd>4</kbd> dance, cheer, sing, clap · <kbd>G</kbd> mini-game';
   ui.replaceChildren(h('div', { className: 'hud-top' }, back, title, play), hint, chat.el, radio.el, gameHud.el);
   hud = { title, back, play };
 }

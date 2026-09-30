@@ -1939,6 +1939,10 @@
    {
     "kind": "moon",
     "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1961,6 +1965,10 @@
    {
     "kind": "sun",
     "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1983,6 +1991,10 @@
    {
     "kind": "moon",
     "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -2005,6 +2017,10 @@
    {
     "kind": "sun",
     "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -2027,6 +2043,10 @@
    {
     "kind": "moon",
     "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
    }
   ],
   "game": {

@@ -70,6 +70,7 @@ export abstract class Engine {
 
   protected hurt(text = 'Ouch!') {
     this.lives--;
+    this.ctx.bear.emote('hurt');
     this.ctx.hud.toast(text, 'bad');
     if (this.lives <= 0) this.finish(false);
   }
@@ -88,6 +89,7 @@ export abstract class Engine {
     this.done = true;
     this.won = won;
     if (won) this.cheer();
+    this.ctx.bear.emote(won ? 'victory' : 'hurt');
   }
 
   protected bearPos() {

@@ -239,6 +239,7 @@ export class LoungeWorld implements World {
     if (a === 'wave') r.av.char.wave();
     if (a === 'sit') r.av.char.pose = r.av.char.pose === 'sit' ? 'stand' : 'sit';
     if (a === 'pillow') this.pillowSwing(r.av);
+    if (a === 'dance' || a === 'cheer' || a === 'sing' || a === 'clap') r.av.char.emote(a);
   }
 
   /** Pillow swing for any avatar (remote or the local player's). */

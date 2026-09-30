@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { toonMaterial, addOutline } from '../engine/toon';
 import { ChibiBear, BLACK_BEAR, type ChibiSpec, type Pose, type Action } from './ChibiBear';
+import { loadGltfCharacter, type GltfCharacter, type ModelEntry } from './GltfCharacter';
+import modelsJson from '../data/models.json';
 
 // Every companion species. Two-legged chibis reuse ChibiBear with a spec;
 // four-legged animals, birds, fish and the big villains have small builders
@@ -46,6 +48,50 @@ class Chibi extends ChibiBear implements Creature {
   constructor(spec: ChibiSpec, readonly top = 1.75 * (spec.size ?? 1)) {
     super(spec);
   }
+}
+
+const MODELS = modelsJson as Record<string, ModelEntry>;
+/** Species drawn with another species' 3D model. */
+const MODEL_ALIAS: Record<string, string> = { cub: 'bear' };
+
+/**
+ * A chibi with an installed 3D model (public/models, src/data/models.json):
+ * starts as the procedural body and swaps in the model once it has loaded.
+ * If loading fails the procedural body simply stays.
+ */
+class ModelCreature implements Creature {
+  readonly root = new THREE.Group();
+  readonly moves = 'walk' as const;
+  private body: Chibi | GltfCharacter;
+
+  constructor(fallback: Chibi, entry: ModelEntry, height: number, readonly top: number) {
+    this.body = fallback;
+    this.root.add(fallback.root);
+    loadGltfCharacter(entry, height).then(
+      (model) => {
+        model.pose = this.body.pose;
+        model.lookYaw = this.body.lookYaw;
+        this.root.remove(this.body.root);
+        this.root.add(model.root);
+        this.body = model;
+      },
+      (e) => console.warn(`Model "${entry.file}" failed to load; keeping the procedural body.`, e),
+    );
+  }
+
+  get pose() { return this.body.pose; }
+  set pose(p: Pose) { this.body.pose = p; }
+  get lookYaw() { return this.body.lookYaw; }
+  set lookYaw(y: number | null) { this.body.lookYaw = y; }
+  act(action: Action, seconds: number) { this.body.act(action, seconds); }
+  update(dt: number, speed: number) { this.body.update(dt, speed); }
+}
+
+function chibi(kind: string, spec: ChibiSpec): Creature {
+  const fallback = new Chibi(spec);
+  const entry = MODELS[MODEL_ALIAS[kind] ?? kind];
+  // Same size as the procedural version (spec.size scales it, e.g. the cub).
+  return entry ? new ModelCreature(fallback, entry, entry.height * (spec.size ?? 1), fallback.top) : fallback;
 }
 
 // ---------------------------------------------------------------- chibi species
@@ -106,6 +152,14 @@ export const CHIBI: Record<string, ChibiSpec> = {
     extras: ({ head, part }) => { for (const s of [-1, 1]) part(head, sph(0.1), '#3b2a22', [0.16 * s, 0.05, 0.37], { scale: [1.3, 0.8, 0.4], outline: false }); },
   },
   rabbit: { palette: P('#f4f1ec', '#ffffff', '#ffb6c1'), ears: 'long', tail: 'nub', snout: 0.8, size: 0.9 },
+  // The white bunny from the Sun and Moon scenes (lilac scarf, pale blue coat).
+  moon_bunny: {
+    palette: P('#f7f7fb', '#ffffff', '#ffb6c8'), ears: 'long', tail: 'nub', snout: 0.7, size: 0.9,
+    extras: ({ body, part }) => {
+      part(body, new THREE.CylinderGeometry(0.4, 0.5, 0.62, 18, 1, true), '#a9c1e6', [0, 0.42, 0]);
+      part(body, new THREE.TorusGeometry(0.3, 0.08, 8, 20), '#c9b3e6', [0, 0.82, 0], { rot: [Math.PI / 2, 0, 0] });
+    },
+  },
   red_panda: {
     palette: P('#c8552e', '#fff4e6', '#fff4e6'), ears: 'pointy', tail: 'ringed', snout: 1.1, limbs: '#3b2a22',
     extras: ({ head, armR, part }) => {
@@ -537,7 +591,7 @@ function drone() {
 // ---------------------------------------------------------------- factory
 
 export function makeCreature(kind: string): Creature {
-  if (CHIBI[kind]) return new Chibi(CHIBI[kind]);
+  if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
   if (QUADS[kind]) return new Quad(QUADS[kind]);
   if (BIRDS[kind]) return new Bird(BIRDS[kind]);
   switch (kind) {

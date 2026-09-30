@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ChibiBear } from '../character/ChibiBear';
-import type { Character } from '../character/Character';
+import type { Character, Emote } from '../character/Character';
 import { loadGltfCharacter, type ModelEntry } from '../character/GltfCharacter';
 import modelsJson from '../data/models.json';
 import { Diorama } from '../scenery/Diorama';
@@ -30,6 +30,8 @@ export interface World {
 }
 
 const GROUND = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+/** Number keys play emotes (a mini-game that uses a key gets it first). */
+const EMOTE_KEYS: Record<string, Emote> = { '1': 'dance', '2': 'cheer', '3': 'sing', '4': 'clap' };
 const CAM_TARGET_Y = 2.4; // aim above the bear: island low in frame, backdrop above it
 
 export class Game {
@@ -105,6 +107,8 @@ export class Game {
         this.bear.wave();
         this.waves++;
       }
+      const emote = EMOTE_KEYS[key];
+      if (emote) this.bear.emote(emote);
     };
 
     addEventListener('resize', () => this.resize());

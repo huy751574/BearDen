@@ -1,0 +1,21 @@
+# Bear Den Lounge: one Durable Object holds the whole room (slots, waitlist,
+# song queue, votes, chat). Deploy: npx wrangler deploy (see LOUNGE_SETUP.md).
+name = "bearden-lounge"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+[[durable_objects.bindings]]
+name = "LOUNGE"
+class_name = "Lounge"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Lounge"]
+
+[vars]
+# Firebase project id, used to verify Google sign-in tokens (same project as the chat).
+FIREBASE_PROJECT_ID = "bear-den-lofi"
+# "true" lets people without sign-in take an avatar (handy for local testing).
+ALLOW_GUESTS = "false"
+# Comma-separated site origins allowed to connect ("*" = any).
+ALLOWED_ORIGINS = "https://huy751574.github.io,http://localhost:5173"

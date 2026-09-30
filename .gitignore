@@ -3,3 +3,5 @@ dist
 *.local
 tools/cache
 refs
+server/node_modules
+server/.wrangler

@@ -2,7 +2,10 @@
 // https://developers.google.com/youtube/iframe_api_reference
 
 export interface YTPlayer {
-  loadVideoById(id: string): void;
+  loadVideoById(id: string | { videoId: string; startSeconds?: number }): void;
+  getCurrentTime(): number;
+  getDuration(): number;
+  getPlayerState(): number;
   cueVideoById(id: string): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
   playVideo(): void;

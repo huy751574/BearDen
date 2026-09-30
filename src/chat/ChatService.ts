@@ -90,6 +90,13 @@ export async function signIn() {
   }
 }
 
+/** Firebase ID token of the signed-in user (proves identity to the lounge server), or null. */
+export async function getIdToken(): Promise<string | null> {
+  if (!chatConfigured) return null;
+  const { auth } = await firebase();
+  return auth.currentUser ? auth.currentUser.getIdToken() : null;
+}
+
 export async function signOut() {
   const { auth, authMod } = await firebase();
   await authMod.signOut(auth);

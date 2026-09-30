@@ -5,7 +5,10 @@ import type { Character } from '../character/Character';
 import { loadGltfCharacter, type ModelEntry } from '../character/GltfCharacter';
 import modelsJson from '../data/models.json';
 import { Diorama } from '../scenery/Diorama';
-import type { SceneEnv } from '../scenery/Environment';
+import type { SceneEnv, Environment } from '../scenery/Environment';
+import type { BearInfo } from '../character/Companion';
+import type { Anchor } from '../scenery/kit';
+import type { Creature } from '../character/creatures';
 import { lookFor } from '../data/themeLooks';
 import { Input } from './Input';
 import type { GameCtx } from '../games/types';
@@ -13,6 +16,19 @@ import type { GameHud } from '../ui/GameHud';
 
 const WALK_SPEED = 2.6;
 const RUN_SPEED = 4.5;
+/** What the game needs from a world: a scene diorama or the multiplayer lounge. */
+export interface World {
+  readonly group: THREE.Group;
+  readonly walkable: THREE.Object3D[];
+  readonly walkRadius: number;
+  readonly environment: Environment;
+  readonly anchors: Record<string, Anchor>;
+  readonly companionCreatures: Creature[];
+  clampToWalkable(p: THREE.Vector3): void;
+  update(dt: number, bear: BearInfo): void;
+  dispose(): void;
+}
+
 const GROUND = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 const CAM_TARGET_Y = 2.4; // aim above the bear: island low in frame, backdrop above it
 
@@ -28,7 +44,9 @@ export class Game {
   private sun = new THREE.DirectionalLight();
   private hemi = new THREE.HemisphereLight();
   private bear: Character = new ChibiBear();
-  private diorama: Diorama | null = null;
+  private diorama: World | null = null;
+  /** False while spectating (lounge without an avatar): no walking, no bear. */
+  controlsEnabled = true;
   private moveTarget: THREE.Vector3 | null = null;
   private targetMarker: THREE.Mesh;
   private stuckTime = 0;
@@ -117,6 +135,60 @@ export class Game {
     }
   }
 
+  /** The character the player controls. */
+  get player(): Character {
+    return this.bear;
+  }
+
+  /** Where the player is walking to after a click, if anywhere. */
+  get walkTarget(): THREE.Vector3 | null {
+    return this.moveTarget;
+  }
+
+  /** Replace the controlled character (e.g. with a lounge avatar); keeps its position. */
+  setCharacter(next: Character) {
+    const old = this.bear;
+    next.root.position.copy(old.root.position);
+    next.root.rotation.copy(old.root.rotation);
+    this.scene.remove(old.root);
+    old.dispose?.();
+    this.scene.add(next.root);
+    this.bear = next;
+  }
+
+  /** Point the camera from `position` at `target`. */
+  setView(position: THREE.Vector3, target: THREE.Vector3) {
+    this.camera.position.copy(position);
+    this.controls.target.copy(target);
+    this.controls.update();
+  }
+
+  /** Put the camera behind the player at the usual play distance. */
+  focusPlayer() {
+    const p = this.bear.root.position;
+    this.setView(new THREE.Vector3(p.x, CAM_TARGET_Y + 1.2, p.z + 8), new THREE.Vector3(p.x, CAM_TARGET_Y, p.z));
+  }
+
+  /** Back to the hero bear (after the lounge), upgrading to the GLB model if installed. */
+  resetCharacter() {
+    this.setCharacter(new ChibiBear());
+    this.loadInstalledModel('bear');
+  }
+
+  /** Move the player instantly (server corrections, knockbacks); the camera follows. */
+  nudgePlayer(dx: number, dz: number) {
+    const root = this.bear.root;
+    const before = root.position.clone();
+    root.position.x += dx;
+    root.position.z += dz;
+    this.diorama?.clampToWalkable(root.position);
+    const moved = root.position.clone().sub(before);
+    this.camera.position.add(moved);
+    this.controls.target.add(moved);
+    this.moveTarget = null;
+    this.targetMarker.visible = false;
+  }
+
   /** Everything a mini-game needs from the world, or null outside a scene. */
   gameContext(hud: GameHud): GameCtx | null {
     const d = this.diorama;
@@ -137,13 +209,18 @@ export class Game {
 
   /** Swap the diorama. `seed` varies prop layout per scene. */
   loadScene(themeId: string, seed: string, env: SceneEnv, backdropUrl?: string) {
+    this.setWorld(new Diorama(lookFor(themeId), seed, env, backdropUrl));
+  }
+
+  /** Swap in any world (a scene diorama or the lounge) and reset the player. */
+  setWorld(world: World) {
     if (this.diorama) {
       this.scene.remove(this.diorama.group);
       this.diorama.dispose();
     }
-    this.diorama = new Diorama(lookFor(themeId), seed, env, backdropUrl);
-    this.scene.add(this.diorama.group);
-    this.diorama.environment.applyLighting(this.scene, this.sun, this.hemi);
+    this.diorama = world;
+    this.scene.add(world.group);
+    world.environment.applyLighting(this.scene, this.sun, this.hemi);
 
     this.bear.root.position.set(0, 0, 0);
     this.bear.root.rotation.y = 0;
@@ -177,7 +254,7 @@ export class Game {
   }
 
   private onClickGround(clientX: number, clientY: number) {
-    if (this.mode !== 'play' || !this.diorama) return;
+    if (this.mode !== 'play' || !this.diorama || !this.controlsEnabled) return;
     const rect = this.renderer.domElement.getBoundingClientRect();
     const ndc = new THREE.Vector2(
       ((clientX - rect.left) / rect.width) * 2 - 1,
@@ -201,7 +278,8 @@ export class Game {
   private tick() {
     this.timer.update();
     const dt = Math.min(this.timer.getDelta(), 0.05);
-    const speed = this.mode === 'play' ? this.movePlayer(dt) : 0;
+    this.bear.root.visible = this.controlsEnabled || this.mode !== 'play';
+    const speed = this.mode === 'play' && this.controlsEnabled ? this.movePlayer(dt) : 0;
     this.bear.update(dt, speed);
     this.bearSpeed = speed;
     this.diorama?.update(dt, { pos: this.bear.root.position, speed: this.bearSpeed, waves: this.waves });

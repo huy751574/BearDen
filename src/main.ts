@@ -11,6 +11,7 @@ import { TastePanel } from './ui/TastePanel';
 import { ChatPanel } from './ui/ChatPanel';
 import { GameHud } from './ui/GameHud';
 import { MiniGameManager } from './games/MiniGameManager';
+import { Lounge } from './lounge/Lounge';
 
 // App flow: ThemeMenu -> SceneMenu -> Play. The 3D scene is always rendered;
 // menus sit on top of a slowly orbiting preview of the hovered theme.
@@ -33,7 +34,10 @@ const chat = new ChatPanel();
 const gameHud = new GameHud();
 const arcade = new MiniGameManager(gameHud, () => game.gameContext(gameHud));
 game.pointerHook = (p) => arcade.onPointer(p);
-game.keyHook = (k) => (k === 'g' && game.mode === 'play' && !arcade.isOpen ? (openGame(), true) : arcade.onKey(k));
+game.keyHook = (k) => {
+  if (lounge) return lounge.onKey(k);
+  return k === 'g' && game.mode === 'play' && !arcade.isOpen ? (openGame(), true) : arcade.onKey(k);
+};
 game.frameHooks.push((dt) => arcade.update(dt));
 let currentScene: SceneInfo | null = null;
 function openGame() {
@@ -52,6 +56,30 @@ const radio = new RadioCard(lib, {
 const taste = new TastePanel(lib, manifest.themes, () => radio.refresh(), () => playMix());
 
 let previewKey = '';
+
+// ---------------------------------------------------------------- lounge
+
+// The multiplayer Bear Den Lounge (src/lounge). Entering it swaps the 3D
+// world and the player's character; leaving restores the scenes.
+let lounge: Lounge | null = null;
+
+function showLounge() {
+  leavePlay();
+  lounge = new Lounge(game, () => {
+    setUrl('#/', 'push');
+    showThemeMenu();
+  });
+  previewKey = 'lounge'; // force scenes to reload when we come back
+  ui.replaceChildren(lounge.el);
+  lounge.enter();
+}
+
+function closeLounge() {
+  if (!lounge) return;
+  lounge.leave();
+  lounge = null;
+  previewKey = '';
+}
 function preview(themeId: string, seed: string) {
   const key = `${themeId}/${seed}`;
   if (key === previewKey) return;
@@ -97,12 +125,17 @@ function showThemeMenu() {
   }
   const mix = h('button', { className: 'primary', textContent: '▶ Play my mix' });
   mix.onclick = () => playMix();
+  const loungeBtn = h('button', { className: 'primary lounge-btn', textContent: '🛋️ Bear Den Lounge' });
+  loungeBtn.onclick = () => {
+    setUrl('#/lounge', 'push');
+    showLounge();
+  };
   const tasteBtn = h('button', { className: 'back', textContent: '⚙ Your taste' });
   tasteBtn.onclick = () => taste.open();
   ui.replaceChildren(h('div', { className: 'menu' }, h('div', { className: 'menu-inner' },
     h('div', { className: 'brand' }, h('h1', { textContent: 'Bear Den Simulator' })),
     h('p', { className: 'sub', textContent: `${manifest.themes.length} themes · ${manifest.scenes.length} scenes · pick a theme, or let the radio choose` }),
-    h('div', { className: 'menu-actions' }, mix, tasteBtn),
+    h('div', { className: 'menu-actions' }, mix, loungeBtn, tasteBtn),
     grid,
   )));
   if (!previewKey) preview(manifest.themes[0].id, manifest.themes[0].scenes[0]);
@@ -148,6 +181,7 @@ let hud: { title: HTMLElement; back: HTMLButtonElement; play: HTMLButtonElement 
 
 function enterPlay() {
   if (hud) return;
+  closeLounge();
   game.setMode('play');
   const back = h('button', { className: 'back' });
   const title = h('div', { className: 'hud-title' });
@@ -160,6 +194,7 @@ function enterPlay() {
 }
 
 function leavePlay() {
+  closeLounge();
   hud = null;
   arcade.close();
   currentScene = null;
@@ -207,6 +242,7 @@ function playMix() {
 
 function route() {
   const [, kind, id, videoId] = location.hash.split('/');
+  if (kind === 'lounge') return showLounge();
   if (kind === 'theme' && themesById.has(id)) return showSceneMenu(themesById.get(id)!);
   if (kind === 'scene' && scenesById.has(id)) {
     const track = videoId ? lib.get(`${id}/${videoId}`) : null;
@@ -221,9 +257,13 @@ addEventListener('keydown', (e) => {
   if (e.key !== 'Escape' || game.mode !== 'play') return;
   if (e.target instanceof HTMLInputElement || document.querySelector('dialog[open]')) return;
   if (arcade.isOpen) return arcade.close();
+  if (lounge) {
+    setUrl('#/', 'push');
+    return showThemeMenu();
+  }
   hud?.back.click();
 });
 
 route();
 
-if (import.meta.env.DEV) Object.assign(window, { game, lib, arcade, gameHud });
+if (import.meta.env.DEV) Object.assign(window, { game, lib, arcade, gameHud, getLounge: () => lounge });

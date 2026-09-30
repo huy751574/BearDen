@@ -47,7 +47,7 @@ export interface ChibiSpec {
 }
 
 export type Pose = 'stand' | 'sit' | 'sleep';
-export type Action = 'none' | 'wave' | 'dance' | 'cheer' | 'roar' | 'sing';
+export type Action = 'none' | 'wave' | 'dance' | 'cheer' | 'roar' | 'sing' | 'swing';
 
 export class ChibiBear {
   readonly root = new THREE.Group();
@@ -64,6 +64,7 @@ export class ChibiBear {
   private walkPhase = 0;
   private blinkTimer = 2;
   private actionTimer = 0;
+  private actionTotal = 1;
   private action: Action = 'none';
   private sitBlend = 0;
   private sleepBlend = 0;
@@ -249,6 +250,13 @@ export class ChibiBear {
   act(action: Action, seconds: number) {
     this.action = action;
     this.actionTimer = seconds || Infinity;
+    this.actionTotal = seconds || 1;
+  }
+
+  /** Attach something to the right paw (e.g. a pillow). */
+  holdInHand(obj: THREE.Object3D) {
+    obj.position.set(0, -0.48, 0.14);
+    this.armR.add(obj);
   }
 
   /** speed: current horizontal speed in m/s. */
@@ -293,6 +301,15 @@ export class ChibiBear {
     if (act === 'dance') { armLz = 1.6 + Math.sin(this.t * 7) * 0.8; armRz = -1.6 + Math.sin(this.t * 7) * 0.8; }
     if (act === 'roar') { armLz = 1.9; armRz = -1.9; }
     if (act === 'sing') { armRz = -1.2; this.armR.rotation.x = -1.3 + Math.sin(this.t * 2) * 0.1; armLz = 0.9 + Math.sin(this.t * 1.5) * 0.4; }
+    if (act === 'swing') {
+      // Overhead pillow swing: wind up, then smash forward.
+      const k = 1 - Math.max(0, this.actionTimer) / this.actionTotal;
+      this.armR.rotation.x = k < 0.35 ? -2.8 * (k / 0.35) : -2.8 + 3.8 * Math.min(1, (k - 0.35) / 0.3);
+      armRz = -0.3;
+      this.body.rotation.x = k > 0.35 && k < 0.8 ? 0.2 : 0;
+    } else {
+      this.body.rotation.x = 0;
+    }
     this.armL.rotation.z = THREE.MathUtils.damp(this.armL.rotation.z, armLz, 12, dt);
     this.armR.rotation.z = act === 'wave' ? armRz : THREE.MathUtils.damp(this.armR.rotation.z, armRz, 12, dt);
 

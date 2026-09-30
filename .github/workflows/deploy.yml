@@ -5,6 +5,7 @@
 # Chat (optional): add the VITE_FIREBASE_* values from .env.example under
 # Settings > Secrets and variables > Actions > Variables. Without them the
 # site still works and the chat box says it isn't connected.
+# Lounge (optional): add VITE_LOUNGE_URL (wss://…/ws, see LOUNGE_SETUP.md).
 name: Deploy to GitHub Pages
 
 on:
@@ -38,6 +39,7 @@ jobs:
           VITE_FIREBASE_DATABASE_URL: ${{ vars.VITE_FIREBASE_DATABASE_URL }}
           VITE_FIREBASE_PROJECT_ID: ${{ vars.VITE_FIREBASE_PROJECT_ID }}
           VITE_FIREBASE_APP_ID: ${{ vars.VITE_FIREBASE_APP_ID }}
+          VITE_LOUNGE_URL: ${{ vars.VITE_LOUNGE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

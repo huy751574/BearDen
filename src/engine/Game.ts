@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { ChibiBear } from '../character/ChibiBear';
+import type { Character } from '../character/Character';
+import { loadGltfCharacter, type ModelEntry } from '../character/GltfCharacter';
+import modelsJson from '../data/models.json';
 import { Diorama } from '../scenery/Diorama';
 import type { SceneEnv } from '../scenery/Environment';
 import { lookFor } from '../data/themeLooks';
@@ -15,17 +18,19 @@ export class Game {
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(55, 1, 0.1, 500);
   private controls: OrbitControls;
-  private clock = new THREE.Clock();
+  private timer = new THREE.Timer();
   private input: Input;
   private raycaster = new THREE.Raycaster();
 
   private sun = new THREE.DirectionalLight();
   private hemi = new THREE.HemisphereLight();
-  private bear = new ChibiBear();
+  private bear: Character = new ChibiBear();
   private diorama: Diorama | null = null;
   private moveTarget: THREE.Vector3 | null = null;
   private targetMarker: THREE.Mesh;
   private stuckTime = 0;
+  private waves = 0;
+  private bearSpeed = 0;
 
   /** 'showcase' = menu background (slow orbit), 'play' = player controls the bear. */
   mode: 'showcase' | 'play' = 'showcase';
@@ -34,7 +39,7 @@ export class Game {
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(this.renderer.domElement);
 
@@ -67,12 +72,38 @@ export class Game {
     this.input.onKey = (key) => {
       if (this.mode !== 'play') return;
       if (key === 'e') this.bear.pose = this.bear.pose === 'sit' ? 'stand' : 'sit';
-      if (key === 'q') this.bear.wave();
+      if (key === 'q') {
+        this.bear.wave();
+        this.waves++;
+      }
     };
 
     addEventListener('resize', () => this.resize());
     this.resize();
+    this.loadInstalledModel('bear');
     this.renderer.setAnimationLoop(() => this.tick());
+  }
+
+  /**
+   * Replace the procedural bear with a GLB model if one is installed
+   * (public/models, listed in src/data/models.json by tools/check_models.py).
+   */
+  private async loadInstalledModel(name: string) {
+    const entry = (modelsJson as Record<string, ModelEntry>)[name];
+    if (!entry) return;
+    try {
+      const next = await loadGltfCharacter(entry);
+      const old = this.bear;
+      next.root.position.copy(old.root.position);
+      next.root.rotation.copy(old.root.rotation);
+      next.pose = old.pose;
+      this.scene.remove(old.root);
+      old.dispose?.();
+      this.scene.add(next.root);
+      this.bear = next;
+    } catch (e) {
+      console.warn(`Model "${name}" failed to load; keeping the procedural bear.`, e);
+    }
   }
 
   /** Swap the diorama. `seed` varies prop layout per scene. */
@@ -135,10 +166,12 @@ export class Game {
   }
 
   private tick() {
-    const dt = Math.min(this.clock.getDelta(), 0.05);
+    this.timer.update();
+    const dt = Math.min(this.timer.getDelta(), 0.05);
     const speed = this.mode === 'play' ? this.movePlayer(dt) : 0;
     this.bear.update(dt, speed);
-    this.diorama?.update(dt);
+    this.bearSpeed = speed;
+    this.diorama?.update(dt, { pos: this.bear.root.position, speed: this.bearSpeed, waves: this.waves });
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }

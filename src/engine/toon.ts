@@ -44,6 +44,30 @@ function outlineMaterial(thickness: number): THREE.ShaderMaterial {
   return mat;
 }
 
+/**
+ * Outline for an animated (skinned) mesh: a back-face copy bound to the same
+ * skeleton, pushed out along the skinned normal so it follows the animation.
+ * `thickness` is in the mesh's local units.
+ */
+export function addSkinnedOutline(mesh: THREE.SkinnedMesh, thickness: number) {
+  const mat = new THREE.MeshBasicMaterial({ color: '#1d1517', side: THREE.BackSide });
+  mat.onBeforeCompile = (shader) => {
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <skinning_vertex>',
+      `#include <skinning_vertex>\n  transformed += normalize(objectNormal) * ${thickness.toFixed(5)};`,
+    );
+  };
+  const hull = new THREE.SkinnedMesh(mesh.geometry, mat);
+  hull.bind(mesh.skeleton, mesh.bindMatrix);
+  hull.position.copy(mesh.position);
+  hull.quaternion.copy(mesh.quaternion);
+  hull.scale.copy(mesh.scale);
+  hull.frustumCulled = false;
+  hull.raycast = () => {};
+  mesh.parent?.add(hull);
+  return hull;
+}
+
 /** Adds a slightly inflated back-face copy of the mesh, drawn as a dark outline. */
 export function addOutline(mesh: THREE.Mesh, thickness = 0.022) {
   const hull = new THREE.Mesh(mesh.geometry, outlineMaterial(thickness));

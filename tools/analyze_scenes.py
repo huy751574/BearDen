@@ -205,6 +205,108 @@ LANDMARK_RULES: list[tuple[str, list[str]]] = [
 ]
 
 
+# ---------------------------------------------------------------- companion
+
+# (keywords, creature kind, behaviour): first match wins. Kinds are defined in
+# src/character/creatures.ts, behaviours in src/character/Companion.ts.
+COMPANION_RULES: list[tuple[list[str], str, str]] = [
+    # Named friends from the artwork
+    (["witch"], "cat_witch", "fly"),
+    (["eula", "tango"], "cat_eula", "dance"),
+    (["singer", "idol"], "cat_idol", "perform"),
+    (["shifu", "red"], "red_panda", "sit"),
+    (["panda"], "panda", "spar"),
+    (["husky"], "husky", "spar"),
+    (["hyena", "assasins", "assassins"], "hyena", "spar"),
+    (["meditating"], "frog", "float"),
+    (["tea", "liyue", "fuji", "jade", "cultivate", "healing", "jianghu"], "crane", "fly"),
+    (["training", "summoning", "defending", "traveling", "strolling"], "fox", "follow"),
+    (["onsen", "onset"], "monkey", "float"),
+    (["ramen"], "tanuki", "sit"),
+    (["train", "trailblazing"], "dormouse", "sit"),
+    (["graveyard"], "ghost", "fly"),
+    (["library"], "owl", "fly"),
+    (["honey"], "bees", "swarm"),
+    (["butterflies"], "rabbit", "wander"),
+    (["dogs"], "dog", "perform"),
+    (["cats"], "cat", "perform"),
+    (["drawing", "cliff", "clouds"], "dove", "fly"),
+    (["neon", "working", "writing"], "fox", "sit"),
+    (["waking", "lazy", "cave", "radio"], "cat", "sleep"),
+    (["fishing"], "otter", "float"),
+    (["snow", "stargazing"], "robin", "fly"),
+    (["shore", "lake"], "capybara", "sit"),
+    (["wheat"], "rabbit", "wander"),
+    (["waltz"], "fox", "dance"),
+    (["cafe", "story"], "cat", "sit"),
+    (["guild", "signing"], "lion", "sit"),
+    (["tavern", "feast"], "tanuki", "sit"),
+    (["camping", "pines"], "capybara", "sit"),
+    (["boss", "dungeon"], "slime", "wander"),
+    (["mourning"], "crane", "fly"),
+    (["moon"], "rabbit", "wander"),
+    (["universe", "cosmos"], "star", "orbit"),
+    (["angkor", "tarzan"], "monkey", "follow"),
+    (["aircraft", "pilot"], "parrot", "fly"),
+    (["atlantis", "whale"], "whale", "swim"),
+    (["rolling", "ocean", "sea"], "seagull", "fly"),
+    (["lyre", "pigeons"], "pigeon", "fly"),
+    (["goat", "lucia"], "goat", "wander"),
+    (["jazz", "bar"], "cat_grey", "perform"),
+    (["throne", "kings"], "dragon", "fly"),
+    (["lattern", "lantern"], "crane", "fly"),
+    (["pyramids", "island", "bay", "castle", "mammoth", "war"], "fox", "follow"),
+]
+# Hunting: the animal being hunted or faced.
+HUNTING_RULES: list[tuple[list[str], str, str]] = [
+    (["salmon"], "salmon", "swim"),
+    (["prey", "deer", "stalk"], "deer", "flee"),
+    (["alligator", "swamp", "drinking"], "alligator", "prowl"),
+    (["roar", "teeth", "wolf"], "wolf", "prowl"),
+    (["dark"], "owl", "fly"),
+]
+THEME_COMPANION = {
+    "lullabies": ("cub", "follow"),
+    "parfum": ("doe", "wander"),
+    "sun-and-moon": ("sun", "orbit"),
+    "bloom": ("cat_idol", "perform"),
+}
+# Villain for "@villain" (defeated) scenes, by keyword.
+VILLAINS = [(["alligator", "sobek", "swamp", "egypt"], "alligator"), (["wolf", "dire", "direwolf"], "wolf"),
+            (["maelstrom", "maestrom", "kraken", "storm"], "kraken"), (["hydra", "head"], "hydra")]
+
+
+def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
+    if theme in ("to-hong",):
+        return ("magpie", "fly") if "nguu" in words else ("weaver", "sit")
+    if theme == "vietnam":
+        return ("frog", "float") if words & {"vo", "nga", "thuong", "tuong", "vi"} else ("egret", "fly")
+    if theme in THEME_COMPANION:
+        kind, beh = THEME_COMPANION[theme]
+        if theme == "bloom" and "witch" in words:
+            return "cat_witch", "fly"
+        if theme == "bloom" and "snow" in words:
+            return "cat_idol", "sit"
+        if theme == "lullabies" and ("nap" in words or "sleepy" in words):
+            return "cub", "sleep"
+        if theme == "sun-and-moon" and words & {"darken", "abyss", "night", "fogged"}:
+            return "moon", "orbit"
+        return kind, beh
+    if theme == "power-bearer":
+        villain = next((v for ks, v in VILLAINS if words & set(ks)), None)
+        if villain is None:
+            return "drone", "orbit"  # waking / transforming / repairing the mecha
+        if villain in ("kraken", "hydra"):
+            return villain, "emerge"  # too big for the island: rises at the edge
+        won = bool(words & {"victory", "triumph", "defeated", "fallen", "reigns"})
+        return villain, "defeated" if won else "prowl"
+    rules = HUNTING_RULES + COMPANION_RULES if theme == "hunting" else COMPANION_RULES
+    for keys, kind, beh in rules:
+        if words & set(keys):
+            return kind, beh
+    return "fox", "wander"
+
+
 def island_for(theme: str, words: set[str]) -> tuple[str, str]:
     island = THEME_ISLAND.get(theme) or first_rule(ISLAND_RULES, words, THEME_DEFAULT_ISLAND.get(theme, "meadow"))
     if island == "stage" and "snow" in words:
@@ -241,6 +343,7 @@ def main() -> int:
         # Island layout: scene's own words only (YouTube titles add SEO noise).
         scene_words = words_of(sid.replace("-", " "), s["title"], *(v["title"].split("|")[0] for v in s["youtube"]))
         island, variant = island_for(s["theme"], scene_words)
+        companion, behavior = companion_for(s["theme"], sid, set(sid.split("-")) | scene_words)
         out[sid] = {
             "time": time,
             "below": below,
@@ -249,6 +352,8 @@ def main() -> int:
             "skyBottom": hexcolor(sky_bottom),
             "island": island,
             **({"variant": variant} if variant else {}),
+            "companion": companion,
+            "behavior": behavior,
         }
         key = f"island {island}{'/' + variant if variant else ''}"
         counts[key] = counts.get(key, 0) + 1

@@ -64,6 +64,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     flowerPatches(k, 4);
     rocks(k, 3);
     centrepiece(k, S.bench(k), 3.4, 2.4, 0.8);
+    k.anchor('seat', 3.4, 2.4);
     if (k.has('butterflies')) k.put(N.butterflies(k, 7), 1.5, 0.5);
     if (k.has('drawing', 'paints', 'cliff')) centrepiece(k, S.easel(k), -2.4, 1.2, 0.5);
     if (k.has('honey', 'beehive')) {
@@ -71,6 +72,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
       k.part(t, geo.sph(0.3, 10, 8), '#e0b84a', [0.7, 1.4, 0.3], { scale: [1, 1.3, 1] });
       k.put(N.butterflies(k, 4), -4, -1);
       centrepiece(k, t, -4, -1, 0.6);
+      k.anchor('tree', -4, -1);
     }
     if (k.has('graveyard')) {
       for (let i = 0; i < 6; i++) centrepiece(k, S.tombstone(k), 4 + (i % 3) * 1.3, -3.5 + Math.floor(i / 3) * 1.6, 0.4);
@@ -91,6 +93,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
   lakeside(k) {
     const px = -3.2, pz = -4.4, pr = 3.1;
     k.put(N.pond(k, pr), px, pz, { block: pr - 0.2, space: pr + 0.3 });
+    k.anchor('pond', px, pz, pr);
     k.put(N.lotus(k, k.has('lotus') ? 8 : 4, pr - 0.6), px, pz);
     // Dock from the shore into the pond.
     const dock = new THREE.Group();
@@ -153,6 +156,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
   cave(k) {
     centrepiece(k, P.cave(k), -4.6, -2.8, 2.6);
     k.put(S.campfire(k), -2.2, -0.2, { block: 0.7 });
+    k.anchor('fire', -2.2, -0.2, 0.7);
     k.put(N.log(k), -2.2, 1.1, { rotY: 0.2, block: 0.4 });
     if (k.has('fish', 'grill')) {
       for (let i = 0; i < 2; i++) k.part(k.group, geo.cyl(0.015, 0.015, 1, 4), '#6b4a33', [-2.3 + i * 0.3, 0.55, -0.2], { rot: [0, 0, 0.6], outline: false });
@@ -207,6 +211,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     const snowy = k.env.below === 'snow' || k.has('snow');
     if (snowy) k.ground = '#eef3fb';
     k.put(P.onsenPool(k, 2.4), -2.8, -3.6, { space: 2.7 }); // walk in and soak
+    k.anchor('pond', -2.8, -3.6, 2.4);
     centrepiece(k, P.bambooFence(k, 3.2), -6.2, -2.2, 0.4);
     centrepiece(k, S.stoneLantern(k), 0.4, -2.6, 0.35);
     centrepiece(k, S.stoneLantern(k), -5.6, -5.8, 0.35);
@@ -222,16 +227,19 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     const x = -5.0, z = -1.8;
     if (k.has('conduct', 'conducts', 'orchestra', 'podium', 'philharmonic')) {
       centrepiece(k, P.podium(k), x + 1, z, 0.8);
+      k.anchor('stage', x + 1, z, 0.5, 0.4);
     } else if (k.has('waltz', 'ballroom', 'tango')) {
       const floor = new THREE.Group();
       for (let i = -3; i <= 3; i++) for (let j = -3; j <= 3; j++) {
         k.part(floor, geo.box(0.7, 0.04, 0.7), (i + j) % 2 ? '#2a2a2a' : '#f4f4f4', [i * 0.7, 0.03, j * 0.7], { outline: false });
       }
       k.put(floor, 0.5, -1.5, { space: 0 });
+      k.anchor('stage', 0.5, -2.2, 1.5);
       centrepiece(k, S.piano(k), x, z, 1);
       centrepiece(k, P.spotlight(k, '#fff1c4'), 5, 1.5, 0.3);
     } else {
       centrepiece(k, P.idolStage(k), x, z, 2.7);
+      k.anchor('stage', x + 0.3, z, 1.2, 0.6);
       const sticks = P.glowSticks(k, 36, 2.2);
       k.put(sticks, x + 3.6, z + 0.4, { rotY: -Math.PI / 2, space: 0 });
       centrepiece(k, P.spotlight(k, k.look.accent), 5.2, 1.6, 0.3);
@@ -249,6 +257,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
 
   camp(k) {
     k.put(S.campfire(k), 2.4, -1.4, { block: 0.7, space: 1 });
+    k.anchor('fire', 2.4, -1.4, 0.7);
     for (const [x, z, r] of [[3.9, -0.8, 1.3], [1.1, -0.2, 0.5], [2.8, 0.2, -0.2]]) k.put(N.log(k, 1.3), x, z, { rotY: r, block: 0.35 });
     centrepiece(k, S.tent(k, '#d9864a'), -4.2, -2.6, 1.1);
     centrepiece(k, S.tent(k, '#5e8f6f'), -4.6, 1.4, 1.1);
@@ -317,6 +326,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
   pavilion(k) {
     const px = 0.8, pz = -4.6;
     k.put(N.pond(k, 2.5), px, pz, { block: 2.4, space: 2.7 });
+    k.anchor('pond', px, pz, 2.5);
     k.put(N.lotus(k, 7, 1.9), px, pz);
     k.put(S.archBridge(k, 4.2), px, pz, { rotY: 0, space: 0 });
     centrepiece(k, S.pavilion(k), -5.2, -1.6, 2.1);
@@ -332,6 +342,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     k.ground = '#8fbf5a';
     const px = 3.4, pz = -4.2;
     k.put(N.pond(k, 2.8, '#5aa8a0'), px, pz, { block: 2.7, space: 3 });
+    k.anchor('pond', px, pz, 2.8);
     k.put(N.lotus(k, 10, 2.2), px, pz);
     const b = P.boat(k);
     k.put(b, px - 0.4, pz + 0.4, { rotY: 0.6 });
@@ -344,6 +355,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     k.put(paddy, -3.2, 2.6, { rotY: 0.3, space: 1.6 });
     if (k.words.has('to') && k.words.has('hong') || k.has('duyen', 'det', 'mong', 'chuc', 'nguu')) {
       centrepiece(k, P.loom(k), 4.4, 1.6, 1);
+      k.anchor('loom', 3.4, 1.2);
       const t1 = N.roundTree(k, '#f5a0b8'), t2 = N.roundTree(k, '#f5a0b8');
       centrepiece(k, t1, -2.6, -4.6, 0.5);
       centrepiece(k, t2, -5.6, 1.4, 0.5);
@@ -389,6 +401,7 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     };
     ring(-130, 2.6, S.rockingChair(k), 0.5);
     ring(135, 2.6, S.crib(k), 0.7);
+    k.anchor('bed', 1.6, -1.6);
     ring(-90, 3.0, S.fireplace(k), 1);
     ring(95, 3.0, S.bookshelf(k), 0.8);
     ring(160, 2.0, teddy(k), 0.2);
@@ -431,6 +444,7 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
   temple(k) {
     centrepiece(k, P.temple(k), L.x, L.z - 0.8, 2.4);
     k.put(N.pond(k, 1.6), 2.4, -3.8, { block: 1.5, space: 1.8 });
+    k.anchor('pond', 2.4, -3.8, 1.6);
     k.put(N.lotus(k, 5, 1.2), 2.4, -3.8);
     trees(k, 4, () => N.palm(k), 4);
     trees(k, 3, () => N.roundTree(k), 5);
@@ -501,6 +515,7 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
   },
   bay(k) {
     k.put(N.pond(k, 3.2, '#4fa8a0'), 0.6, -5.2, { block: 3.1, space: 3.4 });
+    k.anchor('pond', 0.6, -5.2, 3.2);
     const b1 = P.boat(k), b2 = P.boat(k, '#6b4a33');
     k.put(b1, -0.6, -5.2, { rotY: 0.4 });
     k.put(b2, 1.8, -4.4, { rotY: -0.8 });

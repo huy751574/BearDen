@@ -18,6 +18,9 @@ export interface SceneEnv {
   /** Island layout (templates.ts) and, for landmarks, which landmark. */
   island?: import('./templates').IslandKind;
   variant?: string;
+  /** Secondary character (creatures.ts kind) and its script (Companion.ts). */
+  companion?: string;
+  behavior?: import('../character/Companion').Behavior;
 }
 
 const BELOW_Y = -20; // height of the world below the island

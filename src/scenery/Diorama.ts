@@ -6,6 +6,7 @@ import { Backdrop } from './Backdrop';
 import { Environment, type SceneEnv } from './Environment';
 import { Kit } from './kit';
 import { buildIsland } from './templates';
+import { Companion, type BearInfo } from '../character/Companion';
 
 // A sky island floating in front of the scene's painted backdrop. The props
 // on it come from an island template (templates.ts, picked per scene in
@@ -24,6 +25,7 @@ export class Diorama {
   private particles: Particles | null = null;
   private backdrop: Backdrop | null = null;
   private kit: Kit;
+  private companion: Companion | null = null;
   private floaters: { obj: THREE.Object3D; baseY: number; phase: number; speed: number }[] = [];
   private t = 0;
   readonly environment: Environment;
@@ -44,6 +46,15 @@ export class Diorama {
     this.buildIsland(rand);
     this.buildFloatingRocks(rand);
     this.buildClouds(rand);
+    if (env.companion) {
+      this.companion = new Companion(env.companion, env.behavior ?? 'wander', {
+        anchors: this.kit.anchors,
+        walkRadius: WALK_RADIUS,
+        clamp: (p) => this.clampToWalkable(p),
+        rand: mulberry32(hash(seed + '/companion')),
+      });
+      this.group.add(this.companion.group);
+    }
     if (env.weather !== 'none') {
       this.particles = new Particles(env.weather, look.accent, ISLAND_RADIUS + 4);
       this.group.add(this.particles.points);
@@ -64,8 +75,9 @@ export class Diorama {
     }
   }
 
-  update(dt: number) {
+  update(dt: number, bear: BearInfo) {
     this.t += dt;
+    this.companion?.update(dt, bear);
     this.environment.update(dt);
     this.particles?.update(dt);
     for (const f of this.floaters) {

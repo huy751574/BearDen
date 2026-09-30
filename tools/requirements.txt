@@ -2,3 +2,5 @@ yt-dlp
 rapidfuzz
 scipy
 numpy
+Pillow
+requests

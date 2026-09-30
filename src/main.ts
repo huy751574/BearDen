@@ -9,6 +9,8 @@ import { Library, type Track } from './music/Library';
 import { RadioCard } from './ui/RadioCard';
 import { TastePanel } from './ui/TastePanel';
 import { ChatPanel } from './ui/ChatPanel';
+import { GameHud } from './ui/GameHud';
+import { MiniGameManager } from './games/MiniGameManager';
 
 // App flow: ThemeMenu -> SceneMenu -> Play. The 3D scene is always rendered;
 // menus sit on top of a slowly orbiting preview of the hovered theme.
@@ -25,6 +27,18 @@ const ui = document.getElementById('ui')!;
 const game = new Game(document.getElementById('stage')!);
 const lib = new Library(manifest);
 const chat = new ChatPanel();
+
+// Mini-games: one per scene (see src/games). The manager gets world access
+// through the game's hooks; clicks and keys go to the running game first.
+const gameHud = new GameHud();
+const arcade = new MiniGameManager(gameHud, () => game.gameContext(gameHud));
+game.pointerHook = (p) => arcade.onPointer(p);
+game.keyHook = (k) => (k === 'g' && game.mode === 'play' && !arcade.isOpen ? (openGame(), true) : arcade.onKey(k));
+game.frameHooks.push((dt) => arcade.update(dt));
+let currentScene: SceneInfo | null = null;
+function openGame() {
+  if (currentScene) arcade.open(currentScene.id, sceneEnv[currentScene.id]?.game);
+}
 
 const radio = new RadioCard(lib, {
   pick: (t) => playTrack(t, 'push'),
@@ -130,21 +144,25 @@ function showSceneMenu(theme: ThemeInfo) {
 
 // HUD is built once per visit to play mode; travelling between scenes only
 // updates its text, so the YouTube iframe is never re-attached (that would reload it).
-let hud: { title: HTMLElement; back: HTMLButtonElement } | null = null;
+let hud: { title: HTMLElement; back: HTMLButtonElement; play: HTMLButtonElement } | null = null;
 
 function enterPlay() {
   if (hud) return;
   game.setMode('play');
   const back = h('button', { className: 'back' });
   const title = h('div', { className: 'hud-title' });
+  const play = h('button', { className: 'back play-game' });
+  play.onclick = () => openGame();
   const hint = h('div', { className: 'hint' });
-  hint.innerHTML = '<kbd>WASD</kbd> move · <kbd>Shift</kbd> run · click ground to walk · drag to look · <kbd>E</kbd> sit · <kbd>Q</kbd> wave';
-  ui.replaceChildren(h('div', { className: 'hud-top' }, back, title), hint, chat.el, radio.el);
-  hud = { title, back };
+  hint.innerHTML = '<kbd>WASD</kbd> move · <kbd>Shift</kbd> run · click ground to walk · drag to look · <kbd>E</kbd> sit · <kbd>Q</kbd> wave · <kbd>G</kbd> mini-game';
+  ui.replaceChildren(h('div', { className: 'hud-top' }, back, title, play), hint, chat.el, radio.el, gameHud.el);
+  hud = { title, back, play };
 }
 
 function leavePlay() {
   hud = null;
+  arcade.close();
+  currentScene = null;
   radio.stop();
   game.setMode('showcase');
 }
@@ -153,6 +171,9 @@ function showScene(scene: SceneInfo) {
   const theme = themesById.get(scene.theme)!;
   preview(theme.id, scene.id);
   enterPlay();
+  if (currentScene?.id !== scene.id) arcade.close(); // the radio travelled to another scene
+  currentScene = scene;
+  hud!.play.textContent = `🎮 ${MiniGameManager.titleFor(sceneEnv[scene.id]?.game)}`;
   hud!.title.textContent = scene.title;
   hud!.back.textContent = `← ${theme.name}`;
   hud!.back.onclick = () => {
@@ -199,9 +220,10 @@ addEventListener('popstate', route);
 addEventListener('keydown', (e) => {
   if (e.key !== 'Escape' || game.mode !== 'play') return;
   if (e.target instanceof HTMLInputElement || document.querySelector('dialog[open]')) return;
+  if (arcade.isOpen) return arcade.close();
   hud?.back.click();
 });
 
 route();
 
-if (import.meta.env.DEV) Object.assign(window, { game, lib });
+if (import.meta.env.DEV) Object.assign(window, { game, lib, arcade, gameHud });

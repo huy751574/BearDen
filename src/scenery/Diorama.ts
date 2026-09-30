@@ -26,6 +26,15 @@ export class Diorama {
   private backdrop: Backdrop | null = null;
   private kit: Kit;
   private companions: Companion[] = [];
+  readonly walkRadius = WALK_RADIUS;
+
+  get anchors() {
+    return this.kit.anchors;
+  }
+
+  get companionCreatures() {
+    return this.companions.map((c) => c.creature);
+  }
   private floaters: { obj: THREE.Object3D; baseY: number; phase: number; speed: number }[] = [];
   private t = 0;
   readonly environment: Environment;

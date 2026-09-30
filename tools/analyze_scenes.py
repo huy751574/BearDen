@@ -345,6 +345,123 @@ def extras_for(theme: str, words: set[str], main: str, main_beh: str) -> list[tu
     return out[:3]
 
 
+# ---------------------------------------------------------------- mini-game
+
+# (keywords, engine, variant): first match wins. Variants live in
+# src/games/catalog.ts.
+GAME_RULES: list[tuple[list[str], str, str]] = [
+    # Specific covers first ("drinking tea" must not match the swamp rule)
+    (["tea"], "timing", "pour"),
+    (["eula", "tango"], "simon", "dance"),
+    # Wuxia
+    (["hyena", "assasins", "assassins"], "shooter", "hyena"),
+    (["husky", "panda", "dueling", "duel", "training", "shifu"], "timing", "parry"),
+    (["cultivate", "healing", "meditating"], "timing", "breath"),
+    (["lattern", "lantern"], "catcher", "lantern"),
+    (["jade"], "simon", "lyre"),
+    (["jianghu"], "dodge", "swords"),
+    # Hunting
+    (["salmon"], "timing", "salmon"),
+    (["prey", "stalk"], "stealth", "deer"),
+    (["roar"], "timing", "roar"),
+    (["teeth"], "dodge", "snaps"),
+    (["dark"], "collector", "fireflies"),
+    (["drinking", "swamp"], "dodge", "snaps"),
+    # Bloom / idols
+    (["witch"], "catcher", "stars"),
+    (["firework", "festival"], "timing", "firework"),
+    (["edm", "hype"], "timing", "beat"),
+    (["rooftop", "broadcast"], "catcher", "notes"),
+    (["autumn"], "collector", "leaves"),
+    (["silence"], "catcher", "snow"),
+    (["idol", "singer", "bloom"], "timing", "beat"),
+    # Chill
+    (["honey"], "catcher", "honey"),
+    (["ramen"], "catcher", "ramen"),
+    (["butterflies"], "collector", "butterflies"),
+    (["conduct", "orchestra"], "simon", "orchestra"),
+    (["library"], "collector", "books"),
+    (["train", "trailblazing"], "catcher", "stars"),
+    (["onsen", "onset"], "collector", "ducks"),
+    (["neon", "gaming"], "timing", "beat"),
+    (["drawing", "cliff"], "collector", "paint"),
+    (["waking", "lazy"], "timing", "stretch"),
+    (["working"], "simon", "tasks"),
+    # Relax
+    (["fishing"], "timing", "fishing"),
+    (["shore", "cooking"], "simon", "recipe"),
+    (["waltz", "tango", "dancing"], "simon", "dance"),
+    (["graveyard"], "collector", "pumpkins"),
+    (["stargazing"], "catcher", "stars"),
+    (["floating", "clouds"], "collector", "feathers"),
+    (["rain"], "catcher", "rain"),
+    (["grill"], "timing", "flip"),
+    (["radio"], "timing", "tune"),
+    (["story", "writing", "book"], "collector", "pages"),
+    (["wheat"], "collector", "wheat"),
+    (["snow", "frozen", "winter"], "catcher", "snow"),
+    (["sleeping", "cave"], "stealth", "owl"),
+    # Isekai
+    (["boss", "dungeon"], "shooter", "slime"),
+    (["defending", "siege"], "dodge", "boulders"),
+    (["mourning"], "collector", "candles"),
+    (["strolling", "town"], "collector", "coins"),
+    (["summoning"], "collector", "runes"),
+    (["guild", "signing"], "simon", "cards"),
+    (["tavern", "feast"], "simon", "orders"),
+    (["camping", "pines"], "collector", "firewood"),
+    (["strolling", "town"], "collector", "coins"),
+    (["traveling", "caravan"], "collector", "apples"),
+    (["war"], "collector", "coins"),
+    # Adventure
+    (["castle", "neuschwanstein"], "collector", "gems"),
+    (["moon"], "collector", "stardust"),
+    (["angkor", "pyramids"], "collector", "relics"),
+    (["tarzan"], "timing", "vine"),
+    (["aircraft", "pilot"], "collector", "rings"),
+    (["island"], "simon", "dance"),
+    (["bay"], "collector", "pearls"),
+    (["rolling", "ocean"], "dodge", "lightning"),
+    (["atlantis"], "collector", "pearls"),
+    (["mammoth"], "collector", "bones"),
+    (["universe", "cosmos"], "catcher", "stars"),
+    (["fuji"], "catcher", "petals"),
+    # Covers
+    (["tea"], "timing", "pour"),
+    (["lyre", "pigeons"], "simon", "lyre"),
+    (["eula"], "simon", "dance"),
+    (["goat", "lucia"], "collector", "apples"),
+    (["throne", "kings"], "dodge", "swords"),
+    (["jazz", "bar"], "simon", "piano"),
+]
+POWER_BEARER_SHOOTER = [(["alligator", "sobek", "egypt", "swamp"], "alligator"), (["wolf", "dire", "direwolf"], "wolf"),
+                        (["maelstrom", "maestrom", "kraken", "storm"], "jelly"), (["hydra", "head"], "snake")]
+
+
+def game_for(theme: str, words: set[str]) -> dict:
+    if theme == "power-bearer":
+        variant = next((v for ks, v in POWER_BEARER_SHOOTER if words & set(ks)), "drone")
+        return {"type": "shooter", "variant": variant}
+    if theme == "lullabies":
+        if words & {"nap", "sleepy", "night"}:
+            return {"type": "stealth", "variant": "cub"}
+        if words & {"reading", "books"}:
+            return {"type": "collector", "variant": "books"}
+        return {"type": "catcher", "variant": "sheep" if "cabin" not in words else "snow"}
+    if theme == "parfum":
+        return {"type": "catcher", "variant": "petals"} if "bloom" in words else {"type": "collector", "variant": "flowers"}
+    if theme == "sun-and-moon":
+        return {"type": "catcher", "variant": "light"}
+    if theme == "to-hong":
+        return {"type": "simon", "variant": "weave"} if "det" in words else {"type": "collector", "variant": "spools"}
+    if theme == "vietnam":
+        return {"type": "timing", "variant": "breath"} if words & {"vo", "nga", "thuong", "tuong", "vi"} else {"type": "collector", "variant": "lotus"}
+    for keys, engine, variant in GAME_RULES:
+        if words & set(keys):
+            return {"type": engine, "variant": variant}
+    return {"type": "collector", "variant": "coins"}
+
+
 def island_for(theme: str, words: set[str]) -> tuple[str, str]:
     island = THEME_ISLAND.get(theme) or first_rule(ISLAND_RULES, words, THEME_DEFAULT_ISLAND.get(theme, "meadow"))
     if island == "stage" and "snow" in words:
@@ -396,6 +513,7 @@ def main() -> int:
             "island": island,
             **({"variant": variant} if variant else {}),
             "companions": [{"kind": k, "behavior": bh} for k, bh in cast],
+            "game": game_for(s["theme"], set(sid.split("-")) | {w for w in words_of(s["title"])}),
         }
         key = f"island {island}{'/' + variant if variant else ''}"
         counts[key] = counts.get(key, 0) + 1

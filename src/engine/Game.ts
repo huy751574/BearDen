@@ -8,9 +8,12 @@ import { Diorama } from '../scenery/Diorama';
 import type { SceneEnv } from '../scenery/Environment';
 import { lookFor } from '../data/themeLooks';
 import { Input } from './Input';
+import type { GameCtx } from '../games/types';
+import type { GameHud } from '../ui/GameHud';
 
 const WALK_SPEED = 2.6;
 const RUN_SPEED = 4.5;
+const GROUND = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 const CAM_TARGET_Y = 2.4; // aim above the bear: island low in frame, backdrop above it
 
 export class Game {
@@ -31,6 +34,13 @@ export class Game {
   private stuckTime = 0;
   private waves = 0;
   private bearSpeed = 0;
+
+  /** Mini-game objects live here (cleared when a game ends). */
+  readonly gameRoot = new THREE.Group();
+  /** Hooks for the mini-games: return true to swallow the click / key. */
+  pointerHook: ((p: THREE.Vector3 | null) => boolean) | null = null;
+  keyHook: ((key: string) => boolean) | null = null;
+  frameHooks: ((dt: number) => void)[] = [];
 
   /** 'showcase' = menu background (slow orbit), 'play' = player controls the bear. */
   mode: 'showcase' | 'play' = 'showcase';
@@ -66,11 +76,12 @@ export class Game {
     );
     this.targetMarker.rotation.x = -Math.PI / 2;
     this.targetMarker.visible = false;
-    this.scene.add(this.targetMarker);
+    this.scene.add(this.targetMarker, this.gameRoot);
 
     this.input = new Input(this.renderer.domElement, (x, y) => this.onClickGround(x, y));
     this.input.onKey = (key) => {
       if (this.mode !== 'play') return;
+      if (this.keyHook?.(key)) return;
       if (key === 'e') this.bear.pose = this.bear.pose === 'sit' ? 'stand' : 'sit';
       if (key === 'q') {
         this.bear.wave();
@@ -104,6 +115,24 @@ export class Game {
     } catch (e) {
       console.warn(`Model "${name}" failed to load; keeping the procedural bear.`, e);
     }
+  }
+
+  /** Everything a mini-game needs from the world, or null outside a scene. */
+  gameContext(hud: GameHud): GameCtx | null {
+    const d = this.diorama;
+    if (!d) return null;
+    this.gameRoot.clear();
+    return {
+      root: this.gameRoot,
+      bear: this.bear,
+      walkRadius: d.walkRadius,
+      clamp: (p) => d.clampToWalkable(p),
+      rand: Math.random, // games should differ each round
+      anchors: d.anchors,
+      companions: d.companionCreatures,
+      hud,
+      camera: this.camera,
+    };
   }
 
   /** Swap the diorama. `seed` varies prop layout per scene. */
@@ -155,6 +184,10 @@ export class Game {
       -((clientY - rect.top) / rect.height) * 2 + 1,
     );
     this.raycaster.setFromCamera(ndc, this.camera);
+    if (this.pointerHook) {
+      const ground = this.raycaster.ray.intersectPlane(GROUND, new THREE.Vector3());
+      if (this.pointerHook(ground)) return;
+    }
     const hit = this.raycaster.intersectObjects(this.diorama.walkable, false)[0];
     if (!hit) return;
     const p = hit.point.clone().setY(0);
@@ -172,6 +205,7 @@ export class Game {
     this.bear.update(dt, speed);
     this.bearSpeed = speed;
     this.diorama?.update(dt, { pos: this.bear.root.position, speed: this.bearSpeed, waves: this.waves });
+    for (const hook of this.frameHooks) hook(dt);
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }

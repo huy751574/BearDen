@@ -12,7 +12,11 @@
     "kind": "fox",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "gems"
+  }
  },
  "adventure-bear-walk-on-the-moon": {
   "time": "night",
@@ -27,7 +31,11 @@
     "kind": "rabbit",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "stardust"
+  }
  },
  "adventure-bear-with-friends-visit-angkor": {
   "time": "sunset",
@@ -50,7 +58,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "relics"
+  }
  },
  "adventure-bear-with-friends-visit-pyramids": {
   "time": "sunset",
@@ -69,7 +81,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "relics"
+  }
  },
  "adventure-black-bear-being-tarzan-in-forest": {
   "time": "day",
@@ -84,7 +100,11 @@
     "kind": "monkey",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "vine"
+  }
  },
  "adventure-black-bear-riding-aircraft-above-forest": {
   "time": "day",
@@ -99,7 +119,11 @@
     "kind": "parrot",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "rings"
+  }
  },
  "adventure-the-bear-dancing-on-island": {
   "time": "sunset",
@@ -118,7 +142,11 @@
     "kind": "capybara",
     "behavior": "dance"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "dance"
+  }
  },
  "adventure-the-bear-visiting-ha-long-bay": {
   "time": "day",
@@ -137,7 +165,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "pearls"
+  }
  },
  "adventure-the-black-bear-and-the-rolling-wave-sea": {
   "time": "day",
@@ -152,7 +184,11 @@
     "kind": "seagull",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "lightning"
+  }
  },
  "adventure-the-black-bear-find-out-atlantis-remnants": {
   "time": "day",
@@ -167,7 +203,11 @@
     "kind": "whale",
     "behavior": "swim"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "pearls"
+  }
  },
  "adventure-the-black-bear-find-out-mammoth-remnants": {
   "time": "day",
@@ -182,7 +222,11 @@
     "kind": "fox",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "bones"
+  }
  },
  "adventure-the-black-bear-in-the-universe": {
   "time": "day",
@@ -197,7 +241,11 @@
     "kind": "star",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "stars"
+  }
  },
  "adventure-the-black-bear-sightseeing-fuji": {
   "time": "day",
@@ -212,7 +260,11 @@
     "kind": "crane",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "petals"
+  }
  },
  "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field": {
   "time": "night",
@@ -226,7 +278,11 @@
     "kind": "cat_idol",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
+  }
  },
  "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park": {
   "time": "sunset",
@@ -248,7 +304,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "leaves"
+  }
  },
  "bloom-bear-meeting-alone-cat-singer-idol": {
   "time": "day",
@@ -262,7 +322,11 @@
     "kind": "cat_idol",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "beat"
+  }
  },
  "bloom-bear-meeting-firework-festival-cat-singer-idol": {
   "time": "sunset",
@@ -276,7 +340,11 @@
     "kind": "cat_idol",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "firework"
+  }
  },
  "bloom-full-bloom": {
   "time": "day",
@@ -290,7 +358,11 @@
     "kind": "cat_idol",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "beat"
+  }
  },
  "bloom-singer-cat-singer-witch-lullaby": {
   "time": "night",
@@ -304,7 +376,11 @@
     "kind": "cat_witch",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "stars"
+  }
  },
  "bloom-singer-cat-hype-edm-in-spring-square": {
   "time": "day",
@@ -318,7 +394,11 @@
     "kind": "cat_idol",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "beat"
+  }
  },
  "bloom-singer-cat-sing-rooftop-through-radio-broadcast": {
   "time": "night",
@@ -332,7 +412,11 @@
     "kind": "cat_idol",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "notes"
+  }
  },
  "chill-bear-having-night-ramen-at-top-of-city": {
   "time": "night",
@@ -346,7 +430,11 @@
     "kind": "tanuki",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "ramen"
+  }
  },
  "chill-bear-in-neon-cafe-with-friends": {
   "time": "night",
@@ -364,7 +452,11 @@
     "kind": "capybara",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "beat"
+  }
  },
  "chill-bear-on-midnight-train-home": {
   "time": "night",
@@ -378,7 +470,11 @@
     "kind": "dormouse",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "stars"
+  }
  },
  "chill-black-bear-soak-in-onsen-at-snow-mountain": {
   "time": "day",
@@ -392,7 +488,11 @@
     "kind": "monkey",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "ducks"
+  }
  },
  "chill-black-bear-soak-in-onset-at-night-mountain": {
   "time": "night",
@@ -406,7 +506,11 @@
     "kind": "monkey",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "ducks"
+  }
  },
  "chill-chasing-butterflies": {
   "time": "day",
@@ -420,7 +524,11 @@
     "kind": "rabbit",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "butterflies"
+  }
  },
  "chill-i-am-lazy-on-the-bed": {
   "time": "sunset",
@@ -434,7 +542,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "stretch"
+  }
  },
  "chill-the-bear-conduct-music-for-cats": {
   "time": "night",
@@ -456,7 +568,11 @@
     "kind": "cat",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "orchestra"
+  }
  },
  "chill-the-bear-conduct-music-for-dogs": {
   "time": "night",
@@ -478,7 +594,11 @@
     "kind": "dog",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "orchestra"
+  }
  },
  "chill-the-bear-drawing-at-the-cliff": {
   "time": "sunset",
@@ -492,7 +612,11 @@
     "kind": "dove",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "paint"
+  }
  },
  "chill-the-bear-reading-books-in-library": {
   "time": "sunset",
@@ -510,7 +634,11 @@
     "kind": "cat_white",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "books"
+  }
  },
  "chill-the-bear-want-the-honey": {
   "time": "day",
@@ -524,7 +652,11 @@
     "kind": "bees",
     "behavior": "swarm"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "honey"
+  }
  },
  "chill-waking-up": {
   "time": "night",
@@ -538,7 +670,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "stretch"
+  }
  },
  "chill-working-and-chill-with-friends": {
   "time": "night",
@@ -556,7 +692,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "tasks"
+  }
  },
  "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer": {
   "time": "day",
@@ -570,7 +710,11 @@
     "kind": "crane",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "pour"
+  }
  },
  "cover-zzz-bear-noting-with-lucia-about-little-goat": {
   "time": "sunset",
@@ -584,7 +728,11 @@
     "kind": "goat",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "apples"
+  }
  },
  "cover-genshin-impact-bear-playing-lyre-for-pigeons": {
   "time": "day",
@@ -598,7 +746,11 @@
     "kind": "pigeon",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "lyre"
+  }
  },
  "cover-game-of-thrones-bear-visit-throne": {
   "time": "day",
@@ -613,7 +765,11 @@
     "kind": "dragon",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "swords"
+  }
  },
  "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz": {
   "time": "night",
@@ -631,7 +787,11 @@
     "kind": "cat_pink",
     "behavior": "perform"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "piano"
+  }
  },
  "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango": {
   "time": "night",
@@ -645,7 +805,11 @@
     "kind": "cat_eula",
     "behavior": "dance"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "dance"
+  }
  },
  "cover-honkai-star-rail-the-bear-trailblazing": {
   "time": "night",
@@ -660,7 +824,11 @@
     "kind": "dormouse",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "stars"
+  }
  },
  "hunting-bear-approach-the-prey": {
   "time": "night",
@@ -674,7 +842,11 @@
     "kind": "deer",
     "behavior": "flee"
    }
-  ]
+  ],
+  "game": {
+   "type": "stealth",
+   "variant": "deer"
+  }
  },
  "hunting-bear-bare-teeth-aggresively-to-enemy": {
   "time": "day",
@@ -688,7 +860,11 @@
     "kind": "wolf",
     "behavior": "prowl"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "snaps"
+  }
  },
  "hunting-bear-roar-on-top-of-mountain": {
   "time": "day",
@@ -702,7 +878,11 @@
     "kind": "wolf",
     "behavior": "prowl"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "roar"
+  }
  },
  "hunting-bear-walk-in-the-dark": {
   "time": "night",
@@ -716,7 +896,11 @@
     "kind": "owl",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "fireflies"
+  }
  },
  "hunting-the-bear-is-drinking-near-alligator": {
   "time": "day",
@@ -730,7 +914,11 @@
     "kind": "alligator",
     "behavior": "prowl"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "snaps"
+  }
  },
  "hunting-the-bear-is-hunting-salmon": {
   "time": "day",
@@ -744,7 +932,11 @@
     "kind": "salmon",
     "behavior": "swim"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "salmon"
+  }
  },
  "isekai-bear-hero-party-traveling": {
   "time": "sunset",
@@ -762,7 +954,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "apples"
+  }
  },
  "isekai-black-bear-hero-party-camping-night-in-the-pines": {
   "time": "night",
@@ -780,7 +976,11 @@
     "kind": "fox",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "firewood"
+  }
  },
  "isekai-black-bear-signing-up-being-adventurer": {
   "time": "night",
@@ -794,7 +994,11 @@
     "kind": "lion",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "cards"
+  }
  },
  "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight": {
   "time": "night",
@@ -816,7 +1020,11 @@
     "kind": "capybara",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "orders"
+  }
  },
  "isekai-hero-bear-party-fighting-dugeon-boss": {
   "time": "day",
@@ -838,7 +1046,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "slime"
+  }
  },
  "isekai-the-defending-war-over": {
   "time": "sunset",
@@ -856,7 +1068,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "boulders"
+  }
  },
  "isekai-the-summoning-heroes-are-defending": {
   "time": "day",
@@ -874,7 +1090,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "boulders"
+  }
  },
  "isekai-the-summoning-heroes-are-mourning": {
   "time": "day",
@@ -892,7 +1112,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "candles"
+  }
  },
  "isekai-the-summoning-heroes-are-strolling-town": {
   "time": "sunset",
@@ -910,7 +1134,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
  },
  "isekai-the-summoning-heroes-are-training": {
   "time": "sunset",
@@ -928,7 +1156,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "parry"
+  }
  },
  "isekai-the-summoning-of-the-hero": {
   "time": "day",
@@ -946,7 +1178,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "runes"
+  }
  },
  "lullabies-bear-afternoon-nap": {
   "time": "sunset",
@@ -960,7 +1196,11 @@
     "kind": "cub",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "stealth",
+   "variant": "cub"
+  }
  },
  "lullabies-bear-babysitting-night-sleepy": {
   "time": "night",
@@ -974,7 +1214,11 @@
     "kind": "cub",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "stealth",
+   "variant": "cub"
+  }
  },
  "lullabies-bear-babysitting-reading-books": {
   "time": "day",
@@ -988,7 +1232,11 @@
     "kind": "cub",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "books"
+  }
  },
  "lullabies-bear-babysitting-snowy-cabin": {
   "time": "day",
@@ -1002,7 +1250,11 @@
     "kind": "cub",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
+  }
  },
  "parfum-bear-and-mademoiselle-on-bridge-full-bloom": {
   "time": "sunset",
@@ -1016,7 +1268,11 @@
     "kind": "doe",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "petals"
+  }
  },
  "parfum-bear-meeting-mademoiselle": {
   "time": "day",
@@ -1030,7 +1286,11 @@
     "kind": "doe",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "flowers"
+  }
  },
  "power-bearer-bear-mecha-fighting-mecha-alligator": {
   "time": "day",
@@ -1048,7 +1308,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "alligator"
+  }
  },
  "power-bearer-bear-mecha-fighting-mecha-direwolf": {
   "time": "day",
@@ -1066,7 +1330,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "wolf"
+  }
  },
  "power-bearer-bear-mecha-fighting-mecha-maestrom": {
   "time": "day",
@@ -1084,7 +1352,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "jelly"
+  }
  },
  "power-bearer-bear-mecha-transform": {
   "time": "day",
@@ -1098,7 +1370,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "drone"
+  }
  },
  "power-bearer-bear-mecha-victory-against-mecha-alligator": {
   "time": "day",
@@ -1116,7 +1392,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "alligator"
+  }
  },
  "power-bearer-bear-mecha-victory-against-mecha-direwolf": {
   "time": "day",
@@ -1134,7 +1414,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "wolf"
+  }
  },
  "power-bearer-bear-mecha-wakeup": {
   "time": "day",
@@ -1148,7 +1432,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "drone"
+  }
  },
  "power-bearer-bear-triumph-over-maelstrom": {
   "time": "day",
@@ -1166,7 +1454,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "jelly"
+  }
  },
  "power-bearer-mecha-bear-fighting-9-head-mecha": {
   "time": "day",
@@ -1184,7 +1476,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "snake"
+  }
  },
  "power-bearer-the-bear-victory-hydra-mecha": {
   "time": "day",
@@ -1202,7 +1498,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "snake"
+  }
  },
  "power-bearer-the-bear-fixing-his-mecha-in-snow": {
   "time": "day",
@@ -1216,7 +1516,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "drone"
+  }
  },
  "power-bearer-the-hydra-make-an-appearance": {
   "time": "day",
@@ -1234,7 +1538,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "snake"
+  }
  },
  "power-bearer-villain-alligator-appear": {
   "time": "day",
@@ -1252,7 +1560,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "alligator"
+  }
  },
  "power-bearer-villain-dire-wolf-appear": {
   "time": "day",
@@ -1270,7 +1582,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "wolf"
+  }
  },
  "power-bearer-villain-maestrom-make-appearance": {
   "time": "night",
@@ -1288,7 +1604,11 @@
     "kind": "drone",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "jelly"
+  }
  },
  "relax-at-the-lake-shore": {
   "time": "day",
@@ -1302,7 +1622,11 @@
     "kind": "capybara",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "recipe"
+  }
  },
  "relax-bear-friends-group-performing-in-waltz-hall": {
   "time": "sunset",
@@ -1320,7 +1644,11 @@
     "kind": "capybara",
     "behavior": "dance"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "dance"
+  }
  },
  "relax-bear-reading-in-graveyard": {
   "time": "night",
@@ -1334,7 +1662,11 @@
     "kind": "ghost",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "pumpkins"
+  }
  },
  "relax-bear-walking-on-the-snow": {
   "time": "day",
@@ -1348,7 +1680,11 @@
     "kind": "robin",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
+  }
  },
  "relax-black-bear-stargazing": {
   "time": "night",
@@ -1366,7 +1702,11 @@
     "kind": "robin",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "stars"
+  }
  },
  "relax-black-bear-fishing": {
   "time": "day",
@@ -1380,7 +1720,11 @@
     "kind": "otter",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "fishing"
+  }
  },
  "relax-black-bear-floating-above-the-clouds": {
   "time": "day",
@@ -1394,7 +1738,11 @@
     "kind": "dove",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "feathers"
+  }
  },
  "relax-black-bear-in-the-cave-listening-outside-rain": {
   "time": "night",
@@ -1408,7 +1756,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "rain"
+  }
  },
  "relax-black-bear-sitting-in-the-snow": {
   "time": "day",
@@ -1422,7 +1774,11 @@
     "kind": "robin",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
+  }
  },
  "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake": {
   "time": "night",
@@ -1436,7 +1792,11 @@
     "kind": "robin",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
+  }
  },
  "relax-cafe-and-story": {
   "time": "night",
@@ -1450,7 +1810,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "pages"
+  }
  },
  "relax-grill-fish-in-the-cave-with-cat": {
   "time": "night",
@@ -1464,7 +1828,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "flip"
+  }
  },
  "relax-sleeping-in-the-cave": {
   "time": "night",
@@ -1478,7 +1846,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "stealth",
+   "variant": "owl"
+  }
  },
  "relax-the-bear-lie-down-in-wheat-field": {
   "time": "sunset",
@@ -1492,7 +1864,11 @@
     "kind": "rabbit",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "wheat"
+  }
  },
  "relax-the-bear-sit-in-wheat-field": {
   "time": "sunset",
@@ -1506,7 +1882,11 @@
     "kind": "rabbit",
     "behavior": "wander"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "wheat"
+  }
  },
  "relax-the-black-bear-sitting-beside-old-radio": {
   "time": "night",
@@ -1520,7 +1900,11 @@
     "kind": "cat",
     "behavior": "sleep"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "tune"
+  }
  },
  "relax-writing-book": {
   "time": "day",
@@ -1534,7 +1918,11 @@
     "kind": "fox",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "pages"
+  }
  },
  "sun-and-moon-prism-light": {
   "time": "sunset",
@@ -1552,7 +1940,11 @@
     "kind": "moon",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
  },
  "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain": {
   "time": "night",
@@ -1570,7 +1962,11 @@
     "kind": "sun",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
  },
  "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass": {
   "time": "night",
@@ -1588,7 +1984,11 @@
     "kind": "moon",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
  },
  "sun-and-moon-sun-out-of-sight-and-moon-got-darken": {
   "time": "night",
@@ -1606,7 +2006,11 @@
     "kind": "sun",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
  },
  "sun-and-moon-sun-shine-too-bright-for-her": {
   "time": "day",
@@ -1624,7 +2028,11 @@
     "kind": "moon",
     "behavior": "orbit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
  },
  "to-hong-duyen-to-chuc-nu": {
   "time": "sunset",
@@ -1642,7 +2050,11 @@
     "kind": "magpie",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "spools"
+  }
  },
  "to-hong-duyen-to-nguu-lang": {
   "time": "day",
@@ -1660,7 +2072,11 @@
     "kind": "weaver",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "spools"
+  }
  },
  "to-hong-det-mong": {
   "time": "sunset",
@@ -1678,7 +2094,11 @@
     "kind": "magpie",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "weave"
+  }
  },
  "vietnam-ba-khi-ngut-troi": {
   "time": "day",
@@ -1692,7 +2112,11 @@
     "kind": "egret",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
  },
  "vietnam-ngam-lai-mot-chut": {
   "time": "night",
@@ -1706,7 +2130,11 @@
     "kind": "egret",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
  },
  "vietnam-rock-giua-may-va-song": {
   "time": "day",
@@ -1720,7 +2148,11 @@
     "kind": "egret",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
  },
  "vietnam-viet-nam-trong-tim-toi": {
   "time": "sunset",
@@ -1734,7 +2166,11 @@
     "kind": "egret",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
  },
  "vietnam-vo-nga": {
   "time": "day",
@@ -1748,7 +2184,11 @@
     "kind": "frog",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "vietnam-vo-thuong": {
   "time": "sunset",
@@ -1762,7 +2202,11 @@
     "kind": "frog",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "vietnam-vo-tuong": {
   "time": "day",
@@ -1776,7 +2220,11 @@
     "kind": "frog",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "vietnam-vo-vi": {
   "time": "day",
@@ -1790,7 +2238,11 @@
     "kind": "frog",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "wuxia-bear-playing-music-on-jade-bridge-with-friends": {
   "time": "day",
@@ -1812,7 +2264,11 @@
     "kind": "capybara",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "simon",
+   "variant": "lyre"
+  }
  },
  "wuxia-bear-playing-music-on-lattern-river-with-friends": {
   "time": "day",
@@ -1834,7 +2290,11 @@
     "kind": "capybara",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "lantern"
+  }
  },
  "wuxia-the-bear-fighting-assasins-hyena": {
   "time": "night",
@@ -1856,7 +2316,11 @@
     "kind": "hyena",
     "behavior": "spar"
    }
-  ]
+  ],
+  "game": {
+   "type": "shooter",
+   "variant": "hyena"
+  }
  },
  "wuxia-the-bear-fighting-husky-opponent": {
   "time": "day",
@@ -1870,7 +2334,11 @@
     "kind": "husky",
     "behavior": "spar"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "parry"
+  }
  },
  "wuxia-the-bear-healing-cultivate": {
   "time": "day",
@@ -1884,7 +2352,11 @@
     "kind": "crane",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "wuxia-the-black-bear-is-dueling-panda-bamboo": {
   "time": "day",
@@ -1898,7 +2370,11 @@
     "kind": "panda",
     "behavior": "spar"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "parry"
+  }
  },
  "wuxia-the-black-bear-is-training-with-red-panda-shifu": {
   "time": "day",
@@ -1912,7 +2388,11 @@
     "kind": "red_panda",
     "behavior": "sit"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "parry"
+  }
  },
  "wuxia-the-black-bear-is-traveling-with-friends": {
   "time": "day",
@@ -1930,7 +2410,11 @@
     "kind": "capybara",
     "behavior": "follow"
    }
-  ]
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "apples"
+  }
  },
  "wuxia-the-black-bear-meditating-middle-lake-bamboo-forest": {
   "time": "night",
@@ -1944,7 +2428,11 @@
     "kind": "frog",
     "behavior": "float"
    }
-  ]
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "breath"
+  }
  },
  "wuxia-the-jianghu-calls-her-home": {
   "time": "day",
@@ -1958,6 +2446,10 @@
     "kind": "crane",
     "behavior": "fly"
    }
-  ]
+  ],
+  "game": {
+   "type": "dodge",
+   "variant": "swords"
+  }
  }
 }

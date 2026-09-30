@@ -23,6 +23,8 @@ export interface SceneEnv {
   behavior?: import('../character/Companion').Behavior;
   /** Several companions (first is the main one); replaces companion/behavior. */
   companions?: { kind: string; behavior: import('../character/Companion').Behavior }[];
+  /** The scene's mini-game (engine + variant, see src/games/catalog.ts). */
+  game?: import('../games/types').GameRef;
 }
 
 const BELOW_Y = -20; // height of the world below the island

@@ -488,6 +488,38 @@ function spirit(color: string, glowFace = '#1c1618') {
   return s;
 }
 
+function jelly() {
+  const body = new THREE.Group();
+  const strands: THREE.Mesh[] = [];
+  const s = new Special('walk', 1.3, (t) => {
+    body.position.y = 0.7 + Math.sin(t * 3) * 0.15;
+    body.scale.set(1 + Math.sin(t * 3) * 0.08, 1 - Math.sin(t * 3) * 0.08, 1 + Math.sin(t * 3) * 0.08);
+    strands.forEach((m, i) => (m.rotation.z = Math.sin(t * 4 + i) * 0.3));
+  });
+  mesh(body, new THREE.SphereGeometry(0.4, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), '#b58cff', [0, 0, 0], { outline: 0.02 });
+  face(body, 0.34, 0.12, 0.12, 0.05);
+  for (let i = 0; i < 5; i++) {
+    const a = (i / 5) * Math.PI * 2;
+    strands.push(mesh(body, new THREE.CylinderGeometry(0.03, 0.01, 0.6, 5), '#d8c0ff', [Math.cos(a) * 0.22, -0.3, Math.sin(a) * 0.22], { outline: false }));
+  }
+  s.root.add(body);
+  return s;
+}
+
+function snake() {
+  const segs: THREE.Mesh[] = [];
+  const s = new Special('walk', 0.8, (t) => {
+    segs.forEach((m, i) => (m.position.x = Math.sin(t * 8 - i * 0.9) * 0.12));
+  });
+  for (let i = 0; i < 6; i++) {
+    segs.push(mesh(s.root, sph(0.16 - i * 0.015), i % 2 ? '#6fae5a' : '#4f8f4a', [0, 0.14, -i * 0.2], { outline: 0.012 }));
+  }
+  const head = segs[0];
+  head.scale.set(1.2, 1, 1.3);
+  face(head, 0.12, 0.06, 0.07, 0.03);
+  return s;
+}
+
 function drone() {
   const body = new THREE.Group();
   let rotor: THREE.Object3D;
@@ -520,6 +552,8 @@ export function makeCreature(kind: string): Creature {
     case 'moon': return spirit('#cfe0ff', '#3a4a7a');
     case 'star': return spirit('#fff1a8');
     case 'drone': return drone();
+    case 'jelly': return jelly();
+    case 'snake': return snake();
   }
   console.warn(`Unknown companion "${kind}", using a fox`);
   return new Chibi(CHIBI.fox);

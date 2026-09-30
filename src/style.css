@@ -134,8 +134,65 @@ button.primary:disabled { opacity: .4; cursor: default; }
   font-weight: 700; font-size: 14px; }
 .chat-account .link { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; font-size: 12px; }
 
+/* ---------- mini-games ---------- */
+.play-game { margin-left: auto; background: var(--accent); color: #2a1a10; border: 0; font-weight: 800; white-space: nowrap; }
+.play-game:hover { background: var(--accent); filter: brightness(1.08); }
+#ui > .game-hud { position: absolute; inset: 0; pointer-events: none; }
+.game-hud > * { pointer-events: auto; }
+.game-hud [hidden] { display: none !important; }
+.g-bar { position: absolute; top: 62px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; align-items: center;
+  background: var(--panel-strong); border: 1px solid var(--line); border-radius: 999px; padding: 4px 6px 4px 16px;
+  font-weight: 700; white-space: nowrap; max-width: calc(100% - 32px); }
+.g-title { color: var(--accent); }
+.g-prog, .g-time { color: var(--ink-dim); }
+.g-lives { letter-spacing: 1px; }
+.g-close { background: rgba(255,255,255,.1); border: 0; border-radius: 999px; width: 28px; height: 28px; }
+.g-card { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(380px, calc(100% - 32px));
+  background: #2a1f27; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,.4); }
+.g-card h3 { margin: 0 0 6px; font-size: 26px; color: var(--accent); }
+.g-card p { margin: 0 0 10px; line-height: 1.35; }
+.g-foot { color: var(--ink-dim); font-size: 14px; margin-bottom: 14px; }
+.g-buttons { display: flex; gap: 10px; justify-content: center; }
+.g-buttons button { background: rgba(255,255,255,.1); border: 1px solid var(--line); border-radius: 999px; padding: 6px 18px; font-weight: 700; }
+.g-buttons button.primary { background: var(--accent); color: #2a1a10; border: 0; }
+.g-big { position: absolute; top: 26%; left: 50%; transform: translateX(-50%); font-size: 84px; line-height: 1;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.4)); pointer-events: none !important; }
+.g-meter { position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%); width: min(440px, calc(100% - 32px)); height: 26px;
+  background: rgba(0,0,0,.45); border: 2px solid rgba(255,255,255,.6); border-radius: 999px; overflow: hidden; pointer-events: none !important; }
+.g-zone { position: absolute; top: 0; bottom: 0; background: linear-gradient(90deg, #7fe0a0, #bff5cf, #7fe0a0); }
+.g-needle { position: absolute; top: -4px; bottom: -4px; width: 6px; margin-left: -3px; background: #fff; border-radius: 3px; box-shadow: 0 0 8px #fff; }
+.g-action { position: absolute; left: 50%; bottom: 60px; transform: translateX(-50%); min-width: 150px; padding: 12px 28px;
+  border: 0; border-radius: 999px; background: var(--accent); color: #2a1a10; font-size: 22px; font-weight: 800;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+.g-action:active { transform: translateX(-50%) scale(.95); }
+.g-pads { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); display: flex; gap: 12px; }
+.g-pads button { position: relative; width: 76px; height: 76px; border-radius: 20px; border: 2px solid rgba(255,255,255,.5);
+  background: rgba(40,30,40,.85); font-size: 36px; transition: transform .1s; }
+.g-pads button small { position: absolute; right: 6px; bottom: 2px; font-size: 12px; color: var(--ink-dim); }
+/* Watch phase: pads dimmed and not clickable; each glows in turn. */
+.g-pads.watch button { opacity: .5; cursor: default; }
+.g-pads.watch button.demo { opacity: 1; }
+.g-pads button.demo { animation: pad-demo .45s ease-out; }
+@keyframes pad-demo {
+  0% { background: #fff6c8; transform: scale(1.15); box-shadow: 0 0 24px 6px rgba(255, 230, 150, .8); }
+  60% { background: #fff6c8; transform: scale(1.1); box-shadow: 0 0 18px 4px rgba(255, 230, 150, .6); }
+  100% { background: rgba(40,30,40,.85); transform: scale(1); box-shadow: none; }
+}
+/* Player's turn: bright pads with an accent border; presses get a quick push. */
+.g-pads.input button { border-color: var(--accent); }
+.g-pads.input button:hover { background: rgba(70,55,70,.9); }
+.g-pads button.tap { animation: pad-tap .18s ease-out; }
+@keyframes pad-tap { 0% { transform: scale(.88); background: rgba(255,255,255,.35); } 100% { transform: scale(1); } }
+.g-toast { position: absolute; top: 108px; left: 50%; transform: translateX(-50%); padding: 6px 16px; border-radius: 999px;
+  font-weight: 700; background: var(--panel-strong); border: 1px solid var(--line); max-width: calc(100% - 32px); text-align: center;
+  pointer-events: none !important; }
+.g-toast.good { color: #9ff5b8; }
+.g-toast.bad { color: #ff9a9a; }
+
 @media (max-width: 640px) {
   .hint { display: none; }
+  .g-pads button { width: 64px; height: 64px; font-size: 30px; }
   .radio { width: auto; left: 16px; }
   .radio .recs-label, .radio .recs { display: none; }
   .chat { top: 62px; bottom: auto; right: 16px; left: auto; width: 300px; }

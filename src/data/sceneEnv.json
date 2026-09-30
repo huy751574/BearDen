@@ -7,8 +7,12 @@
   "skyBottom": "#6895b6",
   "island": "landmark",
   "variant": "castle",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-bear-walk-on-the-moon": {
   "time": "night",
@@ -18,8 +22,12 @@
   "skyBottom": "#273b51",
   "island": "landmark",
   "variant": "moon",
-  "companion": "rabbit",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "rabbit",
+    "behavior": "wander"
+   }
+  ]
  },
  "adventure-bear-with-friends-visit-angkor": {
   "time": "sunset",
@@ -29,8 +37,20 @@
   "skyBottom": "#ba884a",
   "island": "landmark",
   "variant": "temple",
-  "companion": "monkey",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "monkey",
+    "behavior": "follow"
+   },
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-bear-with-friends-visit-pyramids": {
   "time": "sunset",
@@ -40,8 +60,16 @@
   "skyBottom": "#c99d71",
   "island": "landmark",
   "variant": "pyramid",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-black-bear-being-tarzan-in-forest": {
   "time": "day",
@@ -51,8 +79,12 @@
   "skyBottom": "#68a3b6",
   "island": "landmark",
   "variant": "jungle",
-  "companion": "monkey",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "monkey",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-black-bear-riding-aircraft-above-forest": {
   "time": "day",
@@ -62,8 +94,12 @@
   "skyBottom": "#78a0be",
   "island": "landmark",
   "variant": "jungle",
-  "companion": "parrot",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "parrot",
+    "behavior": "fly"
+   }
+  ]
  },
  "adventure-the-bear-dancing-on-island": {
   "time": "sunset",
@@ -73,8 +109,16 @@
   "skyBottom": "#c09259",
   "island": "landmark",
   "variant": "beach",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "dance"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "dance"
+   }
+  ]
  },
  "adventure-the-bear-visiting-ha-long-bay": {
   "time": "day",
@@ -84,8 +128,16 @@
   "skyBottom": "#6895b6",
   "island": "landmark",
   "variant": "bay",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-the-black-bear-and-the-rolling-wave-sea": {
   "time": "day",
@@ -95,8 +147,12 @@
   "skyBottom": "#89acc6",
   "island": "landmark",
   "variant": "ship",
-  "companion": "seagull",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "seagull",
+    "behavior": "fly"
+   }
+  ]
  },
  "adventure-the-black-bear-find-out-atlantis-remnants": {
   "time": "day",
@@ -106,8 +162,12 @@
   "skyBottom": "#68a3b6",
   "island": "landmark",
   "variant": "ruins",
-  "companion": "whale",
-  "behavior": "swim"
+  "companions": [
+   {
+    "kind": "whale",
+    "behavior": "swim"
+   }
+  ]
  },
  "adventure-the-black-bear-find-out-mammoth-remnants": {
   "time": "day",
@@ -117,8 +177,12 @@
   "skyBottom": "#749ebc",
   "island": "landmark",
   "variant": "bones",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   }
+  ]
  },
  "adventure-the-black-bear-in-the-universe": {
   "time": "day",
@@ -128,8 +192,12 @@
   "skyBottom": "#6874b6",
   "island": "landmark",
   "variant": "moon",
-  "companion": "star",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "star",
+    "behavior": "orbit"
+   }
+  ]
  },
  "adventure-the-black-bear-sightseeing-fuji": {
   "time": "day",
@@ -139,8 +207,12 @@
   "skyBottom": "#68a3b6",
   "island": "landmark",
   "variant": "fuji",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   }
+  ]
  },
  "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field": {
   "time": "night",
@@ -149,8 +221,12 @@
   "skyTop": "#193054",
   "skyBottom": "#334c6b",
   "island": "snowfield",
-  "companion": "cat_idol",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "sit"
+   }
+  ]
  },
  "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park": {
   "time": "sunset",
@@ -159,8 +235,20 @@
   "skyTop": "#a75e3e",
   "skyBottom": "#c59567",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   },
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "bloom-bear-meeting-alone-cat-singer-idol": {
   "time": "day",
@@ -169,8 +257,12 @@
   "skyTop": "#8a93c6",
   "skyBottom": "#98a1cd",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   }
+  ]
  },
  "bloom-bear-meeting-firework-festival-cat-singer-idol": {
   "time": "sunset",
@@ -179,8 +271,12 @@
   "skyTop": "#a6573f",
   "skyBottom": "#c38362",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   }
+  ]
  },
  "bloom-full-bloom": {
   "time": "day",
@@ -189,8 +285,12 @@
   "skyTop": "#5377ac",
   "skyBottom": "#6888b6",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   }
+  ]
  },
  "bloom-singer-cat-singer-witch-lullaby": {
   "time": "night",
@@ -199,8 +299,12 @@
   "skyTop": "#562e60",
   "skyBottom": "#60336b",
   "island": "stage",
-  "companion": "cat_witch",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "cat_witch",
+    "behavior": "fly"
+   }
+  ]
  },
  "bloom-singer-cat-hype-edm-in-spring-square": {
   "time": "day",
@@ -209,8 +313,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#68a0b6",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   }
+  ]
  },
  "bloom-singer-cat-sing-rooftop-through-radio-broadcast": {
   "time": "night",
@@ -219,8 +327,12 @@
   "skyTop": "#2d465d",
   "skyBottom": "#33396b",
   "island": "stage",
-  "companion": "cat_idol",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "perform"
+   }
+  ]
  },
  "chill-bear-having-night-ramen-at-top-of-city": {
   "time": "night",
@@ -229,8 +341,12 @@
   "skyTop": "#3f2d5f",
   "skyBottom": "#60336b",
   "island": "cozyroom",
-  "companion": "tanuki",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "tanuki",
+    "behavior": "sit"
+   }
+  ]
  },
  "chill-bear-in-neon-cafe-with-friends": {
   "time": "night",
@@ -239,8 +355,16 @@
   "skyTop": "#2d425c",
   "skyBottom": "#33486b",
   "island": "cozyroom",
-  "companion": "fox",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   }
+  ]
  },
  "chill-bear-on-midnight-train-home": {
   "time": "night",
@@ -249,8 +373,12 @@
   "skyTop": "#331c39",
   "skyBottom": "#282c53",
   "island": "cozyroom",
-  "companion": "dormouse",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "dormouse",
+    "behavior": "sit"
+   }
+  ]
  },
  "chill-black-bear-soak-in-onsen-at-snow-mountain": {
   "time": "day",
@@ -259,8 +387,12 @@
   "skyTop": "#7ca3c0",
   "skyBottom": "#6e9ab9",
   "island": "onsen",
-  "companion": "monkey",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "monkey",
+    "behavior": "float"
+   }
+  ]
  },
  "chill-black-bear-soak-in-onset-at-night-mountain": {
   "time": "night",
@@ -269,8 +401,12 @@
   "skyTop": "#1d3959",
   "skyBottom": "#33506b",
   "island": "onsen",
-  "companion": "monkey",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "monkey",
+    "behavior": "float"
+   }
+  ]
  },
  "chill-chasing-butterflies": {
   "time": "day",
@@ -279,8 +415,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "meadow",
-  "companion": "rabbit",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "rabbit",
+    "behavior": "wander"
+   }
+  ]
  },
  "chill-i-am-lazy-on-the-bed": {
   "time": "sunset",
@@ -289,8 +429,12 @@
   "skyTop": "#b57b45",
   "skyBottom": "#ba794a",
   "island": "cozyroom",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "chill-the-bear-conduct-music-for-cats": {
   "time": "night",
@@ -299,8 +443,20 @@
   "skyTop": "#552d5f",
   "skyBottom": "#60336b",
   "island": "stage",
-  "companion": "cat",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "perform"
+   },
+   {
+    "kind": "cat",
+    "behavior": "perform"
+   },
+   {
+    "kind": "cat",
+    "behavior": "perform"
+   }
+  ]
  },
  "chill-the-bear-conduct-music-for-dogs": {
   "time": "night",
@@ -309,8 +465,20 @@
   "skyTop": "#532d5c",
   "skyBottom": "#33396b",
   "island": "stage",
-  "companion": "dog",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "dog",
+    "behavior": "perform"
+   },
+   {
+    "kind": "dog",
+    "behavior": "perform"
+   },
+   {
+    "kind": "dog",
+    "behavior": "perform"
+   }
+  ]
  },
  "chill-the-bear-drawing-at-the-cliff": {
   "time": "sunset",
@@ -319,8 +487,12 @@
   "skyTop": "#c69f67",
   "skyBottom": "#bd7150",
   "island": "meadow",
-  "companion": "dove",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "dove",
+    "behavior": "fly"
+   }
+  ]
  },
  "chill-the-bear-reading-books-in-library": {
   "time": "sunset",
@@ -329,8 +501,16 @@
   "skyTop": "#a6743f",
   "skyBottom": "#ba804a",
   "island": "cozyroom",
-  "companion": "owl",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "owl",
+    "behavior": "fly"
+   },
+   {
+    "kind": "cat_white",
+    "behavior": "sleep"
+   }
+  ]
  },
  "chill-the-bear-want-the-honey": {
   "time": "day",
@@ -339,8 +519,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#68a3b6",
   "island": "meadow",
-  "companion": "bees",
-  "behavior": "swarm"
+  "companions": [
+   {
+    "kind": "bees",
+    "behavior": "swarm"
+   }
+  ]
  },
  "chill-waking-up": {
   "time": "night",
@@ -349,8 +533,12 @@
   "skyTop": "#301a35",
   "skyBottom": "#60336b",
   "island": "cozyroom",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "chill-working-and-chill-with-friends": {
   "time": "night",
@@ -359,8 +547,16 @@
   "skyTop": "#3e2145",
   "skyBottom": "#60336b",
   "island": "cozyroom",
-  "companion": "fox",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   },
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer": {
   "time": "day",
@@ -369,8 +565,12 @@
   "skyTop": "#b6bde2",
   "skyBottom": "#939ccb",
   "island": "pavilion",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   }
+  ]
  },
  "cover-zzz-bear-noting-with-lucia-about-little-goat": {
   "time": "sunset",
@@ -379,8 +579,12 @@
   "skyTop": "#dabc9d",
   "skyBottom": "#ba794a",
   "island": "meadow",
-  "companion": "goat",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "goat",
+    "behavior": "wander"
+   }
+  ]
  },
  "cover-genshin-impact-bear-playing-lyre-for-pigeons": {
   "time": "day",
@@ -389,8 +593,12 @@
   "skyTop": "#7daacf",
   "skyBottom": "#729cbb",
   "island": "meadow",
-  "companion": "pigeon",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "pigeon",
+    "behavior": "fly"
+   }
+  ]
  },
  "cover-game-of-thrones-bear-visit-throne": {
   "time": "day",
@@ -400,8 +608,12 @@
   "skyBottom": "#6895b6",
   "island": "landmark",
   "variant": "throne",
-  "companion": "dragon",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "dragon",
+    "behavior": "fly"
+   }
+  ]
  },
  "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz": {
   "time": "night",
@@ -410,8 +622,16 @@
   "skyTop": "#3b2042",
   "skyBottom": "#60336b",
   "island": "cozyroom",
-  "companion": "cat_grey",
-  "behavior": "perform"
+  "companions": [
+   {
+    "kind": "cat_grey",
+    "behavior": "perform"
+   },
+   {
+    "kind": "cat_pink",
+    "behavior": "perform"
+   }
+  ]
  },
  "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango": {
   "time": "night",
@@ -420,8 +640,12 @@
   "skyTop": "#1e3958",
   "skyBottom": "#2d5071",
   "island": "stage",
-  "companion": "cat_eula",
-  "behavior": "dance"
+  "companions": [
+   {
+    "kind": "cat_eula",
+    "behavior": "dance"
+   }
+  ]
  },
  "cover-honkai-star-rail-the-bear-trailblazing": {
   "time": "night",
@@ -431,8 +655,12 @@
   "skyBottom": "#33396b",
   "island": "landmark",
   "variant": "train",
-  "companion": "dormouse",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "dormouse",
+    "behavior": "sit"
+   }
+  ]
  },
  "hunting-bear-approach-the-prey": {
   "time": "night",
@@ -441,8 +669,12 @@
   "skyTop": "#5b2668",
   "skyBottom": "#5f2c6c",
   "island": "wildforest",
-  "companion": "deer",
-  "behavior": "flee"
+  "companions": [
+   {
+    "kind": "deer",
+    "behavior": "flee"
+   }
+  ]
  },
  "hunting-bear-bare-teeth-aggresively-to-enemy": {
   "time": "day",
@@ -451,8 +683,12 @@
   "skyTop": "#5386ac",
   "skyBottom": "#6898b6",
   "island": "wildforest",
-  "companion": "wolf",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "wolf",
+    "behavior": "prowl"
+   }
+  ]
  },
  "hunting-bear-roar-on-top-of-mountain": {
   "time": "day",
@@ -461,8 +697,12 @@
   "skyTop": "#88acc6",
   "skyBottom": "#96b6cc",
   "island": "wildforest",
-  "companion": "wolf",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "wolf",
+    "behavior": "prowl"
+   }
+  ]
  },
  "hunting-bear-walk-in-the-dark": {
   "time": "night",
@@ -471,8 +711,12 @@
   "skyTop": "#28326e",
   "skyBottom": "#9696be",
   "island": "wildforest",
-  "companion": "owl",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "owl",
+    "behavior": "fly"
+   }
+  ]
  },
  "hunting-the-bear-is-drinking-near-alligator": {
   "time": "day",
@@ -481,8 +725,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#749ebc",
   "island": "lakeside",
-  "companion": "alligator",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "alligator",
+    "behavior": "prowl"
+   }
+  ]
  },
  "hunting-the-bear-is-hunting-salmon": {
   "time": "day",
@@ -491,8 +739,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "lakeside",
-  "companion": "salmon",
-  "behavior": "swim"
+  "companions": [
+   {
+    "kind": "salmon",
+    "behavior": "swim"
+   }
+  ]
  },
  "isekai-bear-hero-party-traveling": {
   "time": "sunset",
@@ -501,8 +753,16 @@
   "skyTop": "#bf9557",
   "skyBottom": "#ba874a",
   "island": "town",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-black-bear-hero-party-camping-night-in-the-pines": {
   "time": "night",
@@ -511,8 +771,16 @@
   "skyTop": "#13284b",
   "skyBottom": "#264868",
   "island": "camp",
-  "companion": "capybara",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   },
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   }
+  ]
  },
  "isekai-black-bear-signing-up-being-adventurer": {
   "time": "night",
@@ -521,8 +789,12 @@
   "skyTop": "#402048",
   "skyBottom": "#61326c",
   "island": "town",
-  "companion": "lion",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "lion",
+    "behavior": "sit"
+   }
+  ]
  },
  "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight": {
   "time": "night",
@@ -531,8 +803,20 @@
   "skyTop": "#4c1f57",
   "skyBottom": "#62306e",
   "island": "town",
-  "companion": "tanuki",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "tanuki",
+    "behavior": "sit"
+   },
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   }
+  ]
  },
  "isekai-hero-bear-party-fighting-dugeon-boss": {
   "time": "day",
@@ -541,8 +825,20 @@
   "skyTop": "#538cac",
   "skyBottom": "#6895b6",
   "island": "arena",
-  "companion": "slime",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "slime",
+    "behavior": "wander"
+   },
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-defending-war-over": {
   "time": "sunset",
@@ -551,8 +847,16 @@
   "skyTop": "#dcc6a3",
   "skyBottom": "#ba6c4a",
   "island": "arena",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-summoning-heroes-are-defending": {
   "time": "day",
@@ -561,8 +865,16 @@
   "skyTop": "#5368ac",
   "skyBottom": "#6895b6",
   "island": "arena",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-summoning-heroes-are-mourning": {
   "time": "day",
@@ -571,8 +883,16 @@
   "skyTop": "#bfd8e0",
   "skyBottom": "#95b5cc",
   "island": "town",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-summoning-heroes-are-strolling-town": {
   "time": "sunset",
@@ -581,8 +901,16 @@
   "skyTop": "#c29560",
   "skyBottom": "#ba784a",
   "island": "town",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-summoning-heroes-are-training": {
   "time": "sunset",
@@ -591,8 +919,16 @@
   "skyTop": "#d9c89c",
   "skyBottom": "#c27c5e",
   "island": "arena",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "isekai-the-summoning-of-the-hero": {
   "time": "day",
@@ -601,8 +937,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "town",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "lullabies-bear-afternoon-nap": {
   "time": "sunset",
@@ -611,8 +955,12 @@
   "skyTop": "#c59b65",
   "skyBottom": "#bb874c",
   "island": "nursery",
-  "companion": "cub",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cub",
+    "behavior": "sleep"
+   }
+  ]
  },
  "lullabies-bear-babysitting-night-sleepy": {
   "time": "night",
@@ -621,8 +969,12 @@
   "skyTop": "#2e3360",
   "skyBottom": "#314c66",
   "island": "nursery",
-  "companion": "cub",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cub",
+    "behavior": "sleep"
+   }
+  ]
  },
  "lullabies-bear-babysitting-reading-books": {
   "time": "day",
@@ -631,8 +983,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "nursery",
-  "companion": "cub",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "cub",
+    "behavior": "follow"
+   }
+  ]
  },
  "lullabies-bear-babysitting-snowy-cabin": {
   "time": "day",
@@ -641,8 +997,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "nursery",
-  "companion": "cub",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cub",
+    "behavior": "sleep"
+   }
+  ]
  },
  "parfum-bear-and-mademoiselle-on-bridge-full-bloom": {
   "time": "sunset",
@@ -651,8 +1011,12 @@
   "skyTop": "#dbaa99",
   "skyBottom": "#c58465",
   "island": "parisbridge",
-  "companion": "doe",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "doe",
+    "behavior": "wander"
+   }
+  ]
  },
  "parfum-bear-meeting-mademoiselle": {
   "time": "day",
@@ -661,8 +1025,12 @@
   "skyTop": "#c1d9e1",
   "skyBottom": "#b6d4de",
   "island": "parisbridge",
-  "companion": "doe",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "doe",
+    "behavior": "wander"
+   }
+  ]
  },
  "power-bearer-bear-mecha-fighting-mecha-alligator": {
   "time": "day",
@@ -671,8 +1039,16 @@
   "skyTop": "#6a97b8",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "alligator",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "alligator",
+    "behavior": "prowl"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-fighting-mecha-direwolf": {
   "time": "day",
@@ -681,8 +1057,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "wolf",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "wolf",
+    "behavior": "prowl"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-fighting-mecha-maestrom": {
   "time": "day",
@@ -691,8 +1075,16 @@
   "skyTop": "#5388ac",
   "skyBottom": "#68a1b6",
   "island": "hangar",
-  "companion": "kraken",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "kraken",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-transform": {
   "time": "day",
@@ -701,8 +1093,12 @@
   "skyTop": "#82a8c3",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "drone",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-victory-against-mecha-alligator": {
   "time": "day",
@@ -711,8 +1107,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "alligator",
-  "behavior": "defeated"
+  "companions": [
+   {
+    "kind": "alligator",
+    "behavior": "defeated"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-victory-against-mecha-direwolf": {
   "time": "day",
@@ -721,8 +1125,16 @@
   "skyTop": "#a9c9d5",
   "skyBottom": "#739dbc",
   "island": "hangar",
-  "companion": "wolf",
-  "behavior": "defeated"
+  "companions": [
+   {
+    "kind": "wolf",
+    "behavior": "defeated"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-mecha-wakeup": {
   "time": "day",
@@ -731,8 +1143,12 @@
   "skyTop": "#7fa5c1",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "drone",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-bear-triumph-over-maelstrom": {
   "time": "day",
@@ -741,8 +1157,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "kraken",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "kraken",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-mecha-bear-fighting-9-head-mecha": {
   "time": "day",
@@ -751,8 +1175,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#689cb6",
   "island": "hangar",
-  "companion": "hydra",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "hydra",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-the-bear-victory-hydra-mecha": {
   "time": "day",
@@ -761,8 +1193,16 @@
   "skyTop": "#5386ac",
   "skyBottom": "#689db6",
   "island": "hangar",
-  "companion": "hydra",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "hydra",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-the-bear-fixing-his-mecha-in-snow": {
   "time": "day",
@@ -771,8 +1211,12 @@
   "skyTop": "#5b93b0",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "drone",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-the-hydra-make-an-appearance": {
   "time": "day",
@@ -781,8 +1225,16 @@
   "skyTop": "#5397ac",
   "skyBottom": "#68a3b6",
   "island": "hangar",
-  "companion": "hydra",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "hydra",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-villain-alligator-appear": {
   "time": "day",
@@ -791,8 +1243,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "hangar",
-  "companion": "alligator",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "alligator",
+    "behavior": "prowl"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-villain-dire-wolf-appear": {
   "time": "day",
@@ -801,8 +1261,16 @@
   "skyTop": "#5387ac",
   "skyBottom": "#68a2b6",
   "island": "hangar",
-  "companion": "wolf",
-  "behavior": "prowl"
+  "companions": [
+   {
+    "kind": "wolf",
+    "behavior": "prowl"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "power-bearer-villain-maestrom-make-appearance": {
   "time": "night",
@@ -811,8 +1279,16 @@
   "skyTop": "#2e4860",
   "skyBottom": "#33506b",
   "island": "hangar",
-  "companion": "kraken",
-  "behavior": "emerge"
+  "companions": [
+   {
+    "kind": "kraken",
+    "behavior": "emerge"
+   },
+   {
+    "kind": "drone",
+    "behavior": "orbit"
+   }
+  ]
  },
  "relax-at-the-lake-shore": {
   "time": "day",
@@ -821,8 +1297,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "lakeside",
-  "companion": "capybara",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   }
+  ]
  },
  "relax-bear-friends-group-performing-in-waltz-hall": {
   "time": "sunset",
@@ -831,8 +1311,16 @@
   "skyTop": "#a66a3f",
   "skyBottom": "#ba6e4a",
   "island": "stage",
-  "companion": "fox",
-  "behavior": "dance"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "dance"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "dance"
+   }
+  ]
  },
  "relax-bear-reading-in-graveyard": {
   "time": "night",
@@ -841,8 +1329,12 @@
   "skyTop": "#1d2d4a",
   "skyBottom": "#334f6b",
   "island": "meadow",
-  "companion": "ghost",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "ghost",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-bear-walking-on-the-snow": {
   "time": "day",
@@ -851,8 +1343,12 @@
   "skyTop": "#87abc5",
   "skyBottom": "#7aa2bf",
   "island": "snowfield",
-  "companion": "robin",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "robin",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-black-bear-stargazing": {
   "time": "night",
@@ -861,8 +1357,16 @@
   "skyTop": "#223a5f",
   "skyBottom": "#334c6b",
   "island": "meadow",
-  "companion": "robin",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "robin",
+    "behavior": "fly"
+   },
+   {
+    "kind": "robin",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-black-bear-fishing": {
   "time": "day",
@@ -871,8 +1375,12 @@
   "skyTop": "#a7cad5",
   "skyBottom": "#6895b6",
   "island": "lakeside",
-  "companion": "otter",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "otter",
+    "behavior": "float"
+   }
+  ]
  },
  "relax-black-bear-floating-above-the-clouds": {
   "time": "day",
@@ -881,8 +1389,12 @@
   "skyTop": "#5371ac",
   "skyBottom": "#6895b6",
   "island": "meadow",
-  "companion": "dove",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "dove",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-black-bear-in-the-cave-listening-outside-rain": {
   "time": "night",
@@ -891,8 +1403,12 @@
   "skyTop": "#14162a",
   "skyBottom": "#2e3360",
   "island": "cave",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "relax-black-bear-sitting-in-the-snow": {
   "time": "day",
@@ -901,8 +1417,12 @@
   "skyTop": "#a7c0d5",
   "skyBottom": "#8baec7",
   "island": "snowfield",
-  "companion": "robin",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "robin",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake": {
   "time": "night",
@@ -911,8 +1431,12 @@
   "skyTop": "#2d3f62",
   "skyBottom": "#333a6b",
   "island": "snowfield",
-  "companion": "robin",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "robin",
+    "behavior": "fly"
+   }
+  ]
  },
  "relax-cafe-and-story": {
   "time": "night",
@@ -921,8 +1445,12 @@
   "skyTop": "#3b2041",
   "skyBottom": "#33396b",
   "island": "cave",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "relax-grill-fish-in-the-cave-with-cat": {
   "time": "night",
@@ -931,8 +1459,12 @@
   "skyTop": "#131629",
   "skyBottom": "#2e3360",
   "island": "cave",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "relax-sleeping-in-the-cave": {
   "time": "night",
@@ -941,8 +1473,12 @@
   "skyTop": "#0f171f",
   "skyBottom": "#253a4d",
   "island": "cave",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "relax-the-bear-lie-down-in-wheat-field": {
   "time": "sunset",
@@ -951,8 +1487,12 @@
   "skyTop": "#d3b283",
   "skyBottom": "#c88d4d",
   "island": "wheatfield",
-  "companion": "rabbit",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "rabbit",
+    "behavior": "wander"
+   }
+  ]
  },
  "relax-the-bear-sit-in-wheat-field": {
   "time": "sunset",
@@ -961,8 +1501,12 @@
   "skyTop": "#dcc1a3",
   "skyBottom": "#ebd6b2",
   "island": "wheatfield",
-  "companion": "rabbit",
-  "behavior": "wander"
+  "companions": [
+   {
+    "kind": "rabbit",
+    "behavior": "wander"
+   }
+  ]
  },
  "relax-the-black-bear-sitting-beside-old-radio": {
   "time": "night",
@@ -971,8 +1515,12 @@
   "skyTop": "#141f2a",
   "skyBottom": "#253a4d",
   "island": "cozyroom",
-  "companion": "cat",
-  "behavior": "sleep"
+  "companions": [
+   {
+    "kind": "cat",
+    "behavior": "sleep"
+   }
+  ]
  },
  "relax-writing-book": {
   "time": "day",
@@ -981,8 +1529,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#68a3b6",
   "island": "cozyroom",
-  "companion": "fox",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   }
+  ]
  },
  "sun-and-moon-prism-light": {
   "time": "sunset",
@@ -991,8 +1543,16 @@
   "skyTop": "#cd947c",
   "skyBottom": "#c98b71",
   "island": "skygarden",
-  "companion": "sun",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   }
+  ]
  },
  "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain": {
   "time": "night",
@@ -1001,8 +1561,16 @@
   "skyTop": "#2e475f",
   "skyBottom": "#33396b",
   "island": "skygarden",
-  "companion": "moon",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   }
+  ]
  },
  "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass": {
   "time": "night",
@@ -1011,8 +1579,16 @@
   "skyTop": "#2e3360",
   "skyBottom": "#33396b",
   "island": "skygarden",
-  "companion": "sun",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   }
+  ]
  },
  "sun-and-moon-sun-out-of-sight-and-moon-got-darken": {
   "time": "night",
@@ -1021,8 +1597,16 @@
   "skyTop": "#17232f",
   "skyBottom": "#1a2936",
   "island": "skygarden",
-  "companion": "moon",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   }
+  ]
  },
  "sun-and-moon-sun-shine-too-bright-for-her": {
   "time": "day",
@@ -1031,8 +1615,16 @@
   "skyTop": "#c1d4e1",
   "skyBottom": "#85a9c4",
   "island": "skygarden",
-  "companion": "sun",
-  "behavior": "orbit"
+  "companions": [
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   }
+  ]
  },
  "to-hong-duyen-to-chuc-nu": {
   "time": "sunset",
@@ -1041,8 +1633,16 @@
   "skyTop": "#a6703f",
   "skyBottom": "#c59465",
   "island": "riverside",
-  "companion": "weaver",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "weaver",
+    "behavior": "sit"
+   },
+   {
+    "kind": "magpie",
+    "behavior": "fly"
+   }
+  ]
  },
  "to-hong-duyen-to-nguu-lang": {
   "time": "day",
@@ -1051,8 +1651,16 @@
   "skyTop": "#6fa8ba",
   "skyBottom": "#86b6c5",
   "island": "riverside",
-  "companion": "magpie",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "magpie",
+    "behavior": "fly"
+   },
+   {
+    "kind": "weaver",
+    "behavior": "sit"
+   }
+  ]
  },
  "to-hong-det-mong": {
   "time": "sunset",
@@ -1061,8 +1669,16 @@
   "skyTop": "#a66f3f",
   "skyBottom": "#ba844a",
   "island": "riverside",
-  "companion": "weaver",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "weaver",
+    "behavior": "sit"
+   },
+   {
+    "kind": "magpie",
+    "behavior": "fly"
+   }
+  ]
  },
  "vietnam-ba-khi-ngut-troi": {
   "time": "day",
@@ -1071,8 +1687,12 @@
   "skyTop": "#84a9c4",
   "skyBottom": "#7ca3c0",
   "island": "riverside",
-  "companion": "egret",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "egret",
+    "behavior": "fly"
+   }
+  ]
  },
  "vietnam-ngam-lai-mot-chut": {
   "time": "night",
@@ -1081,8 +1701,12 @@
   "skyTop": "#0f253e",
   "skyBottom": "#33506b",
   "island": "riverside",
-  "companion": "egret",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "egret",
+    "behavior": "fly"
+   }
+  ]
  },
  "vietnam-rock-giua-may-va-song": {
   "time": "day",
@@ -1091,8 +1715,12 @@
   "skyTop": "#b1c9da",
   "skyBottom": "#7ca4c0",
   "island": "riverside",
-  "companion": "egret",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "egret",
+    "behavior": "fly"
+   }
+  ]
  },
  "vietnam-viet-nam-trong-tim-toi": {
   "time": "sunset",
@@ -1101,8 +1729,12 @@
   "skyTop": "#c57f67",
   "skyBottom": "#e2ceb3",
   "island": "riverside",
-  "companion": "egret",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "egret",
+    "behavior": "fly"
+   }
+  ]
  },
  "vietnam-vo-nga": {
   "time": "day",
@@ -1111,8 +1743,12 @@
   "skyTop": "#4f7ab0",
   "skyBottom": "#688fb6",
   "island": "riverside",
-  "companion": "frog",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "frog",
+    "behavior": "float"
+   }
+  ]
  },
  "vietnam-vo-thuong": {
   "time": "sunset",
@@ -1121,8 +1757,12 @@
   "skyTop": "#be7d55",
   "skyBottom": "#d3b58c",
   "island": "riverside",
-  "companion": "frog",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "frog",
+    "behavior": "float"
+   }
+  ]
  },
  "vietnam-vo-tuong": {
   "time": "day",
@@ -1131,8 +1771,12 @@
   "skyTop": "#b0b7d9",
   "skyBottom": "#6895b6",
   "island": "riverside",
-  "companion": "frog",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "frog",
+    "behavior": "float"
+   }
+  ]
  },
  "vietnam-vo-vi": {
   "time": "day",
@@ -1141,8 +1785,12 @@
   "skyTop": "#6e9ab9",
   "skyBottom": "#68a3b6",
   "island": "riverside",
-  "companion": "frog",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "frog",
+    "behavior": "float"
+   }
+  ]
  },
  "wuxia-bear-playing-music-on-jade-bridge-with-friends": {
   "time": "day",
@@ -1151,8 +1799,20 @@
   "skyTop": "#b9bfe1",
   "skyBottom": "#9ba3cf",
   "island": "pavilion",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   },
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   }
+  ]
  },
  "wuxia-bear-playing-music-on-lattern-river-with-friends": {
   "time": "day",
@@ -1161,8 +1821,20 @@
   "skyTop": "#5361ac",
   "skyBottom": "#6874b6",
   "island": "lakeside",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   },
+   {
+    "kind": "fox",
+    "behavior": "sit"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "sit"
+   }
+  ]
  },
  "wuxia-the-bear-fighting-assasins-hyena": {
   "time": "night",
@@ -1171,8 +1843,20 @@
   "skyTop": "#142c47",
   "skyBottom": "#304a63",
   "island": "arena",
-  "companion": "hyena",
-  "behavior": "spar"
+  "companions": [
+   {
+    "kind": "hyena",
+    "behavior": "spar"
+   },
+   {
+    "kind": "hyena",
+    "behavior": "spar"
+   },
+   {
+    "kind": "hyena",
+    "behavior": "spar"
+   }
+  ]
  },
  "wuxia-the-bear-fighting-husky-opponent": {
   "time": "day",
@@ -1181,8 +1865,12 @@
   "skyTop": "#5392ac",
   "skyBottom": "#6895b6",
   "island": "arena",
-  "companion": "husky",
-  "behavior": "spar"
+  "companions": [
+   {
+    "kind": "husky",
+    "behavior": "spar"
+   }
+  ]
  },
  "wuxia-the-bear-healing-cultivate": {
   "time": "day",
@@ -1191,8 +1879,12 @@
   "skyTop": "#a3bed2",
   "skyBottom": "#7ba3bf",
   "island": "pavilion",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   }
+  ]
  },
  "wuxia-the-black-bear-is-dueling-panda-bamboo": {
   "time": "day",
@@ -1201,8 +1893,12 @@
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
   "island": "arena",
-  "companion": "panda",
-  "behavior": "spar"
+  "companions": [
+   {
+    "kind": "panda",
+    "behavior": "spar"
+   }
+  ]
  },
  "wuxia-the-black-bear-is-training-with-red-panda-shifu": {
   "time": "day",
@@ -1211,8 +1907,12 @@
   "skyTop": "#749ebc",
   "skyBottom": "#729cbb",
   "island": "arena",
-  "companion": "red_panda",
-  "behavior": "sit"
+  "companions": [
+   {
+    "kind": "red_panda",
+    "behavior": "sit"
+   }
+  ]
  },
  "wuxia-the-black-bear-is-traveling-with-friends": {
   "time": "day",
@@ -1221,8 +1921,16 @@
   "skyTop": "#9fbcd1",
   "skyBottom": "#6996b7",
   "island": "town",
-  "companion": "fox",
-  "behavior": "follow"
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "follow"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ]
  },
  "wuxia-the-black-bear-meditating-middle-lake-bamboo-forest": {
   "time": "night",
@@ -1231,8 +1939,12 @@
   "skyTop": "#172e43",
   "skyBottom": "#33506b",
   "island": "lakeside",
-  "companion": "frog",
-  "behavior": "float"
+  "companions": [
+   {
+    "kind": "frog",
+    "behavior": "float"
+   }
+  ]
  },
  "wuxia-the-jianghu-calls-her-home": {
   "time": "day",
@@ -1241,7 +1953,11 @@
   "skyTop": "#5c8db0",
   "skyBottom": "#769fbd",
   "island": "pavilion",
-  "companion": "crane",
-  "behavior": "fly"
+  "companions": [
+   {
+    "kind": "crane",
+    "behavior": "fly"
+   }
+  ]
  }
 }

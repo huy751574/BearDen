@@ -25,7 +25,7 @@ export class Diorama {
   private particles: Particles | null = null;
   private backdrop: Backdrop | null = null;
   private kit: Kit;
-  private companion: Companion | null = null;
+  private companions: Companion[] = [];
   private floaters: { obj: THREE.Object3D; baseY: number; phase: number; speed: number }[] = [];
   private t = 0;
   readonly environment: Environment;
@@ -46,18 +46,37 @@ export class Diorama {
     this.buildIsland(rand);
     this.buildFloatingRocks(rand);
     this.buildClouds(rand);
-    if (env.companion) {
-      this.companion = new Companion(env.companion, env.behavior ?? 'wander', {
-        anchors: this.kit.anchors,
-        walkRadius: WALK_RADIUS,
-        clamp: (p) => this.clampToWalkable(p),
-        rand: mulberry32(hash(seed + '/companion')),
-      });
-      this.group.add(this.companion.group);
-    }
+    const cast = env.companions ?? (env.companion ? [{ kind: env.companion, behavior: env.behavior ?? 'wander' }] : []);
+    const world = {
+      anchors: this.kit.anchors,
+      walkRadius: WALK_RADIUS,
+      clamp: (p: THREE.Vector3) => this.clampToWalkable(p),
+      rand: mulberry32(hash(seed + '/companion')),
+    };
+    cast.forEach((c, i) => {
+      const comp = new Companion(c.kind, c.behavior, world, i);
+      this.companions.push(comp);
+      this.group.add(comp.group);
+    });
     if (env.weather !== 'none') {
       this.particles = new Particles(env.weather, look.accent, ISLAND_RADIUS + 4);
       this.group.add(this.particles.points);
+    }
+  }
+
+  /** Keep walking companions from standing inside each other. */
+  private separateCompanions() {
+    const walkers = this.companions.filter((c) => c.creature.moves === 'walk' && c.pos.y < 0.5);
+    for (let i = 0; i < walkers.length; i++) {
+      for (let j = i + 1; j < walkers.length; j++) {
+        const a = walkers[i].pos, b = walkers[j].pos;
+        const dx = b.x - a.x, dz = b.z - a.z, d = Math.hypot(dx, dz), min = 0.95;
+        if (d < min) {
+          const push = (min - d) / 2 / (d || 1);
+          a.x -= dx * push; a.z -= dz * push;
+          b.x += dx * push; b.z += dz * push;
+        }
+      }
     }
   }
 
@@ -77,7 +96,8 @@ export class Diorama {
 
   update(dt: number, bear: BearInfo) {
     this.t += dt;
-    this.companion?.update(dt, bear);
+    for (const c of this.companions) c.update(dt, bear);
+    this.separateCompanions();
     this.environment.update(dt);
     this.particles?.update(dt);
     for (const f of this.floaters) {

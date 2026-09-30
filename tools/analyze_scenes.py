@@ -307,6 +307,44 @@ def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
     return "fox", "wander"
 
 
+FRIEND_WORDS = {"friends", "party", "heroes", "caravan", "feast", "tavern", "camping", "waltz", "island", "bay"}
+
+
+def extras_for(theme: str, words: set[str], main: str, main_beh: str) -> list[tuple[str, str]]:
+    """Extra companions for scenes whose art shows more than one friend (max 3)."""
+    out: list[tuple[str, str]] = []
+    # Pairs and groups that belong together.
+    if theme == "sun-and-moon":
+        out.append(("moon", "orbit") if main == "sun" else ("sun", "orbit"))
+    if theme == "to-hong":
+        out.append(("magpie", "fly") if main == "weaver" else ("weaver", "sit"))
+    if theme == "power-bearer" and main != "drone":
+        out.append(("drone", "orbit"))  # the bear's helper bot watches the villain
+    if "dogs" in words:
+        out += [("dog", "perform")] * 2  # a little orchestra
+    if "cats" in words:
+        out += [("cat", "perform")] * 2
+    if words & {"hyena", "assasins", "assassins"}:
+        out += [("hyena", "spar")] * 2  # the assassin pack
+    if "library" in words:
+        out.append(("cat_white", "sleep"))  # the Persian cat from the art
+    if words & {"jazz", "pinkpanther"}:
+        out.append(("cat_pink", "perform"))
+    if "working" in words:
+        out.append(("cat", "sleep"))  # friends relaxing while the bear works
+    if "stargazing" in words:
+        out.append(("robin", "fly"))
+    # The fox and capybara party ("Bear & Friends" in the art), when nothing more specific applies.
+    if not out and words & FRIEND_WORDS:
+        beh = main_beh if main_beh in ("sit", "dance", "follow") else "follow"
+        if words & {"music", "playing"}:
+            beh = "sit"
+        if words & {"island", "waltz", "dancing"}:
+            beh = "dance"
+        out += [(k, beh) for k in ("fox", "capybara") if k != main]
+    return out[:3]
+
+
 def island_for(theme: str, words: set[str]) -> tuple[str, str]:
     island = THEME_ISLAND.get(theme) or first_rule(ISLAND_RULES, words, THEME_DEFAULT_ISLAND.get(theme, "meadow"))
     if island == "stage" and "snow" in words:
@@ -343,7 +381,12 @@ def main() -> int:
         # Island layout: scene's own words only (YouTube titles add SEO noise).
         scene_words = words_of(sid.replace("-", " "), s["title"], *(v["title"].split("|")[0] for v in s["youtube"]))
         island, variant = island_for(s["theme"], scene_words)
-        companion, behavior = companion_for(s["theme"], sid, set(sid.split("-")) | scene_words)
+        all_words = set(sid.split("-")) | scene_words
+        companion, behavior = companion_for(s["theme"], sid, all_words)
+        extras = extras_for(s["theme"], all_words, companion, behavior)
+        if behavior == "follow" and any(bh == "dance" for _, bh in extras):
+            behavior = "dance"  # the whole group dances together
+        cast = [(companion, behavior)] + extras
         out[sid] = {
             "time": time,
             "below": below,
@@ -352,8 +395,7 @@ def main() -> int:
             "skyBottom": hexcolor(sky_bottom),
             "island": island,
             **({"variant": variant} if variant else {}),
-            "companion": companion,
-            "behavior": behavior,
+            "companions": [{"kind": k, "behavior": bh} for k, bh in cast],
         }
         key = f"island {island}{'/' + variant if variant else ''}"
         counts[key] = counts.get(key, 0) + 1

@@ -31,7 +31,7 @@ const tmp = new THREE.Vector3();
 export class Companion {
   readonly group = new THREE.Group();
   readonly creature: Creature;
-  private pos = new THREE.Vector3();
+  readonly pos = new THREE.Vector3();
   private target: THREE.Vector3 | null = null;
   private state = 'start';
   private timer = 0;
@@ -43,7 +43,8 @@ export class Companion {
   private arc: { from: THREE.Vector3; to: THREE.Vector3; t: number } | null = null;
   private riseY = 0;
 
-  constructor(kind: string, readonly behavior: Behavior, private world: CompanionWorld) {
+  /** slot = index among the scene's companions; extras are placed apart from the first. */
+  constructor(kind: string, readonly behavior: Behavior, private world: CompanionWorld, readonly slot = 0) {
     this.creature = makeCreature(kind);
     this.emote = new Emote(this.creature.top + 0.35);
     this.group.add(this.creature.root);
@@ -74,15 +75,21 @@ export class Companion {
     const root = this.creature.root;
     const a = this.anchor(b === 'perform' || b === 'dance' ? 'stage' : b === 'float' || b === 'swim' ? 'pond' : b === 'sleep' ? 'bed' : 'seat', 'fire', 'loom');
     if (b === 'emerge') {
-      // Big villain rising from beyond the island edge, off to the right of the painting.
-      this.pos.set(10.5, 0.3, -8);
+      // Big villain rising from beyond the island edge, beside the painting (a second one mirrors it).
+      this.pos.set(this.slot % 2 ? -10.5 : 10.5, 0.3, -8);
       root.rotation.y = Math.atan2(-this.pos.x, -this.pos.z);
     } else if (b === 'swim' && !a) {
       this.pos.set(0, -9, 16); // whale circling below
     } else if (a) {
       const toCenter = Math.atan2(-a.x, -a.z);
       const off = b === 'perform' || b === 'float' || b === 'swim' || b === 'sleep' ? 0 : a.r + 0.9;
-      this.pos.set(a.x + Math.sin(toCenter) * off, a.y, a.z + Math.cos(toCenter) * off);
+      // Extras stand beside the first: alternate left/right, 1.3 m apart.
+      const side = this.slot ? (this.slot % 2 ? 1 : -1) * Math.ceil(this.slot / 2) * 1.3 : 0;
+      this.pos.set(
+        a.x + Math.sin(toCenter) * off + Math.cos(toCenter) * side,
+        a.y,
+        a.z + Math.cos(toCenter) * off - Math.sin(toCenter) * side,
+      );
       root.rotation.y = toCenter;
     } else {
       this.pos.copy(this.spot(2.6, 4.5));
@@ -320,8 +327,8 @@ export class Companion {
     // Circle above the island, then pick a spot to land.
     if (bird) bird.flying = true;
     if (this.state !== 'air') { this.state = 'air'; this.timer = 10; }
-    const a = this.t * 0.35;
-    const r = this.creature.top > 3 ? 12 : 5.5;
+    const a = this.t * 0.35 + this.slot * 2.1;
+    const r = this.creature.top > 3 ? 12 : 5.5 + this.slot * 0.8;
     const h = this.creature.top > 3 ? 9 : 4.5;
     const goal = new THREE.Vector3(Math.cos(a) * r, h + Math.sin(this.t) * 0.5, Math.sin(a) * r);
     tmp.subVectors(goal, this.pos);
@@ -369,7 +376,7 @@ export class Companion {
 
   private float() {
     const pond = this.anchor('pond');
-    const a = this.t * 0.15;
+    const a = this.t * 0.15 + this.slot * Math.PI;
     const r = pond ? pond.r * 0.45 : 0;
     this.pos.set((pond?.x ?? this.pos.x) + Math.cos(a) * r, 0.1 + Math.sin(this.t * 1.5) * 0.04, (pond?.z ?? this.pos.z) + Math.sin(a) * r);
     this.creature.root.rotation.y = -a;
@@ -378,7 +385,7 @@ export class Companion {
   }
 
   private orbit(bear: BearInfo) {
-    const a = this.t * 0.6;
+    const a = this.t * 0.6 + this.slot * Math.PI;
     this.pos.set(bear.pos.x + Math.cos(a) * 1.7, 1.6 + Math.sin(this.t * 1.7) * 0.25, bear.pos.z + Math.sin(a) * 1.7);
     this.creature.root.rotation.y = this.yawTo(bear.pos);
     if (this.timer <= 0) { this.emote.show(pick(['✨', '🌟', '💛']), 1.5); this.timer = 10; }

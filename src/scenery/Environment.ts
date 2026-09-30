@@ -21,6 +21,8 @@ export interface SceneEnv {
   /** Secondary character (creatures.ts kind) and its script (Companion.ts). */
   companion?: string;
   behavior?: import('../character/Companion').Behavior;
+  /** Several companions (first is the main one); replaces companion/behavior. */
+  companions?: { kind: string; behavior: import('../character/Companion').Behavior }[];
 }
 
 const BELOW_Y = -20; // height of the world below the island

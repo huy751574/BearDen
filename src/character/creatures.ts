@@ -64,6 +64,11 @@ export const CHIBI: Record<string, ChibiSpec> = {
   cat: { palette: P('#f0a860', '#fff1dc', '#ffc0b0'), ears: 'pointy', tail: 'long', snout: 0.8 },
   cat_grey: { palette: P('#8a93a3', '#eef1f6', '#ffc0c8'), ears: 'pointy', tail: 'long', snout: 0.8,
     extras: ({ head, part }) => part(head, new THREE.TorusGeometry(0.2, 0.03, 6, 16), '#e8483f', [0, -0.3, 0.1], { rot: [Math.PI / 2, 0, 0] }) },
+  cat_white: { palette: P('#fbfbfb', '#ffffff', '#ffc8d0'), ears: 'small', tail: 'bushy', snout: 0.6, size: 0.85 },
+  cat_pink: {
+    palette: P('#f08cb4', '#ffd6e6', '#ffb0cc'), ears: 'pointy', tail: 'long', snout: 1.0, size: 1.1,
+    extras: ({ armR, part }) => part(armR, new THREE.CylinderGeometry(0.02, 0.02, 0.35, 6), '#2a2a2a', [0, -0.4, 0.12], { rot: [0.9, 0, 0] }),
+  },
   cat_idol: {
     palette: P('#fff6f0', '#ffffff', '#ffc0d0'), ears: 'pointy', tail: 'long', snout: 0.8,
     extras: ({ head, body, armR, part }) => {

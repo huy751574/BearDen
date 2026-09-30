@@ -144,7 +144,9 @@ export class Lounge {
     }
     if (key === 'q') this.client?.send({ t: 'act', a: 'wave' });
     if (key === 'e') this.client?.send({ t: 'act', a: 'sit' });
-    return false; // let the game animate wave / sit locally too
+    const emote = ({ '1': 'dance', '2': 'cheer', '3': 'sing', '4': 'clap' } as const)[key as '1'];
+    if (emote) this.client?.send({ t: 'act', a: emote });
+    return false; // let the game animate wave / sit / emotes locally too
   }
 
   // ---------------------------------------------------------------- server messages

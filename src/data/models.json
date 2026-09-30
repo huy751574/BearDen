@@ -1,1 +1,65 @@
-{}
+{
+  "bear": {
+    "file": "models/bear.glb",
+    "clips": {
+      "idle": "models/bear.glb",
+      "cheer": "models/bear@cheer.glb",
+      "clap": "models/bear@clap.glb",
+      "dance": "models/bear@dance.glb",
+      "hurt": "models/bear@hurt.glb",
+      "run": "models/bear@run.glb",
+      "sing": "models/bear@sing.glb",
+      "sit": "models/bear@sit.glb",
+      "victory": "models/bear@victory.glb",
+      "walk": "models/bear@walk.glb",
+      "wave": "models/bear@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.5
+  },
+  "capybara": {
+    "file": "models/capybara.glb",
+    "clips": {
+      "idle": "models/capybara.glb",
+      "cheer": "models/capybara@cheer.glb",
+      "dance": "models/capybara@dance.glb",
+      "run": "models/capybara@run.glb",
+      "sing": "models/capybara@sing.glb",
+      "sit": "models/capybara@sit.glb",
+      "walk": "models/capybara@walk.glb",
+      "wave": "models/capybara@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.5
+  },
+  "cat_idol": {
+    "file": "models/cat_idol.glb",
+    "clips": {
+      "idle": "models/cat_idol.glb",
+      "cheer": "models/cat_idol@cheer.glb",
+      "dance": "models/cat_idol@dance.glb",
+      "run": "models/cat_idol@run.glb",
+      "sing": "models/cat_idol@sing.glb",
+      "sit": "models/cat_idol@sit.glb",
+      "walk": "models/cat_idol@walk.glb",
+      "wave": "models/cat_idol@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.5
+  },
+  "fox": {
+    "file": "models/fox.glb",
+    "clips": {
+      "idle": "models/fox.glb",
+      "cheer": "models/fox@cheer.glb",
+      "dance": "models/fox@dance.glb",
+      "run": "models/fox@run.glb",
+      "sing": "models/fox@sing.glb",
+      "sit": "models/fox@sit.glb",
+      "walk": "models/fox@walk.glb",
+      "wave": "models/fox@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.5
+  }
+}

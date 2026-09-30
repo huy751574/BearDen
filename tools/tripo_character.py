@@ -46,10 +46,14 @@ PRESETS = {
     "run": "preset:biped:run",
     "sit": "preset:biped:sit",
     "wave": "preset:biped:wave_goodbye_01",
-    # Extras the game may use later:
+    # Emotes (keys 1-4 in the game) and mini-game reactions:
     "dance": "preset:biped:dance_01",
     "cheer": "preset:biped:cheer",
     "sing": "preset:biped:sing_01",
+    "clap": "preset:biped:clap",
+    "victory": "preset:biped:victory_celebration",
+    "hurt": "preset:biped:hurt",
+    "angry": "preset:biped:angry_01",
 }
 POLL_SECONDS = 3
 TASK_TIMEOUT = 20 * 60
@@ -146,6 +150,8 @@ def main() -> int:
     ap.add_argument("--autofix", action="store_true", help="let Tripo clean up the input image first")
     ap.add_argument("--yes", action="store_true", help="don't ask before spending credits")
     ap.add_argument("--restart", action="store_true", help="ignore saved progress and start over")
+    ap.add_argument("--no-rig", action="store_true",
+                    help="model only, no skeleton or animations (for creatures the game animates in code, e.g. a dragon)")
     args = ap.parse_args()
 
     anims = [a.strip() for a in args.anims.split(",") if a.strip()]
@@ -170,7 +176,10 @@ def main() -> int:
 
     todo = []
     if "model_task" not in state: todo.append(f"generate 3D model ({args.model}, face_limit {args.face_limit})")
-    if "rig_task" not in state: todo += ["rig check", "auto-rig (biped, mixamo bones)"]
+    if args.no_rig:
+        anims = []
+    elif "rig_task" not in state:
+        todo += ["rig check", "auto-rig (biped, tripo bones)"]
     todo += [f"animation '{a}' ({PRESETS[a]})" for a in anims if a not in state["anims"]]
     if not todo:
         print("Everything is already generated; re-downloading files.")
@@ -201,8 +210,10 @@ def main() -> int:
         if preview:
             tripo.download(preview, CACHE / f"{args.name}_preview.webp")
 
+        if args.no_rig:
+            tripo.download(model_url(model_task), MODELS / f"{args.name}.glb")
         # 3-4. Rig check + rig
-        if "rig_task" not in state:
+        elif "rig_task" not in state:
             print("\n[3/4] Checking the model can be rigged")
             check = tripo.wait(tripo.create("animations/rig-check", {"input": state["model_task"]}), "rig-check")
             out = check.get("output") or {}
@@ -215,10 +226,13 @@ def main() -> int:
             print("[4/4] Rigging")
             state["rig_task"] = tripo.create("animations/rig", {
                 "input": state["model_task"], "model": "v1.0-20240301", "rig_type": "biped",
-                "spec": "mixamo", "out_format": "glb",
+                # Tripo's own bone naming: its animation presets fail (error 1004,
+                # "Invalid input parameter") on a Mixamo-named rig.
+                "spec": "tripo", "out_format": "glb",
             })
             save()
-        tripo.wait(state["rig_task"], "rig")
+        if not args.no_rig:
+            tripo.wait(state["rig_task"], "rig")
 
         # 5. One retarget per animation (clear clip names, one file each).
         print("\nAnimations")

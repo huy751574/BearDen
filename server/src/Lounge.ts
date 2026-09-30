@@ -3,7 +3,7 @@ import type { Env } from './index';
 import { verifyFirebaseToken } from './auth';
 import house from './house.json';
 import {
-  MAX_SLOTS, IDLE_SECONDS, WALK_RADIUS, MAX_QUEUE, MAX_SONG_SECONDS, CHAT_LIMIT, MAX_CHAT_CHARS,
+  isAct, MAX_SLOTS, IDLE_SECONDS, WALK_RADIUS, MAX_QUEUE, MAX_SONG_SECONDS, CHAT_LIMIT, MAX_CHAT_CHARS,
   parseYouTubeId, votesNeeded,
   type ClientMsg, type ServerMsg, type Player, type Song, type QueueItem, type ChatMsg, type You, type Counts, type Votes,
 } from '../../src/lounge/protocol';
@@ -177,7 +177,7 @@ export class Lounge extends DurableObject<Env> {
 
   private act(ws: WebSocket, att: Attachment, a: string, now: number) {
     if (att.slot === null || now - att.lastAct < 250) return;
-    if (a !== 'jump' && a !== 'pillow' && a !== 'wave' && a !== 'sit') return;
+    if (!isAct(a)) return;
     att.lastAct = now;
     this.touch(att, now);
     let hits: { slot: number; dx: number; dz: number; off?: boolean }[] | undefined;

@@ -77,8 +77,53 @@ Walk around (WASD), sit (E), wave (Q). If the model:
 
 Re-running `tools/check_models.py` keeps those edits.
 
-## Friends later
+## Emotes
 
-The same command works for the cat singer, fox, capybara, tanuki and others:
-`--name cat --image refs/cat.png`. The game currently uses only `bear`.
-Placing friends on scenes is a later step.
+The bear also has `dance`, `cheer`, `sing`, `clap`, `victory` and `hurt`
+(keys 1-4 in the game; mini-games play victory / hurt). Add them to any
+character with
+`--anims idle,walk,run,sit,wave,dance,cheer,sing,clap,victory,hurt`
+(10 credits each). Emotes a model lacks fall back to similar ones.
+
+## Friends
+
+Same steps, one image per friend, saved in `refs/`. Use the bear prompt's
+ending ("Front view, full body, standing straight in an A-pose … Plain pure
+white background … Clean flat anime / cel-shaded style with dark outlines.")
+and start it with the friend's description below, attaching one of your
+scene images with that friend as a style reference.
+
+| Friend | Scenes | Save as | Description to start the prompt with |
+|---|---|---|---|
+| Fox | 24 | `refs/fox.png` | Cute chibi orange fox standing upright on two legs, big round head, pointed ears with dark tips, white muzzle and chest, big fluffy orange tail with a white tip, dark brown paws. |
+| Capybara | 21 | `refs/capybara.png` | Cute chibi capybara standing upright on two legs, chubby round brown body, blunt square muzzle, small round ears, sleepy calm eyes, pink blush. |
+| Cat idol | 7 | `refs/cat_idol.png` | Cute chibi cat-eared idol girl, very long pastel pink-to-blue twin tails falling behind her back (clear of the arms and legs), cat ears, pink and blue frilly idol dress with a big bow, white thigh-high socks, pink shoes, no microphone. |
+
+| Moon bunny | 5 (Sun and Moon) | `refs/moon_bunny.png` | Cute chibi white bunny girl standing upright on two legs, long upright ears with pink insides, big glossy grey eyes, soft pink blush, small worried-sweet expression, knee-length open pale blue coat (legs clearly visible below it), lilac scarf, small beige crossbody bag, white feet. |
+
+**Dragon** (Game of Thrones cover scene) is four-legged with wings, so it
+can't use the two-legged animations. It is generated as a still model and
+animated in code (breathing, blinking ember glow, a slow head turn), which
+suits the sleeping dragon in that scene. Its prompt is different: **three-quarter
+front view** instead of front view, because a front view hides a four-legged
+body:
+
+> Cute chibi dragon from the attached image, full body, **three-quarter front
+> view, lying curled up asleep on the ground**, chubby rounded body, big head
+> with two curved horns and a short snout, moss-green scales, folded wings on
+> its back, long tail curled around its body, glowing amber-orange cracks
+> between the scales. Plain pure white background, soft even lighting, no
+> ground shadow, whole body visible, centered. Clean flat anime / cel-shaded
+> style with dark outlines.
+
+Save it as `refs/dragon.png`, then:
+```bash
+python tools/tripo_character.py --name dragon --image refs/dragon.png --no-rig
+```
+(30 credits: model only.)
+
+Then, per friend:
+```bash
+python tools/tripo_character.py --name fox --image refs/fox.png --anims idle,walk,run,sit,wave,dance,cheer,sing
+```
+About 135 credits each (model 30, rig 25, 8 animations × 10).

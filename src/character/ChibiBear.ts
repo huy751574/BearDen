@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { toonMaterial, addOutline } from '../engine/toon';
+import type { Emote } from './Character';
 
 // Procedural chibi animal built from primitives. Proportions follow the Bear
 // Den art: big round head, small round body, tan muzzle, blush cheeks.
@@ -244,6 +245,16 @@ export class ChibiBear {
 
   wave() {
     this.act('wave', 1.6);
+  }
+
+  /** Emotes on the procedural body: the closest built-in action. */
+  emote(name: Emote) {
+    const map: Record<Emote, [Action, number]> = {
+      wave: ['wave', 1.6], dance: ['dance', 4], cheer: ['cheer', 1.6], sing: ['sing', 4],
+      clap: ['cheer', 1.2], victory: ['cheer', 2.5], hurt: ['none', 0.4],
+    };
+    const [a, s] = map[name];
+    this.act(a, s);
   }
 
   /** Play an action for `seconds` (0 = until another action). */

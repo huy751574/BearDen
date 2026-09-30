@@ -48,7 +48,9 @@ export interface ChatMsg {
   ts: number;
 }
 
-export type Act = 'jump' | 'pillow' | 'wave' | 'sit';
+export type Act = 'jump' | 'pillow' | 'wave' | 'sit' | 'dance' | 'cheer' | 'sing' | 'clap';
+export const ACTS: readonly Act[] = ['jump', 'pillow', 'wave', 'sit', 'dance', 'cheer', 'sing', 'clap'];
+export const isAct = (x: string): x is Act => (ACTS as readonly string[]).includes(x);
 
 // ---------------------------------------------------------------- client -> server
 

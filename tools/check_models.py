@@ -23,7 +23,7 @@ MODELS = ROOT / "public" / "models"
 OUT = ROOT / "src" / "data" / "models.json"
 
 DEFAULTS = {"forward": "+x", "height": 1.5}  # Tripo exports X-forward
-KNOWN_CLIPS = {"idle", "walk", "run", "sit", "wave"}
+KNOWN_CLIPS = {"idle", "walk", "run", "sit", "wave", "dance", "cheer", "sing", "clap", "victory", "hurt"}
 BIG_FILE_MB = 15
 
 

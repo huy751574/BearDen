@@ -316,6 +316,7 @@ def extras_for(theme: str, words: set[str], main: str, main_beh: str) -> list[tu
     # Pairs and groups that belong together.
     if theme == "sun-and-moon":
         out.append(("moon", "orbit") if main == "sun" else ("sun", "orbit"))
+        out.append(("moon_bunny", "follow"))  # the white bunny from the art walks with the bear
     if theme == "to-hong":
         out.append(("magpie", "fly") if main == "weaver" else ("weaver", "sit"))
     if theme == "power-bearer" and main != "drone":

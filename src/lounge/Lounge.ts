@@ -3,6 +3,7 @@ import type { Game } from '../engine/Game';
 import { LoungeWorld } from './LoungeWorld';
 import { LoungeClient, LOUNGE_URL } from './LoungeClient';
 import { SyncedPlayer } from './SyncedPlayer';
+import { ScreenVideo } from './ScreenVideo';
 import { Avatar, avatarLabel } from './avatars';
 import { chatConfigured, getIdToken, onUserChange, signIn } from '../chat/ChatService';
 import {
@@ -19,6 +20,8 @@ export class Lounge {
   private world = new LoungeWorld();
   private client: LoungeClient | null = null;
   private player: SyncedPlayer;
+  private screenVideo: ScreenVideo;
+  private afterRender = () => this.screenVideo.render();
   private you: You = { signedIn: false, name: null, uid: null, slot: null, waiting: null };
   private song: Song | null = null;
   private votes: Votes = { count: 0, need: 1, mine: false };
@@ -54,7 +57,12 @@ export class Lounge {
         <div class="label">Now playing</div>
         <div class="lg-song"></div>
         <div class="lg-by"></div>
-        <div class="screen lg-screen"></div>
+        <div class="lg-audio">
+          <button class="lg-mute" aria-label="Mute">🔊</button>
+          <input class="lg-vol" type="range" min="0" max="100" aria-label="Volume">
+          <span class="lg-onscreen">📺 on the stage screen</span>
+        </div>
+        <button class="lg-btn primary lg-start" hidden>▶ Start the music</button>
         <div class="lg-controls">
           <button class="lg-skip">⏭ Skip</button>
           <span class="lg-votes"></span>
@@ -65,7 +73,7 @@ export class Lounge {
       </div>
       <div class="lg-hint"><kbd>WASD</kbd>/click move · <kbd>Space</kbd> jump · <kbd>F</kbd> pillow · <kbd>Q</kbd> wave · <kbd>E</kbd> sit · <kbd>Enter</kbd> chat</div>
       <div class="lg-toast" hidden></div>`;
-    for (const k of ['exit', 'counts', 'status', 'idle', 'join', 'log', 'song', 'by', 'screen', 'skip', 'votes', 'qhead', 'queue', 'toast']) {
+    for (const k of ['exit', 'counts', 'status', 'idle', 'join', 'log', 'song', 'by', 'mute', 'vol', 'start', 'skip', 'votes', 'qhead', 'queue', 'toast']) {
       this.$[k] = this.el.querySelector(`.lg-${k}`)!;
     }
     this.$.exit.onclick = () => this.onExit();
@@ -84,10 +92,33 @@ export class Lounge {
       if (input.value.trim()) this.client?.send({ t: 'queue', url: input.value });
       input.value = '';
     };
-    this.player = new SyncedPlayer(this.$.screen, () => this.client?.now() ?? Date.now(), {
+    const { camera, container } = this.game.view;
+    this.screenVideo = new ScreenVideo(container, camera, this.world.screen, LoungeWorld.SCREEN_WIDTH);
+    this.player = new SyncedPlayer(this.screenVideo.host, () => this.client?.now() ?? Date.now(), {
       duration: (videoId, seconds) => this.client?.send({ t: 'duration', videoId, seconds }),
       error: (videoId, code) => this.client?.send({ t: 'playerError', videoId, code }),
     });
+    this.player.onBlocked = (blocked) => (this.$.start.hidden = !blocked);
+    this.$.start.onclick = () => {
+      this.player.start();
+      this.$.start.hidden = true;
+    };
+    const vol = this.$.vol as HTMLInputElement;
+    let lastVolume = this.player.currentVolume || 70;
+    const showVolume = () => {
+      vol.value = String(this.player.currentVolume);
+      this.$.mute.textContent = this.player.currentVolume ? '🔊' : '🔇';
+    };
+    vol.oninput = () => {
+      this.player.setVolume(Number(vol.value));
+      if (Number(vol.value)) lastVolume = Number(vol.value);
+      showVolume();
+    };
+    this.$.mute.onclick = () => {
+      this.player.setVolume(this.player.currentVolume ? 0 : lastVolume);
+      showVolume();
+    };
+    showVolume();
   }
 
   // ---------------------------------------------------------------- lifecycle
@@ -97,6 +128,8 @@ export class Lounge {
     this.game.setMode('play');
     this.game.controlsEnabled = false;
     this.game.frameHooks.push(this.frameHook);
+    this.game.afterRenderHooks.push(this.afterRender);
+    this.screenVideo.attach();
     this.overview();
     this.renderJoin();
     this.renderSong();
@@ -120,6 +153,10 @@ export class Lounge {
     this.player.destroy();
     this.unsubUser?.();
     this.game.frameHooks.splice(this.game.frameHooks.indexOf(this.frameHook), 1);
+    this.game.afterRenderHooks.splice(this.game.afterRenderHooks.indexOf(this.afterRender), 1);
+    this.screenVideo.detach();
+    this.world.showVideo(false);
+    this.$.start.hidden = true;
     this.game.controlsEnabled = true;
     this.game.resetCharacter(); // the avatar (or its jumped-off leftover) goes; the hero bear returns
     clearInterval(this.idleTimer);
@@ -314,6 +351,8 @@ export class Lounge {
     if (changed) {
       this.player.play(song);
       this.world.setScreen(song);
+      this.world.showVideo(!!song);
+      if (!song) this.$.start.hidden = true;
       this.myVoteFor = votes.mine && song ? song.videoId : '';
     }
     this.renderSong();

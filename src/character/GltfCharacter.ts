@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
-import { toonMaterial, addSkinnedOutline } from '../engine/toon';
+import { toonMaterial, addOutline, addSkinnedOutline } from '../engine/toon';
 import type { Character, Emote } from './Character';
 import type { Action } from './ChibiBear';
 
@@ -62,6 +62,67 @@ export async function loadGltfCharacter(entry: ModelEntry, height = entry.height
   return new GltfCharacter(model, clips, { ...entry, height });
 }
 
+/**
+ * A model without a skeleton (made with tripo_character.py --no-rig), in the
+ * game's toon look, standing on y = 0, `height` metres tall, facing +Z.
+ * `glow` picks the bright orange pixels of its texture (embers, lava cracks)
+ * as an emissive map; returns the materials so the caller can pulse them.
+ */
+export async function loadStaticModel(entry: ModelEntry, height = entry.height, glow = false) {
+  const gltf = await load(entry.file);
+  const model = gltf.scene.clone(true);
+  model.rotation.y = FORWARD_YAW[entry.forward] ?? 0;
+  model.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(model);
+  const scale = height / Math.max(box.max.y - box.min.y, 1e-3);
+  model.scale.setScalar(scale);
+  model.position.y = -box.min.y * scale;
+  const materials: THREE.MeshToonMaterial[] = [];
+  // Collect first: addOutline adds child meshes, which traverse would visit.
+  const meshes: THREE.Mesh[] = [];
+  model.traverse((o) => void ((o as THREE.Mesh).isMesh && meshes.push(o as THREE.Mesh)));
+  meshes.forEach((mesh) => {
+    const old = mesh.material as THREE.MeshStandardMaterial;
+    const mat = toonMaterial(old.color ?? '#ffffff', { map: old.map ?? null });
+    if (glow && old.map) {
+      const mask = emberMask(old.map);
+      if (mask) Object.assign(mat, { emissive: new THREE.Color('#ff8a2a'), emissiveMap: mask, emissiveIntensity: 1 });
+    }
+    materials.push(mat);
+    mesh.material = mat;
+    mesh.castShadow = true;
+    addOutline(mesh, 0.018 / scale);
+  });
+  const root = new THREE.Group();
+  root.add(model);
+  return { root, materials };
+}
+
+/** White where the texture is warm orange (glowing cracks), black elsewhere. */
+function emberMask(tex: THREE.Texture): THREE.Texture | null {
+  const img = tex.image as CanvasImageSource & { width: number; height: number };
+  if (!img?.width) return null;
+  const w = Math.min(img.width, 512), h = Math.min(img.height, 512);
+  const c = document.createElement('canvas');
+  c.width = w;
+  c.height = h;
+  const g = c.getContext('2d', { willReadFrequently: true })!;
+  g.drawImage(img, 0, 0, w, h);
+  const px = g.getImageData(0, 0, w, h);
+  const d = px.data;
+  for (let i = 0; i < d.length; i += 4) {
+    const r = d[i], gr = d[i + 1], b = d[i + 2];
+    // Warm orange (Tripo's textures are muted: cracks sit around rgb(195,130,75)).
+    const ember = r > 140 && r > gr + 12 && r - b > 80 && gr > b;
+    d[i] = d[i + 1] = d[i + 2] = ember ? 255 : 0;
+  }
+  g.putImageData(px, 0, 0);
+  const mask = new THREE.CanvasTexture(c);
+  mask.flipY = tex.flipY;
+  mask.colorSpace = THREE.SRGBColorSpace;
+  return mask;
+}
+
 export class GltfCharacter implements Character {
   readonly root = new THREE.Group();
   pose: 'stand' | 'sit' | 'sleep' = 'stand';
@@ -71,6 +132,8 @@ export class GltfCharacter implements Character {
   private body = new THREE.Group();
   private head: THREE.Bone | null = null;
   private headYaw = 0;
+  /** Head rotation before our turn was added (restored each frame, so turns never pile up). */
+  private headBase: THREE.Quaternion | null = null;
   private lie = 0;
   private height: number;
   private mixer: THREE.AnimationMixer;
@@ -161,6 +224,8 @@ export class GltfCharacter implements Character {
 
     const walk = this.actions.get('walk');
     if (walk) walk.timeScale = THREE.MathUtils.clamp(speed / this.walkSpeed, 0.6, 1.8);
+    // Undo last frame's head turn first: a clip without a head track wouldn't overwrite it.
+    if (this.head && this.headBase) this.head.quaternion.copy(this.headBase);
     this.mixer.update(dt);
 
     // Sleep: the sitting pose tipped onto its side, curled up.
@@ -172,7 +237,9 @@ export class GltfCharacter implements Character {
     // Head turn on top of the animation, about the character's up axis.
     const want = this.lookYaw === null || this.lie > 0.5 ? 0 : THREE.MathUtils.clamp(this.lookYaw, -1, 1);
     this.headYaw += (want - this.headYaw) * Math.min(1, dt * 6);
+    this.headBase = null;
     if (this.head?.parent && Math.abs(this.headYaw) > 1e-3) {
+      this.headBase = this.head.quaternion.clone();
       const parentQ = this.head.parent.getWorldQuaternion(new THREE.Quaternion());
       const rootQ = this.root.getWorldQuaternion(new THREE.Quaternion());
       const up = new THREE.Vector3(0, 1, 0).applyQuaternion(rootQ);

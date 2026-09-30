@@ -47,6 +47,12 @@ export class LoungeWorld implements World {
   private fxRoot = new THREE.Group();
   private particles: Particles;
   private screenTex: THREE.CanvasTexture;
+  /** The stage screen (ScreenVideo lines the YouTube player up with it). */
+  screen!: THREE.Mesh;
+  static readonly SCREEN_WIDTH = 7;
+  private cardMaterial!: THREE.MeshBasicMaterial;
+  /** Writes see-through pixels, so the player behind the canvas shows. */
+  private holeMaterial = new THREE.MeshBasicMaterial({ color: '#000000', opacity: 0, blending: THREE.NoBlending, toneMapped: false, fog: false });
   private screenCanvas = document.createElement('canvas');
   private t = 0;
   /** Slot of the local player (drawn by the game as the controlled character). */
@@ -104,9 +110,11 @@ export class LoungeWorld implements World {
     const stage = new THREE.Group();
     k.part(stage, new THREE.CylinderGeometry(4, 4.2, 0.6, 32, 1, false, Math.PI / 2, Math.PI), '#3a2e44', [0, 0.3, 0]);
     k.part(stage, new THREE.BoxGeometry(7.4, 4.3, 0.3), '#1a1520', [0, 3.4, -1.6]);
-    const screen = new THREE.Mesh(new THREE.PlaneGeometry(7, 3.94), new THREE.MeshBasicMaterial({ map: this.screenTex, toneMapped: false }));
-    screen.position.set(0, 3.4, -1.44);
-    stage.add(screen);
+    this.cardMaterial = new THREE.MeshBasicMaterial({ map: this.screenTex, toneMapped: false });
+    const W = LoungeWorld.SCREEN_WIDTH;
+    this.screen = new THREE.Mesh(new THREE.PlaneGeometry(W, (W * 9) / 16), this.cardMaterial);
+    this.screen.position.set(0, 3.4, -1.44);
+    stage.add(this.screen);
     for (const s of [-1, 1]) {
       k.part(stage, new THREE.BoxGeometry(0.9, 1.3, 0.7), '#1a1a22', [3.2 * s, 0.95, -0.6]);
       k.light(stage, '#ff7eb6', 2.5, 9, [3.2 * s, 2.5, 0.5]);
@@ -147,6 +155,11 @@ export class LoungeWorld implements World {
       const s = k.spot(1, { minR: 12, tall: false });
       if (s) k.put(N.flowers(k, 0.9, 24), s.x, s.z);
     }
+  }
+
+  /** true: the screen shows the video (see ScreenVideo); false: the song card. */
+  showVideo(on: boolean) {
+    this.screen.material = on ? this.holeMaterial : this.cardMaterial;
   }
 
   /** Draw the current song on the stage screen. */

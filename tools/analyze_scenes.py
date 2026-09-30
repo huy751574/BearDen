@@ -253,7 +253,7 @@ COMPANION_RULES: list[tuple[list[str], str, str]] = [
     (["lyre", "pigeons"], "pigeon", "fly"),
     (["goat", "lucia"], "goat", "wander"),
     (["jazz", "bar"], "cat_grey", "perform"),
-    (["throne", "kings"], "dragon", "fly"),
+    (["throne", "kings"], "dragon", "sleep"),  # asleep by the throne, as in the art
     (["lattern", "lantern"], "crane", "fly"),
     (["pyramids", "island", "bay", "castle", "mammoth", "war"], "fox", "follow"),
 ]

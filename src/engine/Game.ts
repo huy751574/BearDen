@@ -61,17 +61,23 @@ export class Game {
   pointerHook: ((p: THREE.Vector3 | null) => boolean) | null = null;
   keyHook: ((key: string) => boolean) | null = null;
   frameHooks: ((dt: number) => void)[] = [];
+  /** Run right after each frame is drawn (e.g. layers that follow the camera). */
+  afterRenderHooks: (() => void)[] = [];
 
   /** 'showcase' = menu background (slow orbit), 'play' = player controls the bear. */
   mode: 'showcase' | 'play' = 'showcase';
 
   constructor(private container: HTMLElement) {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    // alpha: pages can punch see-through holes in the canvas (the lounge's
+    // video screen shows a YouTube player placed behind it).
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setClearColor('#000000', 1);
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(this.renderer.domElement);
+    Object.assign(this.renderer.domElement.style, { position: 'relative', zIndex: '1' });
 
     this.camera.position.set(0, 4, 9);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -137,6 +143,11 @@ export class Game {
     } catch (e) {
       console.warn(`Model "${name}" failed to load; keeping the procedural bear.`, e);
     }
+  }
+
+  /** The 3D camera and the element the canvas lives in (for overlay layers). */
+  get view() {
+    return { camera: this.camera, container: this.container };
   }
 
   /** The character the player controls. */
@@ -290,6 +301,7 @@ export class Game {
     for (const hook of this.frameHooks) hook(dt);
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
+    for (const hook of this.afterRenderHooks) hook();
   }
 
   /** Moves the bear from keyboard or click target; returns current speed. */

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { toonMaterial, addOutline } from '../engine/toon';
 import { ChibiBear, BLACK_BEAR, type ChibiSpec, type Pose, type Action } from './ChibiBear';
-import { loadGltfCharacter, type GltfCharacter, type ModelEntry } from './GltfCharacter';
+import { loadGltfCharacter, loadStaticModel, type GltfCharacter, type ModelEntry } from './GltfCharacter';
 import modelsJson from '../data/models.json';
 
 // Every companion species. Two-legged chibis reuse ChibiBear with a spec;
@@ -85,6 +85,61 @@ class ModelCreature implements Creature {
   set lookYaw(y: number | null) { this.body.lookYaw = y; }
   act(action: Action, seconds: number) { this.body.act(action, seconds); }
   update(dt: number, speed: number) { this.body.update(dt, speed); }
+}
+
+/**
+ * A big creature with a still model (no skeleton), e.g. the sleeping dragon:
+ * it breathes, its ember cracks glow in time with the breath, and a roar
+ * (an action) makes it swell and flare for a moment. If the model can't load,
+ * the procedural version takes its place.
+ */
+class StillGiant implements Creature {
+  readonly root = new THREE.Group();
+  readonly moves = 'fixed' as const;
+  pose: Pose = 'sleep';
+  lookYaw: number | null = null;
+  private body = new THREE.Group();
+  private materials: THREE.MeshToonMaterial[] = [];
+  private fallback: Creature | null = null;
+  private t = Math.random() * 10;
+  private flare = 0;
+
+  constructor(entry: ModelEntry, readonly top: number, makeFallback: () => Creature) {
+    this.root.add(this.body);
+    loadStaticModel(entry, entry.height, true).then(
+      ({ root, materials }) => {
+        this.body.add(root);
+        this.materials = materials;
+      },
+      (e) => {
+        console.warn(`Model "${entry.file}" failed to load; using the procedural creature.`, e);
+        this.fallback = makeFallback();
+        this.fallback.pose = this.pose;
+        this.root.add(this.fallback.root);
+      },
+    );
+  }
+
+  act(action: Action, seconds: number) {
+    if (this.fallback) return this.fallback.act(action, seconds);
+    if (action !== 'none') this.flare = Math.max(this.flare, Math.min(seconds || 1, 2));
+  }
+
+  update(dt: number, speed: number) {
+    if (this.fallback) {
+      this.fallback.pose = this.pose;
+      this.fallback.lookYaw = this.lookYaw;
+      return this.fallback.update(dt, speed);
+    }
+    this.t += dt;
+    this.flare = Math.max(0, this.flare - dt);
+    // Slow sleeping breath (~4 s), deeper and faster while flaring.
+    const breath = Math.sin(this.t * (this.flare ? 5 : 1.6));
+    const depth = this.flare ? 0.05 : 0.025;
+    this.body.scale.set(1 + breath * depth * 0.6, 1 + breath * depth, 1 + breath * depth * 0.6);
+    const glow = (this.flare ? 1.6 : 0.55) + breath * (this.flare ? 0.6 : 0.35);
+    for (const m of this.materials) m.emissiveIntensity = glow;
+  }
 }
 
 function chibi(kind: string, spec: ChibiSpec): Creature {
@@ -593,6 +648,7 @@ function drone() {
 export function makeCreature(kind: string): Creature {
   if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
   if (QUADS[kind]) return new Quad(QUADS[kind]);
+  if (kind === 'dragon' && MODELS.dragon) return new StillGiant(MODELS.dragon, MODELS.dragon.height + 0.4, () => new Bird(BIRDS.dragon));
   if (BIRDS[kind]) return new Bird(BIRDS[kind]);
   switch (kind) {
     case 'salmon': return salmon();

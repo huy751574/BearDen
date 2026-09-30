@@ -55,7 +55,8 @@ python tools/tripo_character.py --name bear --image refs/bear.png
 
 It shows the plan and asks before spending credits, then:
 upload → 3D model → rig check → skeleton → animations (idle, walk, run, sit,
-wave) → downloads to `public/models/` → runs `tools/check_models.py`.
+wave) → downloads to `public/models/` → compresses them for the web
+(`tools/compress_models.py`, about 75% smaller) → runs `tools/check_models.py`.
 Takes about 5–10 minutes. A preview render is saved to
 `tools/cache/bear_preview.webp`.
 
@@ -103,8 +104,9 @@ scene images with that friend as a style reference.
 
 **Dragon** (Game of Thrones cover scene) is four-legged with wings, so it
 can't use the two-legged animations. It is generated as a still model and
-animated in code (breathing, blinking ember glow, a slow head turn), which
-suits the sleeping dragon in that scene. Its prompt is different: **three-quarter
+animated in code: it breathes, its ember cracks glow with each breath, and
+it flares up for a moment when something disturbs it. That suits the
+sleeping dragon in that scene. Its prompt is different: **three-quarter
 front view** instead of front view, because a front view hides a four-legged
 body:
 

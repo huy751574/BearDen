@@ -47,7 +47,9 @@ PRESETS = {
     "sit": "preset:biped:sit",
     "wave": "preset:biped:wave_goodbye_01",
     # Emotes (keys 1-4 in the game) and mini-game reactions:
-    "dance": "preset:biped:dance_01",
+    # dance_02: lively but calm enough. dance_01 spins at ~600 deg/s and
+    # head-bangs (looked like a glitch); dance_06 is a gentler sway.
+    "dance": "preset:biped:dance_02",
     "cheer": "preset:biped:cheer",
     "sing": "preset:biped:sing_01",
     "clap": "preset:biped:clap",
@@ -251,6 +253,8 @@ def main() -> int:
         print(f"\nStopped: {e}\nProgress is saved; re-run the same command to resume.")
         return 1
 
+    print("\nCompressing for the web")
+    subprocess.call([sys.executable, str(ROOT / "tools" / "compress_models.py")])
     print("\nRegistering models for the game")
     return subprocess.call([sys.executable, str(ROOT / "tools" / "check_models.py")])
 

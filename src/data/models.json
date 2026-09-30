@@ -47,6 +47,12 @@
     "forward": "+x",
     "height": 1.5
   },
+  "dragon": {
+    "file": "models/dragon.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 2.4
+  },
   "fox": {
     "file": "models/fox.glb",
     "clips": {
@@ -58,6 +64,21 @@
       "sit": "models/fox@sit.glb",
       "walk": "models/fox@walk.glb",
       "wave": "models/fox@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.5
+  },
+  "moon_bunny": {
+    "file": "models/moon_bunny.glb",
+    "clips": {
+      "idle": "models/moon_bunny.glb",
+      "cheer": "models/moon_bunny@cheer.glb",
+      "dance": "models/moon_bunny@dance.glb",
+      "run": "models/moon_bunny@run.glb",
+      "sing": "models/moon_bunny@sing.glb",
+      "sit": "models/moon_bunny@sit.glb",
+      "walk": "models/moon_bunny@walk.glb",
+      "wave": "models/moon_bunny@wave.glb"
     },
     "forward": "+x",
     "height": 1.5

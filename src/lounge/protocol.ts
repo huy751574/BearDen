@@ -93,9 +93,9 @@ export type ServerMsg =
   | { t: 'welcome'; now: number; you: You; players: Player[]; song: Song | null; queue: QueueItem[]; votes: Votes; counts: Counts; chat: ChatMsg[] }
   | { t: 'you'; you: You }
   | { t: 'joined'; player: Player }
-  | { t: 'left'; slot: number; reason: 'jumpoff' | 'idle' | 'left' | 'disconnect' }
+  | { t: 'left'; slot: number; reason: 'jumpoff' | 'idle' | 'left' | 'disconnect' | 'knocked' }
   | { t: 'move'; slot: number; x: number; z: number; tx: number | null; tz: number | null }
-  | { t: 'act'; slot: number; a: Act; hits?: { slot: number; dx: number; dz: number }[] }
+  | { t: 'act'; slot: number; a: Act; hits?: { slot: number; dx: number; dz: number; off?: boolean }[] }
   | { t: 'song'; song: Song | null; queue: QueueItem[]; votes: Votes }
   | { t: 'queue'; queue: QueueItem[] }
   | { t: 'votes'; votes: Votes }

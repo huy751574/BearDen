@@ -25,6 +25,8 @@ export class Lounge {
   private myVoteFor = '';
   private mine: Avatar | null = null;
   private jumpT = 0;
+  /** Pillow hits that pushed someone off the edge, until their "left" arrives. */
+  private knockedOff = new Map<number, { dx: number; dz: number }>();
   private lastSent = { x: NaN, z: NaN, tx: NaN as number | null, tz: NaN as number | null, at: 0, moving: false };
   private idleTimer = 0;
   private unsubUser: (() => void) | null = null;
@@ -164,15 +166,21 @@ export class Lounge {
         if (m.player.slot === this.you.slot) this.placeMe(m.player);
         else this.world.addPlayer(m.player);
         break;
-      case 'left':
-        if (m.slot === this.you.slot && this.mine) this.jumpOffMyself(m.slot);
+      case 'left': {
+        const push = m.reason === 'knocked' ? this.knockedOff.get(m.slot) ?? { dx: 0, dz: 0 } : null;
+        this.knockedOff.delete(m.slot);
+        if (m.slot === this.you.slot && this.mine) this.jumpOffMyself(m.slot, push);
+        else if (push) this.world.knockOff(m.slot, push.dx, push.dz);
         else this.world.leave(m.slot);
         break;
+      }
       case 'move': this.world.move(m.slot, m.x, m.z, m.tx, m.tz); break;
       case 'act':
         if (m.slot !== this.you.slot) this.world.act(m.slot, m.a);
         for (const h of m.hits ?? []) {
-          if (h.slot === this.you.slot) {
+          // Knocked off the edge: the 'left' message that follows plays the fall.
+          if (h.off) this.knockedOff.set(h.slot, { dx: h.dx, dz: h.dz });
+          else if (h.slot === this.you.slot) {
             this.game.nudgePlayer(h.dx, h.dz);
             this.jumpT = 0.001;
             this.toast('Bonk! 🪶');
@@ -224,12 +232,13 @@ export class Lounge {
     this.game.focusPlayer();
   }
 
-  /** Our own avatar was removed (idle / left): play the jump-off as a remote copy. */
-  private jumpOffMyself(slot: number) {
+  /** Our own avatar was removed (idle / left / knocked off): play the fall as a remote copy. */
+  private jumpOffMyself(slot: number, push: { dx: number; dz: number } | null) {
     const pos = this.game.player.root.position;
     this.world.mySlot = null;
     this.world.addPlayer({ slot, uid: '', name: this.you.name ?? 'You', x: pos.x, z: pos.z, tx: null, tz: null });
-    this.world.leave(slot);
+    if (push) this.world.knockOff(slot, push.dx, push.dz);
+    else this.world.leave(slot);
     this.mine = null;
     this.game.controlsEnabled = false;
   }

@@ -35,6 +35,8 @@ interface Attachment {
   lastAct: number;
   lastPillow: number;
   lastChat: number;
+  /** Knocked off: not seated again before this time (lets the fall play). */
+  respawnAt?: number;
 }
 
 interface RoomState {
@@ -49,6 +51,7 @@ interface RoomState {
 const HOUSE = house as { videoId: string; title: string; duration: number }[];
 const START_DELAY = 2500; // ms of buffer so every client can load the video
 const IDLE_WARN = 45;
+const RESPAWN_MS = 3500;
 
 export class Lounge extends DurableObject<Env> {
   private room: RoomState = { song: null, queue: [], chat: [], votes: [], errors: [], chatId: 0 };
@@ -177,26 +180,37 @@ export class Lounge extends DurableObject<Env> {
     if (a !== 'jump' && a !== 'pillow' && a !== 'wave' && a !== 'sit') return;
     att.lastAct = now;
     this.touch(att, now);
-    let hits: { slot: number; dx: number; dz: number }[] | undefined;
+    let hits: { slot: number; dx: number; dz: number; off?: boolean }[] | undefined;
     if (a === 'pillow') {
       if (now - att.lastPillow < 900) return this.save(ws, att);
       att.lastPillow = now;
       hits = [];
+      const off: [WebSocket, Attachment][] = [];
       for (const w of this.sockets()) {
         const o = this.att(w);
         if (w === ws || o.slot === null) continue;
         const dx = o.x - att.x, dz = o.z - att.z, d = Math.hypot(dx, dz);
         if (d > 1.9) continue;
-        // Knock them back 1.8 m, away from the hitter (never off the island).
+        // Knock them back 1.8 m, away from the hitter. Pushed past the edge
+        // means off the island.
         const k = 1.8 / (d || 1);
-        const p = clampToIsland(o.x + (d ? dx : 1) * k, o.z + (d ? dz : 0) * k);
-        hits.push({ slot: o.slot, dx: p.x - o.x, dz: p.z - o.z });
-        Object.assign(o, { x: p.x, z: p.z, tx: null, tz: null });
+        const nx = o.x + (d ? dx : 1) * k, nz = o.z + (d ? dz : 0) * k;
+        if (Math.hypot(nx, nz) > WALK_RADIUS) {
+          hits.push({ slot: o.slot, dx: nx - o.x, dz: nz - o.z, off: true });
+          off.push([w, o]);
+          continue;
+        }
+        hits.push({ slot: o.slot, dx: nx - o.x, dz: nz - o.z });
+        Object.assign(o, { x: nx, z: nz, tx: null, tz: null });
         this.save(w, o);
       }
+      this.save(ws, att);
+      this.broadcast({ t: 'act', slot: att.slot, a, hits });
+      for (const [w, o] of off) this.knockOff(w, o, ws, att, now);
+      return;
     }
     this.save(ws, att);
-    this.broadcast({ t: 'act', slot: att.slot, a, ...(hits ? { hits } : {}) });
+    this.broadcast({ t: 'act', slot: att.slot, a });
   }
 
   private chat(ws: WebSocket, att: Attachment, text: string, now: number) {
@@ -324,6 +338,7 @@ export class Lounge extends DurableObject<Env> {
         this.send(ws, { t: 'idleWarning', seconds: Math.ceil(IDLE_SECONDS - idle) });
       }
     }
+    this.seatWaiters(now);
     this.broadcastCounts();
     this.schedule();
   }
@@ -339,6 +354,10 @@ export class Lounge extends DurableObject<Env> {
       if (a.slot === null) continue;
       times.push(a.lastActive + (a.warned ? IDLE_SECONDS : IDLE_WARN) * 1000 + 50);
     }
+    for (const ws of this.sockets()) {
+      const a = this.att(ws);
+      if (a.slot === null && a.waitingSince !== null && (a.respawnAt ?? 0) > now) times.push(a.respawnAt!);
+    }
     if (!times.length) return;
     void this.ctx.storage.setAlarm(Math.max(now + 200, Math.min(...times)));
   }
@@ -352,7 +371,7 @@ export class Lounge extends DurableObject<Env> {
 
   private seat(ws: WebSocket, att: Attachment, slot: number) {
     const a = Math.random() * Math.PI * 2, r = 2 + Math.random() * 4;
-    Object.assign(att, { slot, x: Math.cos(a) * r, z: Math.sin(a) * r, tx: null, tz: null, waitingSince: null });
+    Object.assign(att, { slot, x: Math.cos(a) * r, z: Math.sin(a) * r, tx: null, tz: null, waitingSince: null, respawnAt: 0 });
     this.touch(att, Date.now());
     this.save(ws, att);
     this.send(ws, { t: 'you', you: this.you(att) });
@@ -361,7 +380,41 @@ export class Lounge extends DurableObject<Env> {
     this.schedule();
   }
 
-  private freeSlot(ws: WebSocket, att: Attachment, reason: 'jumpoff' | 'idle' | 'left' | 'disconnect') {
+  /**
+   * Pillowed off the edge: the slot goes to the next person in line (like an
+   * idle jump-off) and the victim goes to the back of the line. If nobody else
+   * is waiting they're back on after the fall.
+   */
+  private knockOff(ws: WebSocket, att: Attachment, hitterWs: WebSocket, hitter: Attachment, now: number) {
+    this.freeSlot(ws, att, 'knocked');
+    Object.assign(att, { waitingSince: now, respawnAt: now + RESPAWN_MS });
+    this.save(ws, att);
+    this.notice(ws, `${hitter.name ?? 'Someone'} knocked you off the island! You're back in line.`, 'info');
+    this.notice(hitterWs, `You knocked ${att.name ?? 'someone'} off the island!`, 'info');
+    this.send(ws, { t: 'you', you: this.you(att) });
+    this.sendWaitlistPositions();
+    this.broadcastCounts();
+    this.schedule();
+  }
+
+  /** Seat waiters into free slots (knocked-off players once their fall is over). */
+  private seatWaiters(now: number) {
+    const waiters = this.sockets()
+      .map((w) => [w, this.att(w)] as const)
+      .filter(([, a]) => a.waitingSince !== null && a.slot === null && (a.respawnAt ?? 0) <= now)
+      .sort((x, y) => x[1].waitingSince! - y[1].waitingSince!);
+    let seated = false;
+    for (const [w, a] of waiters) {
+      const slot = this.freeSlotIndex();
+      if (slot === null) break;
+      this.seat(w, a, slot);
+      this.notice(w, "You're back on the island!", 'info');
+      seated = true;
+    }
+    if (seated) this.sendWaitlistPositions();
+  }
+
+  private freeSlot(ws: WebSocket, att: Attachment, reason: 'jumpoff' | 'idle' | 'left' | 'disconnect' | 'knocked') {
     const slot = att.slot;
     if (slot === null) return;
     att.slot = null;
@@ -370,7 +423,7 @@ export class Lounge extends DurableObject<Env> {
     // Next in the waitlist takes the free slot.
     const next = this.sockets()
       .map((w) => [w, this.att(w)] as const)
-      .filter(([, a]) => a.waitingSince !== null && a.slot === null)
+      .filter(([, a]) => a.waitingSince !== null && a.slot === null && (a.respawnAt ?? 0) <= Date.now())
       .sort((x, y) => x[1].waitingSince! - y[1].waitingSince!)[0];
     if (next) {
       this.seat(next[0], next[1], slot);

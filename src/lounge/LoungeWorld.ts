@@ -29,7 +29,7 @@ interface Remote {
   tz: number | null;
   jumpT: number;
   knock: { dx: number; dz: number; t: number } | null;
-  leaving: { phase: 'run' | 'leap'; t: number; edge: THREE.Vector3; dir: THREE.Vector3; y: number } | null;
+  leaving: { phase: 'run' | 'leap'; t: number; edge: THREE.Vector3; dir: THREE.Vector3; y: number; speed: number; up?: number; cry?: string } | null;
   pillowT: number;
 }
 
@@ -41,6 +41,8 @@ export class LoungeWorld implements World {
   readonly companionCreatures = [];
   private kit: Kit;
   private remotes = new Map<number, Remote>();
+  /** Avatars on their way off the island; their slot may already be reused. */
+  private leavers: Remote[] = [];
   private fx: Effects;
   private fxRoot = new THREE.Group();
   private particles: Particles;
@@ -175,6 +177,7 @@ export class LoungeWorld implements World {
 
   sync(players: Player[]) {
     for (const slot of [...this.remotes.keys()]) this.removeRemote(slot);
+    this.clearLeavers();
     for (const p of players) this.addPlayer(p);
   }
 
@@ -200,13 +203,33 @@ export class LoungeWorld implements World {
   /** Someone left: jump off the island (idle or not), then disappear. */
   leave(slot: number) {
     const r = this.remotes.get(slot);
-    if (!r || r.leaving) return;
+    if (!r) return;
     const pos = r.av.char.root.position;
     const dir = new THREE.Vector3(pos.x, 0, pos.z);
     if (dir.lengthSq() < 0.01) dir.set(0, 0, 1);
     dir.normalize();
-    r.leaving = { phase: 'run', t: 0, edge: dir.clone().multiplyScalar(ISLAND_RADIUS - 0.4), dir, y: 0 };
+    r.leaving = { phase: 'run', t: 0, edge: dir.clone().multiplyScalar(ISLAND_RADIUS - 0.4), dir, y: 0, speed: 3 };
     r.av.char.act('cheer', 3);
+    this.remotes.delete(slot);
+    this.leavers.push(r);
+  }
+
+  /** Pillowed off the edge: fly out along the hit, then fall into the clouds. */
+  knockOff(slot: number, dx: number, dz: number) {
+    const r = this.remotes.get(slot);
+    if (!r) return;
+    const pos = r.av.char.root.position;
+    const dir = new THREE.Vector3(dx, 0, dz);
+    if (dir.lengthSq() < 0.01) dir.set(pos.x, 0, pos.z);
+    dir.normalize();
+    r.leaving = { phase: 'leap', t: 0, edge: pos.clone(), dir, y: 0, speed: 7, up: 5, cry: 'Waaah!' };
+    r.av.pillow.visible = false;
+    r.av.char.pose = 'stand';
+    r.av.char.root.rotation.y = Math.atan2(-dir.x, -dir.z); // facing the hitter
+    this.fx.burst(pos.clone().setY(1.2), '#ffffff', 22);
+    this.fx.text('BONK!', pos.clone().setY(2.4), '#ffd36e');
+    this.remotes.delete(slot);
+    this.leavers.push(r);
   }
 
   act(slot: number, a: string) {
@@ -253,6 +276,11 @@ export class LoungeWorld implements World {
     this.remotes.delete(slot);
   }
 
+  private clearLeavers() {
+    for (const r of this.leavers) this.group.remove(r.av.char.root);
+    this.leavers = [];
+  }
+
   // ---------------------------------------------------------------- frame
 
   update(dt: number, _bear: BearInfo) {
@@ -261,13 +289,14 @@ export class LoungeWorld implements World {
     this.kit.update(dt);
     this.particles.update(dt);
     this.fx.update(dt);
-    for (const [slot, r] of this.remotes) {
+    this.leavers = this.leavers.filter((r) => {
+      if (!this.animateLeave(r, dt)) return true;
+      this.group.remove(r.av.char.root);
+      return false;
+    });
+    for (const r of this.remotes.values()) {
       const root = r.av.char.root;
       let speed = 0;
-      if (r.leaving) {
-        if (this.animateLeave(r, dt)) this.removeRemote(slot);
-        continue;
-      }
       if (r.knock) {
         r.knock.t += dt;
         const k = Math.min(1, dt / 0.25);
@@ -318,12 +347,12 @@ export class LoungeWorld implements World {
       return false;
     }
     // Leap: up and outward, then fall far below while spinning.
-    root.position.x += L.dir.x * 3 * dt;
-    root.position.z += L.dir.z * 3 * dt;
-    root.position.y = 2.2 * L.t - 9 * L.t * L.t;
+    root.position.x += L.dir.x * L.speed * dt;
+    root.position.z += L.dir.z * L.speed * dt;
+    root.position.y = L.edge.y + (L.up ?? 2.2) * L.t - 9 * L.t * L.t;
     root.rotation.x += dt * 4;
     r.av.char.update(dt, 0);
-    if (L.t > 0.25 && L.t < 0.3) this.fx.text('Wheee!', root.position.clone(), '#bfe3ff');
+    if (L.t > 0.25 && L.t < 0.3) this.fx.text(L.cry ?? 'Wheee!', root.position.clone(), '#bfe3ff');
     return root.position.y < -18;
   }
 

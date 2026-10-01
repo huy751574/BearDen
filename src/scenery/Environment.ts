@@ -22,7 +22,7 @@ export interface SceneEnv {
   companion?: string;
   behavior?: import('../character/Companion').Behavior;
   /** Several companions (first is the main one); replaces companion/behavior. */
-  companions?: { kind: string; behavior: import('../character/Companion').Behavior }[];
+  companions?: import('../character/Companion').CastEntry[];
   /** The scene's mini-game (engine + variant, see src/games/catalog.ts). */
   game?: import('../games/types').GameRef;
 }

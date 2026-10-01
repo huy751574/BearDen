@@ -26,6 +26,65 @@ function centrepiece(k: Kit, obj: THREE.Object3D, x: number, z: number, block: n
   k.put(obj, x, z, { rotY: k.faceCenter(x, z), block, space: block + 0.4 });
 }
 
+/**
+ * Honkai: Star Rail cover: the Astral Express lounge car. Seats match the
+ * passengers' spots in sceneEnv.json (tools/analyze_scenes.py SCENE_CAST).
+ */
+function starRailLounge(k: Kit) {
+  const seat = (obj: THREE.Object3D, x: number, z: number, rotY: number, block: number) => k.put(obj, x, z, { rotY, block, space: 0 });
+  // Second bench (Mr. Yang reads here; the raccoon sprawls on the first).
+  seat(S.bench(k), 3.4, -1.4, k.faceCenter(3.4, -1.4), 0.8);
+  // Himekat's armchair: a narrow sofa.
+  const chair = S.sofa(k, '#a8463e');
+  chair.scale.set(0.55, 1, 1);
+  seat(chair, -2.4, 2.6, k.faceCenter(-2.4, 2.6), 0.7);
+  // The bear's table: journal open, tea going cold.
+  const desk = S.table(k, '#e8dcc4');
+  k.part(desk, geo.box(0.34, 0.02, 0.24), '#f4efe6', [-0.15, 0.8, 0.05], { outline: false });
+  k.part(desk, geo.box(0.02, 0.012, 0.18), '#3a2a22', [-0.05, 0.815, 0.05], { rot: [0, 0.6, 0], outline: false });
+  seat(desk, -0.9, 1.3, 0.4, 0.5);
+  // Dan's corner cushion.
+  k.part(k.group, geo.cyl(0.55, 0.6, 0.18, 16), '#4a5a7a', [-3.4, 0.09, -2.4]);
+  // Nebula windows at the back, with sills (March Bunny leans on one; Sundove perches on another).
+  const nebula = nebulaTexture();
+  for (const x of [-1.2, 1.6]) {
+    const w = new THREE.Group();
+    k.part(w, geo.box(1.5, 1.7, 0.12), '#5a3a2a', [0, 1.35, 0]);
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(1.25, 1.45), new THREE.MeshBasicMaterial({ map: nebula, toneMapped: false }));
+    glass.position.set(0, 1.35, 0.065);
+    w.add(glass);
+    k.part(w, geo.box(1.6, 0.08, 0.35), '#6b4a33', [0, 0.62, 0.15]);
+    seat(w, x, -4.1, 0, 0.7);
+  }
+}
+
+let nebulaTex: THREE.CanvasTexture | null = null;
+function nebulaTexture() {
+  if (nebulaTex) return nebulaTex;
+  const c = document.createElement('canvas');
+  c.width = 128;
+  c.height = 160;
+  const g = c.getContext('2d')!;
+  const grd = g.createLinearGradient(0, 0, 128, 160);
+  grd.addColorStop(0, '#1a1440');
+  grd.addColorStop(0.5, '#5a2d8a');
+  grd.addColorStop(1, '#1e3a7a');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, 128, 160);
+  for (let i = 0; i < 4; i++) {
+    const r = g.createRadialGradient(20 + i * 30, 30 + (i % 2) * 70, 0, 20 + i * 30, 30 + (i % 2) * 70, 50);
+    r.addColorStop(0, i % 2 ? 'rgba(255,140,220,0.55)' : 'rgba(120,200,255,0.5)');
+    r.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = r;
+    g.fillRect(0, 0, 128, 160);
+  }
+  g.fillStyle = '#ffffff';
+  for (let i = 0; i < 60; i++) g.fillRect((i * 53) % 128, (i * 97) % 160, i % 7 ? 1 : 2, i % 7 ? 1 : 2);
+  nebulaTex = new THREE.CanvasTexture(c);
+  nebulaTex.colorSpace = THREE.SRGBColorSpace;
+  return nebulaTex;
+}
+
 function trees(k: Kit, n: number, make: () => THREE.Object3D, minR = 3.5) {
   k.scatter(n, 0.8, make, { minR, block: 0.45 });
 }
@@ -315,7 +374,8 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
     const snowy = k.env.below === 'snow' || k.has('snow');
     k.ground = snowy ? '#e8eef5' : '#6a6d78';
     k.put(P.hangarPad(k, 5), 0, 0, { space: 0 });
-    centrepiece(k, P.mecha(k), -5.2, -2.6, 2.2);
+    // No mecha statue here any more: the mecha bear is a companion that walks
+    // with the bear in every Power Bearer scene (tools/analyze_scenes.py).
     centrepiece(k, P.spotlight(k, k.look.accent), 5.2, -3.2, 0.3);
     centrepiece(k, P.spotlight(k, '#ffffff'), 5.4, 2.6, 0.3);
     k.scatter(5, 0.5, () => (k.rand() < 0.6 ? S.crate(k, 0.5 + k.rand() * 0.4) : S.barrel(k)), { minR: 3, block: 0.45 });
@@ -479,6 +539,7 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
     for (const z of [-2.6, -0.8, 1]) k.blockers.push({ x: -5.2, z, r: 1 });
     centrepiece(k, S.streetLamp(k, '#6d5fa8'), -3, -3.6, 0.2);
     centrepiece(k, S.bench(k), 3.0, 1.8, 0.8);
+    if (k.has('honkai', 'trailblazing')) return starRailLounge(k);
     k.scatter(4, 0.5, () => P.crystal(k, '#b8a0ff'), { minR: 3.5, block: 0.4 });
   },
   ruins(k) {

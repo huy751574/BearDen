@@ -1,12 +1,19 @@
 import * as THREE from 'three';
-import { ChibiBear, type ChibiSpec, type ChibiParts } from '../character/ChibiBear';
+import { ChibiBear, type ChibiSpec, type ChibiParts, type Action, type Pose } from '../character/ChibiBear';
 import { CHIBI } from '../character/creatures';
+import type { Character, Emote } from '../character/Character';
+import { loadGltfCharacter, type GltfCharacter, type ModelEntry } from '../character/GltfCharacter';
+import modelsJson from '../data/models.json';
 
-// Up to 100 distinct avatars (10 species x 10 accessories), one per slot, so
-// every player on the island looks different. Slot n -> species n % 10,
-// accessory floor(n / 10).
+// The lounge's 50 avatars: the game's 5 characters (3D models from
+// public/models) x 10 accessories, one per slot, so every player on the island
+// looks different. Slot n -> species n % 5, accessory floor(n / 5). The
+// accessories are code-built and pinned to the model's head bone, so no new
+// models are needed. Until a model loads (or if it can't), the procedural
+// chibi of the same species stands in, wearing the same accessory.
 
-const SPECIES = ['bear', 'cat', 'fox', 'capybara', 'tanuki', 'rabbit', 'red_panda', 'panda', 'dog', 'monkey'];
+const SPECIES = ['bear', 'fox', 'capybara', 'cat_idol', 'moon_bunny'];
+const MODELS = modelsJson as Record<string, ModelEntry>;
 
 type Accessory = (p: ChibiParts) => void;
 const torus = (r: number, t: number) => new THREE.TorusGeometry(r, t, 8, 20);
@@ -24,13 +31,17 @@ const ACCESSORIES: { name: string; add: Accessory }[] = [
   { name: 'party hat', add: ({ head, part }) => { part(head, new THREE.ConeGeometry(0.18, 0.45, 12), '#38c1e0', [0.05, 0.62, 0], { rot: [0, 0, -0.15] }); part(head, new THREE.SphereGeometry(0.06, 8, 6), '#ffd36e', [0.09, 0.86, 0], { outline: false }); } },
 ];
 
+const speciesOf = (slot: number) => SPECIES[slot % SPECIES.length];
+const accessoryOf = (slot: number) => ACCESSORIES[Math.floor(slot / SPECIES.length) % ACCESSORIES.length];
+
 export function avatarLabel(slot: number) {
-  return `${ACCESSORIES[Math.floor(slot / 10) % 10].name} ${SPECIES[slot % 10].replace('_', ' ')}`;
+  return `${accessoryOf(slot).name} ${speciesOf(slot).replace('_', ' ')}`;
 }
 
+/** Procedural stand-in: the species' chibi wearing the slot's accessory. */
 export function avatarSpec(slot: number): ChibiSpec {
-  const base = CHIBI[SPECIES[slot % 10]] ?? CHIBI.bear;
-  const acc = ACCESSORIES[Math.floor(slot / 10) % 10];
+  const base = CHIBI[speciesOf(slot)] ?? CHIBI.bear;
+  const acc = accessoryOf(slot);
   return {
     ...base,
     size: 1,
@@ -41,14 +52,58 @@ export function avatarSpec(slot: number): ChibiSpec {
   };
 }
 
-/** A lounge avatar: chibi body + name tag + pillow for pillow fights. */
+/**
+ * An avatar's body: starts as the procedural chibi and swaps to the 3D model
+ * (same accessory, pillow moved to the new hand) once it has loaded. The game
+ * and the lounge only ever hold this wrapper, so the swap is invisible to them.
+ */
+class AvatarBody implements Character {
+  readonly root = new THREE.Group();
+  private body: ChibiBear | GltfCharacter;
+  private held: THREE.Object3D | null = null;
+
+  constructor(slot: number) {
+    const chibi = new ChibiBear(avatarSpec(slot));
+    this.body = chibi;
+    this.root.add(chibi.root);
+    const entry = MODELS[speciesOf(slot)];
+    if (!entry) return;
+    // Up to 50 at once: use the light copy (its file also holds the idle clip).
+    const lite = entry.lite ? { ...entry, file: entry.lite, clips: { ...entry.clips, idle: entry.lite } } : entry;
+    loadGltfCharacter(lite).then(
+      (model) => {
+        accessoryOf(slot).add(model.attachParts());
+        model.pose = this.body.pose;
+        if (this.held) model.holdInHand(this.held);
+        this.root.remove(this.body.root);
+        this.root.add(model.root);
+        this.body = model;
+      },
+      (e) => console.warn(`Avatar model "${entry.file}" failed to load; keeping the chibi.`, e),
+    );
+  }
+
+  get pose() { return this.body.pose; }
+  set pose(p: Pose) { this.body.pose = p; }
+  wave() { this.body.wave(); }
+  emote(name: Emote) { this.body.emote(name); }
+  act(action: Action, seconds: number) { this.body.act(action, seconds); }
+  update(dt: number, speed: number) { this.body.update(dt, speed); }
+
+  holdInHand(obj: THREE.Object3D) {
+    this.held = obj;
+    this.body.holdInHand(obj);
+  }
+}
+
+/** A lounge avatar: body + name tag + pillow for pillow fights. */
 export class Avatar {
-  readonly char: ChibiBear;
+  readonly char: AvatarBody;
   readonly pillow: THREE.Mesh;
   private tag: THREE.Sprite;
 
   constructor(readonly slot: number, name: string, mine = false) {
-    this.char = new ChibiBear(avatarSpec(slot));
+    this.char = new AvatarBody(slot);
     this.tag = nameTag(name, mine);
     this.tag.position.y = 2.05;
     this.char.root.add(this.tag);

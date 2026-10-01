@@ -373,7 +373,7 @@
   "island": "stage",
   "companions": [
    {
-    "kind": "cat_witch",
+    "kind": "cat_idol_witch",
     "behavior": "fly"
    }
   ],
@@ -707,8 +707,8 @@
   "island": "pavilion",
   "companions": [
    {
-    "kind": "crane",
-    "behavior": "fly"
+    "kind": "cloud_retainer",
+    "behavior": "sit"
    }
   ],
   "game": {
@@ -724,6 +724,10 @@
   "skyBottom": "#ba794a",
   "island": "meadow",
   "companions": [
+   {
+    "kind": "lucia",
+    "behavior": "follow"
+   },
    {
     "kind": "goat",
     "behavior": "wander"
@@ -780,11 +784,11 @@
   "island": "cozyroom",
   "companions": [
    {
-    "kind": "cat_grey",
+    "kind": "tom_cat",
     "behavior": "perform"
    },
    {
-    "kind": "cat_pink",
+    "kind": "pink_panther",
     "behavior": "perform"
    }
   ],
@@ -802,7 +806,7 @@
   "island": "stage",
   "companions": [
    {
-    "kind": "cat_eula",
+    "kind": "eula_cat",
     "behavior": "dance"
    }
   ],
@@ -821,8 +825,91 @@
   "variant": "train",
   "companions": [
    {
-    "kind": "dormouse",
-    "behavior": "sit"
+    "kind": "raccoon_baseball",
+    "behavior": "rest",
+    "at": [
+     3.0,
+     1.8,
+     0.45
+    ],
+    "pose": "sleep",
+    "prop": "ball",
+    "emotes": [
+     "⚾",
+     "😎"
+    ]
+   },
+   {
+    "kind": "himekat",
+    "behavior": "rest",
+    "at": [
+     -2.4,
+     2.6,
+     0.38
+    ],
+    "pose": "sit",
+    "prop": "cup",
+    "emotes": [
+     "☕",
+     "😌"
+    ]
+   },
+   {
+    "kind": "march_bunny",
+    "behavior": "rest",
+    "at": [
+     -1.2,
+     -3.55
+    ],
+    "face": 180,
+    "pose": "stand",
+    "emotes": [
+     "🌌",
+     "✨",
+     "📸"
+    ]
+   },
+   {
+    "kind": "mr_yang",
+    "behavior": "rest",
+    "at": [
+     3.4,
+     -1.4,
+     0.45
+    ],
+    "pose": "sit",
+    "prop": "book",
+    "emotes": [
+     "📖",
+     "…"
+    ]
+   },
+   {
+    "kind": "woof_dan",
+    "behavior": "rest",
+    "at": [
+     -3.4,
+     -2.4,
+     0.18
+    ],
+    "pose": "sleep",
+    "emotes": [
+     "💤"
+    ]
+   },
+   {
+    "kind": "sundove",
+    "behavior": "rest",
+    "at": [
+     1.6,
+     -3.95,
+     0.66
+    ],
+    "pose": "stand",
+    "emotes": [
+     "🕊️",
+     "…"
+    ]
    }
   ],
   "game": {
@@ -888,8 +975,8 @@
   "time": "night",
   "below": "clouds",
   "weather": "none",
-  "skyTop": "#28326e",
-  "skyBottom": "#9696be",
+  "skyTop": "#0d151c",
+  "skyBottom": "#1a1d37",
   "island": "wildforest",
   "companions": [
    {
@@ -936,6 +1023,28 @@
   "game": {
    "type": "timing",
    "variant": "salmon"
+  }
+ },
+ "isekai-bear-hero-party-stroll-in-town-after-victory": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#c2895f",
+  "skyBottom": "#bc7a4d",
+  "island": "town",
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "wander"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
   }
  },
  "isekai-bear-hero-party-traveling": {
@@ -1301,12 +1410,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "alligator",
+    "kind": "mecha_alligator",
     "behavior": "prowl"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "croc_king",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1323,12 +1436,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "wolf",
+    "kind": "mecha_wolf",
     "behavior": "prowl"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "wolf_pup",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1345,12 +1462,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "kraken",
+    "kind": "mecha_kraken",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "captain_grimtide",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1366,6 +1487,10 @@
   "skyBottom": "#6895b6",
   "island": "hangar",
   "companions": [
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
+   },
    {
     "kind": "drone",
     "behavior": "orbit"
@@ -1385,12 +1510,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "alligator",
+    "kind": "mecha_alligator",
     "behavior": "defeated"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "croc_king",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1407,12 +1536,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "wolf",
+    "kind": "mecha_wolf",
     "behavior": "defeated"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "wolf_pup",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1428,6 +1561,10 @@
   "skyBottom": "#6895b6",
   "island": "hangar",
   "companions": [
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
+   },
    {
     "kind": "drone",
     "behavior": "orbit"
@@ -1447,12 +1584,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "kraken",
+    "kind": "mecha_kraken",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "captain_grimtide",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1469,12 +1610,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "hydra",
+    "kind": "mecha_hydra",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "little_snake",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1491,12 +1636,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "hydra",
+    "kind": "mecha_hydra",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "little_snake",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1512,6 +1661,10 @@
   "skyBottom": "#6895b6",
   "island": "hangar",
   "companions": [
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
+   },
    {
     "kind": "drone",
     "behavior": "orbit"
@@ -1531,12 +1684,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "hydra",
+    "kind": "mecha_hydra",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "little_snake",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1553,12 +1710,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "alligator",
+    "kind": "mecha_alligator",
     "behavior": "prowl"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "croc_king",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1575,12 +1736,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "wolf",
+    "kind": "mecha_wolf",
     "behavior": "prowl"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "wolf_pup",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {
@@ -1597,12 +1762,16 @@
   "island": "hangar",
   "companions": [
    {
-    "kind": "kraken",
+    "kind": "mecha_kraken",
     "behavior": "emerge"
    },
    {
-    "kind": "drone",
-    "behavior": "orbit"
+    "kind": "captain_grimtide",
+    "behavior": "wander"
+   },
+   {
+    "kind": "mecha_bear",
+    "behavior": "follow"
    }
   ],
   "game": {

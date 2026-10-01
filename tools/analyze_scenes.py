@@ -4,6 +4,9 @@ From the video frame (public/media/<id>/thumb.webp, made by make_media.py):
   - skyTop / skyBottom colours: average of the top rows and the horizon band,
     so the 3D sky blends into the painted backdrop
   - time of day: night / sunset / day from brightness and warmth
+  - leaf / ground colours: the painting's foliage (green, sakura pink or
+    autumn orange) and the ground at the bottom of the frame, so trees and
+    the island top match the scene (ground: outdoor islands only)
 
 From keywords (folder name, scene title, song + YouTube titles):
   - below:   what lies under the sky island (sea, clouds, city, space, ...)
@@ -83,13 +86,54 @@ def luma(rgb) -> float:
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
 
+def median_rgb(px: list[tuple[int, int, int]]) -> tuple[int, int, int] | None:
+    if not px:
+        return None
+    return tuple(sorted(p[i] for p in px)[len(px) // 2] for i in range(3))
+
+
+# Foliage kinds: (hue/lightness/saturation test, share of the lower frame needed).
+# Green first; sakura pink and autumn orange only when green is scarce.
+FOLIAGE = [
+    (lambda h, l, s: 0.17 < h < 0.47 and s > 0.22 and 0.12 < l < 0.8, 0.02),
+    (lambda h, l, s: 0.88 < h < 0.97 and s > 0.35 and l > 0.6, 0.05),  # sakura, not flag red
+    (lambda h, l, s: 0.03 < h < 0.11 and s > 0.55 and 0.35 < l < 0.7, 0.08),  # autumn, not wood brown
+]
+
+
+def scene_palette(img: Image.Image) -> tuple[tuple | None, str, tuple | None]:
+    """(leaf, leaf kind, ground): median colours of the painting, None when not found."""
+    small = img.resize((160, 90), Image.BOX)
+    w, h = small.size
+    low = [small.getpixel((x, y)) for y in range(int(h * 0.25), h) for x in range(w)]
+    hls = [colorsys.rgb_to_hls(*(c / 255 for c in p)) for p in low]
+    leaf, kind = None, ""
+    for (test, share), name in zip(FOLIAGE, ("green", "sakura", "autumn")):
+        hits = [p for p, (hh, ll, ss) in zip(low, hls) if test(hh, ll, ss)]
+        if len(hits) >= share * len(low):
+            leaf, kind = median_rgb(hits), name
+            break
+    ground = median_rgb([small.getpixel((x, y)) for y in range(int(h * 0.8), h) for x in range(int(w * 0.15), int(w * 0.85))])
+    return leaf, kind, ground
+
+
+def tune_color(rgb, l_min: float, l_max: float, s_min: float, s_max: float, dim: float = 1.0) -> tuple:
+    """Keep a sampled colour readable under toon shading: clamp lightness and saturation."""
+    h, l, s = colorsys.rgb_to_hls(*(c / 255 for c in rgb))
+    l = min(max(l, l_min), l_max) * dim
+    s = min(max(s, s_min), s_max)
+    return tuple(c * 255 for c in colorsys.hls_to_rgb(h, l, s))
+
+
 def analyze_image(path: Path) -> dict:
     img = Image.open(path).convert("RGB")
     top = band_mean(img, 0.0, 0.12)
     horizon = band_mean(img, 0.30, 0.45)
     whole = band_mean(img, 0.0, 1.0)
+    leaf, leaf_kind, ground = scene_palette(img)
     return {"top": top, "horizon": horizon, "lumaTop": luma(top), "lumaAll": luma(whole),
-            "warm": (top[0] + horizon[0] + 1) / (top[2] + horizon[2] + 1)}
+            "warm": (top[0] + horizon[0] + 1) / (top[2] + horizon[2] + 1),
+            "leaf": leaf, "leafKind": leaf_kind, "ground": ground}
 
 
 def time_of_day(info: dict | None, words: set[str]) -> str:
@@ -500,6 +544,15 @@ def island_for(theme: str, words: set[str]) -> tuple[str, str]:
     return island, variant
 
 
+# Islands whose top is open ground (the painting's ground colour fits);
+# rooms, stages, hangars and landmarks keep the theme colours.
+OUTDOOR = {"meadow", "wildforest", "snowfield", "lakeside", "pavilion", "riverside",
+           "wheatfield", "camp", "skygarden", "onsen", "cave", "town", "arena"}
+
+
+AUTUMN_OK = {"meadow", "wildforest", "lakeside", "pavilion", "riverside", "camp"}
+
+
 def main() -> int:
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     old = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
@@ -534,12 +587,20 @@ def main() -> int:
         if behavior == "follow" and any(bh == "dance" for _, bh in extras):
             behavior = "dance"  # the whole group dances together
         cast = [(companion, behavior)] + extras
+        colors = {}
+        # Orange in sand, wheat or warm rooms isn't autumn foliage: forests only.
+        if info and info["leaf"] and (info["leafKind"] != "autumn" or island in AUTUMN_OK):
+            colors["leaf"] = hexcolor(tune_color(info["leaf"], 0.34, 0.58, 0.3, 0.7))
+        if info and info["ground"] and island in OUTDOOR:
+            colors["ground"] = hexcolor(tune_color(info["ground"], 0.36, 0.72, 0.15, 0.5))
+            colors["groundSide"] = hexcolor(tune_color(info["ground"], 0.36, 0.72, 0.1, 0.4, dim=0.55))
         out[sid] = {
             "time": time,
             "below": below,
             "weather": weather,
             "skyTop": hexcolor(sky_top),
             "skyBottom": hexcolor(sky_bottom),
+            **colors,
             "island": island,
             **({"variant": variant} if variant else {}),
             "companions": SCENE_CAST.get(sid) or [{"kind": k, "behavior": bh} for k, bh in cast],

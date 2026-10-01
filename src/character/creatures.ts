@@ -54,7 +54,11 @@ class Chibi extends ChibiBear implements Creature {
 
 const MODELS = modelsJson as Record<string, ModelEntry>;
 /** Species drawn with another species' 3D model. */
-const MODEL_ALIAS: Record<string, string> = { cub: 'bear', cat_idol_witch: 'cat_idol' };
+const MODEL_ALIAS: Record<string, string> = {
+  cub: 'bear', cat_idol_witch: 'cat_idol',
+  // The scenes' cat is the little black cat of the paintings; the white one uses the grey-and-white cat.
+  cat: 'common_black_cat', cat_white: 'common_cat',
+};
 /** New names for the cover characters, drawn procedurally by their older specs until the model loads. */
 const SPEC_ALIAS: Record<string, string> = { eula_cat: 'cat_eula', pink_panther: 'cat_pink', tom_cat: 'cat_grey' };
 
@@ -267,6 +271,72 @@ class MechaGiant implements Creature {
 }
 
 /**
+ * A small animal with a still model (no skeleton: four-legged or winged, e.g.
+ * the deer, the owl, Sundove). Code gives it life: on foot it bounds with a
+ * bob and a rocking tilt, in the air it hovers and banks, sitting it breathes,
+ * and it hops when something happens.
+ */
+class StillCritter implements Creature {
+  readonly root = new THREE.Group();
+  pose: Pose = 'stand';
+  lookYaw: number | null = null;
+  private body = new THREE.Group();
+  private fallback: Creature | null = null;
+  private t = Math.random() * 10;
+  private gait = 0;
+  private hop = 0;
+
+  constructor(entry: ModelEntry, readonly top: number, readonly moves: Creature['moves'], makeFallback: () => Creature) {
+    this.root.add(this.body);
+    loadStaticModel(entry, entry.height, false).then(
+      ({ root }) => this.body.add(root),
+      (e) => {
+        console.warn(`Model "${entry.file}" failed to load; using the procedural creature.`, e);
+        this.fallback = makeFallback();
+        this.root.add(this.fallback.root);
+      },
+    );
+  }
+
+  act(action: Action, seconds: number) {
+    if (this.fallback) return this.fallback.act(action, seconds);
+    if (action !== 'none') this.hop = 0.45;
+  }
+
+  update(dt: number, speed: number) {
+    if (this.fallback) {
+      this.fallback.pose = this.pose;
+      this.fallback.lookYaw = this.lookYaw;
+      return this.fallback.update(dt, speed);
+    }
+    this.t += dt;
+    const b = this.body;
+    let y = 0, rx = 0, rz = 0, breathe = Math.sin(this.t * 2.2) * 0.012;
+    if (this.moves === 'fly' && this.pose === 'stand') {
+      // Hover and bank; lean forward when travelling.
+      y = Math.sin(this.t * 2.4) * 0.05 * this.top;
+      rz = Math.sin(this.t * 1.3) * 0.07;
+      rx = Math.min(speed * 0.08, 0.2);
+    } else if (this.pose === 'stand' && speed > 0.05) {
+      // Bounding gait: one bob per step, rocking nose up / nose down.
+      this.gait += dt * (5 + speed * 2.5);
+      y = Math.abs(Math.sin(this.gait)) * 0.07 * this.top;
+      rx = Math.sin(this.gait * 2) * 0.06;
+      breathe = 0;
+    } else if (this.pose !== 'stand') {
+      breathe = Math.sin(this.t * 1.2) * 0.02; // slow breaths sitting or asleep
+    }
+    if (this.hop > 0) {
+      this.hop = Math.max(0, this.hop - dt);
+      y += Math.sin((this.hop / 0.45) * Math.PI) * 0.12 * this.top;
+    }
+    b.position.y = y;
+    b.rotation.set(rx, THREE.MathUtils.damp(b.rotation.y, (this.lookYaw ?? 0) * 0.6, 4, dt), rz);
+    b.scale.set(1, 1 + breathe, 1);
+  }
+}
+
+/**
  * A legless creature with a still model (the hydra's little snake): its tail
  * slithers in an S-wave that travels along the coils (faster while it
  * moves) and the upper body sways, done by bending the mesh each frame.
@@ -344,7 +414,8 @@ class Slither implements Creature {
 
 function chibi(kind: string, spec: ChibiSpec): Creature {
   const fallback = new Chibi(spec);
-  const entry = MODELS[MODEL_ALIAS[kind] ?? kind];
+  // A scene's own model first, then the shared one (common_<kind>, see CHARACTERS.md).
+  const entry = MODELS[MODEL_ALIAS[kind] ?? kind] ?? MODELS[`common_${kind}`];
   // Same size as the procedural version (spec.size scales it, e.g. the cub).
   return entry ? new ModelCreature(fallback, entry, entry.height * (spec.size ?? 1), fallback.top, MODEL_DRESS[kind]) : fallback;
 }
@@ -928,9 +999,14 @@ const MECHA: Record<string, [GlowKind, () => Creature]> = {
 };
 
 export function makeCreature(kind: string): Creature {
+  // Still models first: a CHIBI kind (the dormouse) may have an unrigged model.
+  const still = STILL[kind];
+  if (still && MODELS[still[0]]) {
+    const entry = MODELS[still[0]];
+    return new StillCritter(entry, entry.height + 0.15, still[1], () => procedural(kind));
+  }
   if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
   if (SPEC_ALIAS[kind]) return chibi(kind, CHIBI[SPEC_ALIAS[kind]]);
-  if (QUADS[kind]) return new Quad(QUADS[kind]);
   if (kind === 'dragon' && MODELS.dragon) return new StillGiant(MODELS.dragon, MODELS.dragon.height + 0.4, () => new Bird(BIRDS.dragon), true);
   if (kind === 'little_snake') return MODELS.little_snake ? new Slither(MODELS.little_snake, MODELS.little_snake.height + 0.3, snake) : snake();
   if (kind === 'cloud_retainer') {
@@ -941,6 +1017,21 @@ export function makeCreature(kind: string): Creature {
     const entry = MODELS[kind];
     return entry ? new MechaGiant(entry, entry.height + 0.3, glow, make) : make();
   }
+  return procedural(kind);
+}
+
+/** Small animals drawn as still 3D models (no skeleton): model name and how they move. */
+const STILL: Record<string, [string, Creature['moves']]> = {
+  sundove: ['sundove', 'fly'],
+  owl: ['common_owl', 'fly'],
+  deer: ['common_deer', 'walk'],
+  dormouse: ['common_dormouse', 'walk'], // Tripo couldn't rig her (paws held at the chest)
+};
+
+/** The code-built version of a creature (also the stand-in while / if its model fails to load). */
+function procedural(kind: string): Creature {
+  if (CHIBI[kind]) return new Chibi(CHIBI[kind]);
+  if (QUADS[kind]) return new Quad(QUADS[kind]);
   if (kind === 'sundove') {
     // Sunday as a dove: a little golden halo.
     const b = new Bird(BIRDS.sundove);

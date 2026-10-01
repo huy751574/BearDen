@@ -153,6 +153,9 @@ def main() -> int:
     ap.add_argument("--autofix", action="store_true", help="let Tripo clean up the input image first")
     ap.add_argument("--yes", action="store_true", help="don't ask before spending credits")
     ap.add_argument("--restart", action="store_true", help="ignore saved progress and start over")
+    ap.add_argument("--no-install", action="store_true",
+                    help="only download; skip compress + register (for parallel runs: run "
+                         "compress_models.py and check_models.py once afterwards)")
     ap.add_argument("--no-rig", action="store_true",
                     help="model only, no skeleton or animations (for creatures the game animates in code, e.g. a dragon)")
     args = ap.parse_args()
@@ -254,6 +257,8 @@ def main() -> int:
         print(f"\nStopped: {e}\nProgress is saved; re-run the same command to resume.")
         return 1
 
+    if args.no_install:
+        return 0
     print("\nCompressing for the web")
     subprocess.call([sys.executable, str(ROOT / "tools" / "compress_models.py")])
     print("\nRegistering models for the game")

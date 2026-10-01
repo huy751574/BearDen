@@ -127,9 +127,10 @@ export function parseYouTubeId(input: string): string | null {
   }
 }
 
-/** Skip needs 20% of everyone in the room, or 50% of active players, whichever is smaller. */
-export function votesNeeded(viewers: number, players: number): number {
-  const byViewers = Math.max(1, Math.ceil(viewers * 0.2));
-  const byPlayers = players > 0 ? Math.max(1, Math.ceil(players * 0.5)) : Infinity;
-  return Math.min(byViewers, byPlayers);
+/** Seconds ahead in each move message: the sender adds its velocity x this, others extrapolate up to it. */
+export const MOVE_LEAD = 0.2;
+
+/** Skip needs half of the active players (only they can vote). */
+export function votesNeeded(players: number): number {
+  return Math.max(1, Math.ceil(players * 0.5));
 }

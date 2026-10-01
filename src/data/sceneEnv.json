@@ -43,6 +43,7 @@
   "weather": "none",
   "skyTop": "#c37f62",
   "skyBottom": "#ba884a",
+  "leaf": "#58713d",
   "island": "landmark",
   "variant": "temple",
   "companions": [
@@ -93,6 +94,7 @@
   "weather": "none",
   "skyTop": "#5397ac",
   "skyBottom": "#68a3b6",
+  "leaf": "#54713d",
   "island": "landmark",
   "variant": "jungle",
   "companions": [
@@ -112,6 +114,7 @@
   "weather": "none",
   "skyTop": "#bad5de",
   "skyBottom": "#78a0be",
+  "leaf": "#58713d",
   "island": "landmark",
   "variant": "jungle",
   "companions": [
@@ -154,6 +157,7 @@
   "weather": "none",
   "skyTop": "#96b6cd",
   "skyBottom": "#6895b6",
+  "leaf": "#3d713e",
   "island": "landmark",
   "variant": "bay",
   "companions": [
@@ -196,6 +200,7 @@
   "weather": "none",
   "skyTop": "#589aae",
   "skyBottom": "#68a3b6",
+  "leaf": "#3d715c",
   "island": "landmark",
   "variant": "ruins",
   "companions": [
@@ -272,6 +277,8 @@
   "weather": "snow",
   "skyTop": "#193054",
   "skyBottom": "#334c6b",
+  "ground": "#9ab4d5",
+  "groundSide": "#3d608d",
   "island": "snowfield",
   "companions": [
    {
@@ -316,6 +323,7 @@
   "weather": "petals",
   "skyTop": "#8a93c6",
   "skyBottom": "#98a1cd",
+  "leaf": "#68723c",
   "island": "stage",
   "companions": [
    {
@@ -482,6 +490,8 @@
   "weather": "snow",
   "skyTop": "#7ca3c0",
   "skyBottom": "#6e9ab9",
+  "ground": "#6f8994",
+  "groundSide": "#3e4b50",
   "island": "onsen",
   "companions": [
    {
@@ -500,6 +510,8 @@
   "weather": "fireflies",
   "skyTop": "#1d3959",
   "skyBottom": "#33506b",
+  "ground": "#4e686a",
+  "groundSide": "#2d3738",
   "island": "onsen",
   "companions": [
    {
@@ -518,6 +530,9 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "leaf": "#3d713f",
+  "ground": "#6a6a4e",
+  "groundSide": "#39392c",
   "island": "meadow",
   "companions": [
    {
@@ -606,6 +621,8 @@
   "weather": "none",
   "skyTop": "#c69f67",
   "skyBottom": "#bd7150",
+  "ground": "#756842",
+  "groundSide": "#403925",
   "island": "meadow",
   "companions": [
    {
@@ -646,6 +663,9 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#68a3b6",
+  "leaf": "#64743a",
+  "ground": "#676e49",
+  "groundSide": "#393d28",
   "island": "meadow",
   "companions": [
    {
@@ -682,6 +702,7 @@
   "weather": "none",
   "skyTop": "#3e2145",
   "skyBottom": "#60336b",
+  "leaf": "#aeb573",
   "island": "cozyroom",
   "companions": [
    {
@@ -704,6 +725,8 @@
   "weather": "none",
   "skyTop": "#b6bde2",
   "skyBottom": "#939ccb",
+  "ground": "#4e576a",
+  "groundSide": "#2d3138",
   "island": "pavilion",
   "companions": [
    {
@@ -722,6 +745,8 @@
   "weather": "none",
   "skyTop": "#dabc9d",
   "skyBottom": "#ba794a",
+  "ground": "#7a553e",
+  "groundSide": "#432f22",
   "island": "meadow",
   "companions": [
    {
@@ -744,6 +769,8 @@
   "weather": "none",
   "skyTop": "#7daacf",
   "skyBottom": "#729cbb",
+  "ground": "#9b8976",
+  "groundSide": "#574b3f",
   "island": "meadow",
   "companions": [
    {
@@ -923,6 +950,9 @@
   "weather": "none",
   "skyTop": "#5b2668",
   "skyBottom": "#5f2c6c",
+  "leaf": "#be7a2e",
+  "ground": "#8a5d2e",
+  "groundSide": "#47331e",
   "island": "wildforest",
   "companions": [
    {
@@ -941,6 +971,8 @@
   "weather": "rain",
   "skyTop": "#5386ac",
   "skyBottom": "#6898b6",
+  "ground": "#4e606a",
+  "groundSide": "#2d3438",
   "island": "wildforest",
   "companions": [
    {
@@ -959,6 +991,8 @@
   "weather": "none",
   "skyTop": "#88acc6",
   "skyBottom": "#96b6cc",
+  "ground": "#4e6a65",
+  "groundSide": "#2d3836",
   "island": "wildforest",
   "companions": [
    {
@@ -977,6 +1011,8 @@
   "weather": "none",
   "skyTop": "#0d151c",
   "skyBottom": "#1a1d37",
+  "ground": "#4e656a",
+  "groundSide": "#2d3638",
   "island": "wildforest",
   "companions": [
    {
@@ -995,6 +1031,8 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#749ebc",
+  "ground": "#4e6a51",
+  "groundSide": "#2d382f",
   "island": "lakeside",
   "companions": [
    {
@@ -1013,6 +1051,9 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "leaf": "#5a713d",
+  "ground": "#587676",
+  "groundSide": "#333e3e",
   "island": "lakeside",
   "companions": [
    {
@@ -1031,6 +1072,8 @@
   "weather": "none",
   "skyTop": "#c2895f",
   "skyBottom": "#bc7a4d",
+  "ground": "#6a544e",
+  "groundSide": "#392f2c",
   "island": "town",
   "companions": [
    {
@@ -1053,6 +1096,8 @@
   "weather": "none",
   "skyTop": "#bf9557",
   "skyBottom": "#ba874a",
+  "ground": "#7c553c",
+  "groundSide": "#442f21",
   "island": "town",
   "companions": [
    {
@@ -1075,6 +1120,9 @@
   "weather": "sparks",
   "skyTop": "#13284b",
   "skyBottom": "#264868",
+  "leaf": "#3d7140",
+  "ground": "#576a4e",
+  "groundSide": "#30392c",
   "island": "camp",
   "companions": [
    {
@@ -1097,6 +1145,8 @@
   "weather": "none",
   "skyTop": "#402048",
   "skyBottom": "#61326c",
+  "ground": "#7b4b3c",
+  "groundSide": "#442921",
   "island": "town",
   "companions": [
    {
@@ -1115,6 +1165,8 @@
   "weather": "none",
   "skyTop": "#4c1f57",
   "skyBottom": "#62306e",
+  "ground": "#7a4b3d",
+  "groundSide": "#432922",
   "island": "town",
   "companions": [
    {
@@ -1141,6 +1193,8 @@
   "weather": "sparks",
   "skyTop": "#538cac",
   "skyBottom": "#6895b6",
+  "ground": "#725045",
+  "groundSide": "#3f2c26",
   "island": "arena",
   "companions": [
    {
@@ -1167,6 +1221,8 @@
   "weather": "none",
   "skyTop": "#dcc6a3",
   "skyBottom": "#ba6c4a",
+  "ground": "#4e5e6a",
+  "groundSide": "#2d3338",
   "island": "arena",
   "companions": [
    {
@@ -1189,6 +1245,8 @@
   "weather": "none",
   "skyTop": "#5368ac",
   "skyBottom": "#6895b6",
+  "ground": "#4e586a",
+  "groundSide": "#2d3138",
   "island": "arena",
   "companions": [
    {
@@ -1211,6 +1269,8 @@
   "weather": "none",
   "skyTop": "#bfd8e0",
   "skyBottom": "#95b5cc",
+  "ground": "#616a4e",
+  "groundSide": "#35382d",
   "island": "town",
   "companions": [
    {
@@ -1233,6 +1293,8 @@
   "weather": "none",
   "skyTop": "#c29560",
   "skyBottom": "#ba784a",
+  "ground": "#6a574e",
+  "groundSide": "#3a302b",
   "island": "town",
   "companions": [
    {
@@ -1255,6 +1317,9 @@
   "weather": "none",
   "skyTop": "#d9c89c",
   "skyBottom": "#c27c5e",
+  "leaf": "#67713d",
+  "ground": "#706347",
+  "groundSide": "#3e3627",
   "island": "arena",
   "companions": [
    {
@@ -1277,6 +1342,8 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "ground": "#52616e",
+  "groundSide": "#2f353a",
   "island": "town",
   "companions": [
    {
@@ -1407,6 +1474,7 @@
   "weather": "sparks",
   "skyTop": "#6a97b8",
   "skyBottom": "#6895b6",
+  "leaf": "#3d714c",
   "island": "hangar",
   "companions": [
    {
@@ -1485,6 +1553,7 @@
   "weather": "sparks",
   "skyTop": "#82a8c3",
   "skyBottom": "#6895b6",
+  "leaf": "#3d7146",
   "island": "hangar",
   "companions": [
    {
@@ -1559,6 +1628,7 @@
   "weather": "rain",
   "skyTop": "#7fa5c1",
   "skyBottom": "#6895b6",
+  "leaf": "#3d714a",
   "island": "hangar",
   "companions": [
    {
@@ -1659,6 +1729,7 @@
   "weather": "snow",
   "skyTop": "#5b93b0",
   "skyBottom": "#6895b6",
+  "leaf": "#3d7151",
   "island": "hangar",
   "companions": [
    {
@@ -1681,6 +1752,7 @@
   "weather": "none",
   "skyTop": "#5397ac",
   "skyBottom": "#68a3b6",
+  "leaf": "#3d7160",
   "island": "hangar",
   "companions": [
    {
@@ -1707,6 +1779,7 @@
   "weather": "sparks",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "leaf": "#6e7f44",
   "island": "hangar",
   "companions": [
    {
@@ -1785,6 +1858,9 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "leaf": "#3d7150",
+  "ground": "#56746e",
+  "groundSide": "#323d3b",
   "island": "lakeside",
   "companions": [
    {
@@ -1825,6 +1901,8 @@
   "weather": "none",
   "skyTop": "#1d2d4a",
   "skyBottom": "#334f6b",
+  "ground": "#4e6a57",
+  "groundSide": "#2d3831",
   "island": "meadow",
   "companions": [
    {
@@ -1843,6 +1921,8 @@
   "weather": "snow",
   "skyTop": "#87abc5",
   "skyBottom": "#7aa2bf",
+  "ground": "#9cabbd",
+  "groundSide": "#4c5d72",
   "island": "snowfield",
   "companions": [
    {
@@ -1861,6 +1941,8 @@
   "weather": "none",
   "skyTop": "#223a5f",
   "skyBottom": "#334c6b",
+  "ground": "#4b6d65",
+  "groundSide": "#293c37",
   "island": "meadow",
   "companions": [
    {
@@ -1883,6 +1965,8 @@
   "weather": "none",
   "skyTop": "#a7cad5",
   "skyBottom": "#6895b6",
+  "ground": "#6a6a4e",
+  "groundSide": "#38382d",
   "island": "lakeside",
   "companions": [
    {
@@ -1901,6 +1985,8 @@
   "weather": "none",
   "skyTop": "#5371ac",
   "skyBottom": "#6895b6",
+  "ground": "#bcb1a4",
+  "groundSide": "#6e6253",
   "island": "meadow",
   "companions": [
    {
@@ -1919,6 +2005,8 @@
   "weather": "rain",
   "skyTop": "#14162a",
   "skyBottom": "#2e3360",
+  "ground": "#6a5d4e",
+  "groundSide": "#3a332b",
   "island": "cave",
   "companions": [
    {
@@ -1937,6 +2025,8 @@
   "weather": "snow",
   "skyTop": "#a7c0d5",
   "skyBottom": "#8baec7",
+  "ground": "#a3b7cd",
+  "groundSide": "#476483",
   "island": "snowfield",
   "companions": [
    {
@@ -1955,6 +2045,8 @@
   "weather": "snow",
   "skyTop": "#2d3f62",
   "skyBottom": "#333a6b",
+  "ground": "#495a82",
+  "groundSide": "#283248",
   "island": "snowfield",
   "companions": [
    {
@@ -1973,6 +2065,9 @@
   "weather": "none",
   "skyTop": "#3b2041",
   "skyBottom": "#33396b",
+  "leaf": "#a2b870",
+  "ground": "#4e6a59",
+  "groundSide": "#2d3831",
   "island": "cave",
   "companions": [
    {
@@ -1991,6 +2086,8 @@
   "weather": "none",
   "skyTop": "#131629",
   "skyBottom": "#2e3360",
+  "ground": "#4e6a6a",
+  "groundSide": "#2d3838",
   "island": "cave",
   "companions": [
    {
@@ -2009,6 +2106,8 @@
   "weather": "none",
   "skyTop": "#0f171f",
   "skyBottom": "#253a4d",
+  "ground": "#49606e",
+  "groundSide": "#28353d",
   "island": "cave",
   "companions": [
    {
@@ -2027,6 +2126,8 @@
   "weather": "none",
   "skyTop": "#d3b283",
   "skyBottom": "#c88d4d",
+  "ground": "#8a562e",
+  "groundSide": "#47301e",
   "island": "wheatfield",
   "companions": [
    {
@@ -2045,6 +2146,8 @@
   "weather": "none",
   "skyTop": "#dcc1a3",
   "skyBottom": "#ebd6b2",
+  "ground": "#8a542e",
+  "groundSide": "#472f1e",
   "island": "wheatfield",
   "companions": [
    {
@@ -2063,6 +2166,7 @@
   "weather": "none",
   "skyTop": "#141f2a",
   "skyBottom": "#253a4d",
+  "leaf": "#3d7155",
   "island": "cozyroom",
   "companions": [
    {
@@ -2081,6 +2185,7 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#68a3b6",
+  "leaf": "#65743a",
   "island": "cozyroom",
   "companions": [
    {
@@ -2099,6 +2204,8 @@
   "weather": "none",
   "skyTop": "#cd947c",
   "skyBottom": "#c98b71",
+  "ground": "#4e506a",
+  "groundSide": "#2d2e38",
   "island": "skygarden",
   "companions": [
    {
@@ -2125,6 +2232,8 @@
   "weather": "rain",
   "skyTop": "#2e475f",
   "skyBottom": "#33396b",
+  "ground": "#4e5b6a",
+  "groundSide": "#2d3238",
   "island": "skygarden",
   "companions": [
    {
@@ -2151,6 +2260,8 @@
   "weather": "none",
   "skyTop": "#2e3360",
   "skyBottom": "#33396b",
+  "ground": "#4e556a",
+  "groundSide": "#2c2f39",
   "island": "skygarden",
   "companions": [
    {
@@ -2177,6 +2288,8 @@
   "weather": "none",
   "skyTop": "#17232f",
   "skyBottom": "#1a2936",
+  "ground": "#406878",
+  "groundSide": "#233942",
   "island": "skygarden",
   "companions": [
    {
@@ -2203,6 +2316,8 @@
   "weather": "none",
   "skyTop": "#c1d4e1",
   "skyBottom": "#85a9c4",
+  "ground": "#a59b86",
+  "groundSide": "#5a554a",
   "island": "skygarden",
   "companions": [
    {
@@ -2229,6 +2344,8 @@
   "weather": "none",
   "skyTop": "#a6703f",
   "skyBottom": "#c59465",
+  "ground": "#6f5949",
+  "groundSide": "#3d3128",
   "island": "riverside",
   "companions": [
    {
@@ -2251,6 +2368,8 @@
   "weather": "none",
   "skyTop": "#6fa8ba",
   "skyBottom": "#86b6c5",
+  "ground": "#6d5b4a",
+  "groundSide": "#3c3229",
   "island": "riverside",
   "companions": [
    {
@@ -2273,6 +2392,8 @@
   "weather": "none",
   "skyTop": "#a66f3f",
   "skyBottom": "#ba844a",
+  "ground": "#725446",
+  "groundSide": "#3f2e26",
   "island": "riverside",
   "companions": [
    {
@@ -2295,6 +2416,8 @@
   "weather": "none",
   "skyTop": "#84a9c4",
   "skyBottom": "#7ca3c0",
+  "ground": "#aac1b3",
+  "groundSide": "#5a6e62",
   "island": "riverside",
   "companions": [
    {
@@ -2313,6 +2436,8 @@
   "weather": "none",
   "skyTop": "#0f253e",
   "skyBottom": "#33506b",
+  "ground": "#4e6a5c",
+  "groundSide": "#2c3932",
   "island": "riverside",
   "companions": [
    {
@@ -2331,6 +2456,8 @@
   "weather": "none",
   "skyTop": "#b1c9da",
   "skyBottom": "#7ca4c0",
+  "ground": "#2e708a",
+  "groundSide": "#1e3b47",
   "island": "riverside",
   "companions": [
    {
@@ -2349,6 +2476,8 @@
   "weather": "none",
   "skyTop": "#c57f67",
   "skyBottom": "#e2ceb3",
+  "ground": "#6e6149",
+  "groundSide": "#3d3528",
   "island": "riverside",
   "companions": [
    {
@@ -2367,6 +2496,8 @@
   "weather": "none",
   "skyTop": "#4f7ab0",
   "skyBottom": "#688fb6",
+  "ground": "#3f5279",
+  "groundSide": "#222d43",
   "island": "riverside",
   "companions": [
    {
@@ -2385,6 +2516,8 @@
   "weather": "none",
   "skyTop": "#be7d55",
   "skyBottom": "#d3b58c",
+  "ground": "#825736",
+  "groundSide": "#47301e",
   "island": "riverside",
   "companions": [
    {
@@ -2403,6 +2536,8 @@
   "weather": "none",
   "skyTop": "#b0b7d9",
   "skyBottom": "#6895b6",
+  "ground": "#4e5b6a",
+  "groundSide": "#2c3239",
   "island": "riverside",
   "companions": [
    {
@@ -2421,6 +2556,9 @@
   "weather": "none",
   "skyTop": "#6e9ab9",
   "skyBottom": "#68a3b6",
+  "leaf": "#69743a",
+  "ground": "#707147",
+  "groundSide": "#3d3e27",
   "island": "riverside",
   "companions": [
    {
@@ -2439,6 +2577,8 @@
   "weather": "none",
   "skyTop": "#b9bfe1",
   "skyBottom": "#9ba3cf",
+  "ground": "#56756c",
+  "groundSide": "#323e3a",
   "island": "pavilion",
   "companions": [
    {
@@ -2465,6 +2605,8 @@
   "weather": "fireflies",
   "skyTop": "#5361ac",
   "skyBottom": "#6874b6",
+  "ground": "#734b44",
+  "groundSide": "#3f2926",
   "island": "lakeside",
   "companions": [
    {
@@ -2491,6 +2633,8 @@
   "weather": "sparks",
   "skyTop": "#142c47",
   "skyBottom": "#304a63",
+  "ground": "#405e77",
+  "groundSide": "#233442",
   "island": "arena",
   "companions": [
    {
@@ -2517,6 +2661,8 @@
   "weather": "sparks",
   "skyTop": "#5392ac",
   "skyBottom": "#6895b6",
+  "ground": "#4e616a",
+  "groundSide": "#2d3438",
   "island": "arena",
   "companions": [
    {
@@ -2535,6 +2681,9 @@
   "weather": "none",
   "skyTop": "#a3bed2",
   "skyBottom": "#7ba3bf",
+  "leaf": "#55713d",
+  "ground": "#546a4e",
+  "groundSide": "#2f382d",
   "island": "pavilion",
   "companions": [
    {
@@ -2553,6 +2702,9 @@
   "weather": "none",
   "skyTop": "#5387ac",
   "skyBottom": "#6895b6",
+  "leaf": "#3d7145",
+  "ground": "#5d6a4e",
+  "groundSide": "#33382d",
   "island": "arena",
   "companions": [
    {
@@ -2571,6 +2723,9 @@
   "weather": "none",
   "skyTop": "#749ebc",
   "skyBottom": "#729cbb",
+  "leaf": "#4e713d",
+  "ground": "#4e6a4e",
+  "groundSide": "#2d382d",
   "island": "arena",
   "companions": [
    {
@@ -2589,6 +2744,8 @@
   "weather": "none",
   "skyTop": "#9fbcd1",
   "skyBottom": "#6996b7",
+  "ground": "#7d795d",
+  "groundSide": "#424036",
   "island": "town",
   "companions": [
    {
@@ -2611,6 +2768,8 @@
   "weather": "fireflies",
   "skyTop": "#172e43",
   "skyBottom": "#33506b",
+  "ground": "#4c606c",
+  "groundSide": "#2a353b",
   "island": "lakeside",
   "companions": [
    {
@@ -2629,6 +2788,9 @@
   "weather": "rain",
   "skyTop": "#5c8db0",
   "skyBottom": "#769fbd",
+  "leaf": "#5e713c",
+  "ground": "#5f6e49",
+  "groundSide": "#343d28",
   "island": "pavilion",
   "companions": [
    {

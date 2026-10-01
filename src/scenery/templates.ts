@@ -477,10 +477,10 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
       for (let i = 0; i < 5; i++) k.part(crag, geo.dodec(0.8 + k.rand() * 0.6), '#7d7468', [(k.rand() - 0.5) * 1.6, 0.6 + i * 0.35, (k.rand() - 0.5) * 1.6], { outline: 0.03 });
       centrepiece(k, crag, -4.6, -2.8, 1.6);
     }
-    trees(k, 16, () => N.pine(k, false, k.pick(['#2f4d33', '#3a5a3a', '#2a4430'])), 3.2);
+    trees(k, 16, () => N.pine(k, false, N.shade(N.evergreen(k), -0.04 + k.rand() * 0.06)), 3.2);
     k.scatter(3, 0.9, () => N.log(k), { minR: 2.5, tall: false, block: 0.5 });
     k.scatter(6, 0.3, () => N.mushroom(k), { minR: 2, tall: false, block: 0 });
-    k.scatter(4, 0.7, () => N.bush(k, '#3f5f3a'), { minR: 3, block: 0.5 });
+    k.scatter(4, 0.7, () => N.bush(k, N.shade(k.look.leaf, -0.05)), { minR: 3, block: 0.5 });
     rocks(k, 5);
   },
 };
@@ -595,15 +595,15 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
   jungle(k) {
     k.ground = '#4f7a3a';
     trees(k, 7, () => N.palm(k), 3.5);
-    trees(k, 5, () => N.roundTree(k, '#2f6b35'), 4);
-    k.scatter(5, 0.8, () => N.bush(k, '#3f8a3a', 0.8), { minR: 2.6, block: 0.6 });
+    trees(k, 5, () => N.roundTree(k, N.shade(N.evergreen(k), -0.03)), 4);
+    k.scatter(5, 0.8, () => N.bush(k, N.evergreen(k), 0.8), { minR: 2.6, block: 0.6 });
     if (k.has('aircraft', 'pilot', 'plane')) {
       const plane = P.airplane(k);
       plane.position.y = 0.6;
       centrepiece(k, plane, 4.6, -1.6, 1.6);
     } else {
       // Tarzan swing: a tall tree with a hanging vine.
-      const t = N.roundTree(k, '#2f6b35');
+      const t = N.roundTree(k, N.shade(N.evergreen(k), -0.03));
       t.scale.setScalar(1.6);
       k.part(t, geo.cyl(0.02, 0.02, 2.2, 4), '#4f7a2a', [0.9, 2.0, 0.4], { outline: false });
       centrepiece(k, t, -4.6, -1.6, 0.6);
@@ -611,7 +611,19 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
   },
 };
 
+/** Islands with open, grassy ground (rooms, stages, snow and stone stay bare). */
+const GRASSY = new Set<IslandKind>(['meadow', 'lakeside', 'wildforest', 'pavilion', 'riverside', 'camp', 'skygarden']);
+
 export function buildIsland(k: Kit, island: IslandKind, variant?: string) {
   if (island === 'landmark') (LANDMARKS[variant ?? 'castle'] ?? LANDMARKS.castle)(k);
   else (TEMPLATES[island] ?? TEMPLATES.meadow)(k);
+  // Ground cover last, so it uses the template's final ground colour.
+  if (GRASSY.has(island) && k.env.weather !== 'snow' && k.env.below !== 'snow') {
+    k.group.add(N.grass(k, k.walkRadius + 0.4, 200));
+  }
+  // Autumn: the painting's foliage is orange, or the scene says so.
+  const hue = new THREE.Color(k.look.leaf).getHSL({ h: 0, s: 0, l: 0 }).h;
+  if (island !== 'landmark' && (k.has('autumn', 'fall', 'maple') || (hue > 0.02 && hue < 0.12 && GRASSY.has(island)))) {
+    k.group.add(N.fallenLeaves(k, k.walkRadius, 160));
+  }
 }

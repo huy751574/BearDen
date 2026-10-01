@@ -15,6 +15,10 @@ export interface SceneEnv {
   weather: 'rain' | 'snow' | 'petals' | 'fireflies' | 'sparks' | 'none';
   skyTop: string;
   skyBottom: string;
+  /** Colours sampled from the painting: foliage, and (outdoor islands) the ground and cliff. */
+  leaf?: string;
+  ground?: string;
+  groundSide?: string;
   /** Island layout (templates.ts) and, for landmarks, which landmark. */
   island?: import('./templates').IslandKind;
   variant?: string;

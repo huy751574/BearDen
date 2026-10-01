@@ -7,7 +7,7 @@ import { ScreenVideo } from './ScreenVideo';
 import { Avatar, avatarLabel } from './avatars';
 import { chatConfigured, getIdToken, onUserChange, signIn } from '../chat/ChatService';
 import {
-  MAX_CHAT_CHARS, MAX_QUEUE, MAX_SLOTS,
+  MAX_CHAT_CHARS, MAX_QUEUE, MAX_SLOTS, MOVE_LEAD,
   type ServerMsg, type Song, type QueueItem, type Votes, type Counts, type You, type ChatMsg, type Player,
 } from './protocol';
 
@@ -31,6 +31,7 @@ export class Lounge {
   /** Pillow hits that pushed someone off the edge, until their "left" arrives. */
   private knockedOff = new Map<number, { dx: number; dz: number }>();
   private lastSent = { x: NaN, z: NaN, tx: NaN as number | null, tz: NaN as number | null, at: 0, moving: false };
+  private prevPos = { x: NaN, z: NaN };
   private idleTimer = 0;
   private unsubUser: (() => void) | null = null;
   private $: Record<string, HTMLElement> = {};
@@ -254,6 +255,8 @@ export class Lounge {
     }
     if (you.slot !== null) this.clearIdle();
     this.renderJoin();
+    this.renderAdd();
+    this.renderVotes(this.votes);
   }
 
   private becomeAvatar(slot: number, at?: Player) {
@@ -295,16 +298,22 @@ export class Lounge {
         this.game.player.root.position.y = 0;
       }
     }
-    // Send our position when the walk target changes, every 250 ms while
-    // moving, and once when we stop.
+    // Moving = actually moved this frame (not "far from the last message":
+    // that read as stopped right after every send and lost the real stop).
     const p = this.game.player.root.position;
-    const t = this.game.walkTarget;
-    const moving = Math.hypot(p.x - this.lastSent.x, p.z - this.lastSent.z) > 0.05 || (t && (t.x !== this.lastSent.tx || t.z !== this.lastSent.tz));
+    const speed = dt > 0 && Number.isFinite(this.prevPos.x) ? Math.hypot(p.x - this.prevPos.x, p.z - this.prevPos.z) / dt : 0;
+    const vx = dt > 0 ? (p.x - this.prevPos.x) / dt : 0, vz = dt > 0 ? (p.z - this.prevPos.z) / dt : 0;
+    this.prevPos = { x: p.x, z: p.z };
+    const moving = speed > 0.3;
     const now = performance.now();
-    const targetChanged = (t?.x ?? null) !== this.lastSent.tx || (t?.z ?? null) !== this.lastSent.tz;
-    if (targetChanged || (moving && now - this.lastSent.at > 250) || (!moving && this.lastSent.moving)) {
-      this.client?.send({ t: 'move', x: round(p.x), z: round(p.z), tx: t ? round(t.x) : null, tz: t ? round(t.z) : null });
-      this.lastSent = { x: p.x, z: p.z, tx: t?.x ?? null, tz: t?.z ?? null, at: now, moving: !!moving };
+    const gap = now - this.lastSent.at;
+    // Where we'll be in LEAD seconds: others extrapolate toward it between updates.
+    const head = moving ? { x: p.x + vx * MOVE_LEAD, z: p.z + vz * MOVE_LEAD } : null;
+    // While moving: every 150 ms. Stopping: always send the final spot, after a
+    // short gap so the server's rate limit (50 ms) can't drop it.
+    if ((moving && gap > 150) || (!moving && this.lastSent.moving && gap > 70)) {
+      this.client?.send({ t: 'move', x: round(p.x), z: round(p.z), tx: head ? round(head.x) : null, tz: head ? round(head.z) : null });
+      this.lastSent = { x: p.x, z: p.z, tx: head?.x ?? null, tz: head?.z ?? null, at: now, moving };
     }
   }
 
@@ -364,11 +373,20 @@ export class Lounge {
     this.$.by.textContent = this.song ? (this.song.byUid ? `requested by ${this.song.by}` : '🐻 Bear Den house music') : '';
   }
 
+  /** The add-a-song box is for players on the island only. */
+  private renderAdd() {
+    const playing = this.you.slot !== null;
+    for (const el of this.el.querySelectorAll<HTMLInputElement | HTMLButtonElement>('.lg-add input, .lg-add button')) el.disabled = !playing;
+    this.el.querySelector<HTMLInputElement>('.lg-add input')!.placeholder = playing ? 'Paste a YouTube link…' : 'Join the island to add songs';
+  }
+
   private renderVotes(v: Votes) {
     this.votes = v;
     this.$.votes.textContent = `${v.count} / ${v.need} votes to skip`;
     const skip = this.$.skip as HTMLButtonElement;
-    skip.disabled = !this.song || v.mine || !this.you.uid;
+    // Only players on the island can vote (and add songs).
+    skip.disabled = !this.song || v.mine || this.you.slot === null;
+    skip.title = this.you.slot === null ? 'Join the island to vote' : '';
     skip.textContent = v.mine ? '✓ Voted' : '⏭ Vote skip';
     if (!v.mine) skip.onclick = () => {
       if (this.song) this.myVoteFor = this.song.videoId;

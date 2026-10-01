@@ -109,6 +109,121 @@
     "forward": "+x",
     "height": 1.9
   },
+  "common_black_cat": {
+    "file": "models/common_black_cat.glb",
+    "clips": {
+      "idle": "models/common_black_cat.glb",
+      "cheer": "models/common_black_cat@cheer.glb",
+      "dance": "models/common_black_cat@dance.glb",
+      "run": "models/common_black_cat@run.glb",
+      "sing": "models/common_black_cat@sing.glb",
+      "sit": "models/common_black_cat@sit.glb",
+      "walk": "models/common_black_cat@walk.glb",
+      "wave": "models/common_black_cat@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.0,
+    "lite": "models/common_black_cat.lite.glb"
+  },
+  "common_cat": {
+    "file": "models/common_cat.glb",
+    "clips": {
+      "idle": "models/common_cat.glb",
+      "run": "models/common_cat@run.glb",
+      "sit": "models/common_cat@sit.glb",
+      "walk": "models/common_cat@walk.glb",
+      "wave": "models/common_cat@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.2,
+    "lite": "models/common_cat.lite.glb"
+  },
+  "common_deer": {
+    "file": "models/common_deer.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 1.1
+  },
+  "common_dog": {
+    "file": "models/common_dog.glb",
+    "clips": {
+      "idle": "models/common_dog.glb",
+      "cheer": "models/common_dog@cheer.glb",
+      "dance": "models/common_dog@dance.glb",
+      "run": "models/common_dog@run.glb",
+      "sing": "models/common_dog@sing.glb",
+      "sit": "models/common_dog@sit.glb",
+      "walk": "models/common_dog@walk.glb",
+      "wave": "models/common_dog@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.35,
+    "lite": "models/common_dog.lite.glb"
+  },
+  "common_dormouse": {
+    "file": "models/common_dormouse.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 0.7
+  },
+  "common_frog": {
+    "file": "models/common_frog.glb",
+    "clips": {
+      "idle": "models/common_frog.glb",
+      "run": "models/common_frog@run.glb",
+      "sit": "models/common_frog@sit.glb",
+      "walk": "models/common_frog@walk.glb",
+      "wave": "models/common_frog@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.2,
+    "lite": "models/common_frog.lite.glb"
+  },
+  "common_monkey": {
+    "file": "models/common_monkey.glb",
+    "clips": {
+      "idle": "models/common_monkey.glb",
+      "run": "models/common_monkey@run.glb",
+      "sit": "models/common_monkey@sit.glb",
+      "walk": "models/common_monkey@walk.glb",
+      "wave": "models/common_monkey@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.2,
+    "lite": "models/common_monkey.lite.glb"
+  },
+  "common_owl": {
+    "file": "models/common_owl.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 0.7
+  },
+  "common_rabbit": {
+    "file": "models/common_rabbit.glb",
+    "clips": {
+      "idle": "models/common_rabbit.glb",
+      "run": "models/common_rabbit@run.glb",
+      "sit": "models/common_rabbit@sit.glb",
+      "walk": "models/common_rabbit@walk.glb",
+      "wave": "models/common_rabbit@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.2,
+    "lite": "models/common_rabbit.lite.glb"
+  },
+  "common_tanuki": {
+    "file": "models/common_tanuki.glb",
+    "clips": {
+      "idle": "models/common_tanuki.glb",
+      "run": "models/common_tanuki@run.glb",
+      "sit": "models/common_tanuki@sit.glb",
+      "walk": "models/common_tanuki@walk.glb",
+      "wave": "models/common_tanuki@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.3,
+    "lite": "models/common_tanuki.lite.glb"
+  },
   "croc_king": {
     "file": "models/croc_king.glb",
     "clips": {
@@ -175,6 +290,19 @@
       "r": 0.26
     }
   },
+  "himekat": {
+    "file": "models/himekat.glb",
+    "clips": {
+      "idle": "models/himekat.glb",
+      "run": "models/himekat@run.glb",
+      "sit": "models/himekat@sit.glb",
+      "walk": "models/himekat@walk.glb",
+      "wave": "models/himekat@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.4,
+    "lite": "models/himekat.lite.glb"
+  },
   "little_snake": {
     "file": "models/little_snake.glb",
     "clips": {},
@@ -196,6 +324,19 @@
     "forward": "+x",
     "height": 1.5,
     "lite": "models/lucia.lite.glb"
+  },
+  "march_bunny": {
+    "file": "models/march_bunny.glb",
+    "clips": {
+      "idle": "models/march_bunny.glb",
+      "run": "models/march_bunny@run.glb",
+      "sit": "models/march_bunny@sit.glb",
+      "walk": "models/march_bunny@walk.glb",
+      "wave": "models/march_bunny@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.35,
+    "lite": "models/march_bunny.lite.glb"
   },
   "mecha_alligator": {
     "file": "models/mecha_alligator.glb",
@@ -264,6 +405,19 @@
       "r": 0.22
     }
   },
+  "mr_yang": {
+    "file": "models/mr_yang.glb",
+    "clips": {
+      "idle": "models/mr_yang.glb",
+      "run": "models/mr_yang@run.glb",
+      "sit": "models/mr_yang@sit.glb",
+      "walk": "models/mr_yang@walk.glb",
+      "wave": "models/mr_yang@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.45,
+    "lite": "models/mr_yang.lite.glb"
+  },
   "pink_panther": {
     "file": "models/pink_panther.glb",
     "clips": {
@@ -279,6 +433,25 @@
     "forward": "+x",
     "height": 1.5,
     "lite": "models/pink_panther.lite.glb"
+  },
+  "raccoon_baseball": {
+    "file": "models/raccoon_baseball.glb",
+    "clips": {
+      "idle": "models/raccoon_baseball.glb",
+      "run": "models/raccoon_baseball@run.glb",
+      "sit": "models/raccoon_baseball@sit.glb",
+      "walk": "models/raccoon_baseball@walk.glb",
+      "wave": "models/raccoon_baseball@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.35,
+    "lite": "models/raccoon_baseball.lite.glb"
+  },
+  "sundove": {
+    "file": "models/sundove.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 0.55
   },
   "tom_cat": {
     "file": "models/tom_cat.glb",
@@ -311,5 +484,18 @@
     "forward": "+x",
     "height": 1.3,
     "lite": "models/wolf_pup.lite.glb"
+  },
+  "woof_dan": {
+    "file": "models/woof_dan.glb",
+    "clips": {
+      "idle": "models/woof_dan.glb",
+      "run": "models/woof_dan@run.glb",
+      "sit": "models/woof_dan@sit.glb",
+      "walk": "models/woof_dan@walk.glb",
+      "wave": "models/woof_dan@wave.glb"
+    },
+    "forward": "+x",
+    "height": 1.4,
+    "lite": "models/woof_dan.lite.glb"
   }
 }

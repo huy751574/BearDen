@@ -39,7 +39,15 @@ export class Diorama {
   private t = 0;
   readonly environment: Environment;
 
-  constructor(readonly look: ThemeLook, seed: string, readonly env: SceneEnv, backdropUrl?: string) {
+  /** The theme's look with this scene's own colours (sampled from its painting). */
+  readonly look: ThemeLook;
+
+  constructor(themeLook: ThemeLook, seed: string, readonly env: SceneEnv, backdropUrl?: string) {
+    const look = (this.look = {
+      ...themeLook,
+      ...(env.leaf && { leaf: env.leaf }),
+      ...(env.ground && { ground: env.ground, groundSide: env.groundSide ?? themeLook.groundSide }),
+    });
     const rand = mulberry32(hash(seed));
     this.environment = new Environment(env, look, mulberry32(hash(seed + '/env')));
     this.group.add(this.environment.group);

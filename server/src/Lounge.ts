@@ -230,6 +230,7 @@ export class Lounge extends DurableObject<Env> {
 
   private async enqueue(ws: WebSocket, att: Attachment, url: string) {
     if (!att.uid) return this.notice(ws, 'Sign in to add songs.', 'error');
+    if (att.slot === null) return this.notice(ws, 'Only players on the island can add songs. Join the island first!', 'error');
     const videoId = parseYouTubeId(String(url ?? ''));
     if (!videoId) return this.notice(ws, "That doesn't look like a YouTube link.", 'error');
     if (this.room.queue.some((q) => q.byUid === att.uid)) return this.notice(ws, 'You already have a song in the queue. Wait for it to play!', 'error');
@@ -253,16 +254,22 @@ export class Lounge extends DurableObject<Env> {
 
   private vote(ws: WebSocket, att: Attachment) {
     if (!att.uid) return this.notice(ws, 'Sign in to vote.', 'error');
+    if (att.slot === null) return this.notice(ws, 'Only players on the island can vote to skip.', 'error');
     if (!this.room.song || this.room.votes.includes(att.uid)) return;
     this.room.votes.push(att.uid);
     this.touch(att, Date.now());
     this.save(ws, att);
-    if (this.room.votes.length >= this.need()) {
-      this.broadcastNotice(`Skipped "${this.room.song.title.slice(0, 50)}" by vote.`);
-      return this.advance();
-    }
+    if (this.skipIfVoted()) return;
     this.persist();
     this.broadcastVotes();
+  }
+
+  /** Skip the song once enough players voted (also after players leave and the bar drops). */
+  private skipIfVoted() {
+    if (!this.room.song || !this.room.votes.length || this.room.votes.length < this.need()) return false;
+    this.broadcastNotice(`Skipped "${this.room.song.title.slice(0, 50)}" by vote.`);
+    this.advance();
+    return true;
   }
 
   private duration(videoId: string, seconds: number) {
@@ -419,6 +426,11 @@ export class Lounge extends DurableObject<Env> {
     if (slot === null) return;
     att.slot = null;
     this.save(ws, att);
+    // Off the island: their skip vote no longer counts.
+    if (att.uid && this.room.votes.includes(att.uid)) {
+      this.room.votes = this.room.votes.filter((v) => v !== att.uid);
+      this.persist();
+    }
     this.broadcast({ t: 'left', slot, reason });
     // Next in the waitlist takes the free slot.
     const next = this.sockets()
@@ -473,7 +485,7 @@ export class Lounge extends DurableObject<Env> {
 
   private need() {
     const c = this.counts();
-    return votesNeeded(c.viewers, c.players);
+    return votesNeeded(c.players);
   }
 
   private votes(att: Attachment): Votes {
@@ -531,7 +543,7 @@ export class Lounge extends DurableObject<Env> {
     this.countsTimer ??= setTimeout(() => {
       this.countsTimer = null;
       this.broadcast({ t: 'counts', counts: this.counts() });
-      this.broadcastVotes();
+      if (!this.skipIfVoted()) this.broadcastVotes();
     }, 150);
   }
 

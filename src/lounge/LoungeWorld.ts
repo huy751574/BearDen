@@ -10,7 +10,7 @@ import { Particles } from '../scenery/Particles';
 import { Effects } from '../games/types';
 import type { BearInfo } from '../character/Companion';
 import { Avatar } from './avatars';
-import { ISLAND_RADIUS, WALK_RADIUS, type Player, type Song } from './protocol';
+import { ISLAND_RADIUS, MOVE_LEAD, WALK_RADIUS, type Player, type Song } from './protocol';
 
 // The Bear Den Lounge island: a big cosy floating island under a night sky,
 // with a stage + "now playing" screen, sofas, pillow piles and lamps.
@@ -20,6 +20,7 @@ import { ISLAND_RADIUS, WALK_RADIUS, type Player, type Song } from './protocol';
 const ENV: SceneEnv = { time: 'night', below: 'clouds', weather: 'fireflies', skyTop: '#23204a', skyBottom: '#7a5a9a' };
 const LOOK: ThemeLook = { ...lookFor('relax'), ground: '#8fb86a', groundSide: '#6b5344', accent: '#ffc56b', leaf: '#4a7d4f' };
 const WALK_SPEED = 2.6;
+const RUN_SPEED = 4.5;
 
 interface Remote {
   av: Avatar;
@@ -27,6 +28,8 @@ interface Remote {
   z: number;
   tx: number | null;
   tz: number | null;
+  /** When the last move message arrived (performance.now()). */
+  at: number;
   jumpT: number;
   knock: { dx: number; dz: number; t: number } | null;
   leaving: { phase: 'run' | 'leap'; t: number; edge: THREE.Vector3; dir: THREE.Vector3; y: number; speed: number; up?: number; cry?: string } | null;
@@ -200,14 +203,14 @@ export class LoungeWorld implements World {
     const av = new Avatar(p.slot, p.name);
     av.char.root.position.set(p.x, 0, p.z);
     this.group.add(av.char.root);
-    this.remotes.set(p.slot, { av, x: p.x, z: p.z, tx: p.tx, tz: p.tz, jumpT: 0, knock: null, leaving: null, pillowT: 0 });
+    this.remotes.set(p.slot, { av, x: p.x, z: p.z, tx: p.tx, tz: p.tz, at: performance.now(), jumpT: 0, knock: null, leaving: null, pillowT: 0 });
     this.fx.burst(new THREE.Vector3(p.x, 1, p.z), '#ffe27a', 14);
   }
 
   move(slot: number, x: number, z: number, tx: number | null, tz: number | null) {
     const r = this.remotes.get(slot);
     if (!r || r.leaving) return;
-    Object.assign(r, { x, z, tx, tz });
+    Object.assign(r, { x, z, tx, tz, at: performance.now() });
     // Far off (lag, teleport)? Snap instead of sliding across the island.
     const pos = r.av.char.root.position;
     if (Math.hypot(pos.x - x, pos.z - z) > 3) pos.set(x, pos.y, z);
@@ -318,14 +321,20 @@ export class LoungeWorld implements World {
         root.position.z += (r.z - root.position.z) * k * 3;
         if (r.knock.t > 0.3) r.knock = null;
       } else {
-        // Walk toward the reported target (or last reported position).
-        const gx = r.tx ?? r.x, gz = r.tz ?? r.z;
+        // Walk toward where they are now: the reported spot moved along their
+        // heading for the time since the message (at most MOVE_LEAD ahead, so
+        // there's nothing to walk back when the stop message arrives).
+        const k = r.tx === null || r.tz === null ? 0 : Math.min(1, (performance.now() - r.at) / 1000 / MOVE_LEAD);
+        const gx = r.x + ((r.tx ?? r.x) - r.x) * k, gz = r.z + ((r.tz ?? r.z) - r.z) * k;
         const dx = gx - root.position.x, dz = gz - root.position.z, d = Math.hypot(dx, dz);
         if (d > 0.05) {
-          const step = Math.min(d, WALK_SPEED * dt);
+          // Their own speed (walking or running, from the heading), plus a catch-up when behind.
+          const theirs = r.tx === null || r.tz === null ? 0 : Math.hypot(r.tx - r.x, r.tz - r.z) / MOVE_LEAD;
+          const v = THREE.MathUtils.clamp(Math.max(theirs, WALK_SPEED) + d * 1.5, WALK_SPEED, RUN_SPEED * 1.3);
+          const step = Math.min(d, v * dt);
           root.position.x += (dx / d) * step;
           root.position.z += (dz / d) * step;
-          speed = WALK_SPEED;
+          speed = v;
           const yaw = Math.atan2(dx, dz);
           root.rotation.y += Math.atan2(Math.sin(yaw - root.rotation.y), Math.cos(yaw - root.rotation.y)) * Math.min(1, dt * 10);
           if (r.av.char.pose !== 'stand') r.av.char.pose = 'stand';

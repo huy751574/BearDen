@@ -149,6 +149,55 @@ three-quarter view instead of the A-pose).
 | `mecha_kraken` | villain: maelstrom | still | Giant steampunk mecha kraken, bronze and dark-steel body, one big glowing teal eye, coiled mechanical tentacles. |
 | `mecha_hydra` | villain: hydra | still | Giant nine-headed mecha hydra, dark steel necks, glowing red eyes, coiled body, low-poly chunky shapes. |
 
+### Star Rail train passengers
+
+From the scene's own art (`Cover_Honkai_Star_Rail-The_Bear_trailblazing`).
+The game seats them in the lounge car with their props (ball, coffee, book),
+so the reference image still shows them **standing in an A-pose with empty
+hands**. The black bear is the existing bear model; his outfit (pale-blue
+shirt, dark vest, teal neckerchief) can be added in code for free.
+
+| Name (save as `refs/<name>.png`) | In the train | Kind | Description |
+|---|---|---|---|
+| `raccoon_baseball` | sprawled on the bench, tossing a ball | walking | Cute chibi raccoon standing upright, grey and white fur, black eye mask, cheeky grin, big fluffy tail with dark grey rings, navy baseball cap with a small gold emblem, navy varsity jacket with cream trim over a white shirt. |
+| `himekat` | curled in the armchair with her coffee | walking | Cute chibi red-orange cat girl standing upright, white chest and muzzle, tall pointed ears with white tufts, calm amber eyes, big fluffy orange tail, dark brown fitted jacket over a white blouse, confident and elegant. |
+| `march_bunny` | chin on the windowsill, watching the nebula | walking | Cute chibi pastel-pink bunny standing upright, long upright ears with a pink bow on one ear, big bright blue eyes, cheerful, white and pale-blue short jacket with a white collar, small fluffy white tail. |
+| `mr_yang` | book open, unread, perfectly still | walking | Cute chibi grey-brown wolf gentleman standing upright, ash-blond tuft of hair, round glasses, calm wise eyes, dark grey-green suit jacket over a light-blue shirt, dark trousers, bushy tail. |
+| `woof_dan` | dozing in the corner | walking | Cute chibi dark charcoal-grey wolf dog standing upright, messy dark fur on the head, sleepy calm half-closed eyes, small tassel earring on one ear, plain white t-shirt, dark shorts, long fluffy tail. |
+| `sundove` | perched by the far window, quiet | still | Cute chibi white dove, soft grey face, small orange beak, white hooded cloak, golden star-pointed halo floating behind the head, blue gem brooch on the chest, perched with wings folded (three-quarter view). |
+
+Cost: five walking passengers with idle, walk, run, sit and wave (105 credits
+each) plus Sundove as a still model (30) = **555 credits**. They only rest in
+the train, so `--anims idle,sit,wave` (85 each, 455 total) is enough.
+
+### Common animals (`common_`)
+
+Animals that appear in many scenes, drawn the same way everywhere in your
+art. One model per animal, and **every scene with that animal uses it**: the
+game looks for `common_<animal>` (e.g. `common_frog` for the frog), so just
+save `refs/common_<animal>.png` and run the tool with `--name common_<animal>`.
+Scene counts come from `src/data/sceneEnv.json`.
+
+| Name | Scenes | Kind | Description (from your art) |
+|---|---|---|---|
+| `common_frog` | 5 (Vietnam, Wuxia) | walking | Cute chibi green frog standing upright, big round eyes on top of the head, wide gentle smile, pale-yellow belly, simple sage-green wrap robe with a brown cloth belt, bare webbed feet. |
+| `common_monkey` | 4 (Adventure, Chill) | walking | Cute chibi Japanese snow monkey standing upright, fluffy pale grey-white fur, pink face and ears, sleepy content eyes, short tail. |
+| `common_dog` | 3 (Chill) | walking | Cute chibi shiba inu standing upright, orange fur with cream cheeks, chest and paws, curled fluffy tail, pointy ears, friendly smile. |
+| `common_tanuki` | 2 (Chill, Isekai) | walking | Cute chibi tanuki standing upright, brown fur, dark eye patches and legs, cream muzzle, round belly, fluffy striped tail. |
+| `common_dormouse` | 2 (Chill, Cover) | walking | Cute chibi grey dormouse standing upright, very small, big round ears, big black eyes, cream belly, long fluffy tail. |
+
+Not on the list, and why:
+- **Rabbit** (4 scenes): your rabbit is the white bunny in a coat, which is
+  the moon bunny. Reusing her model costs nothing.
+- **Cat** (11 scenes): your cat is a real **four-legged black cat**, sitting
+  or curled up asleep, but the game shows an orange cat standing upright. A
+  four-legged model needs Tripo's quadruped rig, which the tool doesn't
+  support yet. A still model can work for sitting and sleeping cats.
+- **Birds** (crane 6, robin 5, egret 4, owl, dove): they fly, and a still
+  model can't flap its wings. The code-built birds stay.
+- **Wolf and alligator** (Hunting, Power Bearer): they are four-legged and
+  are being replaced by mecha villains in Power Bearer.
+
 **Lounge avatars** reuse these models with code-built accessories (hats,
 glasses, scarves...). For that, each model in `src/data/models.json` has a
 `"head"` and `"neck"` entry (centre in metres, facing +Z, and radius) that

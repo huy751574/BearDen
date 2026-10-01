@@ -281,9 +281,11 @@ export function idolStage(k: Kit) {
   k.part(g, geo.box(4.85, 0.25, 0.25), '#b8bcc8', [0, 4, -1.2]);
   const bulbs: THREE.Mesh[] = [];
   for (let i = 0; i < 6; i++) bulbs.push(k.part(g, geo.sph(0.12, 8, 6), i % 2 ? accent : '#ffffff', [-2 + i * 0.8, 3.8, -1.05], { basic: true }));
-  // Mic stand
-  k.part(g, geo.cyl(0.02, 0.02, 1.4, 5), '#333', [0, 1.3, 0.6]);
-  k.part(g, geo.sph(0.07, 8, 6), '#666', [0, 2.05, 0.65], { outline: false });
+  // Mic stand at the front, mouth-high for a chibi singer standing just behind it
+  // (the performer's spot is the deck centre; a taller stand poked through her).
+  k.part(g, geo.cyl(0.15, 0.18, 0.04, 12), '#333', [0, 0.62, 1.15]);
+  k.part(g, geo.cyl(0.02, 0.02, 0.95, 5), '#333', [0, 1.08, 1.15]);
+  k.part(g, geo.sph(0.07, 8, 6), '#666', [0, 1.6, 1.1], { outline: false });
   k.light(g, accent, 3, 9, [0, 3, 1.5]);
   k.animate((t) => bulbs.forEach((b, i) => (b.visible = Math.sin(t * 4 + i) > -0.3)));
   return g;

@@ -4,7 +4,8 @@ import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.j
 import { clone as cloneSkinned } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { toonMaterial, addOutline, addSkinnedOutline } from '../engine/toon';
 import type { Character, Emote } from './Character';
-import type { Action } from './ChibiBear';
+import type { Action, ChibiParts } from './ChibiBear';
+import { detachHair } from './hairFix';
 
 // A rigged GLB character (e.g. from tools/tripo_character.py) driven by an
 // AnimationMixer. Clips can live in the model file or in separate
@@ -20,7 +21,25 @@ export interface ModelEntry {
   forward: '+x' | '-x' | '+z' | '-z';
   /** Target height in metres (the procedural bear is ~1.5). */
   height: number;
+  /** Lighter copy (~1/4 of the triangles) for crowds, e.g. lounge avatars. */
+  lite?: string;
+  /** Re-bind long hair that the auto-rig tied to the arms (see hairFix.ts). */
+  hairFix?: boolean;
+  /**
+   * Where the head is (metres, character space, facing +Z) and its radius, so
+   * accessories made for the procedural chibi head fit (see attachParts).
+   */
+  head?: { x?: number; y: number; z?: number; r: number };
+  /** Neck (where the head meets the body) and its radius, for scarves. */
+  neck?: { x?: number; y: number; z?: number; r: number };
 }
+
+/** The procedural chibi's head: radius and height its accessories were made for. */
+const CHIBI_HEAD_R = 0.44;
+const CHIBI_HEAD_Y = 1.12;
+/** The chibi's neck in body space (its scarves: a ring of radius 0.3 at y 0.82). */
+const CHIBI_NECK_Y = 0.82;
+const CHIBI_NECK_R = 0.3;
 
 type State = 'idle' | 'walk' | 'run' | 'sit' | Emote;
 const EMOTES = new Set<string>(['wave', 'dance', 'cheer', 'sing', 'clap', 'victory', 'hurt']);
@@ -46,6 +65,10 @@ const load = (file: string) => {
 /** Load a model + its clips. `height` overrides the entry's (e.g. a cub from the bear model). */
 export async function loadGltfCharacter(entry: ModelEntry, height = entry.height): Promise<GltfCharacter> {
   const gltf = await load(entry.file);
+  if (entry.hairFix && !gltf.userData.hairFixed) {
+    gltf.userData.hairFixed = true; // clones share the geometry: fix it once
+    detachHair(gltf.scene);
+  }
   const model = { ...gltf, scene: cloneSkinned(gltf.scene) as THREE.Group };
   const clips = new Map<string, THREE.AnimationClip>();
   await Promise.all(
@@ -68,9 +91,26 @@ export async function loadGltfCharacter(entry: ModelEntry, height = entry.height
  * `glow` picks the bright orange pixels of its texture (embers, lava cracks)
  * as an emissive map; returns the materials so the caller can pulse them.
  */
-export async function loadStaticModel(entry: ModelEntry, height = entry.height, glow = false) {
+export type GlowKind = 'ember' | 'red' | 'teal';
+
+export async function loadStaticModel(entry: ModelEntry, height = entry.height, glow: GlowKind | false = false, ownGeometry = false) {
   const gltf = await load(entry.file);
   const model = gltf.scene.clone(true);
+  // Own copies of the vertices when the caller bends the mesh (Slither).
+  if (ownGeometry) {
+    model.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (!m.isMesh) return;
+      m.geometry = m.geometry.clone();
+      // Compressed files store positions as 16-bit integers; bending needs floats.
+      const pos = m.geometry.attributes.position;
+      if (!(pos.array instanceof Float32Array)) {
+        const f = new Float32Array(pos.count * 3);
+        for (let i = 0; i < pos.count; i++) f.set([pos.getX(i), pos.getY(i), pos.getZ(i)], i * 3);
+        m.geometry.setAttribute('position', new THREE.BufferAttribute(f, 3));
+      }
+    });
+  }
   model.rotation.y = FORWARD_YAW[entry.forward] ?? 0;
   model.updateMatrixWorld(true);
   const box = new THREE.Box3().setFromObject(model);
@@ -85,8 +125,8 @@ export async function loadStaticModel(entry: ModelEntry, height = entry.height, 
     const old = mesh.material as THREE.MeshStandardMaterial;
     const mat = toonMaterial(old.color ?? '#ffffff', { map: old.map ?? null });
     if (glow && old.map) {
-      const mask = emberMask(old.map);
-      if (mask) Object.assign(mat, { emissive: new THREE.Color('#ff8a2a'), emissiveMap: mask, emissiveIntensity: 1 });
+      const mask = glowMask(old.map, glow);
+      if (mask) Object.assign(mat, { emissive: new THREE.Color(GLOW_COLOR[glow]), emissiveMap: mask, emissiveIntensity: 1 });
     }
     materials.push(mat);
     mesh.material = mat;
@@ -98,8 +138,19 @@ export async function loadStaticModel(entry: ModelEntry, height = entry.height, 
   return { root, materials };
 }
 
-/** White where the texture is warm orange (glowing cracks), black elsewhere. */
-function emberMask(tex: THREE.Texture): THREE.Texture | null {
+const GLOW_COLOR: Record<GlowKind, string> = { ember: '#ff8a2a', red: '#ff2a2a', teal: '#3ff0e0' };
+/** Which texture pixels glow (Tripo's textures are muted, so the rules are loose). */
+const GLOW_RULE: Record<GlowKind, (r: number, g: number, b: number) => boolean> = {
+  // Embers / lava cracks: warm orange (around rgb(195,130,75)).
+  ember: (r, g, b) => r > 140 && r > g + 12 && r - b > 80 && g > b,
+  // Robot eyes and warning lights.
+  red: (r, g, b) => r > 140 && r - g > 70 && r - b > 70,
+  // Cyan cores and runes.
+  teal: (r, g, b) => g > 130 && b > 120 && g - r > 50,
+};
+
+/** White where the texture has the glowing colour, black elsewhere. */
+function glowMask(tex: THREE.Texture, kind: GlowKind): THREE.Texture | null {
   const img = tex.image as CanvasImageSource & { width: number; height: number };
   if (!img?.width) return null;
   const w = Math.min(img.width, 512), h = Math.min(img.height, 512);
@@ -112,8 +163,7 @@ function emberMask(tex: THREE.Texture): THREE.Texture | null {
   const d = px.data;
   for (let i = 0; i < d.length; i += 4) {
     const r = d[i], gr = d[i + 1], b = d[i + 2];
-    // Warm orange (Tripo's textures are muted: cracks sit around rgb(195,130,75)).
-    const ember = r > 140 && r > gr + 12 && r - b > 80 && gr > b;
+    const ember = GLOW_RULE[kind](r, gr, b);
     d[i] = d[i + 1] = d[i + 2] = ember ? 255 : 0;
   }
   g.putImageData(px, 0, 0);
@@ -136,12 +186,19 @@ export class GltfCharacter implements Character {
   private headBase: THREE.Quaternion | null = null;
   private lie = 0;
   private height: number;
+  private headInfo: ModelEntry['head'];
+  private neckInfo: ModelEntry['neck'];
   private mixer: THREE.AnimationMixer;
   private actions = new Map<State, THREE.AnimationAction>();
   private current: THREE.AnimationAction | null = null;
   private emoteTime = 0;
   private emoteState: State | null = null;
-  private walkSpeed = 1;
+  /** Ground speed (m/s) of the walk / run clips at normal playback. */
+  private walkStride = 1;
+  private runStride = 2;
+  /** Smoothed movement speed, and whether we're in a walking state (with hysteresis). */
+  private moveSpeed = 0;
+  private moving = false;
 
   constructor(gltf: GLTF, clips: Map<string, THREE.AnimationClip>, entry: ModelEntry) {
     const model = gltf.scene;
@@ -153,6 +210,8 @@ export class GltfCharacter implements Character {
     model.scale.setScalar(scale);
     model.position.y = -box.min.y * scale;
     this.height = entry.height;
+    this.headInfo = entry.head;
+    this.neckInfo = entry.neck;
     this.body.add(model);
     this.root.add(this.body);
     model.traverse((o) => {
@@ -184,7 +243,9 @@ export class GltfCharacter implements Character {
       }
       this.actions.set(state, action);
     }
-    this.walkSpeed = 2.6;
+    // Tripo's chibi steps are small: measure how fast each gait really moves.
+    this.walkStride = strideSpeed(model, this.actions.get('walk')) ?? 1;
+    this.runStride = strideSpeed(model, this.actions.get('run')) ?? this.walkStride * 2;
     this.play('idle', 0);
   }
 
@@ -202,6 +263,80 @@ export class GltfCharacter implements Character {
     this.play(state, 0.2, true);
   }
 
+  /**
+   * Parts for accessories written for the procedural chibi (ChibiSpec.extras):
+   * `head` is pinned to the head bone, scaled so the chibi's head (radius 0.44)
+   * matches this model's head; `body` is pinned to the upper spine, scaled
+   * and placed so the chibi's neck (scarves) matches this model's neck. Call
+   * once, right after loading.
+   */
+  attachParts(): ChibiParts {
+    const h = this.headInfo ?? { y: this.height * 0.72, r: this.height * 0.2 };
+    // Pin in the idle pose (the head's measured position), not the file's rest pose.
+    this.mixer.update(0);
+    this.root.updateMatrixWorld(true);
+    const head = new THREE.Group();
+    head.position.set(h.x ?? 0, h.y, h.z ?? 0);
+    head.scale.setScalar(h.r / CHIBI_HEAD_R);
+    this.root.add(head);
+    head.updateMatrixWorld(true);
+    (this.head ?? this.root).attach(head); // keeps where it is, then follows the head
+    // Body parts follow the chest: the chibi's neck ring lands on this neck.
+    const n = this.neckInfo ?? { x: h.x, y: h.y - h.r * 1.05, z: h.z, r: h.r * 0.9 };
+    const k = n.r / CHIBI_NECK_R;
+    const body = new THREE.Group();
+    body.position.set(n.x ?? 0, n.y - CHIBI_NECK_Y * k, n.z ?? 0);
+    body.scale.setScalar(k);
+    this.root.add(body);
+    body.updateMatrixWorld(true);
+    let chest: THREE.Object3D | null = null;
+    this.root.traverse((o) => {
+      if (!chest && (o as THREE.Bone).isBone && /^(Spine02|Chest|Spine2|UpperChest)$/i.test(o.name)) chest = o;
+    });
+    (chest ?? this.head ?? this.root).attach(body);
+    return {
+      head,
+      body,
+      armR: this.handAnchor(),
+      part: (parent, geo, color, pos, o = {}) => {
+        const m = new THREE.Mesh(geo, toonMaterial(color));
+        m.position.set(...pos);
+        if (o.rot) m.rotation.set(...o.rot);
+        if (o.scale) m.scale.set(...o.scale);
+        m.castShadow = true;
+        if (o.outline !== false) addOutline(m, 0.015);
+        parent.add(m);
+        return m;
+      },
+    };
+  }
+
+  /** Put something in the right hand (e.g. a pillow); it follows the hand. */
+  holdInHand(obj: THREE.Object3D) {
+    obj.position.set(0, -0.05, 0.12);
+    this.handAnchor().add(obj);
+  }
+
+  private hand: THREE.Group | null = null;
+  /** A metre-scaled, character-aligned group on the right hand bone. */
+  private handAnchor() {
+    if (this.hand) return this.hand;
+    let bone: THREE.Object3D | null = null;
+    this.root.traverse((o) => {
+      if (!bone && (o as THREE.Bone).isBone && /^R_Hand$|RightHand$/i.test(o.name)) bone = o;
+    });
+    this.root.updateMatrixWorld(true);
+    const anchor = new THREE.Group();
+    const at = new THREE.Vector3();
+    (bone ?? this.root).getWorldPosition(at);
+    anchor.position.copy(this.root.worldToLocal(at));
+    this.root.add(anchor);
+    anchor.updateMatrixWorld(true);
+    (bone ?? this.root).attach(anchor);
+    this.hand = anchor;
+    return anchor;
+  }
+
   /** Companion actions (same names as the procedural creatures). */
   act(action: Action, seconds: number) {
     if (action === 'none') return void (this.emoteTime = 0);
@@ -214,16 +349,24 @@ export class GltfCharacter implements Character {
       this.emoteTime -= dt;
       if (speed > 0.05) this.emoteTime = 0; // walking cancels the emote
     }
+    // Smooth the speed and use hysteresis, so stop-and-go (a companion keeping
+    // its distance) doesn't restart the walk every few frames.
+    this.moveSpeed = THREE.MathUtils.damp(this.moveSpeed, speed, 10, dt);
+    this.moving = this.moving ? this.moveSpeed > 0.08 : this.moveSpeed > 0.3;
     let state: State;
     if (this.emoteTime > 0 && this.emoteState) state = this.emoteState;
     else if (this.pose !== 'stand' && this.actions.has('sit')) state = 'sit';
-    else if (speed > RUN_THRESHOLD && this.actions.has('run')) state = 'run';
-    else if (speed > 0.05) state = 'walk';
+    else if (this.moving && this.moveSpeed > RUN_THRESHOLD && this.actions.has('run')) state = 'run';
+    else if (this.moving) state = 'walk';
     else state = 'idle';
     this.play(state, 0.25);
 
+    // Step as fast as we travel (within reason), so feet don't slide.
+    const v = Math.max(this.moveSpeed, 0.3);
     const walk = this.actions.get('walk');
-    if (walk) walk.timeScale = THREE.MathUtils.clamp(speed / this.walkSpeed, 0.6, 1.8);
+    if (walk) walk.timeScale = THREE.MathUtils.clamp(v / this.walkStride, 0.6, 2.5);
+    const run = this.actions.get('run');
+    if (run) run.timeScale = THREE.MathUtils.clamp(v / this.runStride, 0.6, 2.2);
     // Undo last frame's head turn first: a clip without a head track wouldn't overwrite it.
     if (this.head && this.headBase) this.head.quaternion.copy(this.headBase);
     this.mixer.update(dt);
@@ -260,6 +403,35 @@ export class GltfCharacter implements Character {
     if (this.current && this.current !== next) this.current.fadeOut(fade);
     this.current = next;
   }
+}
+
+/**
+ * Ground speed of an in-place walk/run clip: how fast a foot slides back
+ * relative to the hips, averaged over the clip (forward = the axis the feet
+ * travel along most). Null if the rig has no Hip / L_Foot.
+ */
+function strideSpeed(model: THREE.Object3D, action: THREE.AnimationAction | undefined): number | null {
+  const hip = model.getObjectByName('Hip'), foot = model.getObjectByName('L_Foot');
+  if (!action || !hip || !foot) return null;
+  const clip = action.getClip();
+  const mixer = new THREE.AnimationMixer(model);
+  const probe = mixer.clipAction(clip);
+  probe.play();
+  const steps = 60, dt = clip.duration / steps;
+  const a = new THREE.Vector3(), b = new THREE.Vector3(), rel: THREE.Vector3[] = [];
+  for (let i = 0; i <= steps; i++) {
+    mixer.setTime(i * dt);
+    model.updateMatrixWorld(true);
+    rel.push(foot.getWorldPosition(a).clone().sub(hip.getWorldPosition(b)));
+  }
+  probe.stop();
+  mixer.uncacheRoot(model);
+  const span = (k: 'x' | 'z') => Math.max(...rel.map((v) => v[k])) - Math.min(...rel.map((v) => v[k]));
+  const axis = span('x') > span('z') ? 'x' : 'z';
+  let travel = 0;
+  for (let i = 1; i < rel.length; i++) travel += Math.abs(rel[i][axis] - rel[i - 1][axis]);
+  const speed = travel / clip.duration;
+  return speed > 0.05 ? speed : null;
 }
 
 function findRootBone(model: THREE.Object3D): THREE.Bone | null {

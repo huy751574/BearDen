@@ -124,6 +124,40 @@ python tools/tripo_character.py --name dragon --image refs/dragon.png --no-rig
 ```
 (30 credits: model only.)
 
+### Cover and Power Bearer characters
+
+Same recipe: start the prompt with the description, end it with the bear
+prompt's ending (front view, A-pose, plain white background, cel-shaded),
+and attach the scene's image as a style reference. **Walking characters**
+get a skeleton and animations (~135 credits); **big or legless ones** are
+still models animated in code like the dragon (`--no-rig`, 30 credits; use a
+three-quarter view instead of the A-pose).
+
+| Name (save as `refs/<name>.png`) | Scene | Kind | Description |
+|---|---|---|---|
+| `eula_cat` | Genshin: Eula cat tango | walking | Cute chibi white cat girl standing upright, light-blue hair in a short bob, dark navy hairband, elegant white and navy dance dress with a short cape, graceful. |
+| `pink_panther` | Pink Panther & Tom jazz bar | walking | Cute chibi pink panther standing upright, slim pink body, long thin tail, cream muzzle, black nose, bartender outfit: white shirt, black vest, bow tie. |
+| `tom_cat` | Pink Panther & Tom jazz bar | walking | Cute chibi blue-grey cat standing upright, white muzzle and chest, big whiskers, black suit jacket over a white shirt (pianist). |
+| `lucia` | ZZZ: Lucia and the little goat | walking | Cute chibi girl with short light-blue hair, two small curved horns, big gentle eyes, teal jacket over a white shirt, dark shorts, boots. |
+| `cloud_retainer` | Genshin: tea with Cloud Retainer | still | Elegant chibi crane, white and pale-blue feathers, long flowing ribbon-like tail feathers, small crest, standing on both legs, wings folded. |
+| `mecha_bear` | every Power Bearer scene | walking | Giant chibi mecha bear robot, rounded silver-grey armour plates, glowing cyan chest core and joints, cyan eyes, large metal wings folded on its back, heroic stance. |
+| `croc_king` | villain: alligator | walking | Cute chibi green crocodile standing upright, small gold crown, big yellow eyes, cream belly, short tail. |
+| `wolf_pup` | villain: dire wolf | walking | Cute chibi grey wolf pup standing upright, glowing blue markings on the face and paws, fluffy tail, fierce but cute. |
+| `captain_grimtide` | villain: maelstrom | walking | Cute chibi pirate captain (a young man), dark tricorn hat, long dark-teal coat with gold buttons, boots, glowing teal amulet. |
+| `mecha_alligator` | villain: alligator | still | Giant mecha alligator robot, silver-grey armoured plates, glowing red eyes, crawling on four legs, long spiked tail. |
+| `mecha_wolf` | villain: dire wolf | still | Giant mecha dire wolf robot, dark gunmetal armour, glowing red eyes and joints, standing on four legs. |
+| `mecha_kraken` | villain: maelstrom | still | Giant steampunk mecha kraken, bronze and dark-steel body, one big glowing teal eye, coiled mechanical tentacles. |
+| `mecha_hydra` | villain: hydra | still | Giant nine-headed mecha hydra, dark steel necks, glowing red eyes, coiled body, low-poly chunky shapes. |
+
+**Lounge avatars** reuse these models with code-built accessories (hats,
+glasses, scarves...). For that, each model in `src/data/models.json` has a
+`"head"` and `"neck"` entry (centre in metres, facing +Z, and radius) that
+places the accessories; adjust them if an accessory floats or sinks. The cat
+idol has `"hairFix": true`, which re-binds her twin tails to her head (the
+auto-rig tied them to her arms). `tools/compress_models.py` also writes a
+`<name>.lite.glb` (about a quarter of the triangles) that the lounge uses so
+50 avatars stay light.
+
 Then, per friend:
 ```bash
 python tools/tripo_character.py --name fox --image refs/fox.png --anims idle,walk,run,sit,wave,dance,cheer,sing

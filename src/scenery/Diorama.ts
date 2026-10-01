@@ -63,7 +63,7 @@ export class Diorama {
       rand: mulberry32(hash(seed + '/companion')),
     };
     cast.forEach((c, i) => {
-      const comp = new Companion(c.kind, c.behavior, world, i);
+      const comp = new Companion(c.kind, c.behavior, world, i, c);
       this.companions.push(comp);
       this.group.add(comp.group);
     });

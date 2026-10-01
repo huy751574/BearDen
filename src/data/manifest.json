@@ -82,6 +82,7 @@
       "id": "isekai",
       "name": "Isekai",
       "scenes": [
+        "isekai-bear-hero-party-stroll-in-town-after-victory",
         "isekai-bear-hero-party-traveling",
         "isekai-black-bear-hero-party-camping-night-in-the-pines",
         "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight",
@@ -786,6 +787,11 @@
           "id": "1FzM8X2Db4c",
           "title": "Trick or Sing 🎃 Witch Cat on the Moon (Instrumental) | Lofi Halloween",
           "kind": "instrumental"
+        },
+        {
+          "id": "PzOIny8NyVA",
+          "title": "Trick or Sing 🎃 Witch Flight Lullaby (Lyrics) | Lofi Halloween",
+          "kind": "lyrics"
         }
       ]
     },
@@ -1631,7 +1637,7 @@
         "Hunting-Bear_walk_in_the_dark-Lyrics"
       ],
       "hasLyrics": true,
-      "video": null,
+      "video": "Hunting-Bear_walk_in_the_dark-Lyrics/Bear_walking_in_haunted_forest_20260922230556.mp4",
       "songs": [
         {
           "title": "Walk Walk Walk",
@@ -1639,7 +1645,13 @@
           "lyrics": true
         }
       ],
-      "youtube": []
+      "youtube": [
+        {
+          "id": "4bL9wc8BtTw",
+          "title": "WALK, WALK, WALK (Lyrics) 🐻🎃 Medieval Horror Phonk to Power Through | Eyes in the Dark",
+          "kind": "lyrics"
+        }
+      ]
     },
     {
       "id": "hunting-the-bear-is-drinking-near-alligator",
@@ -1701,6 +1713,31 @@
           "kind": "instrumental"
         }
       ]
+    },
+    {
+      "id": "isekai-bear-hero-party-stroll-in-town-after-victory",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Bear Hero Party Stroll in town after victory",
+      "folders": [
+        "Isekai-Bear_Hero_Party_Stroll_in_town_after_victory",
+        "Isekai-Bear_Hero_Party_Stroll_in_town_after_victory-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Isekai-Bear_Hero_Party_Stroll_in_town_after_victory/Bear_swaggering_in_town_square_20260929224713.mp4",
+      "songs": [
+        {
+          "title": "Peace to Share",
+          "file": "Isekai-Bear_Hero_Party_Stroll_in_town_after_victory/Peace to Share.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Peace to Share (Lyrics)",
+          "file": "Isekai-Bear_Hero_Party_Stroll_in_town_after_victory-Lyrics/Peace to Share (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": []
     },
     {
       "id": "isekai-bear-hero-party-traveling",
@@ -3787,6 +3824,11 @@
           "id": "rCGxChs8vaQ",
           "title": "🌸Healing the Body, Not the Heart — Black Bear Meditates in the Mist | Wuxia Cultivation Chill",
           "kind": "instrumental"
+        },
+        {
+          "id": "ydNdp0nADGM",
+          "title": "Through the Mist 🌫️ Wuxia Lofi to Heal & Rest",
+          "kind": "lyrics"
         }
       ]
     },

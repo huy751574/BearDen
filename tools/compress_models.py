@@ -9,7 +9,11 @@ Per file (with gltf-transform, fetched by npx):
   resize    textures to at most 1024 px (2048 costs ~22 MB of GPU memory each)
   meshopt   compress meshes and animations (the game's loader decodes it)
 
-Typically 70-80% smaller. The untouched Tripo downloads are kept in
+Typically 70-80% smaller. Each rigged model also gets <name>.lite.glb:
+about a quarter of the triangles and 512 px textures, for crowds (the lounge
+shows up to 50 avatars at once).
+
+The untouched Tripo downloads are kept in
 tools/cache/models_raw/ (git-ignored), so running again never compresses
 twice and --all starts from the originals.
 """
@@ -28,6 +32,8 @@ MODELS = ROOT / "public" / "models"
 RAW = ROOT / "tools" / "cache" / "models_raw"
 GLTF_TRANSFORM = ["npx", "-y", "@gltf-transform/cli@4"]
 MAX_TEXTURE = 1024
+LITE_RATIO = 0.25
+LITE_TEXTURE = 512
 
 
 def extensions(path: Path) -> set[str]:
@@ -49,20 +55,30 @@ def run(*args: str | Path) -> None:
         raise RuntimeError(f"{' '.join(cmd[3:5])} failed:\n{res.stdout}{res.stderr}")
 
 
-def compress(src: Path, dest: Path) -> None:
+def compress(src: Path, dest: Path, lite: bool = False) -> None:
     with tempfile.TemporaryDirectory() as tmp:
         a, b = Path(tmp) / "a.glb", Path(tmp) / "b.glb"
         run("resample", src, a)
         run("prune", a, b)
-        run("resize", b, a, "--width", MAX_TEXTURE, "--height", MAX_TEXTURE)
+        if lite:
+            run("simplify", b, a, "--ratio", LITE_RATIO, "--error", "0.01")
+            a, b = b, a
+        size = LITE_TEXTURE if lite else MAX_TEXTURE
+        run("resize", b, a, "--width", size, "--height", size)
         run("meshopt", a, b)
         shutil.copyfile(b, dest)
+
+
+def is_rigged(path: Path) -> bool:
+    data = path.read_bytes()
+    length = struct.unpack_from("<I", data, 12)[0]
+    return bool(json.loads(data[20:20 + length]).get("skins"))
 
 
 def main() -> int:
     redo = "--all" in sys.argv
     RAW.mkdir(parents=True, exist_ok=True)
-    files = sorted(MODELS.glob("*.glb"))
+    files = sorted(f for f in MODELS.glob("*.glb") if not f.stem.endswith(".lite"))
     if not files:
         print("No models in public/models.")
         return 0
@@ -83,6 +99,17 @@ def main() -> int:
         before += size0
         after += size1
         print(f"  {path.name}: {size0 / 1e6:.2f} MB -> {size1 / 1e6:.2f} MB")
+    # Lighter copies of the rigged models (not clips), for crowds.
+    for path in files:
+        raw = RAW / path.name
+        lite = path.with_name(f"{path.stem}.lite.glb")
+        if "@" in path.stem or not raw.exists() or not is_rigged(raw):
+            continue
+        # Rebuild when the model was re-generated after the lite copy was made.
+        if lite.exists() and not redo and lite.stat().st_mtime >= raw.stat().st_mtime:
+            continue
+        compress(raw, lite, lite=True)
+        print(f"  {lite.name}: {lite.stat().st_size / 1e6:.2f} MB (crowd version)")
     if before:
         print(f"Total {before / 1e6:.1f} MB -> {after / 1e6:.1f} MB")
     else:

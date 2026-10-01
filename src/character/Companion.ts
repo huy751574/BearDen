@@ -9,7 +9,21 @@ import type { Anchor } from '../scenery/kit';
 
 export type Behavior =
   | 'wander' | 'follow' | 'perform' | 'sit' | 'sleep' | 'prowl' | 'defeated' | 'flee'
-  | 'fly' | 'swim' | 'float' | 'orbit' | 'spar' | 'dance' | 'emerge' | 'swarm';
+  | 'fly' | 'swim' | 'float' | 'orbit' | 'spar' | 'dance' | 'emerge' | 'swarm' | 'rest';
+
+/** A companion as listed in sceneEnv.json. */
+export interface CastEntry {
+  kind: string;
+  behavior: Behavior;
+  /** 'rest': exact spot [x, z] or [x, z, height above ground] ... */
+  at?: number[];
+  /** ... facing (degrees; 0 = +Z); default: toward the island centre ... */
+  face?: number;
+  /** ... pose, a prop and the thought bubbles it shows now and then. */
+  pose?: 'stand' | 'sit' | 'sleep';
+  prop?: 'ball' | 'cup' | 'book';
+  emotes?: string[];
+}
 
 export interface CompanionWorld {
   anchors: Record<string, Anchor>;
@@ -43,8 +57,10 @@ export class Companion {
   private arc: { from: THREE.Vector3; to: THREE.Vector3; t: number } | null = null;
   private riseY = 0;
 
+  private ball: THREE.Mesh | null = null;
+
   /** slot = index among the scene's companions; extras are placed apart from the first. */
-  constructor(kind: string, readonly behavior: Behavior, private world: CompanionWorld, readonly slot = 0) {
+  constructor(kind: string, readonly behavior: Behavior, private world: CompanionWorld, readonly slot = 0, private cast: Partial<CastEntry> = {}) {
     this.creature = makeCreature(kind);
     this.emote = new Emote(this.creature.top + 0.35);
     this.group.add(this.creature.root);
@@ -73,6 +89,7 @@ export class Companion {
   private place() {
     const b = this.behavior;
     const root = this.creature.root;
+    if (b === 'rest') return this.placeRest();
     const a = this.anchor(b === 'perform' || b === 'dance' ? 'stage' : b === 'float' || b === 'swim' ? 'pond' : b === 'sleep' ? 'bed' : 'seat', 'fire', 'loom');
     if (b === 'emerge') {
       // Big villain rising from beyond the island edge, beside the painting (a second one mirrors it).
@@ -104,6 +121,65 @@ export class Companion {
     root.position.copy(this.pos);
   }
 
+  /** 'rest': a fixed spot, pose and prop (e.g. the Star Rail lounge car passengers). */
+  private placeRest() {
+    const c = this.cast;
+    const [x, z, y = 0] = c.at ?? [0, 3];
+    this.pos.set(x, y, z);
+    const root = this.creature.root;
+    root.rotation.y = c.face !== undefined ? (c.face * Math.PI) / 180 : Math.atan2(-x, -z);
+    this.creature.pose = c.pose ?? 'sit';
+    root.position.copy(this.pos);
+    const hold = (this.creature as Creature & { holdInHand?(o: THREE.Object3D): void }).holdInHand?.bind(this.creature);
+    if (c.prop === 'ball') {
+      // Tossed up and caught, above the paw.
+      this.ball = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 8), new THREE.MeshToonMaterial({ color: '#f4f1ec' }));
+      const seam = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.008, 4, 16), new THREE.MeshBasicMaterial({ color: '#d9473f' }));
+      this.ball.add(seam);
+      root.add(this.ball);
+    } else if (c.prop === 'cup' && hold) {
+      const cup = new THREE.Group();
+      cup.add(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.06, 0.12, 12), new THREE.MeshToonMaterial({ color: '#ffffff' })));
+      const coffee = new THREE.Mesh(new THREE.CircleGeometry(0.062, 12), new THREE.MeshBasicMaterial({ color: '#5a3a24' }));
+      coffee.rotation.x = -Math.PI / 2;
+      coffee.position.y = 0.055;
+      cup.add(coffee);
+      cup.rotation.x = -0.4;
+      hold(cup);
+    } else if (c.prop === 'book' && hold) {
+      const book = new THREE.Group();
+      for (const s of [-1, 1]) {
+        const page = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.012, 0.22), new THREE.MeshToonMaterial({ color: '#f4efe6' }));
+        page.position.x = 0.08 * s;
+        page.rotation.z = -0.15 * s;
+        book.add(page);
+      }
+      const cover = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.01, 0.24), new THREE.MeshToonMaterial({ color: '#7a3a3a' }));
+      cover.position.y = -0.012;
+      book.add(cover);
+      book.rotation.set(-1.0, 0, 0);
+      hold(book);
+    }
+  }
+
+  private rest(dt: number, bear: BearInfo, dist: number) {
+    const c = this.cast;
+    this.creature.pose = c.pose ?? 'sit';
+    if (c.pose !== 'sleep') this.watch(bear, 3.5);
+    if (this.ball) {
+      // Up and down every 1.4 s, a little sideways drift; the paw follows (cheer).
+      const ph = (this.t % 1.4) / 1.4;
+      const lying = c.pose === 'sleep';
+      this.ball.position.set(lying ? 0.1 : 0.25, (lying ? 0.7 : 1.2) + Math.sin(ph * Math.PI) * 0.75, lying ? 0.35 : 0.2);
+      if (ph < dt / 1.4 + 0.01) this.creature.act('cheer', 0.35);
+    }
+    if (this.timer <= 0) {
+      const list = c.emotes?.length ? c.emotes : c.pose === 'sleep' ? ['💤'] : ['💭'];
+      if (c.pose !== 'sleep' || dist > 1.6) this.emote.show(pick(list), 2);
+      this.timer = (c.pose === 'sleep' ? 4 : 9) + this.world.rand() * 6;
+    }
+  }
+
   // ---------------------------------------------------------------- per frame
 
   update(dt: number, bear: BearInfo) {
@@ -131,10 +207,11 @@ export class Companion {
       case 'spar': speed = this.spar(dt, bear, dist); break;
       case 'emerge': this.emergeTick(dt, bear); break;
       case 'swarm': this.swarm(dt, bear); break;
+      case 'rest': this.rest(dt, bear, dist); break;
     }
 
     // Reactions shared by everyone who isn't asleep or knocked out.
-    const awake = this.behavior !== 'sleep' && this.behavior !== 'defeated';
+    const awake = this.behavior !== 'sleep' && this.behavior !== 'defeated' && !(this.behavior === 'rest' && this.cast.pose === 'sleep');
     if (bear.waves !== this.seenWaves) {
       this.seenWaves = bear.waves;
       if (awake && dist < 9) {

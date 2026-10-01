@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { toonMaterial, addOutline } from '../engine/toon';
-import { ChibiBear, BLACK_BEAR, type ChibiSpec, type Pose, type Action } from './ChibiBear';
-import { loadGltfCharacter, loadStaticModel, type GltfCharacter, type ModelEntry } from './GltfCharacter';
+import { ChibiBear, BLACK_BEAR, type ChibiSpec, type ChibiParts, type Pose, type Action } from './ChibiBear';
+import { loadGltfCharacter, loadStaticModel, type GltfCharacter, type ModelEntry, type GlowKind } from './GltfCharacter';
 import modelsJson from '../data/models.json';
 
 // Every companion species. Two-legged chibis reuse ChibiBear with a spec;
@@ -18,6 +18,8 @@ export interface Creature {
   readonly moves: 'walk' | 'fly' | 'swim' | 'float' | 'fixed';
   /** Height above the root where emote bubbles go. */
   readonly top: number;
+  /** A mini-game started (true) or ended (false), e.g. the dragon wakes and flies. */
+  gameMode?(on: boolean): void;
 }
 
 type V3 = [number, number, number];
@@ -52,7 +54,30 @@ class Chibi extends ChibiBear implements Creature {
 
 const MODELS = modelsJson as Record<string, ModelEntry>;
 /** Species drawn with another species' 3D model. */
-const MODEL_ALIAS: Record<string, string> = { cub: 'bear' };
+const MODEL_ALIAS: Record<string, string> = { cub: 'bear', cat_idol_witch: 'cat_idol' };
+/** New names for the cover characters, drawn procedurally by their older specs until the model loads. */
+const SPEC_ALIAS: Record<string, string> = { eula_cat: 'cat_eula', pink_panther: 'cat_pink', tom_cat: 'cat_grey' };
+
+/** Props the 3D model wears (placed like the procedural extras) and riders that always sit. */
+const MODEL_DRESS: Record<string, { dress: (p: ChibiParts, root: THREE.Object3D) => void; rider?: boolean }> = {
+  // The cat singer on her broom (Bloom: witch lullaby), riding side-saddle.
+  cat_idol_witch: {
+    rider: true,
+    dress: (p, root) => {
+      witchHat(p);
+      const broom = new THREE.Group();
+      p.part(broom, new THREE.CylinderGeometry(0.025, 0.025, 1.6, 6), '#8a5a3a', [0, 0, 0], { rot: [0, 0, Math.PI / 2] });
+      p.part(broom, new THREE.ConeGeometry(0.15, 0.4, 10), '#e0b84a', [-0.95, 0, 0], { rot: [0, 0, Math.PI / 2] });
+      broom.position.set(0, 0.14, 0.02);
+      root.add(broom);
+    },
+  },
+};
+
+function witchHat({ head, part }: ChibiParts) {
+  part(head, new THREE.ConeGeometry(0.35, 0.7, 16), '#5b3a8f', [0, 0.72, -0.05], { rot: [-0.15, 0, 0.1] });
+  part(head, new THREE.CylinderGeometry(0.55, 0.55, 0.04, 20), '#5b3a8f', [0, 0.38, 0]);
+}
 
 /**
  * A chibi with an installed 3D model (public/models, src/data/models.json):
@@ -64,11 +89,13 @@ class ModelCreature implements Creature {
   readonly moves = 'walk' as const;
   private body: Chibi | GltfCharacter;
 
-  constructor(fallback: Chibi, entry: ModelEntry, height: number, readonly top: number) {
+  constructor(fallback: Chibi, entry: ModelEntry, height: number, readonly top: number, private extra?: (typeof MODEL_DRESS)[string]) {
     this.body = fallback;
     this.root.add(fallback.root);
+    if (extra?.rider) fallback.pose = 'sit';
     loadGltfCharacter(entry, height).then(
       (model) => {
+        if (extra) extra.dress(model.attachParts(), model.root);
         model.pose = this.body.pose;
         model.lookYaw = this.body.lookYaw;
         this.root.remove(this.body.root);
@@ -80,7 +107,7 @@ class ModelCreature implements Creature {
   }
 
   get pose() { return this.body.pose; }
-  set pose(p: Pose) { this.body.pose = p; }
+  set pose(p: Pose) { this.body.pose = this.extra?.rider ? 'sit' : p; }
   get lookYaw() { return this.body.lookYaw; }
   set lookYaw(y: number | null) { this.body.lookYaw = y; }
   act(action: Action, seconds: number) { this.body.act(action, seconds); }
@@ -103,10 +130,15 @@ class StillGiant implements Creature {
   private fallback: Creature | null = null;
   private t = Math.random() * 10;
   private flare = 0;
+  /** 0 asleep on the ground .. 1 awake and circling above the island (mini-games). */
+  private awake = 0;
+  private awakeTarget = 0;
+  private flightA = 0;
 
-  constructor(entry: ModelEntry, readonly top: number, makeFallback: () => Creature) {
+  /** `flies`: wakes up and circles the island while a mini-game runs; `glow`: which colours light up. */
+  constructor(entry: ModelEntry, readonly top: number, makeFallback: () => Creature, private flies = false, glow: GlowKind | false = 'ember') {
     this.root.add(this.body);
-    loadStaticModel(entry, entry.height, true).then(
+    loadStaticModel(entry, entry.height, glow).then(
       ({ root, materials }) => {
         this.body.add(root);
         this.materials = materials;
@@ -125,6 +157,12 @@ class StillGiant implements Creature {
     if (action !== 'none') this.flare = Math.max(this.flare, Math.min(seconds || 1, 2));
   }
 
+  gameMode(on: boolean) {
+    if (!this.flies) return;
+    this.awakeTarget = on ? 1 : 0;
+    if (on) this.flare = 2; // wakes with a flare of light
+  }
+
   update(dt: number, speed: number) {
     if (this.fallback) {
       this.fallback.pose = this.pose;
@@ -137,8 +175,170 @@ class StillGiant implements Creature {
     const breath = Math.sin(this.t * (this.flare ? 5 : 1.6));
     const depth = this.flare ? 0.05 : 0.025;
     this.body.scale.set(1 + breath * depth * 0.6, 1 + breath * depth, 1 + breath * depth * 0.6);
-    const glow = (this.flare ? 1.6 : 0.55) + breath * (this.flare ? 0.6 : 0.35);
+    let glow = (this.flare ? 1.6 : 0.55) + breath * (this.flare ? 0.6 : 0.35);
+    if (this.flies) glow = this.fly(dt, glow);
     for (const m of this.materials) m.emissiveIntensity = glow;
+  }
+
+  /** Rise, circle above the island (centre = world origin), come back down. */
+  private fly(dt: number, glow: number) {
+    const up = this.awakeTarget > this.awake;
+    this.awake = THREE.MathUtils.clamp(this.awake + (up ? dt / 2.5 : -dt / 3.5), 0, 1);
+    if (this.awake <= 0) {
+      this.body.position.set(0, 0, 0);
+      this.body.rotation.set(0, 0, 0);
+      return glow;
+    }
+    const e = this.awake * this.awake * (3 - 2 * this.awake); // smoothstep
+    this.flightA += dt * 0.35 * e;
+    const R = 7, H = 6.5;
+    const home = this.root.position;
+    // Orbit point in world space, then into the root's (rotated) frame.
+    const wx = Math.cos(this.flightA) * R - home.x, wz = Math.sin(this.flightA) * R - home.z;
+    const yaw = this.root.rotation.y, c = Math.cos(-yaw), s = Math.sin(-yaw);
+    const lx = wx * c + wz * s, lz = -wx * s + wz * c;
+    this.body.position.set(lx * e, (H + Math.sin(this.t * 1.7) * 0.4) * e, lz * e);
+    // Face along the circle, bank into the turn, bob with each wing beat.
+    const heading = Math.atan2(-Math.sin(this.flightA), Math.cos(this.flightA));
+    this.body.rotation.set(Math.sin(this.t * 3.4) * 0.08 * e, (heading - yaw) * e, -0.25 * e);
+    return glow + 0.9 * e;
+  }
+}
+
+/**
+ * A giant mecha villain with a still model (Power Bearer): heavy stomping
+ * when it moves (a bounce and sway per step), a low mechanical hum when it
+ * stands, glowing eyes / cores that flare when it roars, and it tips over
+ * with its lights dimmed when defeated (pose 'sleep').
+ */
+class MechaGiant implements Creature {
+  readonly root = new THREE.Group();
+  readonly moves = 'walk' as const;
+  pose: Pose = 'stand';
+  lookYaw: number | null = null;
+  private body = new THREE.Group();
+  private materials: THREE.MeshToonMaterial[] = [];
+  private fallback: Creature | null = null;
+  private t = Math.random() * 10;
+  private stride = 0;
+  private flare = 0;
+  private down = 0;
+
+  constructor(entry: ModelEntry, readonly top: number, glow: GlowKind, makeFallback: () => Creature) {
+    this.root.add(this.body);
+    loadStaticModel(entry, entry.height, glow).then(
+      ({ root, materials }) => {
+        this.body.add(root);
+        this.materials = materials;
+      },
+      (e) => {
+        console.warn(`Model "${entry.file}" failed to load; using the procedural creature.`, e);
+        this.fallback = makeFallback();
+        this.root.add(this.fallback.root);
+      },
+    );
+  }
+
+  act(action: Action, seconds: number) {
+    if (this.fallback) return this.fallback.act(action, seconds);
+    if (action !== 'none') this.flare = Math.max(this.flare, Math.min(seconds || 1, 2.5));
+  }
+
+  update(dt: number, speed: number) {
+    if (this.fallback) {
+      this.fallback.pose = this.pose;
+      return this.fallback.update(dt, speed);
+    }
+    this.t += dt;
+    this.flare = Math.max(0, this.flare - dt);
+    this.down = THREE.MathUtils.damp(this.down, this.pose === 'sleep' ? 1 : 0, 2.5, dt);
+    const moving = speed > 0.05 && this.down < 0.5;
+    if (moving) this.stride += dt * (1.6 + speed * 1.2);
+    const step = moving ? Math.abs(Math.sin(this.stride * Math.PI)) : 0;
+    // Stomp: lift between steps, sway side to side; idle: a slow hum.
+    this.body.position.y = step * 0.06 * this.top + (moving ? 0 : Math.sin(this.t * 2) * 0.01 * this.top);
+    this.body.rotation.z = (moving ? Math.sin(this.stride * Math.PI) * 0.04 : 0) + this.down * 1.25;
+    // Roar: rear up a little.
+    this.body.rotation.x = -Math.min(this.flare, 1) * 0.15;
+    const pulse = 0.6 + Math.sin(this.t * 3) * 0.25;
+    const glow = this.down > 0.5 ? 0.12 : pulse + (this.flare ? 1.4 : 0);
+    for (const m of this.materials) m.emissiveIntensity = glow;
+  }
+}
+
+/**
+ * A legless creature with a still model (the hydra's little snake): its tail
+ * slithers in an S-wave that travels along the coils (faster while it
+ * moves) and the upper body sways, done by bending the mesh each frame.
+ */
+class Slither implements Creature {
+  readonly root = new THREE.Group();
+  readonly moves = 'walk' as const;
+  pose: Pose = 'stand';
+  lookYaw: number | null = null;
+  private meshes: { pos: THREE.BufferAttribute; rest: Float32Array }[] = [];
+  private lo = 0;
+  private span = 1;
+  private t = Math.random() * 10;
+  private fallback: Creature | null = null;
+  private wiggle = 0;
+
+  constructor(entry: ModelEntry, readonly top: number, makeFallback: () => Creature) {
+    loadStaticModel(entry, entry.height, false, true).then(
+      ({ root }) => {
+        let lo = Infinity, hi = -Infinity;
+        const seen = new Set<THREE.BufferGeometry>();
+        root.traverse((o) => {
+          const m = o as THREE.Mesh;
+          if (!m.isMesh || seen.has(m.geometry)) return; // outlines share their mesh's geometry
+          seen.add(m.geometry);
+          const pos = m.geometry.attributes.position as THREE.BufferAttribute;
+          const rest = Float32Array.from(pos.array as ArrayLike<number>);
+          for (let i = 1; i < rest.length; i += 3) {
+            lo = Math.min(lo, rest[i]);
+            hi = Math.max(hi, rest[i]);
+          }
+          this.meshes.push({ pos, rest });
+        });
+        this.lo = lo;
+        this.span = Math.max(hi - lo, 1e-3);
+        this.root.add(root);
+      },
+      (e) => {
+        console.warn(`Model "${entry.file}" failed to load; using the procedural creature.`, e);
+        this.fallback = makeFallback();
+        this.root.add(this.fallback.root);
+      },
+    );
+  }
+
+  act(action: Action, seconds: number) {
+    if (this.fallback) return this.fallback.act(action, seconds);
+    if (action !== 'none') this.wiggle = Math.max(this.wiggle, seconds || 1);
+  }
+
+  update(dt: number, speed: number) {
+    if (this.fallback) return this.fallback.update(dt, speed);
+    this.wiggle = Math.max(0, this.wiggle - dt);
+    // The wave runs faster while sliding; a gentle sway when resting.
+    this.t += dt * (1.2 + Math.min(speed, 2) * 2.2 + (this.wiggle ? 2 : 0));
+    const amp = (0.05 + Math.min(speed, 2) * 0.03) * this.span;
+    const k = 7 / this.span;
+    for (const { pos, rest } of this.meshes) {
+      const a = pos.array as Float32Array;
+      for (let i = 0; i < rest.length; i += 3) {
+        const x = rest[i], y = rest[i + 1], z = rest[i + 2];
+        const h = (y - this.lo) / this.span; // 0 = tail on the ground .. 1 = head
+        const tail = 1 - THREE.MathUtils.smoothstep(h, 0.05, 0.45);
+        // Tail: S-wave travelling along the body (model forward = +x, sideways = z).
+        const wave = Math.sin(this.t * 3 - (x + z) * k) * amp * tail;
+        // Upper body: slow sway, the head steadier than the neck.
+        const sway = Math.sin(this.t * 1.3 - h * 2) * 0.03 * this.span * (1 - tail) * (1 - h * 0.5);
+        a[i] = x + sway * 0.5;
+        a[i + 2] = z + wave + sway;
+      }
+      pos.needsUpdate = true;
+    }
   }
 }
 
@@ -146,7 +346,7 @@ function chibi(kind: string, spec: ChibiSpec): Creature {
   const fallback = new Chibi(spec);
   const entry = MODELS[MODEL_ALIAS[kind] ?? kind];
   // Same size as the procedural version (spec.size scales it, e.g. the cub).
-  return entry ? new ModelCreature(fallback, entry, entry.height * (spec.size ?? 1), fallback.top) : fallback;
+  return entry ? new ModelCreature(fallback, entry, entry.height * (spec.size ?? 1), fallback.top, MODEL_DRESS[kind]) : fallback;
 }
 
 // ---------------------------------------------------------------- chibi species
@@ -160,6 +360,8 @@ const hairBun = (color: string, ribbon: string): ChibiSpec['extras'] => ({ head,
 };
 
 export const CHIBI: Record<string, ChibiSpec> = {
+  // Filled in below from cat_idol (the cat singer on her broom).
+  cat_idol_witch: { palette: BLACK_BEAR },
   bear: { palette: BLACK_BEAR },
   cub: { palette: BLACK_BEAR, size: 0.55 },
   cat: { palette: P('#f0a860', '#fff1dc', '#ffc0b0'), ears: 'pointy', tail: 'long', snout: 0.8 },
@@ -207,6 +409,67 @@ export const CHIBI: Record<string, ChibiSpec> = {
     extras: ({ head, part }) => { for (const s of [-1, 1]) part(head, sph(0.1), '#3b2a22', [0.16 * s, 0.05, 0.37], { scale: [1.3, 0.8, 0.4], outline: false }); },
   },
   rabbit: { palette: P('#f4f1ec', '#ffffff', '#ffb6c1'), ears: 'long', tail: 'nub', snout: 0.8, size: 0.9 },
+  // ---- Cover and Power Bearer characters (stand-ins until / if their 3D model loads)
+  lucia: {
+    palette: P('#f6e2d2', '#fff4ec', '#e8b8a8'), ears: 'none', tail: 'none', snout: 0.6,
+    extras: ({ head, body, part }) => {
+      part(head, sph(0.47), '#8fc4e8', [0, 0.1, -0.06], { scale: [1.05, 0.9, 0.95] });
+      for (const s of [-1, 1]) part(head, new THREE.ConeGeometry(0.06, 0.22, 8), '#6a4a8a', [0.22 * s, 0.48, 0], { rot: [0, 0, -0.5 * s] });
+      part(body, new THREE.ConeGeometry(0.46, 0.5, 16), '#3f6a5a', [0, 0.34, 0]);
+    },
+  },
+  croc_king: {
+    palette: P('#5f9a45', '#e8dca0', '#3a5a2a'), ears: 'none', tail: 'long', snout: 1.5,
+    extras: ({ head, part }) => {
+      part(head, new THREE.CylinderGeometry(0.2, 0.22, 0.14, 8, 1, true), '#f2c230', [0, 0.47, 0]);
+    },
+  },
+  wolf_pup: {
+    palette: P('#7d8696', '#d8dde6', '#4a5262'), ears: 'pointy', tail: 'bushy', snout: 1.25,
+    extras: ({ head, part }) => {
+      for (const s of [-1, 1]) part(head, new THREE.BoxGeometry(0.03, 0.14, 0.01), '#5fd3f0', [0.18 * s, 0.12, 0.42], { outline: false });
+    },
+  },
+  captain_grimtide: {
+    palette: P('#8e8e98', '#f2f2f4', '#3a3a42'), ears: 'round', tail: 'ringed', snout: 1.1,
+    extras: ({ head, body, part }) => {
+      part(head, new THREE.CylinderGeometry(0.5, 0.55, 0.14, 3), '#1c1c24', [0, 0.45, 0]);
+      part(body, new THREE.ConeGeometry(0.46, 0.55, 16), '#1f4a4a', [0, 0.36, 0]);
+    },
+  },
+  mecha_bear: { palette: P('#9aa0aa', '#c8ccd4', '#5fd3f0', '#5fd3f0', '#2a2a32'), ears: 'round', tail: 'nub', snout: 1, size: 1.6 },
+  // ---- Honkai: Star Rail lounge car (cover scene)
+  raccoon_baseball: {
+    palette: P('#8e8e98', '#f2f2f4', '#3a3a42'), ears: 'round', tail: 'ringed', snout: 1.1,
+    extras: ({ head, part }) => {
+      for (const s of [-1, 1]) part(head, sph(0.11), '#2e2e36', [0.16 * s, 0.06, 0.36], { scale: [1.4, 0.8, 0.4], outline: false }); // mask
+      part(head, new THREE.SphereGeometry(0.45, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2.4), '#2a3f7a', [0, 0.12, 0]); // cap
+      part(head, new THREE.CylinderGeometry(0.26, 0.26, 0.03, 16, 1, false, -Math.PI / 2, Math.PI), '#2a3f7a', [0, 0.27, 0.3]);
+    },
+  },
+  himekat: {
+    palette: P('#e9823e', '#fff1e0', '#ffc0b0'), ears: 'pointy', tail: 'long', snout: 0.8,
+    extras: ({ head, part }) => {
+      part(head, sph(0.47), '#c8402e', [0, 0.12, -0.08], { scale: [1.05, 0.85, 0.95] }); // red hair
+      part(head, new THREE.TorusGeometry(0.06, 0.02, 6, 12), '#f2c230', [0.3, 0.35, 0.1]);
+    },
+  },
+  march_bunny: {
+    palette: P('#f7b6d2', '#fff4f8', '#ff8ab8'), ears: 'long', tail: 'nub', snout: 0.75, size: 0.9,
+    extras: ({ body, part }) => part(body, new THREE.TorusGeometry(0.3, 0.06, 6, 18), '#7fc8f0', [0, 0.82, 0], { rot: [Math.PI / 2, 0, 0] }),
+  },
+  mr_yang: {
+    palette: P('#a8906a', '#efe2c8', '#5a4632'), ears: 'pointy', tail: 'bushy', snout: 1.25,
+    extras: ({ head, body, part }) => {
+      for (const s of [-1, 1]) part(head, new THREE.TorusGeometry(0.08, 0.014, 6, 16), '#2a2a2a', [0.16 * s, 0.08, 0.42], { outline: false });
+      part(head, new THREE.BoxGeometry(0.1, 0.014, 0.014), '#2a2a2a', [0, 0.09, 0.44], { outline: false });
+      part(body, new THREE.ConeGeometry(0.46, 0.5, 16), '#3a3a48', [0, 0.36, 0]); // long coat
+    },
+  },
+  woof_dan: {
+    palette: P('#3e4048', '#cfd2da', '#1e2026'), ears: 'pointy', tail: 'bushy', snout: 1.3,
+    extras: ({ body, part }) => part(body, new THREE.ConeGeometry(0.46, 0.45, 16), '#2a4a4a', [0, 0.32, 0]),
+  },
   // The white bunny from the Sun and Moon scenes (lilac scarf, pale blue coat).
   moon_bunny: {
     palette: P('#f7f7fb', '#ffffff', '#ffb6c8'), ears: 'long', tail: 'nub', snout: 0.7, size: 0.9,
@@ -269,6 +532,16 @@ export const CHIBI: Record<string, ChibiSpec> = {
 // ---------------------------------------------------------------- four-legged
 
 export interface QuadSpec { fur: string; belly: string; size: number; snout: number; ears: 'pointy' | 'round' | 'none'; tail: 'bushy' | 'thin' | 'croc'; low?: boolean; antlers?: boolean; eyes?: string; spots?: string }
+
+CHIBI.cat_idol_witch = {
+  ...CHIBI.cat_idol,
+  extras: (p) => {
+    CHIBI.cat_idol.extras?.(p);
+    witchHat(p);
+    p.part(p.body, new THREE.CylinderGeometry(0.03, 0.03, 1.8, 6), '#8a5a3a', [0, 0.2, 0.05], { rot: [0, 0, Math.PI / 2] });
+    p.part(p.body, new THREE.ConeGeometry(0.18, 0.45, 10), '#e0b84a', [-1.0, 0.2, 0.05], { rot: [0, 0, Math.PI / 2] });
+  },
+};
 
 export const QUADS: Record<string, QuadSpec> = {
   wolf: { fur: '#4a4d5a', belly: '#9aa0ac', size: 1.6, snout: 1.4, ears: 'pointy', tail: 'bushy', eyes: '#7fe0ff' },
@@ -374,6 +647,7 @@ export const BIRDS: Record<string, BirdSpec> = {
   crane: { body: '#ffffff', belly: '#ffffff', wing: '#2a2a2a', beak: '#6b6b52', size: 1.1, legs: 0.7, neck: 0.5, crest: '#e0303a' },
   egret: { body: '#ffffff', belly: '#ffffff', wing: '#f4f4f4', beak: '#f2c230', size: 0.9, legs: 0.6, neck: 0.4 },
   dove: { body: '#ffffff', belly: '#f4f4f4', wing: '#eeeeee', beak: '#ff9a7a', size: 0.45 },
+  sundove: { body: '#ffffff', belly: '#fff8e8', wing: '#e8eef8', beak: '#f2c230', size: 0.5 },
   pigeon: { body: '#9aa3b0', belly: '#c0c8d4', wing: '#7d8696', beak: '#555', size: 0.45 },
   parrot: { body: '#e8483f', belly: '#f2c230', wing: '#3f6fb5', beak: '#f4f1ec', size: 0.55, crest: '#e8483f' },
   owl: { body: '#8a6a4a', belly: '#e8d8b0', wing: '#6b4a33', beak: '#e0b84a', size: 0.6, tufts: true },
@@ -645,10 +919,37 @@ function drone() {
 
 // ---------------------------------------------------------------- factory
 
+/** Power Bearer mecha villains: glow colour and the procedural stand-in. */
+const MECHA: Record<string, [GlowKind, () => Creature]> = {
+  mecha_alligator: ['red', () => new Quad(QUADS.alligator)],
+  mecha_wolf: ['red', () => new Quad(QUADS.wolf)],
+  mecha_kraken: ['teal', () => giant(kraken())],
+  mecha_hydra: ['red', () => giant(hydra())],
+};
+
 export function makeCreature(kind: string): Creature {
   if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
+  if (SPEC_ALIAS[kind]) return chibi(kind, CHIBI[SPEC_ALIAS[kind]]);
   if (QUADS[kind]) return new Quad(QUADS[kind]);
-  if (kind === 'dragon' && MODELS.dragon) return new StillGiant(MODELS.dragon, MODELS.dragon.height + 0.4, () => new Bird(BIRDS.dragon));
+  if (kind === 'dragon' && MODELS.dragon) return new StillGiant(MODELS.dragon, MODELS.dragon.height + 0.4, () => new Bird(BIRDS.dragon), true);
+  if (kind === 'little_snake') return MODELS.little_snake ? new Slither(MODELS.little_snake, MODELS.little_snake.height + 0.3, snake) : snake();
+  if (kind === 'cloud_retainer') {
+    return MODELS.cloud_retainer ? new StillGiant(MODELS.cloud_retainer, MODELS.cloud_retainer.height + 0.3, () => new Bird(BIRDS.crane), false, false) : new Bird(BIRDS.crane);
+  }
+  if (MECHA[kind]) {
+    const [glow, make] = MECHA[kind];
+    const entry = MODELS[kind];
+    return entry ? new MechaGiant(entry, entry.height + 0.3, glow, make) : make();
+  }
+  if (kind === 'sundove') {
+    // Sunday as a dove: a little golden halo.
+    const b = new Bird(BIRDS.sundove);
+    const halo = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.018, 6, 24), new THREE.MeshBasicMaterial({ color: '#ffd76a' }));
+    halo.rotation.x = Math.PI / 2;
+    halo.position.y = b.top + 0.05;
+    b.root.add(halo);
+    return b;
+  }
   if (BIRDS[kind]) return new Bird(BIRDS[kind]);
   switch (kind) {
     case 'salmon': return salmon();

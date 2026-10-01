@@ -7,7 +7,7 @@ File convention (what tools/tripo_character.py produces):
 
 Checks each GLB (rigged? has clips? do the clip files animate bones that
 exist in the model?) and writes src/data/models.json, which the game reads
-at build time. Per-model "forward" and "height" are kept from the previous
+at build time. Per-model "forward", "height" and any other settings are kept from the previous
 models.json, so edit them there if a model faces the wrong way or is too big.
     python tools/check_models.py
 """
@@ -56,7 +56,8 @@ def main() -> int:
         return 0
     previous = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
     files = sorted(MODELS.glob("*.glb"))
-    bases = sorted({f.stem.split("@")[0] for f in files})
+    # <name>.lite.glb is a lighter copy of <name>.glb (compress_models.py), not a model of its own.
+    bases = sorted({f.stem.split("@")[0] for f in files if not f.stem.endswith(".lite")})
     registry: dict[str, dict] = {}
     problems = 0
 
@@ -123,6 +124,9 @@ def main() -> int:
             "clips": clips,
             "forward": prev.get("forward", DEFAULTS["forward"]),
             "height": prev.get("height", DEFAULTS["height"]),
+            **({"lite": f"models/{base}.lite.glb"} if (MODELS / f"{base}.lite.glb").exists() else {}),
+            # Any other hand-added settings (e.g. "hairFix") are kept too.
+            **{k: v for k, v in prev.items() if k not in ("file", "clips", "forward", "height", "lite")},
         }
 
     OUT.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")

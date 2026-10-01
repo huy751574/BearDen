@@ -211,7 +211,7 @@ LANDMARK_RULES: list[tuple[str, list[str]]] = [
 # src/character/creatures.ts, behaviours in src/character/Companion.ts.
 COMPANION_RULES: list[tuple[list[str], str, str]] = [
     # Named friends from the artwork
-    (["witch"], "cat_witch", "fly"),
+    (["witch"], "cat_idol_witch", "fly"),  # the cat singer on her broom
     (["eula", "tango"], "cat_eula", "dance"),
     (["singer", "idol"], "cat_idol", "perform"),
     (["shifu", "red"], "red_panda", "sit"),
@@ -284,7 +284,7 @@ def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
     if theme in THEME_COMPANION:
         kind, beh = THEME_COMPANION[theme]
         if theme == "bloom" and "witch" in words:
-            return "cat_witch", "fly"
+            return "cat_idol_witch", "fly"
         if theme == "bloom" and "snow" in words:
             return "cat_idol", "sit"
         if theme == "lullabies" and ("nap" in words or "sleepy" in words):
@@ -295,17 +295,40 @@ def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
     if theme == "power-bearer":
         villain = next((v for ks, v in VILLAINS if words & set(ks)), None)
         if villain is None:
-            return "drone", "orbit"  # waking / transforming / repairing the mecha
+            return "mecha_bear", "follow"  # waking / transforming / repairing: the giant mecha buddy
         if villain in ("kraken", "hydra"):
-            return villain, "emerge"  # too big for the island: rises at the edge
+            return f"mecha_{villain}", "emerge"  # too big for the island: rises at the edge
         won = bool(words & {"victory", "triumph", "defeated", "fallen", "reigns"})
-        return villain, "defeated" if won else "prowl"
+        return f"mecha_{villain}", "defeated" if won else "prowl"
     rules = HUNTING_RULES + COMPANION_RULES if theme == "hunting" else COMPANION_RULES
     for keys, kind, beh in rules:
         if words & set(keys):
             return kind, beh
     return "fox", "wander"
 
+
+# Hand-placed casts for scenes whose art has a specific group. "rest" =
+# stays at "at" [x, z(, height)] in "pose", with a prop and thought bubbles;
+# the island template puts furniture at these spots.
+SCENE_CAST: dict[str, list[dict]] = {
+    # Cover scenes: the characters from each cover's art.
+    "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango": [{"kind": "eula_cat", "behavior": "dance"}],
+    "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz": [
+        {"kind": "tom_cat", "behavior": "perform"}, {"kind": "pink_panther", "behavior": "perform"}],
+    "cover-zzz-bear-noting-with-lucia-about-little-goat": [
+        {"kind": "lucia", "behavior": "follow"}, {"kind": "goat", "behavior": "wander"}],
+    "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer": [{"kind": "cloud_retainer", "behavior": "sit"}],
+    # Honkai: Star Rail, the Astral Express lounge car (the black bear is the
+    # player, journaling at the table, tea going cold).
+    "cover-honkai-star-rail-the-bear-trailblazing": [
+        {"kind": "raccoon_baseball", "behavior": "rest", "at": [3.0, 1.8, 0.45], "pose": "sleep", "prop": "ball", "emotes": ["⚾", "😎"]},
+        {"kind": "himekat", "behavior": "rest", "at": [-2.4, 2.6, 0.38], "pose": "sit", "prop": "cup", "emotes": ["☕", "😌"]},
+        {"kind": "march_bunny", "behavior": "rest", "at": [-1.2, -3.55], "face": 180, "pose": "stand", "emotes": ["🌌", "✨", "📸"]},
+        {"kind": "mr_yang", "behavior": "rest", "at": [3.4, -1.4, 0.45], "pose": "sit", "prop": "book", "emotes": ["📖", "…"]},
+        {"kind": "woof_dan", "behavior": "rest", "at": [-3.4, -2.4, 0.18], "pose": "sleep", "emotes": ["💤"]},
+        {"kind": "sundove", "behavior": "rest", "at": [1.6, -3.95, 0.66], "pose": "stand", "emotes": ["🕊️", "…"]},
+    ],
+}
 
 FRIEND_WORDS = {"friends", "party", "heroes", "caravan", "feast", "tavern", "camping", "waltz", "island", "bay"}
 
@@ -319,8 +342,14 @@ def extras_for(theme: str, words: set[str], main: str, main_beh: str) -> list[tu
         out.append(("moon_bunny", "follow"))  # the white bunny from the art walks with the bear
     if theme == "to-hong":
         out.append(("magpie", "fly") if main == "weaver" else ("weaver", "sit"))
-    if theme == "power-bearer" and main != "drone":
-        out.append(("drone", "orbit"))  # the bear's helper bot watches the villain
+    if theme == "power-bearer":
+        if main == "mecha_bear":
+            out.append(("drone", "orbit"))  # the helper bot
+        else:
+            # The villain's chibi sidekick from the art, and the bear's mecha.
+            sidekick = {"mecha_alligator": "croc_king", "mecha_wolf": "wolf_pup",
+                        "mecha_kraken": "captain_grimtide", "mecha_hydra": "little_snake"}[main]
+            out += [(sidekick, "wander"), ("mecha_bear", "follow")]
     if "dogs" in words:
         out += [("dog", "perform")] * 2  # a little orchestra
     if "cats" in words:
@@ -513,7 +542,7 @@ def main() -> int:
             "skyBottom": hexcolor(sky_bottom),
             "island": island,
             **({"variant": variant} if variant else {}),
-            "companions": [{"kind": k, "behavior": bh} for k, bh in cast],
+            "companions": SCENE_CAST.get(sid) or [{"kind": k, "behavior": bh} for k, bh in cast],
             "game": game_for(s["theme"], set(sid.split("-")) | {w for w in words_of(s["title"])}),
         }
         key = f"island {island}{'/' + variant if variant else ''}"

@@ -14,6 +14,7 @@ export class MiniGameManager {
   private ref: GameRef | null = null;
   private v: Variant | null = null;
   private sceneId = '';
+  private ctx: GameCtx | null = null;
 
   constructor(private hud: GameHud, private makeCtx: () => GameCtx | null) {
     hud.onClose = () => this.close();
@@ -49,6 +50,13 @@ export class MiniGameManager {
     this.engine = createEngine(this.ref, this.v, ctx);
     this.hud.playing(this.v);
     this.engine.start();
+    this.ctx = ctx;
+    this.companionsPlaying(true); // e.g. the sleeping dragon wakes and flies
+  }
+
+  private companionsPlaying(on: boolean) {
+    for (const c of this.ctx?.companions ?? []) c.gameMode?.(on);
+    if (!on) this.ctx = null;
   }
 
   update(dt: number) {
@@ -70,9 +78,11 @@ export class MiniGameManager {
     }
     this.hud.over(e.score, Math.max(best, e.score), isBest && e.score > 0, e.won, () => this.start());
     e.dispose();
+    this.companionsPlaying(false);
   }
 
   close() {
+    this.companionsPlaying(false);
     this.engine?.dispose();
     this.engine = null;
     this.hud.hide();

@@ -3,7 +3,8 @@
 The lounge is a multiplayer room. One small server on Cloudflare (a Worker
 plus a Durable Object, code in `server/`) keeps everyone in sync:
 
-- 50 avatar slots (10 species with different accessories, all different). Everyone else
+- 50 avatar slots: the game's 5 characters (bear, fox, capybara, cat idol,
+  moon bunny) x 10 accessories, all different. Everyone else
   can watch and wait in line.
 - 60 seconds with no action or chat and your avatar jumps off the island; the
   next person in line gets the spot.

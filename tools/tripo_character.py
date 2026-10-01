@@ -45,7 +45,8 @@ PRESETS = {
     "walk": "preset:biped:walk",
     "run": "preset:biped:run",
     "sit": "preset:biped:sit",
-    "wave": "preset:biped:wave_goodbye_01",
+    # greet_01: a standing wave (wave_goodbye_01 is done sitting down).
+    "wave": "preset:biped:greet_01",
     # Emotes (keys 1-4 in the game) and mini-game reactions:
     # dance_02: lively but calm enough. dance_01 spins at ~600 deg/s and
     # head-bangs (looked like a glitch); dance_06 is a gentler sway.

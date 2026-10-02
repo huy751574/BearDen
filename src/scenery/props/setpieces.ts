@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { geo, type Kit } from '../kit';
 import { palm } from './nature';
+import { lanternString } from './structures';
 
 // Centrepieces: landmark mini-models and theme set pieces. Base at y = 0,
 // front facing +Z (rotate toward the island centre when placing).
@@ -301,6 +302,55 @@ export function glowSticks(k: Kit, n = 40, radius = 2.5) {
     sticks.push(k.part(g, geo.cyl(0.03, 0.03, 0.45, 5), k.pick(colors), [Math.cos(a) * d, 1.1 + k.rand() * 0.3, Math.sin(a) * d * 0.6], { basic: true }));
   }
   k.animate((t) => sticks.forEach((s, i) => (s.rotation.z = Math.sin(t * 3 + i * 0.7) * 0.5)));
+  return g;
+}
+
+/**
+ * Concert hall stage for the orchestra scenes (front = +Z, toward the
+ * audience): warm wooden floor with a gold rim, glowing footlights, two
+ * golden candelabras, a string of warm bulbs behind, and real warm lights
+ * so the musicians are lit like in the painting.
+ */
+export function concertStage(k: Kit, radius = 2.9) {
+  const g = new THREE.Group();
+  const warm = '#ffe2a0';
+  const glow = k.night ? 1.6 : 0.6;
+  // Floor: wooden boards (two tones) and a gold edge.
+  k.part(g, geo.cyl(radius, radius + 0.08, 0.08, 40), '#a8703f', [0, 0.04, 0], { outline: false });
+  for (let i = -3; i <= 3; i++) k.part(g, geo.box(0.02, 0.005, radius * 1.8), '#8a5a32', [i * 0.75, 0.085, 0], { outline: false, shadow: false });
+  k.part(g, geo.torus(radius + 0.02, 0.05, Math.PI * 2, 6, 64), '#e8c25a', [0, 0.08, 0], { rot: [Math.PI / 2, 0, 0], emissive: '#e8a83a', glow: 0.3, outline: false });
+  // Footlights: a row of little bulbs along the front edge.
+  for (let i = 0; i < 11; i++) {
+    const a = -1.0 + (i / 10) * 2.0;
+    const x = Math.sin(a) * (radius - 0.15), z = Math.cos(a) * (radius - 0.15);
+    k.part(g, geo.box(0.16, 0.08, 0.1), '#3a2a22', [x, 0.12, z], { rot: [0, a, 0], outline: false });
+    k.part(g, geo.sph(0.06, 8, 6), warm, [x, 0.18, z], { emissive: '#ffd070', glow: glow + 0.6, outline: false });
+  }
+  k.light(g, '#ffd9a0', 3, 6, [0, 0.5, radius - 0.4], false);
+  // Two candelabras either side of the stage.
+  for (const s of [-1, 1]) {
+    const c = new THREE.Group();
+    c.position.set(Math.sin(1.35 * s) * (radius + 0.4), 0, Math.cos(1.35) * (radius + 0.4));
+    g.add(c);
+    k.part(c, geo.cyl(0.22, 0.3, 0.12, 12), '#c99a3a', [0, 0.06, 0]);
+    k.part(c, geo.cyl(0.04, 0.06, 2.0, 8), '#d9ac48', [0, 1.06, 0]);
+    k.part(c, geo.torus(0.32, 0.03, Math.PI * 2, 6, 24), '#d9ac48', [0, 2.05, 0], { rot: [Math.PI / 2, 0, 0], outline: false });
+    for (let j = 0; j < 5; j++) {
+      const a = (j / 5) * Math.PI * 2;
+      const cx = Math.cos(a) * 0.32, cz = Math.sin(a) * 0.32;
+      k.part(c, geo.cyl(0.035, 0.035, 0.22, 6), '#fff6e0', [cx, 2.17, cz], { outline: false });
+      k.part(c, geo.cone(0.035, 0.1, 6), '#ffcf5a', [cx, 2.33, cz], { emissive: '#ffb030', glow: 2, outline: false });
+    }
+    k.part(c, geo.sph(0.12, 10, 8), warm, [0, 2.3, 0], { emissive: '#ffd070', glow: glow + 0.4, outline: false });
+    k.light(c, '#ffc878', 3, 7, [0, 2.4, 0]);
+  }
+  // Warm stage light from above the musicians.
+  k.light(g, '#ffe6b8', 4, 9, [0, 3.4, 0.4], false);
+  // A string of warm bulbs on two golden poles behind the orchestra.
+  const back = radius + 0.3;
+  const a = new THREE.Vector3(-2.6, 2.6, -back * 0.75), b = new THREE.Vector3(2.6, 2.6, -back * 0.75);
+  for (const p of [a, b]) k.part(g, geo.cyl(0.04, 0.05, 2.6, 6), '#d9ac48', [p.x, 1.3, p.z]);
+  g.add(lanternString(k, a, b, 9, '#ffe08a'));
   return g;
 }
 

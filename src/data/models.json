@@ -109,6 +109,12 @@
     "forward": "+x",
     "height": 1.9
   },
+  "common_alligator": {
+    "file": "models/common_alligator.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 1.1
+  },
   "common_black_cat": {
     "file": "models/common_black_cat.glb",
     "clips": {

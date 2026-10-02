@@ -76,7 +76,7 @@ export async function loadGltfCharacter(entry: ModelEntry, height = entry.height
       try {
         const gltf = await load(file);
         const src = gltf.animations[0];
-        if (src) clips.set(name, src.clone());
+        if (src) clips.set(name, removeDrift(src.clone()));
       } catch (e) {
         console.warn(`Character clip "${name}" failed to load from ${file}`, e);
       }
@@ -403,6 +403,27 @@ export class GltfCharacter implements Character {
     if (this.current && this.current !== next) this.current.fadeOut(fade);
     this.current = next;
   }
+}
+
+/**
+ * Tripo's "in place" walk and run still carry the hips forward (0.6 m per
+ * walk cycle, 1.35 m per run cycle), so on every loop the body jumped back
+ * to the start. Remove any steady drift from position tracks (the hips' bob
+ * and sway stay); the game moves the character itself.
+ */
+function removeDrift(clip: THREE.AnimationClip): THREE.AnimationClip {
+  for (const track of clip.tracks) {
+    if (!track.name.endsWith('.position')) continue;
+    const { times, values } = track;
+    const n = times.length, span = times[n - 1] - times[0];
+    if (n < 2 || span <= 0) continue;
+    for (let axis = 0; axis < 3; axis++) {
+      const drift = values[(n - 1) * 3 + axis] - values[axis];
+      if (Math.abs(drift) < 0.02) continue;
+      for (let i = 0; i < n; i++) values[i * 3 + axis] -= drift * ((times[i] - times[0]) / span);
+    }
+  }
+  return clip;
 }
 
 /**

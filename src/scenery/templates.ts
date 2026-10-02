@@ -285,6 +285,8 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
   stage(k) {
     const x = -5.0, z = -1.8;
     if (k.has('conduct', 'conducts', 'orchestra', 'podium', 'philharmonic')) {
+      // Concert hall: lit stage under the orchestra (walk-through), podium on it.
+      k.put(P.concertStage(k), x + 1, z, { rotY: k.faceCenter(x + 1, z), space: 0 });
       centrepiece(k, P.podium(k), x + 1, z, 0.8);
       k.anchor('stage', x + 1, z, 0.5, 0.4);
     } else if (k.has('waltz', 'ballroom', 'tango')) {

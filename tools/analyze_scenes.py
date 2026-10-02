@@ -260,7 +260,7 @@ COMPANION_RULES: list[tuple[list[str], str, str]] = [
     (["singer", "idol"], "cat_idol", "perform"),
     (["shifu", "red"], "red_panda", "sit"),
     (["panda"], "panda", "spar"),
-    (["husky"], "husky", "spar"),
+    (["husky"], "dog", "spar"),  # the common dog model (a husky) spars
     (["hyena", "assasins", "assassins"], "hyena", "spar"),
     (["meditating"], "frog", "float"),
     (["tea", "liyue", "fuji", "jade", "cultivate", "healing", "jianghu"], "crane", "fly"),
@@ -355,6 +355,9 @@ def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
 # stays at "at" [x, z(, height)] in "pose", with a prop and thought bubbles;
 # the island template puts furniture at these spots.
 SCENE_CAST: dict[str, list[dict]] = {
+    # The cat orchestra's cats are grey / tabby / white in the painting (the
+    # black cat is the scenes' sleeping cat, and too dark on a night stage).
+    "chill-the-bear-conduct-music-for-cats": [{"kind": "cat_white", "behavior": "perform"}] * 3,
     # Cover scenes: the characters from each cover's art.
     "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango": [{"kind": "eula_cat", "behavior": "dance"}],
     "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz": [

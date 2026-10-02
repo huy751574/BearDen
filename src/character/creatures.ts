@@ -283,10 +283,12 @@ class StillCritter implements Creature {
   private body = new THREE.Group();
   private fallback: Creature | null = null;
   private t = Math.random() * 10;
-  private gait = 0;
+  private phase = 0;
+  private yaw = 0;
   private hop = 0;
 
-  constructor(entry: ModelEntry, readonly top: number, readonly moves: Creature['moves'], makeFallback: () => Creature) {
+  /** `gait`: 'bound' (deer, small animals) or 'crawl' (low and wiggling, e.g. the alligator). */
+  constructor(entry: ModelEntry, readonly top: number, readonly moves: Creature['moves'], makeFallback: () => Creature, private gait: 'bound' | 'crawl' = 'bound') {
     this.root.add(this.body);
     loadStaticModel(entry, entry.height, false).then(
       ({ root }) => this.body.add(root),
@@ -311,17 +313,23 @@ class StillCritter implements Creature {
     }
     this.t += dt;
     const b = this.body;
-    let y = 0, rx = 0, rz = 0, breathe = Math.sin(this.t * 2.2) * 0.012;
+    let y = 0, rx = 0, ry = 0, rz = 0, breathe = Math.sin(this.t * 2.2) * 0.012;
     if (this.moves === 'fly' && this.pose === 'stand') {
       // Hover and bank; lean forward when travelling.
       y = Math.sin(this.t * 2.4) * 0.05 * this.top;
       rz = Math.sin(this.t * 1.3) * 0.07;
       rx = Math.min(speed * 0.08, 0.2);
+    } else if (this.pose === 'stand' && speed > 0.05 && this.gait === 'crawl') {
+      // Crawl: the body snakes side to side and rolls a little, staying low.
+      this.phase += dt * (3 + speed * 2);
+      ry = Math.sin(this.phase) * 0.18;
+      rz = Math.sin(this.phase + 1) * 0.04;
+      breathe = 0;
     } else if (this.pose === 'stand' && speed > 0.05) {
       // Bounding gait: one bob per step, rocking nose up / nose down.
-      this.gait += dt * (5 + speed * 2.5);
-      y = Math.abs(Math.sin(this.gait)) * 0.07 * this.top;
-      rx = Math.sin(this.gait * 2) * 0.06;
+      this.phase += dt * (5 + speed * 2.5);
+      y = Math.abs(Math.sin(this.phase)) * 0.07 * this.top;
+      rx = Math.sin(this.phase * 2) * 0.06;
       breathe = 0;
     } else if (this.pose !== 'stand') {
       breathe = Math.sin(this.t * 1.2) * 0.02; // slow breaths sitting or asleep
@@ -331,7 +339,9 @@ class StillCritter implements Creature {
       y += Math.sin((this.hop / 0.45) * Math.PI) * 0.12 * this.top;
     }
     b.position.y = y;
-    b.rotation.set(rx, THREE.MathUtils.damp(b.rotation.y, (this.lookYaw ?? 0) * 0.6, 4, dt), rz);
+    const yaw = THREE.MathUtils.damp(this.yaw, (this.lookYaw ?? 0) * 0.6, 4, dt);
+    this.yaw = yaw;
+    b.rotation.set(rx, yaw + ry, rz);
     b.scale.set(1, 1 + breathe, 1);
   }
 }
@@ -1003,7 +1013,7 @@ export function makeCreature(kind: string): Creature {
   const still = STILL[kind];
   if (still && MODELS[still[0]]) {
     const entry = MODELS[still[0]];
-    return new StillCritter(entry, entry.height + 0.15, still[1], () => procedural(kind));
+    return new StillCritter(entry, entry.height + 0.15, still[1], () => procedural(kind), still[2]);
   }
   if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
   if (SPEC_ALIAS[kind]) return chibi(kind, CHIBI[SPEC_ALIAS[kind]]);
@@ -1021,11 +1031,12 @@ export function makeCreature(kind: string): Creature {
 }
 
 /** Small animals drawn as still 3D models (no skeleton): model name and how they move. */
-const STILL: Record<string, [string, Creature['moves']]> = {
+const STILL: Record<string, [string, Creature['moves'], ('bound' | 'crawl')?]> = {
   sundove: ['sundove', 'fly'],
   owl: ['common_owl', 'fly'],
   deer: ['common_deer', 'walk'],
   dormouse: ['common_dormouse', 'walk'], // Tripo couldn't rig her (paws held at the chest)
+  alligator: ['common_alligator', 'walk', 'crawl'],
 };
 
 /** The code-built version of a creature (also the stand-in while / if its model fails to load). */

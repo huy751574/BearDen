@@ -572,15 +572,15 @@
   "island": "stage",
   "companions": [
    {
-    "kind": "cat",
+    "kind": "cat_white",
     "behavior": "perform"
    },
    {
-    "kind": "cat",
+    "kind": "cat_white",
     "behavior": "perform"
    },
    {
-    "kind": "cat",
+    "kind": "cat_white",
     "behavior": "perform"
    }
   ],
@@ -2666,7 +2666,7 @@
   "island": "arena",
   "companions": [
    {
-    "kind": "husky",
+    "kind": "dog",
     "behavior": "spar"
    }
   ],

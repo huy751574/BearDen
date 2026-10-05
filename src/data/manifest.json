@@ -28,9 +28,9 @@
         "bloom-bear-meeting-alone-cat-singer-idol",
         "bloom-bear-meeting-firework-festival-cat-singer-idol",
         "bloom-full-bloom",
+        "bloom-singer-cat-singer-witch-lullaby",
         "bloom-singer-cat-hype-edm-in-spring-square",
-        "bloom-singer-cat-sing-rooftop-through-radio-broadcast",
-        "bloom-singer-cat-singer-witch-lullaby"
+        "bloom-singer-cat-sing-rooftop-through-radio-broadcast"
       ]
     },
     {
@@ -57,13 +57,14 @@
       "id": "cover",
       "name": "Cover",
       "scenes": [
-        "cover-game-of-thrones-bear-visit-throne",
+        "cover-league-of-legend-take-a-breath-to-the-final-battle",
         "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer",
+        "cover-zzz-bear-noting-with-lucia-about-little-goat",
         "cover-genshin-impact-bear-playing-lyre-for-pigeons",
-        "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango",
-        "cover-honkai-star-rail-the-bear-trailblazing",
+        "cover-game-of-thrones-bear-visit-throne",
         "cover-pinkpanther-tom-black-bear-chill-in-bar-with-jazz",
-        "cover-zzz-bear-noting-with-lucia-about-little-goat"
+        "cover-genshin-impact-black-bear-drinking-watching-eula-cat-tango",
+        "cover-honkai-star-rail-the-bear-trailblazing"
       ]
     },
     {
@@ -85,8 +86,8 @@
         "isekai-bear-hero-party-stroll-in-town-after-victory",
         "isekai-bear-hero-party-traveling",
         "isekai-black-bear-hero-party-camping-night-in-the-pines",
-        "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight",
         "isekai-black-bear-signing-up-being-adventurer",
+        "isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight",
         "isekai-hero-bear-party-fighting-dugeon-boss",
         "isekai-the-defending-war-over",
         "isekai-the-summoning-heroes-are-defending",
@@ -127,8 +128,8 @@
         "power-bearer-bear-mecha-wakeup",
         "power-bearer-bear-triumph-over-maelstrom",
         "power-bearer-mecha-bear-fighting-9-head-mecha",
-        "power-bearer-the-bear-fixing-his-mecha-in-snow",
         "power-bearer-the-bear-victory-hydra-mecha",
+        "power-bearer-the-bear-fixing-his-mecha-in-snow",
         "power-bearer-the-hydra-make-an-appearance",
         "power-bearer-villain-alligator-appear",
         "power-bearer-villain-dire-wolf-appear",
@@ -143,12 +144,12 @@
         "relax-bear-friends-group-performing-in-waltz-hall",
         "relax-bear-reading-in-graveyard",
         "relax-bear-walking-on-the-snow",
+        "relax-black-bear-stargazing",
         "relax-black-bear-fishing",
         "relax-black-bear-floating-above-the-clouds",
         "relax-black-bear-in-the-cave-listening-outside-rain",
         "relax-black-bear-sitting-in-the-snow",
         "relax-black-bear-snow-gazing-sitting-on-the-frozen-lake",
-        "relax-black-bear-stargazing",
         "relax-cafe-and-story",
         "relax-grill-fish-in-the-cave-with-cat",
         "relax-sleeping-in-the-cave",
@@ -162,6 +163,8 @@
       "id": "sun-and-moon",
       "name": "Sun And Moon",
       "scenes": [
+        "sun-and-moon-dim-of-the-ray",
+        "sun-and-moon-rim-of-the-day",
         "sun-and-moon-prism-light",
         "sun-and-moon-sun-and-moon-get-emotion-fogged-with-the-rain",
         "sun-and-moon-sun-and-moon-meeting-with-the-first-ray-through-glass",
@@ -1501,6 +1504,42 @@
       ]
     },
     {
+      "id": "cover-league-of-legend-take-a-breath-to-the-final-battle",
+      "theme": "cover",
+      "subLabel": "League Of Legend",
+      "title": "Take a breath to the Final Battle",
+      "folders": [
+        "Cover_League_Of_Legend-Take_a_breath_to_the_Final_Battle",
+        "Cover_League_Of_Legend-Take_a_breath_to_the_Final_Battle-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Cover_League_Of_Legend-Take_a_breath_to_the_Final_Battle/Bear_facing_trophy_and_dragon_20261006000820.mp4",
+      "songs": [
+        {
+          "title": "Breath",
+          "file": "Cover_League_Of_Legend-Take_a_breath_to_the_Final_Battle/Breath.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Breath (Lyrics)",
+          "file": "Cover_League_Of_Legend-Take_a_breath_to_the_Final_Battle-Lyrics/Breath (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "qwMhxhDG5Y0",
+          "title": "🐻🏆 Breath ~ The Road to Worlds | League Of Legends",
+          "kind": "instrumental"
+        },
+        {
+          "id": "wg9MZIi3xCs",
+          "title": "🐻🏆 Breath (Lyrics) ~ The Road to Worlds | League of Legends",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "cover-honkai-star-rail-the-bear-trailblazing",
       "theme": "cover",
       "subLabel": "Honkai Star Rail",
@@ -1737,7 +1776,18 @@
           "lyrics": true
         }
       ],
-      "youtube": []
+      "youtube": [
+        {
+          "id": "5BHzYGFkNec",
+          "title": "\"Peace to Share\" ✌️🐻 Hippie Hip-Hop Victory Strut | Funny Epic Anime Rap",
+          "kind": "instrumental"
+        },
+        {
+          "id": "8XEn1B46IjA",
+          "title": "\"Peace to Share\" (Lyrics) ✌️🐻 Hippie Hip-Hop Victory Strut | Funny Epic Anime Rap",
+          "kind": "lyrics"
+        }
+      ]
     },
     {
       "id": "isekai-bear-hero-party-traveling",
@@ -2853,6 +2903,11 @@
           "id": "CBdFjaWc1A8",
           "title": "Snow Walk 🐻 A Quiet Winter Stroll to the Frozen Lake | Lofi Beats for Calm & Focus",
           "kind": "instrumental"
+        },
+        {
+          "id": "_3Qk5qDmkI0",
+          "title": "Falling Snow ❄️ Russian Folk Lofi | Music to Relax, Study & Sleep",
+          "kind": "lyrics"
         }
       ]
     },
@@ -3204,6 +3259,42 @@
       ]
     },
     {
+      "id": "sun-and-moon-dim-of-the-ray",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Dim of the Ray",
+      "folders": [
+        "Sun_And_Moon-Dim_of_the_Ray",
+        "Sun_And_Moon-Dim_of_the_Ray-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Dim_of_the_Ray/Characters_sitting_on_rooftop_ledge_20261004215923.mp4",
+      "songs": [
+        {
+          "title": "Dim of the Ray",
+          "file": "Sun_And_Moon-Dim_of_the_Ray/Dim of the Ray.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Dim of the Ray (Lyrics)",
+          "file": "Sun_And_Moon-Dim_of_the_Ray-Lyrics/Dim of the Ray (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "czwgWxnAyd8",
+          "title": "Dim of the Ray 🌆 Horizon Epilogue II",
+          "kind": "instrumental"
+        },
+        {
+          "id": "xpRuhhsx2mQ",
+          "title": "Dim of the Ray (Lyrics) 🌆 Horizon Epilogue II | Nocturnal Lofi Duet for a Quiet Night",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "sun-and-moon-prism-light",
       "theme": "sun-and-moon",
       "subLabel": "",
@@ -3235,6 +3326,42 @@
         {
           "id": "6l7QOhlFFQk",
           "title": "🌅 \"Prism Light\" (Lyrics)",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "sun-and-moon-rim-of-the-day",
+      "theme": "sun-and-moon",
+      "subLabel": "",
+      "title": "Rim of the Day",
+      "folders": [
+        "Sun_And_Moon-Rim_of_the_Day",
+        "Sun_And_Moon-Rim_of_the_Day-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Sun_And_Moon-Rim_of_the_Day/Two_characters_sitting_on_rooftop_20261003021203.mp4",
+      "songs": [
+        {
+          "title": "Rim of the Day",
+          "file": "Sun_And_Moon-Rim_of_the_Day/Rim of the Day.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Rim of the Day (Lyrics)",
+          "file": "Sun_And_Moon-Rim_of_the_Day-Lyrics/Rim of the Day (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "-RfAU-SEZOc",
+          "title": "Rim of the Day 🌄 Horizon Epilogue",
+          "kind": "instrumental"
+        },
+        {
+          "id": "jI-zqG-jP5A",
+          "title": "Rim of The Day (Lyrics) 🌄 Horizon Epilogue | Warm Acoustic Lofi Duet for a Slow Morning",
           "kind": "lyrics"
         }
       ]

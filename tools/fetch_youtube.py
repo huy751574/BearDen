@@ -189,12 +189,17 @@ def main() -> int:
         has_inst = any(not x["lyrics"] for x in s["songs"]) or not s["songs"]
         s["_slots"] = (["instrumental"] if has_inst else []) + (["lyrics"] if s["hasLyrics"] else [])
 
+    packed = {s["id"] for s in scenes if s["songs"] and not s["_durs"]}
+
     # Keep rows the user confirmed.
     confirmed: dict[tuple[str, str], dict] = {}
     if OUT_CSV.exists():
         with OUT_CSV.open(encoding="utf-8-sig", newline="") as f:
             for row in csv.DictReader(f):
-                if row.get("confirmed", "").strip().lower() in ("y", "yes", "1", "x", "claude"):
+                # Also keep earlier links of scenes whose WAVs were packed away
+                # (no durations to re-match with: re-matching would only get worse).
+                if row.get("confirmed", "").strip().lower() in ("y", "yes", "1", "x", "claude") or (
+                        row["scene_id"] in packed and row.get("video_id")):
                     confirmed[(row["scene_id"], row["kind"])] = row
     used_videos = {r["video_id"] for r in confirmed.values() if r["video_id"]}
 

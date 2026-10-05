@@ -567,4 +567,163 @@ export function beachSet(k: Kit) {
   return g;
 }
 
+// ---------------------------------------------------------------- championship arena (League of Legends cover)
+
+/**
+ * Championship stage: three round marble steps with gold rims and, on a
+ * pedestal in the middle, the trophy (silver cup, gold handles and crown, a
+ * blue gem) under a warm light. Front = +Z.
+ */
+export function trophyStage(k: Kit) {
+  const g = new THREE.Group();
+  const steps: [number, number][] = [[3.2, 0.12], [2.4, 0.24], [1.6, 0.36]];
+  for (const [r, h] of steps) {
+    k.part(g, geo.cyl(r, r + 0.05, h, 48), '#2c2c38', [0, h / 2, 0], { outline: false });
+    k.part(g, geo.torus(r + 0.01, 0.025, Math.PI * 2, 6, 64), '#e8c25a', [0, h, 0], { rot: [Math.PI / 2, 0, 0], emissive: '#e8a83a', glow: 0.8, outline: false });
+  }
+  // Pedestal
+  k.part(g, geo.cyl(0.45, 0.55, 0.7, 24), '#1f1f29', [0, 0.36 + 0.35, 0]);
+  k.part(g, geo.torus(0.46, 0.03, Math.PI * 2, 6, 32), '#e8c25a', [0, 1.06, 0], { rot: [Math.PI / 2, 0, 0], emissive: '#e8a83a', glow: 0.6, outline: false });
+  const cup = trophy(k);
+  cup.position.y = 1.06;
+  g.add(cup);
+  k.light(g, '#fff0d0', 4, 7, [0, 3.2, 1.2], false);
+  k.light(g, '#9a7bff', 3, 8, [0, 1.6, -1.2], false);
+  return g;
+}
+
+/** The championship cup (about 1.3 m): a lathed silver body, gold trim and handles, a blue gem. */
+export function trophy(k: Kit) {
+  const g = new THREE.Group();
+  // Profile (radius, height) from the foot up to the lip.
+  const profile = [[0.0, 0], [0.32, 0], [0.32, 0.08], [0.16, 0.14], [0.08, 0.3], [0.07, 0.55], [0.12, 0.62],
+    [0.3, 0.78], [0.38, 1.0], [0.4, 1.18], [0.36, 1.2], [0.0, 1.2]].map(([r, y]) => new THREE.Vector2(r, y));
+  // Silver in the toon look (a metal material has nothing to reflect here and goes black).
+  k.part(g, new THREE.LatheGeometry(profile, 40), '#e4e8f0', [0, 0, 0], { emissive: '#8a94b8', glow: 0.45, outline: 0.012 });
+  const gold = { emissive: '#c8902a', glow: 0.5, outline: false as const };
+  k.part(g, geo.torus(0.395, 0.025, Math.PI * 2, 6, 40), '#f0c860', [0, 1.19, 0], { rot: [Math.PI / 2, 0, 0], ...gold });
+  k.part(g, geo.torus(0.32, 0.03, Math.PI * 2, 6, 40), '#f0c860', [0, 0.04, 0], { rot: [Math.PI / 2, 0, 0], ...gold });
+  k.part(g, geo.torus(0.1, 0.025, Math.PI * 2, 6, 24), '#f0c860', [0, 0.58, 0], { rot: [Math.PI / 2, 0, 0], ...gold });
+  for (const s of [-1, 1]) {
+    // Swept handles: a half ring on each side.
+    k.part(g, geo.torus(0.2, 0.03, Math.PI, 6, 20), '#f0c860', [0.42 * s, 0.92, 0], { rot: [0, 0, s > 0 ? -Math.PI / 2 : Math.PI / 2], ...gold });
+  }
+  // Crown of little gold points on the lip.
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    k.part(g, geo.cone(0.035, 0.14, 4), '#f0c860', [Math.cos(a) * 0.38, 1.27, Math.sin(a) * 0.38], gold);
+  }
+  k.part(g, geo.ico(0.09, 0), '#4fa8ff', [0, 0.88, 0.37], { emissive: '#2f7fff', glow: 1.5, outline: false });
+  // Glints that sparkle across the cup.
+  const glint = k.part(g, geo.sph(0.035, 6, 4), '#ffffff', [0.2, 1.0, 0.33], { basic: true });
+  k.animate((t) => {
+    const p = (t * 0.35) % 1;
+    glint.position.set(Math.cos(p * Math.PI * 2) * 0.39, 0.8 + p * 0.3, Math.sin(p * Math.PI * 2) * 0.39);
+    glint.scale.setScalar(Math.max(0, Math.sin(p * Math.PI * 6)) * 1.5);
+  });
+  return g;
+}
+
+let mistTex: THREE.CanvasTexture | null = null;
+function mistTexture() {
+  if (mistTex) return mistTex;
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const g = c.getContext('2d')!;
+  const r = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  r.addColorStop(0, 'rgba(255,255,255,0.9)');
+  r.addColorStop(0.5, 'rgba(255,255,255,0.35)');
+  r.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = r;
+  g.fillRect(0, 0, 64, 64);
+  mistTex = new THREE.CanvasTexture(c);
+  return mistTex;
+}
+
+/** Low drifting mist around a point: soft sprites that circle slowly and breathe. */
+export function mist(k: Kit, radius: number, n = 26, color = '#d8d0ff') {
+  const g = new THREE.Group();
+  const mat = new THREE.SpriteMaterial({ map: mistTexture(), color, transparent: true, opacity: 0.32, depthWrite: false });
+  const puffs: { s: THREE.Sprite; a: number; r: number; y: number; size: number; ph: number }[] = [];
+  for (let i = 0; i < n; i++) {
+    const s = new THREE.Sprite(mat);
+    const p = { s, a: (i / n) * Math.PI * 2 + k.rand() * 0.4, r: radius * (0.75 + k.rand() * 0.45), y: 0.2 + k.rand() * 0.5, size: 1.6 + k.rand() * 1.4, ph: k.rand() * 6 };
+    s.renderOrder = 3;
+    g.add(s);
+    puffs.push(p);
+  }
+  k.animate((t) => {
+    for (const p of puffs) {
+      const a = p.a + t * 0.05;
+      p.s.position.set(Math.cos(a) * p.r, p.y + Math.sin(t * 0.4 + p.ph) * 0.1, Math.sin(a) * p.r);
+      p.s.scale.setScalar(p.size * (1 + Math.sin(t * 0.3 + p.ph) * 0.15));
+    }
+  });
+  return g;
+}
+
+/** Spotlight beams from high above, converging on a point and sweeping slowly. */
+export function stageBeams(k: Kit, target: THREE.Vector3, n = 4, color = '#e8f0ff') {
+  const g = new THREE.Group();
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + 0.4;
+    const top = new THREE.Vector3(target.x + Math.cos(a) * 5, 10, target.z + Math.sin(a) * 5);
+    const len = top.distanceTo(target);
+    const pivot = new THREE.Group();
+    pivot.position.copy(top);
+    pivot.lookAt(target);
+    g.add(pivot);
+    // A cone from its tip at the lamp, opening toward the target (+Z of the pivot).
+    const beam = k.part(pivot, geo.cone(1.1, len, 24), color, [0, 0, len / 2], { rot: [-Math.PI / 2, 0, 0], basic: true, opacity: 0.08, shadow: false });
+    beam.renderOrder = 2;
+    (beam.material as THREE.Material).depthWrite = false;
+    const base = pivot.rotation.clone();
+    k.animate((t) => {
+      pivot.rotation.set(base.x + Math.sin(t * 0.3 + i) * 0.06, base.y + Math.cos(t * 0.25 + i * 2) * 0.06, base.z);
+    });
+  }
+  return g;
+}
+
+/**
+ * A cheering crowd in the dark: only their light sticks show, in rows of
+ * stands rising around the arena, waving in a wave that runs around the
+ * stands. `gap`: an opening (radians either side of -Z) left for the painting.
+ */
+export function lightStickCrowd(k: Kit, inner: number, rows = 6, perRow = 110, gap = 0.75) {
+  const g = new THREE.Group();
+  const colors = ['#b48cff', '#7aa8ff', '#ffffff', '#ffd36e', '#9a6bff'];
+  const count = rows * perRow;
+  const mesh = new THREE.InstancedMesh(new THREE.CapsuleGeometry(0.035, 0.3, 2, 6), new THREE.MeshBasicMaterial({ color: '#ffffff' }), count);
+  const sticks: { p: THREE.Vector3; a: number; ph: number }[] = [];
+  const c = new THREE.Color();
+  let i = 0;
+  for (let row = 0; row < rows; row++) {
+    for (let j = 0; j < perRow; j++) {
+      // Azimuth measured from -Z (the painting); skip the opening in front.
+      const span = Math.PI * 2 - gap * 2;
+      const az = gap + (j + k.rand() * 0.6) / perRow * span;
+      const r = inner + row * 0.9 + k.rand() * 0.3;
+      sticks.push({ p: new THREE.Vector3(Math.sin(az) * r, -1.2 + row * 0.75 + k.rand() * 0.15, -Math.cos(az) * r), a: az, ph: k.rand() * 0.6 });
+      mesh.setColorAt(i++, c.set(k.pick(colors)));
+    }
+  }
+  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), one = new THREE.Vector3(1, 1, 1);
+  const wave = (t: number) => {
+    sticks.forEach((s, idx) => {
+      // Side-to-side waving, stronger where the wave is passing.
+      const pass = Math.max(0, Math.sin(s.a - t * 0.8));
+      const sway = Math.sin(t * 3.2 + s.ph * 6) * (0.25 + pass * 0.5);
+      e.set(0, -s.a, sway);
+      mesh.setMatrixAt(idx, m.compose(new THREE.Vector3(s.p.x, s.p.y + pass * 0.25, s.p.z), q.setFromEuler(e), one));
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+  };
+  wave(0);
+  k.animate(wave);
+  mesh.frustumCulled = false;
+  g.add(mesh);
+  return g;
+}
+
 export { palm };

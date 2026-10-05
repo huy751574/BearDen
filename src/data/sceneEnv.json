@@ -842,6 +842,30 @@
    "variant": "dance"
   }
  },
+ "cover-league-of-legend-take-a-breath-to-the-final-battle": {
+  "time": "night",
+  "below": "space",
+  "weather": "sparks",
+  "skyTop": "#2b3858",
+  "skyBottom": "#33406b",
+  "island": "landmark",
+  "variant": "worlds",
+  "companions": [
+   {
+    "kind": "cosmic_dragon",
+    "behavior": "rest",
+    "at": [
+     3.6,
+     -6.0
+    ],
+    "pose": "stand"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
  "cover-honkai-star-rail-the-bear-trailblazing": {
   "time": "night",
   "below": "space",
@@ -2198,6 +2222,34 @@
    "variant": "pages"
   }
  },
+ "sun-and-moon-dim-of-the-ray": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#141c37",
+  "skyBottom": "#33396b",
+  "ground": "#2e518a",
+  "groundSide": "#1e2e47",
+  "island": "skygarden",
+  "companions": [
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
+   }
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
+ },
  "sun-and-moon-prism-light": {
   "time": "sunset",
   "below": "clouds",
@@ -2206,6 +2258,34 @@
   "skyBottom": "#c98b71",
   "ground": "#4e506a",
   "groundSide": "#2d2e38",
+  "island": "skygarden",
+  "companions": [
+   {
+    "kind": "sun",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon",
+    "behavior": "orbit"
+   },
+   {
+    "kind": "moon_bunny",
+    "behavior": "follow"
+   }
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "light"
+  }
+ },
+ "sun-and-moon-rim-of-the-day": {
+  "time": "sunset",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#733fa6",
+  "skyBottom": "#c7946c",
+  "ground": "#315a86",
+  "groundSide": "#1e3147",
   "island": "skygarden",
   "companions": [
    {

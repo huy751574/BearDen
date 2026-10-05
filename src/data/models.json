@@ -230,6 +230,12 @@
     "height": 1.3,
     "lite": "models/common_tanuki.lite.glb"
   },
+  "cosmic_dragon": {
+    "file": "models/cosmic_dragon.glb",
+    "clips": {},
+    "forward": "+x",
+    "height": 3.6
+  },
   "croc_king": {
     "file": "models/croc_king.glb",
     "clips": {

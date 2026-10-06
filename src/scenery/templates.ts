@@ -527,6 +527,25 @@ const LANDMARKS: Record<string, (k: Kit) => void> = {
     }
     rocks(k, 5, '#9a9aa2');
   },
+  // League of Legends cover: the championship stage with the trophy, mist,
+  // sweeping spotlights and a dark arena where only the light sticks show.
+  // The dragon beside the trophy is cast in analyze_scenes.py (SCENE_CAST).
+  worlds(k) {
+    k.ground = '#262633';
+    const sx = 0, sz = -5.6;
+    k.put(P.trophyStage(k), sx, sz, { rotY: k.faceCenter(sx, sz), block: 3.3, space: 3.6 });
+    k.anchor('trophy', sx, sz, 3.3);
+    k.group.add(P.mist(k, 3.6, 30).translateX(sx).translateZ(sz));
+    k.group.add(P.stageBeams(k, new THREE.Vector3(sx, 1.6, sz), 4));
+    k.group.add(P.lightStickCrowd(k, 12, 8, 150));
+    // Low golden lights along the walkway to the stage.
+    for (const s of [-1, 1]) for (let i = 0; i < 4; i++) {
+      const g = new THREE.Group();
+      k.part(g, geo.cyl(0.08, 0.1, 0.5, 8), '#1f1f29', [0, 0.25, 0]);
+      k.part(g, geo.sph(0.1, 8, 6), '#ffe2a0', [0, 0.55, 0], { emissive: '#ffc860', glow: 2, outline: false });
+      k.put(g, s * 1.6, -1.2 - i * 0.9, { block: 0.12 });
+    }
+  },
   throne(k) {
     k.ground = '#8a8580';
     centrepiece(k, P.throne(k), L.x, L.z, 1.8);

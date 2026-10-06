@@ -354,7 +354,19 @@ def companion_for(theme: str, sid: str, words: set[str]) -> tuple[str, str]:
 # Hand-placed casts for scenes whose art has a specific group. "rest" =
 # stays at "at" [x, z(, height)] in "pose", with a prop and thought bubbles;
 # the island template puts furniture at these spots.
+# Hand fixes where the painting says more than the words and brightness do.
+SCENE_ENV: dict[str, dict] = {
+    # A spotlit championship arena at night (trophy, cosmic dragon): dark and starry all round.
+    "cover-league-of-legend-take-a-breath-to-the-final-battle": {"time": "night", "island": "landmark", "variant": "worlds", "below": "space"},
+    # The bear and the bunny on a rooftop above the city: at dusk / at sunrise.
+    "sun-and-moon-dim-of-the-ray": {"below": "city"},
+    "sun-and-moon-rim-of-the-day": {"time": "sunset", "below": "city"},
+}
+
 SCENE_CAST: dict[str, list[dict]] = {
+    # The cosmic dragon stands beside the trophy (templates.ts worlds()).
+    "cover-league-of-legend-take-a-breath-to-the-final-battle": [
+        {"kind": "cosmic_dragon", "behavior": "rest", "at": [3.6, -6.0], "pose": "stand"}],
     # The cat orchestra's cats are grey / tabby / white in the painting (the
     # black cat is the scenes' sleeping cat, and too dark on a night stage).
     "chill-the-bear-conduct-music-for-cats": [{"kind": "cat_white", "behavior": "perform"}] * 3,
@@ -571,8 +583,9 @@ def main() -> int:
                          *(x["title"] for x in s["songs"]), *(v["title"] for v in s["youtube"]))
         thumb = MEDIA / sid / "thumb.webp"
         info = analyze_image(thumb) if thumb.exists() else None
-        time = time_of_day(info, words)
-        below = first_rule(BELOW_RULES, words, "clouds")
+        fix = SCENE_ENV.get(sid, {})
+        time = fix.get("time") or time_of_day(info, words)
+        below = fix.get("below") or first_rule(BELOW_RULES, words, "clouds")
         weather = first_rule(WEATHER_RULES, words, "none")
         if weather == "none" and time == "night" and below in ("forest", "lake", "fields"):
             weather = "fireflies"
@@ -584,6 +597,8 @@ def main() -> int:
         # Island layout: scene's own words only (YouTube titles add SEO noise).
         scene_words = words_of(sid.replace("-", " "), s["title"], *(v["title"].split("|")[0] for v in s["youtube"]))
         island, variant = island_for(s["theme"], scene_words)
+        if "island" in fix:
+            island, variant = fix["island"], fix.get("variant", "")
         all_words = set(sid.split("-")) | scene_words
         companion, behavior = companion_for(s["theme"], sid, all_words)
         extras = extras_for(s["theme"], all_words, companion, behavior)
@@ -606,7 +621,7 @@ def main() -> int:
             **colors,
             "island": island,
             **({"variant": variant} if variant else {}),
-            "companions": SCENE_CAST.get(sid) or [{"kind": k, "behavior": bh} for k, bh in cast],
+            "companions": SCENE_CAST[sid] if sid in SCENE_CAST else [{"kind": k, "behavior": bh} for k, bh in cast],
             "game": game_for(s["theme"], set(sid.split("-")) | {w for w in words_of(s["title"])}),
         }
         key = f"island {island}{'/' + variant if variant else ''}"

@@ -736,6 +736,8 @@ export const BIRDS: Record<string, BirdSpec> = {
   seagull: { body: '#ffffff', belly: '#ffffff', wing: '#b8c0cc', beak: '#f2c230', size: 0.55 },
   magpie: { body: '#1c1c28', belly: '#ffffff', wing: '#2a3f7a', beak: '#222', size: 0.5 },
   dragon: { body: '#2e3440', belly: '#8a6a4a', wing: '#4a2a2a', beak: '#c8b89a', size: 3.2, neck: 0.5, tufts: true },
+  // League of Legends cover: the cosmic purple dragon by the trophy (until its 3D model exists).
+  cosmic_dragon: { body: '#4a2f8a', belly: '#c8a8ff', wing: '#2a2470', beak: '#f0c860', size: 3.4, neck: 0.55, tufts: true },
 };
 
 class Bird implements Creature {
@@ -1017,6 +1019,11 @@ export function makeCreature(kind: string): Creature {
   }
   if (CHIBI[kind]) return chibi(kind, CHIBI[kind]);
   if (SPEC_ALIAS[kind]) return chibi(kind, CHIBI[SPEC_ALIAS[kind]]);
+  if (kind === 'cosmic_dragon') {
+    // Stays beside the trophy; flies around the arena during the mini-game.
+    const fallback = () => cosmicDragon();
+    return MODELS.cosmic_dragon ? new StillGiant(MODELS.cosmic_dragon, MODELS.cosmic_dragon.height + 0.4, fallback, true, false) : fallback();
+  }
   if (kind === 'dragon' && MODELS.dragon) return new StillGiant(MODELS.dragon, MODELS.dragon.height + 0.4, () => new Bird(BIRDS.dragon), true);
   if (kind === 'little_snake') return MODELS.little_snake ? new Slither(MODELS.little_snake, MODELS.little_snake.height + 0.3, snake) : snake();
   if (kind === 'cloud_retainer') {
@@ -1070,6 +1077,28 @@ function procedural(kind: string): Creature {
   }
   console.warn(`Unknown companion "${kind}", using a fox`);
   return new Chibi(CHIBI.fox);
+}
+
+/** The code-built cosmic dragon: purple, with a glow of stars around it. */
+function cosmicDragon(): Creature {
+  const b = new Bird(BIRDS.cosmic_dragon);
+  const stars = new THREE.Group();
+  const mat = new THREE.MeshBasicMaterial({ color: '#e8dcff' });
+  for (let i = 0; i < 40; i++) {
+    const s = new THREE.Mesh(new THREE.OctahedronGeometry(0.035 + Math.random() * 0.03), mat);
+    const a = Math.random() * Math.PI * 2, r = 0.8 + Math.random() * 1.4;
+    s.position.set(Math.cos(a) * r, 0.6 + Math.random() * b.top, Math.sin(a) * r);
+    stars.add(s);
+  }
+  b.root.add(stars);
+  const update = b.update.bind(b);
+  let t = 0;
+  b.update = (dt: number, speed: number) => {
+    t += dt;
+    stars.rotation.y = t * 0.15;
+    update(dt, speed);
+  };
+  return b;
 }
 
 /** Villains that loom from beyond the island edge are scaled up. */

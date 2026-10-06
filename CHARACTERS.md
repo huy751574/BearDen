@@ -149,6 +149,18 @@ three-quarter view instead of the A-pose).
 | `mecha_kraken` | villain: maelstrom | still | Giant steampunk mecha kraken, bronze and dark-steel body, one big glowing teal eye, coiled mechanical tentacles. |
 | `mecha_hydra` | villain: hydra | still | Giant nine-headed mecha hydra, dark steel necks, glowing red eyes, coiled body, low-poly chunky shapes. |
 
+### No picture? Generate from text
+
+When there's no clean picture (e.g. a semi-transparent, glowing creature in a
+busy scene), Tripo can make the model from a description instead:
+
+```bash
+python tools/tripo_character.py --name cosmic_dragon --no-rig --prompt "A majestic cosmic celestial dragon, ... wings open." --negative "realistic, gore, ground, pedestal, text"
+```
+
+`cosmic_dragon` (League of Legends cover: beside the trophy, flies around the
+arena during the mini-game) was made this way, as a still model (30 credits).
+
 ### Star Rail train passengers
 
 From the scene's own art (`Cover_Honkai_Star_Rail-The_Bear_trailblazing`).

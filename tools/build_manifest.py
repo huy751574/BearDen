@@ -5,8 +5,12 @@ Folder convention:  <Theme>-<Scene>[-Lyrics]
   - Any "Cover_<Game>" prefix is grouped into the single "Cover" theme.
   - Every .wav in a scene folder becomes one song in that scene's playlist.
 
+Scenes already in the manifest whose folders are gone (packed away, e.g.
+into Archive.7z) are kept as they are: their media is already in
+public/media. --prune drops them instead.
+
 Re-run whenever you add folders:
-    python tools/build_manifest.py [--archive F:/LoopVid/Archive]
+    python tools/build_manifest.py [--archive F:/LoopVid/Archive] [--prune]
 """
 from __future__ import annotations
 
@@ -60,7 +64,9 @@ def parse_folder(name: str, known_games: list[str]) -> tuple[str, str, str] | No
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--archive", type=Path, default=DEFAULT_ARCHIVE)
+    ap.add_argument("--prune", action="store_true", help="drop scenes whose folders are no longer in the archive")
     args = ap.parse_args()
+    old = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {"themes": [], "scenes": []}
 
     folders = sorted(p for p in args.archive.iterdir() if p.is_dir())
     known_games = sorted({
@@ -108,23 +114,30 @@ def main() -> int:
                 "lyrics": is_lyrics,
             })
 
+    # Keep earlier scenes whose folders were packed away (unless --prune).
+    kept = 0
+    if not args.prune:
+        for s in old["scenes"]:
+            if s["id"] not in scenes and not any((args.archive / f).is_dir() for f in s.get("folders", [])):
+                scenes[s["id"]] = dict(s)
+                kept += 1
+
     links = load_youtube_links()
     for sid, vids in links.items():
         if sid in scenes:
             scenes[sid]["youtube"] = vids
 
+    # Themes by slug (kept scenes already carry the slug); names from the old manifest when known.
+    old_names = {t["id"]: t["name"] for t in old["themes"]}
     themes: dict[str, dict] = {}
     for s in scenes.values():
-        t = themes.setdefault(s["theme"], {
-            "id": slugify(s["theme"]),
-            "name": pretty(s["theme"]),
-            "scenes": [],
-        })
+        slug = slugify(s["theme"])
+        t = themes.setdefault(slug, {"id": slug, "name": old_names.get(slug) or pretty(s["theme"]), "scenes": []})
         t["scenes"].append(s["id"])
 
     manifest = {
         "themes": sorted(themes.values(), key=lambda t: t["name"].lower()),
-        "scenes": sorted(scenes.values(), key=lambda s: (s["theme"], s["title"])),
+        "scenes": sorted(scenes.values(), key=lambda s: (slugify(s["theme"]), s["title"])),
     }
     for s in manifest["scenes"]:
         s["theme"] = slugify(s["theme"])
@@ -133,7 +146,8 @@ def main() -> int:
     OUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"Wrote {OUT.relative_to(ROOT)}")
-    print(f"{len(folders)} folders -> {len(manifest['scenes'])} scenes in {len(manifest['themes'])} themes")
+    print(f"{len(folders)} folders -> {len(manifest['scenes'])} scenes in {len(manifest['themes'])} themes"
+          + (f" ({kept} kept from earlier, folders packed away)" if kept else ""))
     for t in manifest["themes"]:
         print(f"  {t['name']:<14} {len(t['scenes']):>3} scenes")
     linked = sum(1 for s in manifest["scenes"] if s["youtube"])

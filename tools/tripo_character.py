@@ -1,6 +1,7 @@
 """Image -> rigged, animated 3D character with the Tripo API (v3) -> game.
 
     python tools/tripo_character.py --name bear --image refs/bear.png
+    python tools/tripo_character.py --name cosmic_dragon --prompt "..." --no-rig   (no picture: from text)
 
 Pipeline (each step is a Tripo task that is polled until done):
   1. upload the image                POST /v3/files
@@ -146,7 +147,10 @@ def model_url(task: dict) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--name", required=True, help="model name in the game, e.g. bear")
-    ap.add_argument("--image", required=True, type=Path, help="front view, full body, plain background (PNG/JPEG/WebP)")
+    src = ap.add_mutually_exclusive_group(required=True)
+    src.add_argument("--image", type=Path, help="front view, full body, plain background (PNG/JPEG/WebP)")
+    src.add_argument("--prompt", help="no picture: describe the character (Tripo text-to-model)")
+    ap.add_argument("--negative", default="", help="with --prompt: what to avoid")
     ap.add_argument("--anims", default="idle,walk,run,sit,wave", help=f"comma list from: {', '.join(PRESETS)}")
     ap.add_argument("--model", default="v3.1-20260211", help="Tripo generation model version")
     ap.add_argument("--face-limit", type=int, default=20000, help="max triangles (web: 10k-50k)")
@@ -166,12 +170,13 @@ def main() -> int:
         sys.exit(f"Unknown animation(s) {unknown}. Choose from: {', '.join(PRESETS)}")
     if "idle" not in anims:
         anims.insert(0, "idle")  # idle carries the geometry: always first
-    if not args.image.exists():
+    if args.image and not args.image.exists():
         sys.exit(f"Image not found: {args.image}")
 
     CACHE.mkdir(parents=True, exist_ok=True)
     state_path = CACHE / f"tripo_{args.name}.json"
-    image_sha = hashlib.sha256(args.image.read_bytes()).hexdigest()[:16]
+    source = args.image.read_bytes() if args.image else (args.prompt + "|" + args.negative).encode("utf-8")
+    image_sha = hashlib.sha256(source).hexdigest()[:16]
     state = {} if args.restart or not state_path.exists() else json.loads(state_path.read_text(encoding="utf-8"))
     if state and state.get("image_sha") != image_sha:
         print("Image changed since the last run: starting over.")
@@ -190,7 +195,7 @@ def main() -> int:
     if not todo:
         print("Everything is already generated; re-downloading files.")
     else:
-        print(f"Tripo pipeline for '{args.name}' from {args.image}:")
+        print(f"Tripo pipeline for '{args.name}' from {args.image or 'text prompt'}:")
         for t in todo:
             print(f"  - {t}")
         print("These steps cost Tripo credits (see https://platform.tripo3d.ai for your balance).")
@@ -201,7 +206,15 @@ def main() -> int:
     tripo = Tripo(api_key())
     try:
         # 1-2. Upload + image -> model
-        if "model_task" not in state:
+        if "model_task" not in state and args.prompt:
+            print("\n[2/4] Generating 3D model from the text prompt (about 1-2 minutes)")
+            body = {"prompt": args.prompt[:1024], "model": args.model, "texture": True, "pbr": False,
+                    "face_limit": args.face_limit}
+            if args.negative:
+                body["negative_prompt"] = args.negative[:255]
+            state["model_task"] = tripo.create("generation/text-to-model", body)
+            save()
+        elif "model_task" not in state:
             print("\n[1/4] Uploading image")
             token = tripo.upload(args.image)
             print("[2/4] Generating 3D model (about 1-2 minutes)")

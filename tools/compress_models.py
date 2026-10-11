@@ -69,12 +69,6 @@ def compress(src: Path, dest: Path, lite: bool = False) -> None:
         shutil.copyfile(b, dest)
 
 
-def is_rigged(path: Path) -> bool:
-    data = path.read_bytes()
-    length = struct.unpack_from("<I", data, 12)[0]
-    return bool(json.loads(data[20:20 + length]).get("skins"))
-
-
 def main() -> int:
     redo = "--all" in sys.argv
     RAW.mkdir(parents=True, exist_ok=True)
@@ -99,11 +93,11 @@ def main() -> int:
         before += size0
         after += size1
         print(f"  {path.name}: {size0 / 1e6:.2f} MB -> {size1 / 1e6:.2f} MB")
-    # Lighter copies of the rigged models (not clips), for crowds.
+    # Lighter copies of the models (not clips): crowds, friends, small still animals.
     for path in files:
         raw = RAW / path.name
         lite = path.with_name(f"{path.stem}.lite.glb")
-        if "@" in path.stem or not raw.exists() or not is_rigged(raw):
+        if "@" in path.stem or not raw.exists():
             continue
         # Rebuild when the model was re-generated after the lite copy was made.
         if lite.exists() and not redo and lite.stat().st_mtime >= raw.stat().st_mtime:

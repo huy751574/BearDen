@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { toonMaterial, addOutline } from '../engine/toon';
 import { ChibiBear, BLACK_BEAR, type ChibiSpec, type ChibiParts, type Pose, type Action } from './ChibiBear';
-import { loadGltfCharacter, loadStaticModel, type GltfCharacter, type ModelEntry, type GlowKind } from './GltfCharacter';
+import { liteOf, loadGltfCharacter, loadStaticModel, type GltfCharacter, type ModelEntry, type GlowKind } from './GltfCharacter';
 import modelsJson from '../data/models.json';
 
 // Every companion species. Two-legged chibis reuse ChibiBear with a spec;
@@ -97,7 +97,7 @@ class ModelCreature implements Creature {
     this.body = fallback;
     this.root.add(fallback.root);
     if (extra?.rider) fallback.pose = 'sit';
-    loadGltfCharacter(entry, height).then(
+    loadGltfCharacter(liteOf(entry), height).then(
       (model) => {
         if (extra) extra.dress(model.attachParts(), model.root);
         model.pose = this.body.pose;
@@ -138,14 +138,19 @@ class StillGiant implements Creature {
   private awake = 0;
   private awakeTarget = 0;
   private flightA = 0;
+  /** Wing flap loop, when the model was rigged in Blender (tools/blender/rig_wings.py). */
+  private mixer: THREE.AnimationMixer | null = null;
+  private flap: THREE.AnimationAction | null = null;
 
   /** `flies`: wakes up and circles the island while a mini-game runs; `glow`: which colours light up. */
   constructor(entry: ModelEntry, readonly top: number, makeFallback: () => Creature, private flies = false, glow: GlowKind | false = 'ember') {
     this.root.add(this.body);
     loadStaticModel(entry, entry.height, glow).then(
-      ({ root, materials }) => {
+      ({ root, materials, mixer, action }) => {
         this.body.add(root);
         this.materials = materials;
+        this.mixer = mixer;
+        this.flap = action;
       },
       (e) => {
         console.warn(`Model "${entry.file}" failed to load; using the procedural creature.`, e);
@@ -181,6 +186,10 @@ class StillGiant implements Creature {
     this.body.scale.set(1 + breath * depth * 0.6, 1 + breath * depth, 1 + breath * depth * 0.6);
     let glow = (this.flare ? 1.6 : 0.55) + breath * (this.flare ? 0.6 : 0.35);
     if (this.flies) glow = this.fly(dt, glow);
+    // Calm wing beats hovering, stronger and faster in flight or when roused.
+    // A sleeper (the throne dragon) keeps its wings folded until it takes off.
+    this.flap?.setEffectiveWeight(this.pose === 'sleep' ? this.awake : 1);
+    this.mixer?.update(dt * (0.8 + this.awake * 0.6 + (this.flare ? 0.4 : 0)));
     for (const m of this.materials) m.emissiveIntensity = glow;
   }
 

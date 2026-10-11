@@ -107,13 +107,15 @@
     "file": "models/cloud_retainer.glb",
     "clips": {},
     "forward": "+x",
-    "height": 1.9
+    "height": 1.9,
+    "lite": "models/cloud_retainer.lite.glb"
   },
   "common_alligator": {
     "file": "models/common_alligator.glb",
     "clips": {},
     "forward": "+x",
-    "height": 1.1
+    "height": 1.1,
+    "lite": "models/common_alligator.lite.glb"
   },
   "common_black_cat": {
     "file": "models/common_black_cat.glb",
@@ -148,7 +150,8 @@
     "file": "models/common_deer.glb",
     "clips": {},
     "forward": "+x",
-    "height": 1.1
+    "height": 1.1,
+    "lite": "models/common_deer.lite.glb"
   },
   "common_dog": {
     "file": "models/common_dog.glb",
@@ -170,7 +173,8 @@
     "file": "models/common_dormouse.glb",
     "clips": {},
     "forward": "+x",
-    "height": 0.7
+    "height": 0.7,
+    "lite": "models/common_dormouse.lite.glb"
   },
   "common_frog": {
     "file": "models/common_frog.glb",
@@ -202,7 +206,8 @@
     "file": "models/common_owl.glb",
     "clips": {},
     "forward": "+x",
-    "height": 0.7
+    "height": 0.7,
+    "lite": "models/common_owl.lite.glb"
   },
   "common_rabbit": {
     "file": "models/common_rabbit.glb",
@@ -234,7 +239,8 @@
     "file": "models/cosmic_dragon.glb",
     "clips": {},
     "forward": "+x",
-    "height": 3.6
+    "height": 3.6,
+    "lite": "models/cosmic_dragon.lite.glb"
   },
   "croc_king": {
     "file": "models/croc_king.glb",
@@ -256,7 +262,8 @@
     "file": "models/dragon.glb",
     "clips": {},
     "forward": "+x",
-    "height": 2.4
+    "height": 2.4,
+    "lite": "models/dragon.lite.glb"
   },
   "eula_cat": {
     "file": "models/eula_cat.glb",
@@ -319,7 +326,8 @@
     "file": "models/little_snake.glb",
     "clips": {},
     "forward": "+x",
-    "height": 1.0
+    "height": 1.0,
+    "lite": "models/little_snake.lite.glb"
   },
   "lucia": {
     "file": "models/lucia.glb",
@@ -354,7 +362,8 @@
     "file": "models/mecha_alligator.glb",
     "clips": {},
     "forward": "+x",
-    "height": 2.0
+    "height": 2.0,
+    "lite": "models/mecha_alligator.lite.glb"
   },
   "mecha_bear": {
     "file": "models/mecha_bear.glb",
@@ -375,19 +384,22 @@
     "file": "models/mecha_hydra.glb",
     "clips": {},
     "forward": "+x",
-    "height": 6.0
+    "height": 6.0,
+    "lite": "models/mecha_hydra.lite.glb"
   },
   "mecha_kraken": {
     "file": "models/mecha_kraken.glb",
     "clips": {},
     "forward": "+x",
-    "height": 5.0
+    "height": 5.0,
+    "lite": "models/mecha_kraken.lite.glb"
   },
   "mecha_wolf": {
     "file": "models/mecha_wolf.glb",
     "clips": {},
     "forward": "+x",
-    "height": 2.4
+    "height": 2.4,
+    "lite": "models/mecha_wolf.lite.glb"
   },
   "moon_bunny": {
     "file": "models/moon_bunny.glb",
@@ -463,7 +475,8 @@
     "file": "models/sundove.glb",
     "clips": {},
     "forward": "+x",
-    "height": 0.55
+    "height": 0.55,
+    "lite": "models/sundove.lite.glb"
   },
   "tom_cat": {
     "file": "models/tom_cat.glb",

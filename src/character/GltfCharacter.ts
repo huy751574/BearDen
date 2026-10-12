@@ -62,6 +62,15 @@ const load = (file: string) => {
   return cache.get(file)!;
 };
 
+/**
+ * The light copy of a model (a quarter of the triangles, 512 px textures)
+ * when it has one: looks the same at play distance, half the download. Its
+ * file also holds the idle clip. Used for everyone but the player's bear.
+ */
+export function liteOf(entry: ModelEntry): ModelEntry {
+  return entry.lite ? { ...entry, file: entry.lite, clips: { ...entry.clips, idle: entry.lite } } : entry;
+}
+
 /** Load a model + its clips. `height` overrides the entry's (e.g. a cub from the bear model). */
 export async function loadGltfCharacter(entry: ModelEntry, height = entry.height): Promise<GltfCharacter> {
   const gltf = await load(entry.file);
@@ -71,31 +80,48 @@ export async function loadGltfCharacter(entry: ModelEntry, height = entry.height
   }
   const model = { ...gltf, scene: cloneSkinned(gltf.scene) as THREE.Group };
   const clips = new Map<string, THREE.AnimationClip>();
+  // Only the clips every character needs right away; emotes load when first used.
+  const lazy = new Map<string, string>();
   await Promise.all(
     Object.entries(entry.clips).map(async ([name, file]) => {
-      try {
-        const gltf = await load(file);
-        const src = gltf.animations[0];
-        if (src) clips.set(name, removeDrift(src.clone()));
-      } catch (e) {
-        console.warn(`Character clip "${name}" failed to load from ${file}`, e);
-      }
+      if (!CORE_CLIPS.has(name)) return void lazy.set(name, file);
+      const clip = await loadClip(name, file);
+      if (clip) clips.set(name, clip);
     }),
   );
-  return new GltfCharacter(model, clips, { ...entry, height });
+  return new GltfCharacter(model, clips, { ...entry, height }, lazy);
+}
+
+/** Loaded with the model; everything else (dance, sing, wave...) on first use. */
+const CORE_CLIPS = new Set(['idle', 'walk', 'run', 'sit']);
+
+async function loadClip(name: string, file: string): Promise<THREE.AnimationClip | null> {
+  try {
+    const src = (await load(file)).animations[0];
+    return src ? removeDrift(src.clone()) : null;
+  } catch (e) {
+    console.warn(`Character clip "${name}" failed to load from ${file}`, e);
+    return null;
+  }
 }
 
 /**
- * A model without a skeleton (made with tripo_character.py --no-rig), in the
- * game's toon look, standing on y = 0, `height` metres tall, facing +Z.
- * `glow` picks the bright orange pixels of its texture (embers, lava cracks)
- * as an emissive map; returns the materials so the caller can pulse them.
+ * A model without a humanoid skeleton (made with tripo_character.py
+ * --no-rig), in the game's toon look, standing on y = 0, `height` metres
+ * tall, facing +Z. `glow` picks the bright orange pixels of its texture
+ * (embers, lava cracks) as an emissive map; returns the materials so the
+ * caller can pulse them. If the file has its own little skeleton and a loop
+ * (e.g. wings rigged in Blender with tools/blender/rig_wings.py), it plays
+ * that loop: the caller advances the returned `mixer`.
  */
 export type GlowKind = 'ember' | 'red' | 'teal';
 
 export async function loadStaticModel(entry: ModelEntry, height = entry.height, glow: GlowKind | false = false, ownGeometry = false) {
-  const gltf = await load(entry.file);
-  const model = gltf.scene.clone(true);
+  // The light copy looks the same in the scene (checked side by side) at a third of the size.
+  const gltf = await load(entry.lite ?? entry.file);
+  let skinned = false;
+  gltf.scene.traverse((o) => void ((o as THREE.SkinnedMesh).isSkinnedMesh && (skinned = true)));
+  const model = (skinned ? cloneSkinned(gltf.scene) : gltf.scene.clone(true)) as THREE.Object3D;
   // Own copies of the vertices when the caller bends the mesh (Slither).
   if (ownGeometry) {
     model.traverse((o) => {
@@ -131,11 +157,21 @@ export async function loadStaticModel(entry: ModelEntry, height = entry.height, 
     materials.push(mat);
     mesh.material = mat;
     mesh.castShadow = true;
-    addOutline(mesh, 0.018 / scale);
+    if ((mesh as THREE.SkinnedMesh).isSkinnedMesh) {
+      mesh.frustumCulled = false; // skinned bounds don't follow the wings
+      addSkinnedOutline(mesh as THREE.SkinnedMesh, 0.018 / scale);
+    } else addOutline(mesh, 0.018 / scale);
   });
   const root = new THREE.Group();
   root.add(model);
-  return { root, materials };
+  let mixer: THREE.AnimationMixer | null = null;
+  let action: THREE.AnimationAction | null = null;
+  if (skinned && gltf.animations[0]) {
+    mixer = new THREE.AnimationMixer(model);
+    action = mixer.clipAction(gltf.animations[0]).play();
+    mixer.setTime(Math.random() * gltf.animations[0].duration); // not all in step
+  }
+  return { root, materials, mixer, action };
 }
 
 const GLOW_COLOR: Record<GlowKind, string> = { ember: '#ff8a2a', red: '#ff2a2a', teal: '#3ff0e0' };
@@ -200,7 +236,14 @@ export class GltfCharacter implements Character {
   private moveSpeed = 0;
   private moving = false;
 
-  constructor(gltf: GLTF, clips: Map<string, THREE.AnimationClip>, entry: ModelEntry) {
+  /** Clips not loaded yet (name -> file) and the emote waiting for one. */
+  private lazy: Map<string, string>;
+  private loading = new Set<string>();
+  private pendingEmote: { name: Emote; until: number } | null = null;
+  private clock = 0;
+
+  constructor(gltf: GLTF, clips: Map<string, THREE.AnimationClip>, entry: ModelEntry, lazy = new Map<string, string>()) {
+    this.lazy = lazy;
     const model = gltf.scene;
     // Face +Z, stand on y = 0 and scale to the target height.
     model.rotation.y = FORWARD_YAW[entry.forward] ?? 0;
@@ -230,23 +273,27 @@ export class GltfCharacter implements Character {
     });
 
     this.mixer = new THREE.AnimationMixer(model);
-    const rootBone = findRootBone(model);
-    for (const [name, clip] of clips) {
-      const state = name as State;
-      if (rootBone && (state === 'walk' || state === 'run' || state === 'idle')) lockRootMotion(clip, rootBone.name);
-      const action = this.mixer.clipAction(clip);
-      // Emotes repeat until their time is up (companions sing / dance for a set time).
-      if (EMOTES.has(state)) action.setLoop(THREE.LoopRepeat, Infinity);
-      if (state === 'sit') {
-        action.setLoop(THREE.LoopOnce, 1);
-        action.clampWhenFinished = true; // stay seated
-      }
-      this.actions.set(state, action);
-    }
+    this.rootBone = findRootBone(model);
+    for (const [name, clip] of clips) this.addClip(name, clip);
     // Tripo's chibi steps are small: measure how fast each gait really moves.
     this.walkStride = strideSpeed(model, this.actions.get('walk')) ?? 1;
     this.runStride = strideSpeed(model, this.actions.get('run')) ?? this.walkStride * 2;
     this.play('idle', 0);
+  }
+
+  private rootBone: THREE.Bone | null;
+
+  private addClip(name: string, clip: THREE.AnimationClip) {
+    const state = name as State;
+    if (this.rootBone && (state === 'walk' || state === 'run' || state === 'idle')) lockRootMotion(clip, this.rootBone.name);
+    const action = this.mixer.clipAction(clip);
+    // Emotes repeat until their time is up (companions sing / dance for a set time).
+    if (EMOTES.has(state)) action.setLoop(THREE.LoopRepeat, Infinity);
+    if (state === 'sit') {
+      action.setLoop(THREE.LoopOnce, 1);
+      action.clampWhenFinished = true; // stay seated
+    }
+    this.actions.set(state, action);
   }
 
   wave() {
@@ -255,12 +302,33 @@ export class GltfCharacter implements Character {
 
   /** `seconds` overrides the default length (the clip loops if it's shorter). */
   emote(name: Emote, seconds?: number) {
+    // Not downloaded yet: fetch it, play a loaded fallback meanwhile, switch when it arrives.
+    if (!this.actions.has(name) && this.lazy.has(name)) {
+      this.pendingEmote = { name, until: this.clock + (seconds ?? MAX_EMOTE[name] ?? 3) };
+      this.fetchClip(name);
+    }
     const state = [name, ...FALLBACK[name]].find((n) => this.actions.has(n));
     if (!state) return;
     this.emoteState = state;
     this.emoteTime = seconds ?? Math.min(this.actions.get(state)!.getClip().duration, MAX_EMOTE[state as Emote] ?? 3);
     this.pose = 'stand';
     this.play(state, 0.2, true);
+  }
+
+  private fetchClip(name: string) {
+    const file = this.lazy.get(name);
+    if (!file || this.loading.has(name)) return;
+    this.loading.add(name);
+    loadClip(name, file).then((clip) => {
+      this.lazy.delete(name);
+      if (!clip) return;
+      this.addClip(name, clip);
+      const p = this.pendingEmote;
+      if (p && p.name === name && p.until > this.clock + 0.3) {
+        this.pendingEmote = null;
+        this.emote(name, p.until - this.clock);
+      }
+    });
   }
 
   /**
@@ -345,10 +413,12 @@ export class GltfCharacter implements Character {
   }
 
   update(dt: number, speed: number) {
+    this.clock += dt;
     if (this.emoteTime > 0) {
       this.emoteTime -= dt;
       if (speed > 0.05) this.emoteTime = 0; // walking cancels the emote
     }
+    if (speed > 0.05) this.pendingEmote = null; // ...and one still downloading
     // Smooth the speed and use hysteresis, so stop-and-go (a companion keeping
     // its distance) doesn't restart the walk every few frames.
     this.moveSpeed = THREE.MathUtils.damp(this.moveSpeed, speed, 10, dt);

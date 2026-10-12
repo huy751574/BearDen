@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { ChibiBear, type ChibiSpec, type ChibiParts, type Action, type Pose } from '../character/ChibiBear';
 import { CHIBI } from '../character/creatures';
 import type { Character, Emote } from '../character/Character';
-import { loadGltfCharacter, type GltfCharacter, type ModelEntry } from '../character/GltfCharacter';
+import { liteOf, loadGltfCharacter, type GltfCharacter, type ModelEntry } from '../character/GltfCharacter';
 import modelsJson from '../data/models.json';
 
 // The lounge's 50 avatars: the game's 5 characters (3D models from
@@ -69,8 +69,7 @@ class AvatarBody implements Character {
     const entry = MODELS[speciesOf(slot)];
     if (!entry) return;
     // Up to 50 at once: use the light copy (its file also holds the idle clip).
-    const lite = entry.lite ? { ...entry, file: entry.lite, clips: { ...entry.clips, idle: entry.lite } } : entry;
-    loadGltfCharacter(lite).then(
+    loadGltfCharacter(liteOf(entry)).then(
       (model) => {
         accessoryOf(slot).add(model.attachParts());
         model.pose = this.body.pose;

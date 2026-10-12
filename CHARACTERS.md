@@ -161,6 +161,33 @@ python tools/tripo_character.py --name cosmic_dragon --no-rig --prompt "A majest
 `cosmic_dragon` (League of Legends cover: beside the trophy, flies around the
 arena during the mini-game) was made this way, as a still model (30 credits).
 
+### Flapping wings (Blender)
+
+Tripo only rigs two-legged characters. Winged still models get a small wing
+skeleton and a flap loop in Blender (free, no credits), from the original
+download kept in `tools/cache/rig_src/`:
+
+```bash
+F:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/cosmic_dragon.glb public/models/cosmic_dragon.glb --lift 28 --drop 30
+python tools/compress_models.py
+```
+
+The weights come from where each vertex is (wings outside the shoulders and
+behind the arms); options set the shoulder, wing tip, arm and leg limits
+for other models. Check them with
+`tools/blender/render_views.py <file.blend> prefix --colors` (red = wing). The
+game plays the loop automatically, faster while the creature flies.
+
+The sleeping throne dragon's wings are folded on its back, so it uses
+`--folded` (they hinge along the body and open outward):
+
+```bash
+F:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/dragon.glb public/models/dragon.glb --folded
+```
+
+While it sleeps the wings stay folded; they open and beat only when it
+wakes and flies during the mini-game.
+
 ### Star Rail train passengers
 
 From the scene's own art (`Cover_Honkai_Star_Rail-The_Bear_trailblazing`).

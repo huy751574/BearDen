@@ -23,6 +23,7 @@
       "id": "bloom",
       "name": "Bloom",
       "scenes": [
+        "bloom-cat-singer-on-bridge-where-fire-kisses-frozen",
         "bloom-bear-and-cat-singer-sit-back-to-back-in-silence-snow-field",
         "bloom-bear-and-friends-meeting-cat-singer-idol-autumn-lake-park",
         "bloom-bear-meeting-alone-cat-singer-idol",
@@ -57,6 +58,7 @@
       "id": "cover",
       "name": "Cover",
       "scenes": [
+        "cover-ghost-buster-bear-driving-ghost-groove",
         "cover-league-of-legend-take-a-breath-to-the-final-battle",
         "cover-genshin-impact-bear-drinking-tea-with-cloud-retainer",
         "cover-zzz-bear-noting-with-lucia-about-little-goat",
@@ -71,6 +73,7 @@
       "id": "hunting",
       "name": "Hunting",
       "scenes": [
+        "hunting-dead-winter",
         "hunting-bear-approach-the-prey",
         "hunting-bear-bare-teeth-aggresively-to-enemy",
         "hunting-bear-roar-on-top-of-mountain",
@@ -111,6 +114,7 @@
       "id": "parfum",
       "name": "Parfum",
       "scenes": [
+        "parfum-bear-and-mademoiselle-night-at-bridge",
         "parfum-bear-and-mademoiselle-on-bridge-full-bloom",
         "parfum-bear-meeting-mademoiselle"
       ]
@@ -119,6 +123,7 @@
       "id": "power-bearer",
       "name": "Power Bearer",
       "scenes": [
+        "power-bearer-the-hydra-make-an-appearance",
         "power-bearer-bear-mecha-fighting-mecha-alligator",
         "power-bearer-bear-mecha-fighting-mecha-direwolf",
         "power-bearer-bear-mecha-fighting-mecha-maestrom",
@@ -130,7 +135,6 @@
         "power-bearer-mecha-bear-fighting-9-head-mecha",
         "power-bearer-the-bear-victory-hydra-mecha",
         "power-bearer-the-bear-fixing-his-mecha-in-snow",
-        "power-bearer-the-hydra-make-an-appearance",
         "power-bearer-villain-alligator-appear",
         "power-bearer-villain-dire-wolf-appear",
         "power-bearer-villain-maestrom-make-appearance"
@@ -176,6 +180,7 @@
       "id": "to-hong",
       "name": "Tơ Hồng",
       "scenes": [
+        "to-hong-roi-to",
         "to-hong-duyen-to-chuc-nu",
         "to-hong-duyen-to-nguu-lang",
         "to-hong-det-mong"
@@ -185,6 +190,8 @@
       "id": "vietnam",
       "name": "VietNam",
       "scenes": [
+        "vietnam-hoi-tho-trang",
+        "vietnam-tieu-dao-bear-easy-free-wandering",
         "vietnam-ba-khi-ngut-troi",
         "vietnam-ngam-lai-mot-chut",
         "vietnam-rock-giua-may-va-song",
@@ -722,6 +729,37 @@
         {
           "id": "w1e9nbyd1VI",
           "title": "Amid the Burning (Lyrics) 🏮  Cinematic Cat-Singer idol | Four-Season Story",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "bloom-cat-singer-on-bridge-where-fire-kisses-frozen",
+      "theme": "bloom",
+      "subLabel": "",
+      "title": "Cat Singer On Bridge Where Fire Kisses Frozen",
+      "folders": [
+        "Bloom-Cat_Singer_On_Bridge_Where_Fire_Kisses_Frozen",
+        "Bloom-Cat_Singer_On_Bridge_Where_Fire_Kisses_Frozen-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Bloom-Cat_Singer_On_Bridge_Where_Fire_Kisses_Frozen/Cat_and_bear_by_pond_20261014234013.mp4",
+      "songs": [
+        {
+          "title": "Half Unspoken",
+          "file": "Bloom-Cat_Singer_On_Bridge_Where_Fire_Kisses_Frozen/Half Unspoken.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Half Unspoken (Lyrics)",
+          "file": "Bloom-Cat_Singer_On_Bridge_Where_Fire_Kisses_Frozen-Lyrics/Half Unspoken (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "gO9iliOvrzw",
+          "title": "Half Unspoken (Lyrics) 🍂❄️ Where the Fire Meets the Frozen | Lofi Folk Ballad",
           "kind": "lyrics"
         }
       ]
@@ -1318,6 +1356,42 @@
       ]
     },
     {
+      "id": "cover-ghost-buster-bear-driving-ghost-groove",
+      "theme": "cover",
+      "subLabel": "Ghost Buster",
+      "title": "Bear driving ghost groove",
+      "folders": [
+        "Cover_Ghost_Buster-Bear_driving_ghost_groove",
+        "Cover_Ghost_Buster-Bear_driving_ghost_groove-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Cover_Ghost_Buster-Bear_driving_ghost_groove/Bear_in_minivan_bobbing_head_20261011194956.mp4",
+      "songs": [
+        {
+          "title": "GHOST GROOVE",
+          "file": "Cover_Ghost_Buster-Bear_driving_ghost_groove/GHOST GROOVE.wav",
+          "lyrics": false
+        },
+        {
+          "title": "GHOST GROOVE (Lyrics)",
+          "file": "Cover_Ghost_Buster-Bear_driving_ghost_groove-Lyrics/GHOST GROOVE (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "_smlRdSCNQk",
+          "title": "GHOST GROOVE 🐻👻 Spooky Funk × Folk Soul | Halloween Night Ride",
+          "kind": "instrumental"
+        },
+        {
+          "id": "U5DdS0GgJec",
+          "title": "GHOST GROOVE (Lyrics) 🐻👻 Spooky Funk × Folk Soul | Halloween Night Ride",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "cover-zzz-bear-noting-with-lucia-about-little-goat",
       "theme": "cover",
       "subLabel": "ZZZ",
@@ -1688,6 +1762,31 @@
         {
           "id": "4bL9wc8BtTw",
           "title": "WALK, WALK, WALK (Lyrics) 🐻🎃 Medieval Horror Phonk to Power Through | Eyes in the Dark",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "hunting-dead-winter",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Dead Winter",
+      "folders": [
+        "Hunting-Dead_Winter-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-Dead_Winter-Lyrics/Bear_trudges_through_blizzard_20261017125902.mp4",
+      "songs": [
+        {
+          "title": "Dead Winter (Lyrics)",
+          "file": "Hunting-Dead_Winter-Lyrics/Dead Winter (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "zVYHq6R2tGg",
+          "title": "DEAD WINTER 🐻❄️ Soft Drift Phonk × Siberian Cold Chant | Focus & Chill",
           "kind": "lyrics"
         }
       ]
@@ -2232,6 +2331,42 @@
       ]
     },
     {
+      "id": "parfum-bear-and-mademoiselle-night-at-bridge",
+      "theme": "parfum",
+      "subLabel": "",
+      "title": "Bear and mademoiselle night at bridge",
+      "folders": [
+        "Parfum-Bear_and_mademoiselle_night_at_bridge",
+        "Parfum-Bear_and_mademoiselle_night_at_bridge-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Parfum-Bear_and_mademoiselle_night_at_bridge/Bear_and_doe_on_bridge_20260911223814.mp4",
+      "songs": [
+        {
+          "title": "Je suis à toi",
+          "file": "Parfum-Bear_and_mademoiselle_night_at_bridge/Je suis à toi.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Le Fond_ Je suis à toi (Lyrics)",
+          "file": "Parfum-Bear_and_mademoiselle_night_at_bridge-Lyrics/Le Fond_ Je suis à toi (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "YHnKCBNeFLA",
+          "title": "Le Fond: Je suis à toi 🌹 (Instrumental) Parfum Ch.3 — French Chanson Lofi",
+          "kind": "instrumental"
+        },
+        {
+          "id": "LjiMVYC6ZOU",
+          "title": "Le Fond: Je suis à toi 🌹 (Lyrics) Parfum Ch.3 — French Chanson Lofi",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "parfum-bear-and-mademoiselle-on-bridge-full-bloom",
       "theme": "parfum",
       "subLabel": "",
@@ -2633,15 +2768,21 @@
       "subLabel": "",
       "title": "The Hydra make an Appearance",
       "folders": [
-        "Power_Bearer-The_Hydra_make_an_Appearance"
+        "Power_Bearer-The_Hydra_make_an_Appearance",
+        "Power_Bearer-The_Hydra_make_an_Appearance-Lyrics"
       ],
-      "hasLyrics": false,
+      "hasLyrics": true,
       "video": "Power_Bearer-The_Hydra_make_an_Appearance/Ancient_snake_in_temple_courtyard_202607132133.mp4",
       "songs": [
         {
           "title": "Echoes of the Marble Temple",
           "file": "Power_Bearer-The_Hydra_make_an_Appearance/Echoes of the Marble Temple.wav",
           "lyrics": false
+        },
+        {
+          "title": "Echoes of the Marble Temple (Lyrics)",
+          "file": "Power_Bearer-The_Hydra_make_an_Appearance-Lyrics/Echoes of the Marble Temple (Lyrics).wav",
+          "lyrics": true
         }
       ],
       "youtube": [
@@ -2649,6 +2790,11 @@
           "id": "pdnK6n2Rh_U",
           "title": "🐍 The Hydra Awakens — Ancient Greece's Many-Headed Terror Returns | Echoes of the Marble Temple",
           "kind": "instrumental"
+        },
+        {
+          "id": "oGsj2H5UJpI",
+          "title": "🐍 Echoes of the Marble Temple (Lyrics) — Ancient Greece's Many-Headed Terror Returns",
+          "kind": "lyrics"
         }
       ]
     },
@@ -3591,6 +3737,31 @@
       ]
     },
     {
+      "id": "to-hong-roi-to",
+      "theme": "to-hong",
+      "subLabel": "",
+      "title": "Rối Tơ",
+      "folders": [
+        "Tơ_Hồng-Rối_Tơ-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Tơ_Hồng-Rối_Tơ-Lyrics/Couple_under_starry_sky_static.mp4",
+      "songs": [
+        {
+          "title": "Tơ Hồng — Rối Tơ (Lyrics)",
+          "file": "Tơ_Hồng-Rối_Tơ-Lyrics/Tơ Hồng — Rối Tơ (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "aXlpJsRg-3E",
+          "title": "Tơ Hồng —  Rối Tơ",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "vietnam-ba-khi-ngut-troi",
       "theme": "vietnam",
       "subLabel": "",
@@ -3611,6 +3782,31 @@
         {
           "id": "UBPbRVBfN4w",
           "title": "Bá Khí Ngút Trời",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-hoi-tho-trang",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Hơi Thở Trắng",
+      "folders": [
+        "VietNam-Hơi_Thở_Trắng-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Hơi_Thở_Trắng-Lyrics/Man_by_window_static.mp4",
+      "songs": [
+        {
+          "title": "Hơi thở trắng",
+          "file": "VietNam-Hơi_Thở_Trắng-Lyrics/Hơi thở trắng.wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "KA4EwFLfE9Y",
+          "title": "Hơi Thở Trắng (Lyrics) — Nhạc Buồn Mùa Đông",
           "kind": "lyrics"
         }
       ]
@@ -3661,6 +3857,31 @@
         {
           "id": "pZi39m8OBSE",
           "title": "Giữa Mây Và Sóng — Spring EDM × Cinematic Ambient-Rock",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "vietnam-tieu-dao-bear-easy-free-wandering",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Tieu Dao Bear Easy Free Wandering",
+      "folders": [
+        "VietNam-Tieu_Dao_Bear_Easy_Free_Wandering-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Tieu_Dao_Bear_Easy_Free_Wandering-Lyrics/Bear_playing_flute_on_buffalo_20260930014240.mp4",
+      "songs": [
+        {
+          "title": "Tiêu Dao (Free & Easy)",
+          "file": "VietNam-Tieu_Dao_Bear_Easy_Free_Wandering-Lyrics/Tiêu Dao (Free & Easy).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "H5cPycUKzkk",
+          "title": "Tiêu Dao 逍遙 — Free & Easy Wandering 🦋 Lofi Thiền Giữa Đồi Hoa | Tự Tại & Thong Dong",
           "kind": "lyrics"
         }
       ]

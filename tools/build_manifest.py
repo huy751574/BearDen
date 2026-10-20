@@ -114,13 +114,30 @@ def main() -> int:
                 "lyrics": is_lyrics,
             })
 
-    # Keep earlier scenes whose folders were packed away (unless --prune).
+    # Keep earlier scenes whose folders were packed away (unless --prune), and
+    # the packed half of a scene that got a new folder (e.g. a new -Lyrics
+    # folder next to an instrumental one already in Archive.7z).
     kept = 0
     if not args.prune:
         for s in old["scenes"]:
-            if s["id"] not in scenes and not any((args.archive / f).is_dir() for f in s.get("folders", [])):
-                scenes[s["id"]] = dict(s)
-                kept += 1
+            packed = [f for f in s.get("folders", []) if not (args.archive / f).is_dir()]
+            if s["id"] not in scenes:
+                if len(packed) == len(s.get("folders", [])):
+                    scenes[s["id"]] = dict(s)
+                    kept += 1
+                continue
+            scene = scenes[s["id"]]
+            for f in packed:
+                if f in scene["folders"]:
+                    continue
+                scene["folders"].append(f)
+                scene["songs"] += [x for x in s["songs"] if x["file"].split("/")[0] == f]
+                scene["hasLyrics"] = scene["hasLyrics"] or f.endswith(LYRICS_SUFFIX)
+                # The plain folder's video is preferred (same rule as above).
+                if s.get("video", "").startswith(f + "/") and not f.endswith(LYRICS_SUFFIX):
+                    scene["video"] = s["video"]
+            scene["folders"].sort()
+            scene["songs"].sort(key=lambda x: (x["lyrics"], natural_key(x["title"])))
 
     links = load_youtube_links()
     for sid, vids in links.items():

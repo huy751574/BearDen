@@ -361,9 +361,21 @@ SCENE_ENV: dict[str, dict] = {
     # The bear and the bunny on a rooftop above the city: at dusk / at sunrise.
     "sun-and-moon-dim-of-the-ray": {"below": "city"},
     "sun-and-moon-rim-of-the-day": {"time": "sunset", "below": "city"},
+    # A pond with a little bridge, autumn turning to snow; the bear fishes.
+    "bloom-cat-singer-on-bridge-where-fire-kisses-frozen": {"island": "lakeside"},
+    # Driving the ghost car through the city at night.
+    "cover-ghost-buster-bear-driving-ghost-groove": {"time": "night", "island": "town", "below": "city"},
+    # A man by a frosted window on a rainy winter night.
+    "vietnam-hoi-tho-trang": {"time": "night", "island": "cozyroom", "below": "city"},
+    # Riding a buffalo through a spring meadow.
+    "vietnam-tieu-dao-bear-easy-free-wandering": {"island": "meadow", "below": "fields"},
 }
 
 SCENE_CAST: dict[str, list[dict]] = {
+    "bloom-cat-singer-on-bridge-where-fire-kisses-frozen": [{"kind": "cat_idol", "behavior": "wander"}],
+    "cover-ghost-buster-bear-driving-ghost-groove": [{"kind": "ghost", "behavior": "fly"}] * 3,
+    "hunting-dead-winter": [{"kind": "deer", "behavior": "wander"}],
+    "vietnam-hoi-tho-trang": [],
     # The cosmic dragon stands beside the trophy (templates.ts worlds()).
     "cover-league-of-legend-take-a-breath-to-the-final-battle": [
         {"kind": "cosmic_dragon", "behavior": "rest", "at": [3.6, -6.0], "pose": "stand"}],

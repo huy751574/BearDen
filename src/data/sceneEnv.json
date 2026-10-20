@@ -354,6 +354,27 @@
    "variant": "firework"
   }
  },
+ "bloom-cat-singer-on-bridge-where-fire-kisses-frozen": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#8993c6",
+  "skyBottom": "#a2aad2",
+  "leaf": "#d98c4b",
+  "ground": "#c4aeab",
+  "groundSide": "#775853",
+  "island": "lakeside",
+  "companions": [
+   {
+    "kind": "cat_idol",
+    "behavior": "wander"
+   }
+  ],
+  "game": {
+   "type": "timing",
+   "variant": "beat"
+  }
+ },
  "bloom-full-bloom": {
   "time": "day",
   "below": "clouds",
@@ -739,6 +760,34 @@
    "variant": "pour"
   }
  },
+ "cover-ghost-buster-bear-driving-ghost-groove": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#2e3360",
+  "skyBottom": "#33396b",
+  "ground": "#674e6a",
+  "groundSide": "#372d38",
+  "island": "town",
+  "companions": [
+   {
+    "kind": "ghost",
+    "behavior": "fly"
+   },
+   {
+    "kind": "ghost",
+    "behavior": "fly"
+   },
+   {
+    "kind": "ghost",
+    "behavior": "fly"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
  "cover-zzz-bear-noting-with-lucia-about-little-goat": {
   "time": "sunset",
   "below": "fields",
@@ -1047,6 +1096,26 @@
   "game": {
    "type": "collector",
    "variant": "fireflies"
+  }
+ },
+ "hunting-dead-winter": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#79a1be",
+  "skyBottom": "#85a9c4",
+  "ground": "#a8bdc7",
+  "groundSide": "#4f6c7b",
+  "island": "snowfield",
+  "companions": [
+   {
+    "kind": "deer",
+    "behavior": "wander"
+   }
+  ],
+  "game": {
+   "type": "catcher",
+   "variant": "snow"
   }
  },
  "hunting-the-bear-is-drinking-near-alligator": {
@@ -1454,6 +1523,24 @@
   "game": {
    "type": "catcher",
    "variant": "snow"
+  }
+ },
+ "parfum-bear-and-mademoiselle-night-at-bridge": {
+  "time": "night",
+  "below": "lake",
+  "weather": "fireflies",
+  "skyTop": "#562e60",
+  "skyBottom": "#42244a",
+  "island": "parisbridge",
+  "companions": [
+   {
+    "kind": "doe",
+    "behavior": "wander"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "flowers"
   }
  },
  "parfum-bear-and-mademoiselle-on-bridge-full-bloom": {
@@ -2490,6 +2577,30 @@
    "variant": "weave"
   }
  },
+ "to-hong-roi-to": {
+  "time": "night",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#2a162f",
+  "skyBottom": "#60336b",
+  "ground": "#735a44",
+  "groundSide": "#3f3226",
+  "island": "riverside",
+  "companions": [
+   {
+    "kind": "weaver",
+    "behavior": "sit"
+   },
+   {
+    "kind": "magpie",
+    "behavior": "fly"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "spools"
+  }
+ },
  "vietnam-ba-khi-ngut-troi": {
   "time": "day",
   "below": "clouds",
@@ -2505,6 +2616,19 @@
     "behavior": "fly"
    }
   ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
+ },
+ "vietnam-hoi-tho-trang": {
+  "time": "night",
+  "below": "city",
+  "weather": "none",
+  "skyTop": "#2e4860",
+  "skyBottom": "#323767",
+  "island": "cozyroom",
+  "companions": [],
   "game": {
    "type": "collector",
    "variant": "lotus"
@@ -2539,6 +2663,27 @@
   "ground": "#2e708a",
   "groundSide": "#1e3b47",
   "island": "riverside",
+  "companions": [
+   {
+    "kind": "egret",
+    "behavior": "fly"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
+ },
+ "vietnam-tieu-dao-bear-easy-free-wandering": {
+  "time": "day",
+  "below": "fields",
+  "weather": "none",
+  "skyTop": "#c1d9e1",
+  "skyBottom": "#8ab8c7",
+  "leaf": "#7d8748",
+  "ground": "#767b49",
+  "groundSide": "#414428",
+  "island": "meadow",
   "companions": [
    {
     "kind": "egret",

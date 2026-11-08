@@ -24,6 +24,8 @@ export interface World {
   readonly environment: Environment;
   readonly anchors: Record<string, Anchor>;
   readonly companionCreatures: Creature[];
+  /** Props with Seat_<n> nodes the player can click to sit on (none in the lounge). */
+  readonly sittables?: THREE.Object3D[];
   clampToWalkable(p: THREE.Vector3): void;
   update(dt: number, bear: BearInfo): void;
   dispose(): void;
@@ -33,6 +35,8 @@ const GROUND = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 /** Number keys play emotes (a mini-game that uses a key gets it first). */
 const EMOTE_KEYS: Record<string, Emote> = { '1': 'dance', '2': 'cheer', '3': 'sing', '4': 'clap' };
 const CAM_TARGET_Y = 2.4; // aim above the bear: island low in frame, backdrop above it
+/** How far in front of a seat the player walks to before sitting down. */
+const SEAT_APPROACH = 0.7;
 
 export class Game {
   readonly renderer: THREE.WebGLRenderer;
@@ -52,6 +56,14 @@ export class Game {
   private moveTarget: THREE.Vector3 | null = null;
   private targetMarker: THREE.Mesh;
   private stuckTime = 0;
+  /** The seat the player is walking to, the one it sits on, and where it got on. */
+  private seatTarget: THREE.Object3D | null = null;
+  private seat: THREE.Object3D | null = null;
+  private seatFrom = new THREE.Vector3();
+  /** Facing the seat's back instead (a two-sided seat approached from behind). */
+  private seatFlip = false;
+  private seatRing: THREE.Mesh;
+  private hoverAt: { x: number; y: number } | null = null;
   private waves = 0;
   private bearSpeed = 0;
 
@@ -59,6 +71,8 @@ export class Game {
   readonly gameRoot = new THREE.Group();
   /** Hooks for the mini-games: return true to swallow the click / key. */
   pointerHook: ((p: THREE.Vector3 | null) => boolean) | null = null;
+  /** True while something else owns the pointer (a mini-game): no seat hints then. */
+  pointerBusy: () => boolean = () => false;
   keyHook: ((key: string) => boolean) | null = null;
   frameHooks: ((dt: number) => void)[] = [];
   /** Run right after each frame is drawn (e.g. layers that follow the camera). */
@@ -102,13 +116,26 @@ export class Game {
     );
     this.targetMarker.rotation.x = -Math.PI / 2;
     this.targetMarker.visible = false;
-    this.scene.add(this.targetMarker, this.gameRoot);
+    // Glowing ring on the seat under the pointer: "you can sit here".
+    this.seatRing = new THREE.Mesh(
+      new THREE.RingGeometry(0.13, 0.2, 28),
+      new THREE.MeshBasicMaterial({ color: '#ffe27a', transparent: true, opacity: 0.9, depthTest: false }),
+    );
+    this.seatRing.rotation.x = -Math.PI / 2;
+    this.seatRing.renderOrder = 10;
+    this.seatRing.visible = false;
+    this.scene.add(this.targetMarker, this.seatRing, this.gameRoot);
+    this.renderer.domElement.addEventListener('pointermove', (e) => (this.hoverAt = { x: e.clientX, y: e.clientY }));
+    this.renderer.domElement.addEventListener('pointerleave', () => (this.hoverAt = null));
 
     this.input = new Input(this.renderer.domElement, (x, y) => this.onClickGround(x, y));
     this.input.onKey = (key) => {
       if (this.mode !== 'play') return;
       if (this.keyHook?.(key)) return;
-      if (key === 'e') this.bear.pose = this.bear.pose === 'sit' ? 'stand' : 'sit';
+      if (key === 'e') {
+        if (this.seat) this.standUp();
+        else this.bear.pose = this.bear.pose === 'sit' ? 'stand' : 'sit';
+      }
       if (key === 'q') {
         this.bear.wave();
         this.waves++;
@@ -241,6 +268,7 @@ export class Game {
     this.bear.root.rotation.y = 0;
     this.bear.pose = 'stand';
     this.moveTarget = null;
+    this.seat = this.seatTarget = null;
     this.controls.target.set(0, CAM_TARGET_Y, 0);
   }
 
@@ -268,26 +296,142 @@ export class Game {
     this.camera.updateProjectionMatrix();
   }
 
-  private onClickGround(clientX: number, clientY: number) {
-    if (this.mode !== 'play' || !this.diorama || !this.controlsEnabled) return;
+  private aim(clientX: number, clientY: number) {
     const rect = this.renderer.domElement.getBoundingClientRect();
     const ndc = new THREE.Vector2(
       ((clientX - rect.left) / rect.width) * 2 - 1,
       -((clientY - rect.top) / rect.height) * 2 + 1,
     );
     this.raycaster.setFromCamera(ndc, this.camera);
+  }
+
+  private onClickGround(clientX: number, clientY: number) {
+    if (this.mode !== 'play' || !this.diorama || !this.controlsEnabled) return;
+    this.aim(clientX, clientY);
     if (this.pointerHook) {
       const ground = this.raycaster.ray.intersectPlane(GROUND, new THREE.Vector3());
       if (this.pointerHook(ground)) return;
     }
+    // A bench, chair, log...: walk over and sit on the seat nearest the click.
+    const seat = this.seatUnderPointer();
+    if (seat) return this.walkToSeat(seat);
     const hit = this.raycaster.intersectObjects(this.diorama.walkable, false)[0];
     if (!hit) return;
     const p = hit.point.clone().setY(0);
     this.diorama.clampToWalkable(p);
+    this.seatTarget = null;
     this.moveTarget = p;
     this.bear.pose = 'stand';
     this.targetMarker.position.set(p.x, 0.02, p.z);
     this.targetMarker.visible = true;
+  }
+
+  // ---------------------------------------------------------------- seats
+
+  /** The seat of the prop under the pointer (raycaster already aimed), nearest the hit. */
+  private seatUnderPointer(): THREE.Object3D | null {
+    const props = this.diorama?.sittables;
+    if (!props?.length) return null;
+    const hit = this.raycaster.intersectObjects(props, true)[0];
+    if (!hit) return null;
+    let prop: THREE.Object3D | null = hit.object;
+    while (prop && !props.includes(prop)) prop = prop.parent;
+    if (!prop) return null;
+    let best: THREE.Object3D | null = null, bestD = Infinity;
+    const p = new THREE.Vector3();
+    prop.traverse((o) => {
+      if (!o.name.startsWith('Seat')) return;
+      const d = o.getWorldPosition(p).distanceTo(hit.point);
+      if (d < bestD) { bestD = d; best = o; }
+    });
+    return best;
+  }
+
+  /** Where a seat is and which way someone sitting on it faces (level, world space). */
+  private seatFrame(seat: THREE.Object3D, flip = false) {
+    const pos = seat.getWorldPosition(new THREE.Vector3());
+    const face = new THREE.Vector3(0, 0, 1).applyQuaternion(seat.getWorldQuaternion(new THREE.Quaternion())).setY(0);
+    if (face.lengthSq() < 1e-6) face.set(0, 0, 1);
+    if (flip) face.negate();
+    return { pos, face: face.normalize() };
+  }
+
+  /** A seat with no backrest (log, hay bale): any side will do. */
+  private twoSided(seat: THREE.Object3D) {
+    for (let o: THREE.Object3D | null = seat; o; o = o.parent) if (o.userData.twoSided) return true;
+    return false;
+  }
+
+  private walkToSeat(seat: THREE.Object3D) {
+    if (this.seat === seat) return;
+    if (this.seat) this.standUp();
+    // Coming at a backless seat from behind: sit facing the other way.
+    const front = this.seatFrame(seat);
+    const toPlayer = this.bear.root.position.clone().sub(front.pos).setY(0);
+    this.seatFlip = this.twoSided(seat) && toPlayer.dot(front.face) < 0;
+    const { pos, face } = this.seatFrame(seat, this.seatFlip);
+    const p = pos.clone().setY(0).addScaledVector(face, SEAT_APPROACH);
+    this.diorama?.clampToWalkable(p);
+    this.seatTarget = seat;
+    this.moveTarget = p;
+    this.bear.pose = 'stand';
+    this.targetMarker.position.set(p.x, 0.02, p.z);
+    this.targetMarker.visible = true;
+  }
+
+  /** Hop onto the seat, turn to face out and sit; the camera follows the hop. */
+  private sitOn(seat: THREE.Object3D) {
+    const root = this.bear.root;
+    const before = root.position.clone();
+    this.seatFrom.copy(root.position).setY(0);
+    this.seat = seat;
+    this.seatTarget = this.moveTarget = null;
+    this.targetMarker.visible = false;
+    this.placeOnSeat();
+    this.bear.pose = 'sit';
+    const moved = root.position.clone().sub(before).setY(0);
+    this.camera.position.add(moved);
+    this.controls.target.add(moved);
+  }
+
+  /** Keep the sitter on the seat (it may move: a rocking chair). */
+  private placeOnSeat() {
+    if (!this.seat) return;
+    const { pos, face } = this.seatFrame(this.seat, this.seatFlip);
+    this.bear.root.position.copy(pos);
+    this.bear.root.rotation.y = Math.atan2(face.x, face.z);
+  }
+
+  /** Step back down to where the player got on. */
+  private standUp() {
+    if (!this.seat) return;
+    const root = this.bear.root;
+    const before = root.position.clone();
+    root.position.copy(this.seatFrom);
+    this.seat = null;
+    if (this.bear.pose === 'sit') this.bear.pose = 'stand';
+    const moved = root.position.clone().sub(before).setY(0);
+    this.camera.position.add(moved);
+    this.controls.target.add(moved);
+  }
+
+  /** Show the seat ring (and a hand cursor) over a seat the player could click. */
+  private updateHover() {
+    const canvas = this.renderer.domElement;
+    let seat: THREE.Object3D | null = null;
+    if (this.hoverAt && this.mode === 'play' && this.controlsEnabled && !this.pointerBusy()) {
+      this.aim(this.hoverAt.x, this.hoverAt.y);
+      seat = this.seatUnderPointer();
+    }
+    if (seat && seat !== this.seat) {
+      this.seatRing.position.copy(seat.getWorldPosition(new THREE.Vector3())).y += 0.03;
+      (this.seatRing.material as THREE.MeshBasicMaterial).opacity = 0.65 + Math.sin(performance.now() / 180) * 0.3;
+      this.seatRing.visible = true;
+      canvas.style.cursor = 'pointer';
+    } else {
+      this.seatRing.visible = false;
+      canvas.style.cursor = '';
+    }
   }
 
   private tick() {
@@ -295,6 +439,7 @@ export class Game {
     const dt = Math.min(this.timer.getDelta(), 0.05);
     this.bear.root.visible = this.controlsEnabled || this.mode !== 'play';
     const speed = this.mode === 'play' && this.controlsEnabled ? this.movePlayer(dt) : 0;
+    this.updateHover();
     this.bear.update(dt, speed);
     this.bearSpeed = speed;
     this.diorama?.update(dt, { pos: this.bear.root.position, speed: this.bearSpeed, waves: this.waves });
@@ -309,7 +454,16 @@ export class Game {
     const root = this.bear.root;
     const dir = new THREE.Vector3();
     const { x, y } = this.input.axis();
+    // Seated: stay on the seat until the player moves or clicks somewhere else.
+    if (this.seat) {
+      if (x === 0 && y === 0 && !this.moveTarget) {
+        this.placeOnSeat();
+        return 0;
+      }
+      this.standUp();
+    }
     if (x !== 0 || y !== 0) {
+      this.seatTarget = null;
       // Camera-relative: forward = away from camera on the ground plane.
       const fwd = new THREE.Vector3();
       this.camera.getWorldDirection(fwd);
@@ -325,6 +479,10 @@ export class Game {
         this.moveTarget = null;
         this.targetMarker.visible = false;
         dir.set(0, 0, 0);
+        if (this.seatTarget) {
+          this.sitOn(this.seatTarget);
+          return 0;
+        }
       }
     }
     if (dir.lengthSq() === 0) return 0;
@@ -351,6 +509,14 @@ export class Game {
     const actual = moved.length() / dt;
     this.stuckTime = actual < speed * 0.2 ? this.stuckTime + dt : 0;
     if (this.stuckTime > 0.4 && this.moveTarget) {
+      // Blocked right next to the seat it was heading for (the prop's own
+      // collision ring): close enough, sit down.
+      const seat = this.seatTarget;
+      if (seat && this.seatFrame(seat).pos.setY(0).distanceTo(root.position) < 2.2) {
+        this.sitOn(seat);
+        return 0;
+      }
+      this.seatTarget = null;
       this.moveTarget = null;
       this.targetMarker.visible = false;
     }

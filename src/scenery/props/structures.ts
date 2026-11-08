@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { geo, type Kit } from '../kit';
+import { lighter, propModel, withSeats } from './models';
 
 // Buildings, lights, furniture and set pieces. Groups with base at y = 0,
 // front facing +Z.
@@ -134,7 +135,15 @@ export function fence(k: Kit, len = 2) {
   return g;
 }
 
+/** Park bench (Blender model); three seats. */
 export function bench(k: Kit) {
+  return propModel(k, 'bench', {
+    sittable: true,
+    fallback: () => withSeats(benchShape(k), [[-0.46, 0.44, 0.05], [0, 0.44, 0.05], [0.46, 0.44, 0.05]]),
+  });
+}
+
+function benchShape(k: Kit) {
   const g = new THREE.Group();
   k.part(g, geo.box(1.4, 0.08, 0.45), WOOD, [0, 0.45, 0]);
   k.part(g, geo.box(1.4, 0.35, 0.06), WOOD, [0, 0.72, -0.2]);
@@ -199,7 +208,16 @@ export function roomFloor(k: Kit, radius = 3.4, rug = '#b8565e') {
   return g;
 }
 
+/** Sofa (Blender model) in any colour; two seats. */
 export function sofa(k: Kit, color = '#6d8fb8') {
+  return propModel(k, 'sofa', {
+    sittable: true,
+    tint: { Fabric: color, FabricSoft: lighter(color) },
+    fallback: () => withSeats(sofaShape(k, color), [[-0.37, 0.48, 0.14], [0.37, 0.48, 0.14]]),
+  });
+}
+
+function sofaShape(k: Kit, color: string) {
   const g = new THREE.Group();
   k.part(g, geo.box(1.8, 0.4, 0.8), color, [0, 0.35, 0]);
   k.part(g, geo.box(1.8, 0.6, 0.25), color, [0, 0.75, -0.3]);
@@ -266,7 +284,16 @@ export function desk(k: Kit, screens = 1) {
   return g;
 }
 
+/** Wooden chair (Blender model); `color` is its cushion. */
 export function chair(k: Kit, color = '#c0533f') {
+  return propModel(k, 'chair', {
+    sittable: true,
+    tint: { Fabric: color },
+    fallback: () => withSeats(chairShape(k, color), [[0, 0.51, 0.06]]),
+  });
+}
+
+function chairShape(k: Kit, color: string) {
   const g = new THREE.Group();
   k.part(g, geo.box(0.5, 0.08, 0.5), color, [0, 0.45, 0]);
   k.part(g, geo.box(0.5, 0.6, 0.08), color, [0, 0.8, -0.22]);
@@ -314,13 +341,18 @@ export function fireplace(k: Kit) {
   return g;
 }
 
+/** Rocking chair (Blender model) that rocks gently; one seat (a sitter rocks with it). */
 export function rockingChair(k: Kit) {
-  const g = new THREE.Group();
-  const c = chair(k, WOOD);
-  g.add(c);
-  for (const x of [-0.22, 0.22]) {
-    k.part(g, geo.torus(0.9, 0.03, 0.9, 4, 12), DARK_WOOD, [x, 0.9, 0], { rot: [0, Math.PI / 2, Math.PI * 1.5 - 0.45], outline: false });
-  }
+  const g = propModel(k, 'rocking_chair', {
+    sittable: true,
+    fallback: () => {
+      const c = withSeats(chairShape(k, WOOD), [[0, 0.51, 0.06]]);
+      for (const x of [-0.22, 0.22]) {
+        k.part(c, geo.torus(0.9, 0.03, 0.9, 4, 12), DARK_WOOD, [x, 0.9, 0], { rot: [0, Math.PI / 2, Math.PI * 1.5 - 0.45], outline: false });
+      }
+      return c;
+    },
+  });
   k.animate((t) => (g.rotation.x = Math.sin(t * 1.2) * 0.08));
   return g;
 }

@@ -18,6 +18,46 @@
    "variant": "gems"
   }
  },
+ "adventure-bear-visiting-great-wall": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#decaa0",
+  "skyBottom": "#c2915d",
+  "ground": "#6a614e",
+  "groundSide": "#39352c",
+  "island": "pavilion",
+  "companions": [
+   {
+    "kind": "red_panda",
+    "behavior": "sit"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
+ "adventure-bear-visiting-macchu-picchu": {
+  "time": "day",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#c1d4e1",
+  "skyBottom": "#6895b6",
+  "leaf": "#6c7935",
+  "island": "landmark",
+  "variant": "ruins",
+  "companions": [
+   {
+    "kind": "goat",
+    "behavior": "sleep"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
  "adventure-bear-walk-on-the-moon": {
   "time": "night",
   "below": "space",
@@ -1118,6 +1158,26 @@
    "variant": "snow"
   }
  },
+ "hunting-night-at-bamboo-bear-with-tiger": {
+  "time": "night",
+  "below": "forest",
+  "weather": "fireflies",
+  "skyTop": "#25394c",
+  "skyBottom": "#273c51",
+  "ground": "#4a646d",
+  "groundSide": "#29373c",
+  "island": "wildforest",
+  "companions": [
+   {
+    "kind": "tiger",
+    "behavior": "prowl"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
  "hunting-the-bear-is-drinking-near-alligator": {
   "time": "day",
   "below": "desert",
@@ -1306,6 +1366,53 @@
   "game": {
    "type": "shooter",
    "variant": "slime"
+  }
+ },
+ "isekai-hero-party-bubble-bath": {
+  "time": "day",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#7ba1bf",
+  "skyBottom": "#7da4c0",
+  "ground": "#96bdbc",
+  "groundSide": "#487271",
+  "island": "onsen",
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "float"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "float"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
+ "isekai-hero-party-air-ship-travelling": {
+  "time": "sunset",
+  "below": "clouds",
+  "weather": "none",
+  "skyTop": "#c79f6c",
+  "skyBottom": "#d3b88a",
+  "island": "landmark",
+  "variant": "ship",
+  "companions": [
+   {
+    "kind": "fox",
+    "behavior": "wander"
+   },
+   {
+    "kind": "capybara",
+    "behavior": "follow"
+   }
+  ],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
   }
  },
  "isekai-the-defending-war-over": {
@@ -2211,6 +2318,21 @@
    "variant": "flip"
   }
  },
+ "relax-serenity-morning-lake": {
+  "time": "day",
+  "below": "lake",
+  "weather": "none",
+  "skyTop": "#94becc",
+  "skyBottom": "#78adbe",
+  "ground": "#5a7979",
+  "groundSide": "#344040",
+  "island": "lakeside",
+  "companions": [],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
+  }
+ },
  "relax-sleeping-in-the-cave": {
   "time": "night",
   "below": "clouds",
@@ -2634,6 +2756,22 @@
    "variant": "lotus"
   }
  },
+ "vietnam-minh-tam-kien-tanh": {
+  "time": "sunset",
+  "below": "mountains",
+  "weather": "none",
+  "skyTop": "#a65e3f",
+  "skyBottom": "#ba6c4a",
+  "leaf": "#42713d",
+  "ground": "#496f66",
+  "groundSide": "#283d38",
+  "island": "pavilion",
+  "companions": [],
+  "game": {
+   "type": "collector",
+   "variant": "lotus"
+  }
+ },
  "vietnam-ngam-lai-mot-chut": {
   "time": "night",
   "below": "clouds",
@@ -2850,6 +2988,19 @@
   "game": {
    "type": "catcher",
    "variant": "lantern"
+  }
+ },
+ "wuxia-last-inn-before-the-pass": {
+  "time": "night",
+  "below": "snow",
+  "weather": "snow",
+  "skyTop": "#361d3d",
+  "skyBottom": "#60336b",
+  "island": "cozyroom",
+  "companions": [],
+  "game": {
+   "type": "collector",
+   "variant": "coins"
   }
  },
  "wuxia-the-bear-fighting-assasins-hyena": {

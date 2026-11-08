@@ -43,6 +43,8 @@ export class Kit {
   private flicker: THREE.PointLight[] = [];
   private animators: ((t: number, dt: number) => void)[] = [];
   private mats = new Map<string, THREE.Material>();
+  /** Props the player can click to sit on (they hold Seat_<n> nodes). */
+  readonly sittables: THREE.Object3D[] = [];
   /** Named spots companions use (pond, stage, fire, seat, loom...). */
   readonly anchors: Record<string, Anchor> = {};
   /** Island top colour; a template may override it. */
@@ -174,6 +176,10 @@ export class Kit {
       if (!s) return;
       this.put(make(i), s.x, s.z, { rotY: this.rand() * Math.PI * 2, block: o.block ?? r, space: r });
     }
+  }
+
+  sittable(obj: THREE.Object3D) {
+    this.sittables.push(obj);
   }
 
   anchor(name: string, x: number, z: number, r = 0, y = 0) {

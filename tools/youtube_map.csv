@@ -1,6 +1,8 @@
 ﻿scene_id,scene_title,kind,video_id,video_title,score,status,confirmed
 adventure-bear-visit-neuschwanstein-castle,Bear visit Neuschwanstein castle,instrumental,1BCiajqRP34,Edge of the World 🏰 Bear's Journey to Neuschwanstein Castle | Medieval Chillwave to Relax & Focus,0.92,ok,
 adventure-bear-visit-neuschwanstein-castle,Bear visit Neuschwanstein castle,lyrics,ikKp0_-xIlM,Edge of the World (Lyrics) 🏰 Neuschwanstein Castle | Medieval Chillwave to Relax & Focus,0.92,ok,
+adventure-bear-visiting-great-wall,Bear visiting Great Wall,instrumental,r4jXqxuoCtI,Autumn on the Wall 🍂 Bear’s Sunrise Tea on the Great Wall of China | Chinese Lofi to Relax & Study,0.82,ok,
+adventure-bear-visiting-macchu-picchu,Bear visiting Macchu Picchu,instrumental,0I3d4L-7wSE,Above the Clouds 🦙 Bear Sketches Machu Picchu at Sunrise | Andean Lofi to Relax & Study,0.60,ok,y
 adventure-bear-walk-on-the-moon,Bear walk on the moon,instrumental,qMB5zGc27pY,Weightless 🌕 Bear Walks the Moon Under Earthrise | Lofi Beats to Relax / Study / Sleep,0.79,ok,
 adventure-bear-with-friends-visit-angkor,Bear with friends visit Angkor,instrumental,5kctsklbtzQ,Dawn Over Angkor 🛕 Bear & Friends Explore the Ancient Temple | Lofi Adventure to Relax & Study,1.00,ok,
 adventure-bear-with-friends-visit-pyramids,Bear with friends visit Pyramids,instrumental,Tm80uNSrNA0,Golden Sunset Swing 🐫 Bear & Friends Visit the Pyramids of Egypt | Lofi Beats,0.88,ok,
@@ -24,7 +26,7 @@ bloom-bear-meeting-alone-cat-singer-idol,Bear meeting alone cat singer idol,inst
 bloom-bear-meeting-alone-cat-singer-idol,Bear meeting alone cat singer idol,lyrics,f-AK9-cmI8Y,Across the Bloom (Lyrics) 🌸 Cinematic Cat-Singer idol | Four-Season Story,0.69,ok,claude
 bloom-bear-meeting-firework-festival-cat-singer-idol,Bear meeting firework festival cat singer idol,instrumental,j5_hE5syUgc,Amid the Burning 🏮 Cinematic Japanese Festival Lofi Instrumental | Matsuri Music,0.79,ok,
 bloom-bear-meeting-firework-festival-cat-singer-idol,Bear meeting firework festival cat singer idol,lyrics,w1e9nbyd1VI,Amid the Burning (Lyrics) 🏮  Cinematic Cat-Singer idol | Four-Season Story,0.86,ok,
-bloom-cat-singer-on-bridge-where-fire-kisses-frozen,Cat Singer On Bridge Where Fire Kisses Frozen,instrumental,,,,missing,
+bloom-cat-singer-on-bridge-where-fire-kisses-frozen,Cat Singer On Bridge Where Fire Kisses Frozen,instrumental,pqkTxtACuQY,Half Unspoken  (Instrumental) 🍂❄️ Where the Fire Meets the Frozen | Lofi Folk Ballad,0.84,ok,
 bloom-cat-singer-on-bridge-where-fire-kisses-frozen,Cat Singer On Bridge Where Fire Kisses Frozen,lyrics,gO9iliOvrzw,Half Unspoken (Lyrics) 🍂❄️ Where the Fire Meets the Frozen | Lofi Folk Ballad,0.84,ok,
 bloom-full-bloom,Full Bloom,instrumental,0gDIv9xnPOU,Full Bloom 🌸 Cinematic Transcendent Lofi Instrumental | Music to Study & Dream,0.93,ok,
 bloom-full-bloom,Full Bloom,lyrics,XMkVhrqP2Uc,Full Bloom (Lyrics) 🌸 Cinematic Cat-Singer idol | Four-Season Story,0.93,ok,
@@ -70,6 +72,8 @@ hunting-bear-roar-on-top-of-mountain,Bear roar on top of mountain,instrumental,B
 hunting-bear-roar-on-top-of-mountain,Bear roar on top of mountain,lyrics,LSI4pMxkXFY,KING OF THE PEAK (Lyrics) 🐻⛰️ | Aggressive Drift Phonk × Andean War Chant | Focus & Grind,,ok,claude
 hunting-bear-walk-in-the-dark,Bear walk in the dark,lyrics,4bL9wc8BtTw,"WALK, WALK, WALK (Lyrics) 🐻🎃 Medieval Horror Phonk to Power Through | Eyes in the Dark",0.92,ok,
 hunting-dead-winter,Dead Winter,lyrics,zVYHq6R2tGg,DEAD WINTER 🐻❄️ Soft Drift Phonk × Siberian Cold Chant | Focus & Chill,0.88,ok,
+hunting-night-at-bamboo-bear-with-tiger,Night at Bamboo Bear with tiger,instrumental,J8qxskYb2Bk,CRIMSON BAMBOO (Instrument) 🐻🐯 Aggressive Drift Phonk | Bear vs Tiger,0.88,ok,
+hunting-night-at-bamboo-bear-with-tiger,Night at Bamboo Bear with tiger,lyrics,0T1AVzqLzPk,CRIMSON BAMBOO (Lyrics) 🐻🐯 Aggressive Drift Phonk | Bear vs Tiger,0.88,ok,
 hunting-the-bear-is-drinking-near-alligator,The Bear is drinking near alligator,instrumental,0OSmDWGwvKs,The Fearless Bear 🐊 Drinking at the Swamp | Drift Phonk × Ancient Egypt Fusion,0.76,ok,
 hunting-the-bear-is-drinking-near-alligator,The Bear is drinking near alligator,lyrics,iMLNeok35vs,The Fearless Bear (Lyrics) 🐊 | Drift Phonk ,0.62,ok,claude
 hunting-the-bear-is-hunting-salmon,The Bear is hunting Salmon,instrumental,URp6lDh59aE,🌊 Paws in the Current: Black Bear Fishing the River | Drift Style · Nordic Folk Sounds,0.56,ok,claude
@@ -81,6 +85,9 @@ isekai-black-bear-signing-up-being-adventurer,Black Bear signing up being advent
 isekai-black-bear-hero-party-having-a-feast-at-tavern-midnight,Black bear hero party having a feast at tavern midnight,instrumental,IHgvCxAfmk0,The Tavern Feast 🕯️ Cozy Fireplace Lofi | Chill Beats to Study & Relax,0.68,ok,claude
 isekai-hero-bear-party-fighting-dugeon-boss,Hero Bear Party Fighting Dugeon Boss,instrumental,WOHoghxt9FM,"""Fire in Fire"" 🔥⚔️ Epic Isekai Boss Battle Anime Song",0.83,ok,
 isekai-hero-bear-party-fighting-dugeon-boss,Hero Bear Party Fighting Dugeon Boss,lyrics,Gn8M64xYOrM,"""Fire in Fire"" (Lyrics) 🔥⚔️ Epic Isekai Boss Battle Anime Song",0.83,ok,
+isekai-hero-party-bubble-bath,Hero party Bubble Bath,instrumental,VW2zhfDXyzA,"“Bubble Bubble Heaven” (Instrument) ♨️ Hot Spring Brainrot Hip-Hop | Bear, Fox & Capybara Onsen Song",0.80,ok,
+isekai-hero-party-bubble-bath,Hero party Bubble Bath,lyrics,IX2zVf5KYSY,"""Bubble Bubble Heaven” (Lyrics) ♨️ Hot Spring Brainrot Hip-Hop | Bear, Fox & Capybara Onsen Song",0.80,ok,
+isekai-hero-party-air-ship-travelling,Hero party air ship travelling,instrumental,UYMKYDPegxs,"Above the Golden Clouds ☁️⛵ Isekai Airship Lofi | Celtic Chill Beats to Relax, Study & Dream",0.62,ok,
 isekai-the-defending-war-over,The Defending War Over,instrumental,IXTMaI4gH2Y,🌅 Dawn Over the Stone Wall — Heroes at Rest After the Siege,0.81,ok,
 isekai-the-summoning-heroes-are-defending,The Summoning Heroes Are Defending,instrumental,Z8FY3s5_M-c,"🏰 When the Gate is Threatened, the Heroes Rise",0.68,ok,claude
 isekai-the-summoning-heroes-are-defending,The Summoning Heroes Are Defending,lyrics,U-T7mzDWTv8,The Raise of the Heroes (Lyrics) ,0.81,ok,
@@ -111,6 +118,7 @@ power-bearer-bear-mecha-wakeup,Bear Mecha Wakeup,instrumental,2N8RkGvS1-o,Bear W
 power-bearer-bear-triumph-over-maelstrom,Bear triumph over Maelstrom,instrumental,kllVY3fFuaM,🎺 The Fire That Walked Out of the Storm 🌅 (Instruments) Power Bear's Victory Anthem | Lofi,0.80,ok,
 power-bearer-bear-triumph-over-maelstrom,Bear triumph over Maelstrom,lyrics,5GulnYPMfCg,🎺 The Fire That Walked Out of the Storm (Lyrics) 🌅 Power Bear's Victory Anthem | Lofi,0.80,ok,
 power-bearer-mecha-bear-fighting-9-head-mecha,Mecha Bear Fighting 9 Head Mecha,instrumental,Pn5fzj3H_Jc,⚡ Power Bear vs. the 9-Headed Hydra | Last Stand in the Marble Temple 🐻🤖 Lofi Mecha Loop,0.66,ok,
+power-bearer-mecha-bear-fighting-9-head-mecha,Mecha Bear Fighting 9 Head Mecha,lyrics,JQissJSQdIs,⚡ Power Bear vs. the 9-Headed Hydra (Lyrics) | Last Stand in the Marble Temple 🐻🤖 Lofi Mecha,0.66,ok,
 power-bearer-the-bear-victory-hydra-mecha,The Bear Victory Hydra Mecha,instrumental,efPEbD5h43M,🎺 Power Bear's Victory — Mecha Bear Crushes the 9-Headed Hydra | Triumphant Lofi Mix ⚡,0.75,ok,
 power-bearer-the-bear-fixing-his-mecha-in-snow,The Bear fixing his mecha in snow,instrumental,4CVAbxUgNks,"❄️ Cold Hands, Iron Will — Bear Repairs His Mecha Alone",0.57,ok,claude
 power-bearer-the-hydra-make-an-appearance,The Hydra make an Appearance,instrumental,pdnK6n2Rh_U,🐍 The Hydra Awakens — Ancient Greece's Many-Headed Terror Returns | Echoes of the Marble Temple,0.46,ok,y
@@ -136,6 +144,7 @@ relax-black-bear-snow-gazing-sitting-on-the-frozen-lake,Black Bear snow gazing s
 relax-cafe-and-story,Cafe and story,instrumental,I-veUcpylUQ,"Coffee, Books & a Cozy Cave | Bear's Perfect Afternoon",0.52,ok,claude
 relax-cafe-and-story,Cafe and story,lyrics,ANMRBOUbkL8,📖 Gấu Đọc Truyện Trong Hang (Lyrics) | Nhạc Vpop-folk Chill Thư Giãn,0.68,ok,
 relax-grill-fish-in-the-cave-with-cat,Grill fish in the cave with cat,instrumental,4s9rc5OCHDk,Cozy Cave Cookout | Relaxing Ambience,0.61,ok,claude
+relax-serenity-morning-lake,Serenity Morning Lake,instrumental,PheCXRXUQyo,"Drifting 🚣 Calm Morning Lake Lofi | Music to Relax, Study & Unwind",0.80,ok,
 relax-sleeping-in-the-cave,Sleeping in the cave,instrumental,hMQ1jw9_PUQ,Bear & Cat Sleeping in the Cave | for Sleep & Relaxation,0.73,ok,
 relax-the-bear-lie-down-in-wheat-field,The Bear lie down in wheat field,instrumental,AfOFDNXcAzU,🌾 Nowhere to Be — Bear & Bunny Rest in the Golden Wheat Field | Cozy Lofi Chill,0.68,ok,
 relax-the-bear-sit-in-wheat-field,The Bear sit in wheat field,instrumental,z-fImkZ4y6c,:🌾 Afternoon on the Bench — Bear & Bunny Under the Windmill | Cozy Countryside Lofi Chill,0.55,ok,claude
@@ -161,6 +170,7 @@ to-hong-det-mong,Dệt Mộng,lyrics,WEOlvxMx2W8,Tơ Hồng — Dệt Mộng | D
 to-hong-roi-to,Rối Tơ,lyrics,aXlpJsRg-3E,Tơ Hồng —  Rối Tơ,1.00,ok,
 vietnam-ba-khi-ngut-troi,Bá Khí Ngút Trời,lyrics,UBPbRVBfN4w,Bá Khí Ngút Trời,0.94,ok,
 vietnam-hoi-tho-trang,Hơi Thở Trắng,lyrics,KA4EwFLfE9Y,Hơi Thở Trắng (Lyrics) — Nhạc Buồn Mùa Đông,0.94,ok,
+vietnam-minh-tam-kien-tanh,Minh Tâm Kiến Tánh,lyrics,gGIaVNdXu4A,Minh Tâm Kiến Tánh 明心見性 — See Your True Nature 🏮 Lofi Thiền Lúc Bình Minh,0.95,ok,
 vietnam-ngam-lai-mot-chut,Ngẫm Lại Một Chút,lyrics,AyQzckl3PXA,Ngẫm Lại Một Chút (A Little Reflection) — Don't Cry | Music,0.95,ok,
 vietnam-rock-giua-may-va-song,Rock-Giữa Mây và Sóng,lyrics,pZi39m8OBSE,Giữa Mây Và Sóng — Spring EDM × Cinematic Ambient-Rock,0.95,ok,
 vietnam-tieu-dao-bear-easy-free-wandering,Tieu Dao Bear Easy Free Wandering,lyrics,H5cPycUKzkk,Tiêu Dao 逍遙 — Free & Easy Wandering 🦋 Lofi Thiền Giữa Đồi Hoa | Tự Tại & Thong Dong,0.96,ok,
@@ -173,6 +183,8 @@ wuxia-bear-playing-music-on-jade-bridge-with-friends,Bear playing music on jade 
 wuxia-bear-playing-music-on-jade-bridge-with-friends,Bear playing music on jade bridge with friends,lyrics,6pqqZUYLDiA,🎵 On the Jade Bridge (Lyrics) - Lofi Wuxia Meditation with Flute & Guzheng,0.90,ok,
 wuxia-bear-playing-music-on-lattern-river-with-friends,Bear playing music on lattern river with friends,instrumental,53yBCvP7Tyg,Lantern River (Instrumental) 🏮 Wuxia Lofi to Relax / Study to,0.85,ok,
 wuxia-bear-playing-music-on-lattern-river-with-friends,Bear playing music on lattern river with friends,lyrics,i2Sc76aaJEw,Lantern River (Lyrics) 🏮 Wuxia Lofi to Relax / Study to,0.85,ok,
+wuxia-last-inn-before-the-pass,Last Inn Before the Pass,instrumental,1NKj08MuyAU,Last Inn Before the Pass (Instruments) ❄️ Wuxia Lofi for a Snowy Night — Guzheng · Flute,1.00,ok,
+wuxia-last-inn-before-the-pass,Last Inn Before the Pass,lyrics,NLXn7GFvNRk,Last Inn Before the Pass (Lyrics) ❄️ Wuxia Lofi for a Snowy Night — Guzheng · Flute,1.00,ok,
 wuxia-the-bear-fighting-assasins-hyena,The Bear fighting assasins hyena,instrumental,qxdskKh0bvQ,🌕 Night of the Hyena Blades — Black Bear Stands Alone Against the Assassin Pack | Wuxia World,0.75,ok,
 wuxia-the-bear-fighting-assasins-hyena,The Bear fighting assasins hyena,lyrics,zTZuplIhEKI,🌕 Night of the Hyena Blades (Lyrics)—Wuxia theme music,0.65,ok,
 wuxia-the-bear-fighting-husky-opponent,The Bear fighting husky opponent,instrumental,pyl5Mn9zqcg,⚔️ Two Martial Artists. One Arena. Bear Faces the Husky in the Wuxia World | High Arena Duel,0.88,ok,

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { geo, type Kit } from '../kit';
 import { palm } from './nature';
 import { lanternString } from './structures';
+import { propModel, withSeats } from './models';
 
 // Centrepieces: landmark mini-models and theme set pieces. Base at y = 0,
 // front facing +Z (rotate toward the island centre when placing).
@@ -101,6 +102,9 @@ export function throne(k: Kit) {
     k.part(g, geo.box(0.06, len, 0.02), '#c8ccd4', [Math.sin(a) * 0.7, 2.8 + Math.cos(a) * 0.6, -0.8], { rot: [0, 0, -a * 0.6], outline: 0.01 });
   }
   for (const s of [-1, 1]) k.part(g, geo.box(0.25, 0.5, 1.0), '#4a4a52', [0.6 * s, 1.5, -0.3]);
+  // The player can climb up and sit on it.
+  withSeats(g, [[0, 1.3, -0.1]]);
+  k.sittable(g);
   return g;
 }
 
@@ -433,10 +437,17 @@ export function windmill(k: Kit) {
   return g;
 }
 
+/** Small rectangular hay bale (Blender model); two seats. */
 export function haybale(k: Kit) {
-  const g = new THREE.Group();
-  k.part(g, geo.cyl(0.5, 0.5, 0.9, 14), '#e2c46a', [0, 0.5, 0], { rot: [0, 0, Math.PI / 2] });
-  return g;
+  return propModel(k, 'haybale', {
+    sittable: true,
+    twoSided: true,
+    fallback: () => {
+      const g = withSeats(new THREE.Group(), [[-0.22, 0.47, 0], [0.22, 0.47, 0]]);
+      k.part(g, geo.box(0.95, 0.46, 0.5), '#e2c46a', [0, 0.23, 0]);
+      return g;
+    },
+  });
 }
 
 /** Weaving loom (Tơ Hồng) with red threads. */
@@ -522,6 +533,9 @@ export function cafeSet(k: Kit) {
   // Parasol
   k.part(g, geo.cyl(0.02, 0.02, 1.5, 5), '#2d2d35', [0, 1.5, 0], { outline: false });
   k.part(g, geo.cone(1.1, 0.4, 8), '#e8b0b8', [0, 2.3, 0], { outline: 0.015 });
+  // Both stools, facing the table.
+  withSeats(g, [[0.65, 0.475, 0, -Math.PI / 2], [-0.65, 0.475, 0, Math.PI / 2]]);
+  k.sittable(g);
   return g;
 }
 
@@ -564,6 +578,9 @@ export function beachSet(k: Kit) {
   k.part(g, geo.cone(1.2, 0.45, 8), '#ff7e5a', [0, 2, 0], { outline: 0.015 });
   k.part(g, geo.box(0.8, 0.02, 1.6), '#5fb3e8', [0.9, 0.02, 0.3], { outline: false });
   k.part(g, geo.box(0.25, 1.4, 0.05), '#ffd36e', [-0.9, 0.7, 0.2], { rot: [0.15, 0, 0.1] });
+  // Sit on the beach towel.
+  withSeats(g, [[0.9, 0.04, 0.3]]);
+  k.sittable(g);
   return g;
 }
 

@@ -10,7 +10,7 @@ into Archive.7z) are kept as they are: their media is already in
 public/media. --prune drops them instead.
 
 Re-run whenever you add folders:
-    python tools/build_manifest.py [--archive F:/LoopVid/Archive] [--prune]
+    python tools/build_manifest.py [--archive D:/LoopVid/Archive] [--prune]
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_ARCHIVE = Path(r"F:\LoopVid\Archive")
+DEFAULT_ARCHIVE = ROOT.parent / "Archive"  # LoopVid/Archive, next to this project (follows the folder when it moves drives)
 OUT = ROOT / "src" / "data" / "manifest.json"
 YOUTUBE_CSV = ROOT / "tools" / "youtube_map.csv"  # written by fetch_youtube.py
 

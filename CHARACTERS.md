@@ -168,7 +168,7 @@ skeleton and a flap loop in Blender (free, no credits), from the original
 download kept in `tools/cache/rig_src/`:
 
 ```bash
-F:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/cosmic_dragon.glb public/models/cosmic_dragon.glb --lift 28 --drop 30
+D:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/cosmic_dragon.glb public/models/cosmic_dragon.glb --lift 28 --drop 30
 python tools/compress_models.py
 ```
 
@@ -182,7 +182,7 @@ The sleeping throne dragon's wings are folded on its back, so it uses
 `--folded` (they hinge along the body and open outward):
 
 ```bash
-F:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/dragon.glb public/models/dragon.glb --folded
+D:/LoopVid/Tools/blender/blender.exe -b -P tools/blender/rig_wings.py -- tools/cache/rig_src/dragon.glb public/models/dragon.glb --folded
 ```
 
 While it sleeps the wings stay folded; they open and beat only when it

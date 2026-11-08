@@ -621,7 +621,7 @@ export const CHIBI: Record<string, ChibiSpec> = {
 
 // ---------------------------------------------------------------- four-legged
 
-export interface QuadSpec { fur: string; belly: string; size: number; snout: number; ears: 'pointy' | 'round' | 'none'; tail: 'bushy' | 'thin' | 'croc'; low?: boolean; antlers?: boolean; eyes?: string; spots?: string }
+export interface QuadSpec { fur: string; belly: string; size: number; snout: number; ears: 'pointy' | 'round' | 'none'; tail: 'bushy' | 'thin' | 'croc'; low?: boolean; antlers?: boolean; eyes?: string; spots?: string; stripes?: string }
 
 CHIBI.cat_idol_witch = {
   ...CHIBI.cat_idol,
@@ -637,6 +637,7 @@ export const QUADS: Record<string, QuadSpec> = {
   wolf: { fur: '#4a4d5a', belly: '#9aa0ac', size: 1.6, snout: 1.4, ears: 'pointy', tail: 'bushy', eyes: '#7fe0ff' },
   deer: { fur: '#b07a45', belly: '#f4e6d4', size: 1.1, snout: 1.1, ears: 'pointy', tail: 'thin', antlers: true, spots: '#f4e6d4' },
   alligator: { fur: '#4f7a3a', belly: '#c8d890', size: 1.8, snout: 2.2, ears: 'none', tail: 'croc', low: true, eyes: '#ffd24a' },
+  tiger: { fur: '#e8852e', belly: '#fff4e6', size: 1.6, snout: 1.15, ears: 'round', tail: 'thin', eyes: '#ffd24a', stripes: '#2a1c14' },
 };
 
 class Quad implements Creature {
@@ -664,6 +665,13 @@ class Quad implements Creature {
     mesh(this.body, sph(0.42), q.fur, [0, 0, 0], { scale: [0.85, low ? 0.55 : 0.8, low ? 2.2 : 1.35] });
     mesh(this.body, sph(0.3), q.belly, [0, -0.12, 0.05], { scale: [0.9, 0.5, low ? 2.6 : 1.4], outline: false });
     if (q.spots) for (let i = 0; i < 6; i++) mesh(this.body, sph(0.05), q.spots, [(i % 2 ? 0.2 : -0.2), 0.25, -0.3 + i * 0.12], { outline: false });
+    // Stripes: dark half-rings over the back, following the body's oval.
+    if (q.stripes && !low) {
+      for (const z of [-0.36, -0.14, 0.08, 0.3]) {
+        const r = 0.37 * Math.sqrt(Math.max(0.1, 1 - (z / 0.57) ** 2));
+        mesh(this.body, new THREE.TorusGeometry(r, 0.03, 5, 16, Math.PI), q.stripes, [0, 0, z], { scale: [1, 0.95, 1], outline: false });
+      }
+    }
     // Head
     mesh(this.head, sph(0.32), q.fur, [0, 0, 0], { scale: [1, low ? 0.6 : 0.95, 1] });
     const snout = mesh(this.head, sph(0.18), q.belly, [0, low ? -0.05 : -0.08, 0.25 + q.snout * 0.1], { scale: [0.9, low ? 0.45 : 0.7, q.snout] });

@@ -32,6 +32,11 @@ export class Diorama {
     return this.kit.anchors;
   }
 
+  /** Props the player can click to sit on. */
+  get sittables() {
+    return this.kit.sittables;
+  }
+
   get companionCreatures() {
     return this.companions.map((c) => c.creature);
   }

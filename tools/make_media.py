@@ -16,7 +16,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ARCHIVE = Path(r"F:\LoopVid\Archive")
+ARCHIVE = ROOT.parent / "Archive"  # LoopVid/Archive, next to this project (follows the folder when it moves drives)
 MANIFEST = ROOT / "src" / "data" / "manifest.json"
 MEDIA = ROOT / "public" / "media"
 

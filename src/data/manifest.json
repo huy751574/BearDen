@@ -4,6 +4,8 @@
       "id": "adventure",
       "name": "Adventure",
       "scenes": [
+        "adventure-bear-visiting-great-wall",
+        "adventure-bear-visiting-macchu-picchu",
         "adventure-bear-visit-neuschwanstein-castle",
         "adventure-bear-walk-on-the-moon",
         "adventure-bear-with-friends-visit-angkor",
@@ -74,6 +76,7 @@
       "name": "Hunting",
       "scenes": [
         "hunting-dead-winter",
+        "hunting-night-at-bamboo-bear-with-tiger",
         "hunting-bear-approach-the-prey",
         "hunting-bear-bare-teeth-aggresively-to-enemy",
         "hunting-bear-roar-on-top-of-mountain",
@@ -86,6 +89,8 @@
       "id": "isekai",
       "name": "Isekai",
       "scenes": [
+        "isekai-hero-party-air-ship-travelling",
+        "isekai-hero-party-bubble-bath",
         "isekai-bear-hero-party-stroll-in-town-after-victory",
         "isekai-bear-hero-party-traveling",
         "isekai-black-bear-hero-party-camping-night-in-the-pines",
@@ -123,6 +128,7 @@
       "id": "power-bearer",
       "name": "Power Bearer",
       "scenes": [
+        "power-bearer-mecha-bear-fighting-9-head-mecha",
         "power-bearer-the-hydra-make-an-appearance",
         "power-bearer-bear-mecha-fighting-mecha-alligator",
         "power-bearer-bear-mecha-fighting-mecha-direwolf",
@@ -132,7 +138,6 @@
         "power-bearer-bear-mecha-victory-against-mecha-direwolf",
         "power-bearer-bear-mecha-wakeup",
         "power-bearer-bear-triumph-over-maelstrom",
-        "power-bearer-mecha-bear-fighting-9-head-mecha",
         "power-bearer-the-bear-victory-hydra-mecha",
         "power-bearer-the-bear-fixing-his-mecha-in-snow",
         "power-bearer-villain-alligator-appear",
@@ -144,6 +149,7 @@
       "id": "relax",
       "name": "Relax",
       "scenes": [
+        "relax-serenity-morning-lake",
         "relax-at-the-lake-shore",
         "relax-bear-friends-group-performing-in-waltz-hall",
         "relax-bear-reading-in-graveyard",
@@ -191,6 +197,7 @@
       "name": "VietNam",
       "scenes": [
         "vietnam-hoi-tho-trang",
+        "vietnam-minh-tam-kien-tanh",
         "vietnam-tieu-dao-bear-easy-free-wandering",
         "vietnam-ba-khi-ngut-troi",
         "vietnam-ngam-lai-mot-chut",
@@ -206,6 +213,7 @@
       "id": "wuxia",
       "name": "Wuxia",
       "scenes": [
+        "wuxia-last-inn-before-the-pass",
         "wuxia-bear-playing-music-on-jade-bridge-with-friends",
         "wuxia-bear-playing-music-on-lattern-river-with-friends",
         "wuxia-the-bear-fighting-assasins-hyena",
@@ -253,6 +261,56 @@
           "id": "ikKp0_-xIlM",
           "title": "Edge of the World (Lyrics) 🏰 Neuschwanstein Castle | Medieval Chillwave to Relax & Focus",
           "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "adventure-bear-visiting-great-wall",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear visiting Great Wall",
+      "folders": [
+        "Adventure-Bear_visiting_Great_Wall"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Bear_visiting_Great_Wall/Black_bear_holding_thermos_cup_c51cd4ba.mp4",
+      "songs": [
+        {
+          "title": "Great Wall at Sunrise",
+          "file": "Adventure-Bear_visiting_Great_Wall/Great Wall at Sunrise.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "r4jXqxuoCtI",
+          "title": "Autumn on the Wall 🍂 Bear’s Sunrise Tea on the Great Wall of China | Chinese Lofi to Relax & Study",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
+      "id": "adventure-bear-visiting-macchu-picchu",
+      "theme": "adventure",
+      "subLabel": "",
+      "title": "Bear visiting Macchu Picchu",
+      "folders": [
+        "Adventure-Bear_visiting_Macchu_Picchu"
+      ],
+      "hasLyrics": false,
+      "video": "Adventure-Bear_visiting_Macchu_Picchu/Black_Bear_sketching_ruins_20261017234357.mp4",
+      "songs": [
+        {
+          "title": "Mountain Wind Calls",
+          "file": "Adventure-Bear_visiting_Macchu_Picchu/Mountain Wind Calls.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "0I3d4L-7wSE",
+          "title": "Above the Clouds 🦙 Bear Sketches Machu Picchu at Sunrise | Andean Lofi to Relax & Study",
+          "kind": "instrumental"
         }
       ]
     },
@@ -757,6 +815,11 @@
         }
       ],
       "youtube": [
+        {
+          "id": "pqkTxtACuQY",
+          "title": "Half Unspoken  (Instrumental) 🍂❄️ Where the Fire Meets the Frozen | Lofi Folk Ballad",
+          "kind": "instrumental"
+        },
         {
           "id": "gO9iliOvrzw",
           "title": "Half Unspoken (Lyrics) 🍂❄️ Where the Fire Meets the Frozen | Lofi Folk Ballad",
@@ -1792,6 +1855,42 @@
       ]
     },
     {
+      "id": "hunting-night-at-bamboo-bear-with-tiger",
+      "theme": "hunting",
+      "subLabel": "",
+      "title": "Night at Bamboo Bear with tiger",
+      "folders": [
+        "Hunting-Night_at_Bamboo_Bear_with_tiger",
+        "Hunting-Night_at_Bamboo_Bear_with_tiger-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Hunting-Night_at_Bamboo_Bear_with_tiger/Bear_and_tiger_in_forest_7de94b56.mp4",
+      "songs": [
+        {
+          "title": "Crimson Bamboo",
+          "file": "Hunting-Night_at_Bamboo_Bear_with_tiger/Crimson Bamboo.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Crimson Bamboo (Lyrics)",
+          "file": "Hunting-Night_at_Bamboo_Bear_with_tiger-Lyrics/Crimson Bamboo (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "J8qxskYb2Bk",
+          "title": "CRIMSON BAMBOO (Instrument) 🐻🐯 Aggressive Drift Phonk | Bear vs Tiger",
+          "kind": "instrumental"
+        },
+        {
+          "id": "0T1AVzqLzPk",
+          "title": "CRIMSON BAMBOO (Lyrics) 🐻🐯 Aggressive Drift Phonk | Bear vs Tiger",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "hunting-the-bear-is-drinking-near-alligator",
       "theme": "hunting",
       "subLabel": "",
@@ -2066,6 +2165,67 @@
           "id": "Gn8M64xYOrM",
           "title": "\"Fire in Fire\" (Lyrics) 🔥⚔️ Epic Isekai Boss Battle Anime Song",
           "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "isekai-hero-party-bubble-bath",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Hero party Bubble Bath",
+      "folders": [
+        "Isekai-Hero_party_Bubble_Bath",
+        "Isekai-Hero_party_Bubble_Bath-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Isekai-Hero_party_Bubble_Bath/Animals_soaking_in_hot_spring_20261022010129.mp4",
+      "songs": [
+        {
+          "title": "Bubble Bubble Heaven",
+          "file": "Isekai-Hero_party_Bubble_Bath/Bubble Bubble Heaven.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Bubble Bubble Heaven (Lyrics)",
+          "file": "Isekai-Hero_party_Bubble_Bath-Lyrics/Bubble Bubble Heaven (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "VW2zhfDXyzA",
+          "title": "“Bubble Bubble Heaven” (Instrument) ♨️ Hot Spring Brainrot Hip-Hop | Bear, Fox & Capybara Onsen Song",
+          "kind": "instrumental"
+        },
+        {
+          "id": "IX2zVf5KYSY",
+          "title": "\"Bubble Bubble Heaven” (Lyrics) ♨️ Hot Spring Brainrot Hip-Hop | Bear, Fox & Capybara Onsen Song",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "isekai-hero-party-air-ship-travelling",
+      "theme": "isekai",
+      "subLabel": "",
+      "title": "Hero party air ship travelling",
+      "folders": [
+        "Isekai-Hero_party_air_ship_travelling"
+      ],
+      "hasLyrics": false,
+      "video": "Isekai-Hero_party_air_ship_travelling/Bear_sailing_airship_on_clouds_e084602a.mp4",
+      "songs": [
+        {
+          "title": "High-Altitude Airship",
+          "file": "Isekai-Hero_party_air_ship_travelling/High-Altitude Airship.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "UYMKYDPegxs",
+          "title": "Above the Golden Clouds ☁️⛵ Isekai Airship Lofi | Celtic Chill Beats to Relax, Study & Dream",
+          "kind": "instrumental"
         }
       ]
     },
@@ -2693,15 +2853,21 @@
       "subLabel": "",
       "title": "Mecha Bear Fighting 9 Head Mecha",
       "folders": [
-        "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha"
+        "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha",
+        "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha-Lyrics"
       ],
-      "hasLyrics": false,
+      "hasLyrics": true,
       "video": "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha/Mecha_bear_fighting_mecha_hydra_202607190107.mp4",
       "songs": [
         {
           "title": "Waking up, Power bear x Echoes of  the Marbled Temple (Mashup)",
           "file": "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha/Waking up, Power bear x Echoes of  the Marbled Temple (Mashup).wav",
           "lyrics": false
+        },
+        {
+          "title": "The rival beats (Lyrics)",
+          "file": "Power_Bearer-Mecha_Bear_Fighting_9_Head_Mecha-Lyrics/The rival beats (Lyrics).wav",
+          "lyrics": true
         }
       ],
       "youtube": [
@@ -2709,6 +2875,11 @@
           "id": "Pn5fzj3H_Jc",
           "title": "⚡ Power Bear vs. the 9-Headed Hydra | Last Stand in the Marble Temple 🐻🤖 Lofi Mecha Loop",
           "kind": "instrumental"
+        },
+        {
+          "id": "JQissJSQdIs",
+          "title": "⚡ Power Bear vs. the 9-Headed Hydra (Lyrics) | Last Stand in the Marble Temple 🐻🤖 Lofi Mecha",
+          "kind": "lyrics"
         }
       ]
     },
@@ -3280,6 +3451,31 @@
       ]
     },
     {
+      "id": "relax-serenity-morning-lake",
+      "theme": "relax",
+      "subLabel": "",
+      "title": "Serenity Morning Lake",
+      "folders": [
+        "Relax-Serenity_Morning_Lake"
+      ],
+      "hasLyrics": false,
+      "video": "Relax-Serenity_Morning_Lake/Bear_relaxing_in_boat_20261027023004.mp4",
+      "songs": [
+        {
+          "title": "Morning Lake Serenity",
+          "file": "Relax-Serenity_Morning_Lake/Morning Lake Serenity.wav",
+          "lyrics": false
+        }
+      ],
+      "youtube": [
+        {
+          "id": "PheCXRXUQyo",
+          "title": "Drifting 🚣 Calm Morning Lake Lofi | Music to Relax, Study & Unwind",
+          "kind": "instrumental"
+        }
+      ]
+    },
+    {
       "id": "relax-sleeping-in-the-cave",
       "theme": "relax",
       "subLabel": "",
@@ -3812,6 +4008,31 @@
       ]
     },
     {
+      "id": "vietnam-minh-tam-kien-tanh",
+      "theme": "vietnam",
+      "subLabel": "",
+      "title": "Minh Tâm Kiến Tánh",
+      "folders": [
+        "VietNam-Minh_Tâm_Kiến_Tánh-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "VietNam-Minh_Tâm_Kiến_Tánh-Lyrics/Black_Bear_meditating_in_cave_3c181c0e.mp4",
+      "songs": [
+        {
+          "title": "Minh Tâm Kiến Tánh (See Your True Nature)",
+          "file": "VietNam-Minh_Tâm_Kiến_Tánh-Lyrics/Minh Tâm Kiến Tánh (See Your True Nature).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "gGIaVNdXu4A",
+          "title": "Minh Tâm Kiến Tánh 明心見性 — See Your True Nature 🏮 Lofi Thiền Lúc Bình Minh",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
       "id": "vietnam-ngam-lai-mot-chut",
       "theme": "vietnam",
       "subLabel": "",
@@ -4079,6 +4300,42 @@
         {
           "id": "i2Sc76aaJEw",
           "title": "Lantern River (Lyrics) 🏮 Wuxia Lofi to Relax / Study to",
+          "kind": "lyrics"
+        }
+      ]
+    },
+    {
+      "id": "wuxia-last-inn-before-the-pass",
+      "theme": "wuxia",
+      "subLabel": "",
+      "title": "Last Inn Before the Pass",
+      "folders": [
+        "Wuxia-Last_Inn_Before_the_Pass",
+        "Wuxia-Last_Inn_Before_the_Pass-Lyrics"
+      ],
+      "hasLyrics": true,
+      "video": "Wuxia-Last_Inn_Before_the_Pass/Bear_holding_cup_in_winter_20261018174014.mp4",
+      "songs": [
+        {
+          "title": "Last Inn Before the Pass",
+          "file": "Wuxia-Last_Inn_Before_the_Pass/Last Inn Before the Pass.wav",
+          "lyrics": false
+        },
+        {
+          "title": "Last Inn Before the Pass (Lyrics)",
+          "file": "Wuxia-Last_Inn_Before_the_Pass-Lyrics/Last Inn Before the Pass (Lyrics).wav",
+          "lyrics": true
+        }
+      ],
+      "youtube": [
+        {
+          "id": "1NKj08MuyAU",
+          "title": "Last Inn Before the Pass (Instruments) ❄️ Wuxia Lofi for a Snowy Night — Guzheng · Flute",
+          "kind": "instrumental"
+        },
+        {
+          "id": "NLXn7GFvNRk",
+          "title": "Last Inn Before the Pass (Lyrics) ❄️ Wuxia Lofi for a Snowy Night — Guzheng · Flute",
           "kind": "lyrics"
         }
       ]

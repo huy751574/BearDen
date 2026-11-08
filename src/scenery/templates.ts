@@ -479,7 +479,8 @@ const TEMPLATES: Record<Exclude<IslandKind, 'landmark'>, (k: Kit) => void> = {
       for (let i = 0; i < 5; i++) k.part(crag, geo.dodec(0.8 + k.rand() * 0.6), '#7d7468', [(k.rand() - 0.5) * 1.6, 0.6 + i * 0.35, (k.rand() - 0.5) * 1.6], { outline: 0.03 });
       centrepiece(k, crag, -4.6, -2.8, 1.6);
     }
-    trees(k, 16, () => N.pine(k, false, N.shade(N.evergreen(k), -0.04 + k.rand() * 0.06)), 3.2);
+    if (k.has('bamboo')) trees(k, 16, () => N.bamboo(k, 4 + Math.floor(k.rand() * 3)), 3.2);
+    else trees(k, 16, () => N.pine(k, false, N.shade(N.evergreen(k), -0.04 + k.rand() * 0.06)), 3.2);
     k.scatter(3, 0.9, () => N.log(k), { minR: 2.5, tall: false, block: 0.5 });
     k.scatter(6, 0.3, () => N.mushroom(k), { minR: 2, tall: false, block: 0 });
     k.scatter(4, 0.7, () => N.bush(k, N.shade(k.look.leaf, -0.05)), { minR: 3, block: 0.5 });

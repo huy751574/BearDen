@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { geo, type Kit } from '../kit';
+import { propModel, withSeats } from './models';
 
 // Trees, rocks, plants and small water features. Every prop is a Group with
 // its base at y = 0, facing +Z.
@@ -247,10 +248,19 @@ export function reeds(k: Kit, n = 7) {
   return g;
 }
 
+/** Fallen log seat (Blender model, 1.6 m; shorter ones are scaled); two seats on top. */
 export function log(k: Kit, len = 1.6) {
-  const g = new THREE.Group();
-  k.part(g, geo.cyl(0.18, 0.18, len, 10), '#7a5436', [0, 0.18, 0], { rot: [0, 0, Math.PI / 2] });
-  k.part(g, geo.cyl(0.13, 0.13, 0.01, 10), '#c9a26e', [len / 2 + 0.005, 0.18, 0], { rot: [0, 0, Math.PI / 2], outline: false });
+  const g = propModel(k, 'log', {
+    sittable: true,
+    twoSided: true,
+    fallback: () => {
+      const s = withSeats(new THREE.Group(), [[-0.4, 0.4, 0], [0.4, 0.4, 0]]);
+      k.part(s, geo.cyl(0.2, 0.2, 1.6, 10), '#7a5436', [0, 0.2, 0], { rot: [0, 0, Math.PI / 2] });
+      k.part(s, geo.cyl(0.15, 0.15, 0.01, 10), '#c9a26e', [0.805, 0.2, 0], { rot: [0, 0, Math.PI / 2], outline: false });
+      return s;
+    },
+  });
+  g.scale.x = len / 1.6;
   return g;
 }
 

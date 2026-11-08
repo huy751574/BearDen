@@ -369,9 +369,26 @@ SCENE_ENV: dict[str, dict] = {
     "vietnam-hoi-tho-trang": {"time": "night", "island": "cozyroom", "below": "city"},
     # Riding a buffalo through a spring meadow.
     "vietnam-tieu-dao-bear-easy-free-wandering": {"island": "meadow", "below": "fields"},
+    # Machu Picchu: terraces and ruins high in the mountains.
+    "adventure-bear-visiting-macchu-picchu": {"island": "landmark", "variant": "ruins", "below": "mountains"},
+    # A snowy hot spring; the whole party soaks.
+    "isekai-hero-party-bubble-bath": {"island": "onsen", "below": "snow", "weather": "snow"},
+    # Sailing the airship above the clouds.
+    "isekai-hero-party-air-ship-travelling": {"island": "landmark", "variant": "ship", "below": "clouds"},
+    # Meditating on a misty cliff at dawn.
+    "vietnam-minh-tam-kien-tanh": {"island": "pavilion", "time": "sunset", "below": "mountains"},
+    # Inside a wooden inn on a snowy night.
+    "wuxia-last-inn-before-the-pass": {"island": "cozyroom", "time": "night", "below": "snow", "weather": "snow"},
 }
 
 SCENE_CAST: dict[str, list[dict]] = {
+    "adventure-bear-visiting-great-wall": [{"kind": "red_panda", "behavior": "sit"}],
+    "adventure-bear-visiting-macchu-picchu": [{"kind": "goat", "behavior": "sleep"}],  # the alpaca, asleep
+    "hunting-night-at-bamboo-bear-with-tiger": [{"kind": "tiger", "behavior": "prowl"}],
+    "isekai-hero-party-bubble-bath": [{"kind": "fox", "behavior": "float"}, {"kind": "capybara", "behavior": "float"}],
+    "relax-serenity-morning-lake": [],
+    "vietnam-minh-tam-kien-tanh": [],
+    "wuxia-last-inn-before-the-pass": [],
     "bloom-cat-singer-on-bridge-where-fire-kisses-frozen": [{"kind": "cat_idol", "behavior": "wander"}],
     "cover-ghost-buster-bear-driving-ghost-groove": [{"kind": "ghost", "behavior": "fly"}] * 3,
     "hunting-dead-winter": [{"kind": "deer", "behavior": "wander"}],
@@ -598,7 +615,7 @@ def main() -> int:
         fix = SCENE_ENV.get(sid, {})
         time = fix.get("time") or time_of_day(info, words)
         below = fix.get("below") or first_rule(BELOW_RULES, words, "clouds")
-        weather = first_rule(WEATHER_RULES, words, "none")
+        weather = fix.get("weather") or first_rule(WEATHER_RULES, words, "none")
         if weather == "none" and time == "night" and below in ("forest", "lake", "fields"):
             weather = "fireflies"
 

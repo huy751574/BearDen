@@ -33,7 +33,7 @@ from rapidfuzz import fuzz
 from scipy.optimize import linear_sum_assignment
 
 ROOT = Path(__file__).resolve().parent.parent
-ARCHIVE = Path(r"F:\LoopVid\Archive")
+ARCHIVE = ROOT.parent / "Archive"  # LoopVid/Archive, next to this project (follows the folder when it moves drives)
 CHANNEL = "https://www.youtube.com/@BearDenLofi"
 MANIFEST = ROOT / "src" / "data" / "manifest.json"
 CACHE = ROOT / "tools" / "cache" / "youtube_videos.json"
@@ -189,7 +189,15 @@ def main() -> int:
         has_inst = any(not x["lyrics"] for x in s["songs"]) or not s["songs"]
         s["_slots"] = (["instrumental"] if has_inst else []) + (["lyrics"] if s["hasLyrics"] else [])
 
-    packed = {s["id"] for s in scenes if s["songs"] and not s["_durs"]}
+    # Slots (instrumental / lyrics) whose WAVs were packed away into Archive.7z:
+    # no durations to re-match with, so their earlier links are kept. Per slot,
+    # because a scene can get a new -Lyrics folder next to a packed instrumental.
+    packed = set()
+    for s in scenes:
+        for kind, lyr in (("instrumental", False), ("lyrics", True)):
+            files = [ARCHIVE / x["file"] for x in s["songs"] if x["lyrics"] == lyr]
+            if files and not any(f.exists() for f in files):
+                packed.add((s["id"], kind))
 
     # Keep rows the user confirmed.
     confirmed: dict[tuple[str, str], dict] = {}
@@ -199,7 +207,7 @@ def main() -> int:
                 # Also keep earlier links of scenes whose WAVs were packed away
                 # (no durations to re-match with: re-matching would only get worse).
                 if row.get("confirmed", "").strip().lower() in ("y", "yes", "1", "x", "claude") or (
-                        row["scene_id"] in packed and row.get("video_id")):
+                        (row["scene_id"], row["kind"]) in packed and row.get("video_id")):
                     confirmed[(row["scene_id"], row["kind"])] = row
     used_videos = {r["video_id"] for r in confirmed.values() if r["video_id"]}
 
